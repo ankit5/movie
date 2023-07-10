@@ -72,7 +72,7 @@ function doChange() {
  $("#load").height(mvi_content);
 $('a.splash-image,.idTabs a,#seasons .les-content a').click(function(){
  // alert($(this).data('value'));
-  
+   $('.mvi-content').css({'top': $("#mvi-cover").height()+20});
   $('#seasons .les-content a:first').addClass("selected");
    
   $('#seasons .les-content a').click(function(){
