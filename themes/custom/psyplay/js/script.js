@@ -139,7 +139,7 @@ if(keyheight==null){
  // alert($("#mvi-cover").height());
  var top = parseInt($('#mvi-content').css('top'));;
  //alert(top);
- mvi_content = top + mvi_content + traler + list_dl;
+ mvi_content = top + mvi_content + traler + list_dl -28;
  // var mvi_content = $("#mvi-content").height();
    // var hei = 980 + keyheight;
   // mvi_content = mvi_content+85;
