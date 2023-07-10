@@ -205,8 +205,8 @@ AddEncoding gzip svgz
   
   
 
-  Header always unset X-Frame-Options
-  Header set X-Frame-Options "SAMEORIGIN"
+  #Header always unset X-Frame-Options
+  #Header set X-Frame-Options "SAMEORIGIN"
 
   Header always unset X-Content-Type-Options
   Header set X-Content-Type-Options "nosniff"
