@@ -149,6 +149,7 @@ $("#load").height(mvi_content);
       focus();
 const listener = window.addEventListener('blur', () => {
   if (document.activeElement === document.querySelector('iframe')) {
+     $('.mvi-content').css({'top': $("#mvi-cover").height()+23});
    // console.log('clicked on iframe');
 if($("#seasons").height()) return true;
     $(".player_nav").show();
@@ -160,10 +161,10 @@ if($("#seasons").height()) return true;
   }else {
 //$('.mvi-content').css({'padding-bottom': '123px'});
   }
-   $('#mvi-content').css({'padding-bottom': 80 + traler +'px'});
+   $('#mvi-content').css({'padding-bottom': 80 - 23 + traler +'px'});
   // var mvi_content = $("#mvi-content").height();
   // alert(mvi_content);
-   mvi_content = mvi_content + player_nav + 60 ;
+   mvi_content = mvi_content + player_nav + 60 - 23 ;
    // $('#mvi-content').css({'padding-bottom': player_nav+'px'});
     $("#load").height(mvi_content);
    
