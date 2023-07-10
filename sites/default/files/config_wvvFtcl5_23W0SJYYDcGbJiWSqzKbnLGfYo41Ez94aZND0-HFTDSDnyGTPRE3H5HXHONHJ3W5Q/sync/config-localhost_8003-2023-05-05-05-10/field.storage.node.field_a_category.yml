@@ -1,0 +1,33 @@
+uuid: de9847a2-18ed-4a26-a3f0-83fa4cdf2d6b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_a_category
+field_name: field_a_category
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: General
+      label: General
+    -
+      value: OBC
+      label: OBC
+    -
+      value: SC
+      label: SC
+    -
+      value: ST
+      label: ST
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

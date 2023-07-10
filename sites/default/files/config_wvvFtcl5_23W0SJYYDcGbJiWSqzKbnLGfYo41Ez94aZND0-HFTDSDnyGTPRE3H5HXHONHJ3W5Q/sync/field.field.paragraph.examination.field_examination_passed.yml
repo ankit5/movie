@@ -1,0 +1,19 @@
+uuid: 9e419d92-8be2-4141-8150-b534ead449b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_examination_passed
+    - paragraphs.paragraphs_type.examination
+id: paragraph.examination.field_examination_passed
+field_name: field_examination_passed
+entity_type: paragraph
+bundle: examination
+label: 'Examination passed'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

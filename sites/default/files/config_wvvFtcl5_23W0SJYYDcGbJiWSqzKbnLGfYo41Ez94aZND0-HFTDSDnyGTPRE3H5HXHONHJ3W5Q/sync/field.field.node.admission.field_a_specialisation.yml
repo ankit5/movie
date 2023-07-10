@@ -1,0 +1,21 @@
+uuid: 361a63f1-b636-4060-8b7f-614e2de04345
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_specialisation
+    - node.type.admission
+  module:
+    - options
+id: node.admission.field_a_specialisation
+field_name: field_a_specialisation
+entity_type: node
+bundle: admission
+label: Specialisation
+description: 'Mark any one'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

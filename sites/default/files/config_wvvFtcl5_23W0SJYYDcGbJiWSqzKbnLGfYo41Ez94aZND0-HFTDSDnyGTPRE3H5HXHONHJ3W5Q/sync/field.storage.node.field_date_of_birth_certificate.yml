@@ -1,0 +1,23 @@
+uuid: eed5463a-9802-4f82-acd9-feaad46c40c3
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: node.field_date_of_birth_certificate
+field_name: field_date_of_birth_certificate
+entity_type: node
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

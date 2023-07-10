@@ -1,0 +1,27 @@
+uuid: 951ee460-a620-4f7c-9cb9-b7f7ca48f50d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_certificate
+    - paragraphs.paragraphs_type.examination
+  module:
+    - file
+id: paragraph.examination.field_certificate
+field_name: field_certificate
+entity_type: paragraph
+bundle: examination
+label: Certificate
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: '2 MB'
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

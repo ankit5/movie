@@ -1,0 +1,73 @@
+{{ title_prefix }}
+  {% if not page %}
+    <h2 class="visually-hidden">
+      
+    </h2>
+  {% endif %}
+{{ title_suffix }}
+           
+ <div data-movie-id="376819" class="ml-item">
+                  <a href="{{ url }}" data-url="" class="ml-mask jt" data-hasqtip="0" oldtitle="{{ node.label }}" title="">
+                   {% if node.field_quality.0.value %}
+                    <span class="mli-quality {% if node.field_eps.0.value %} tv {% endif %}">{{ node.field_quality.0.value }}</span>
+                     {% endif %}
+                     {% if node.field_eps.0.value %}
+                 <span class="mli-eps">Eps<i>{{ node.field_eps.0.value }}</i></span>
+                     {% endif %}
+                     
+                    <img data-original="{{ node.field_image_urls.0.value }}" src="" class="lazy thumb mli-thumb" style="display: inline-block; ">
+                    <span class="mli-info">
+                      <h2>{{ node.label }}</h2>
+                    </span>
+                  </a>
+                  <div id="hidden_tip">
+                    <div id="" class="qtip-title">{{ node.label }}</div>
+                    <div class="jtip-quality">
+                     {% for key,value in node.field_right.getValue %}
+                        {% if 'Quality:' in value['value'] %}
+                         {{ value['value']|replace({ 'Quality:': '' }) }}
+                         {% endif %}
+                        {% endfor %}
+                        </div>
+                    <div class="jtip-top">
+                      <div class="jt-info jt-imdb"> IMDb: 
+                          {% for key,value in node.field_right.getValue %}
+                        {% if 'IMDb:' in value['value'] %}
+                         {{ value['value']|replace({ 'IMDb:': '' }) }}
+                         {% endif %}
+                        {% endfor %}
+                      </div>
+                      <div class="jt-info">
+                        {{ node.field_year.value }}
+                      </div>
+                      <div class="jt-info">
+                       {% for key,value in node.field_right.getValue %}
+                        {% if 'Duration:' in value['value'] %}
+                         {{ value['value']|replace({ 'Duration:': '' }) }}
+                         {% endif %}
+                        {% endfor %}
+                        </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    {% if node.body.value %}<p class="f-desc">{{ node.body.value|slice(0, 100) ~ '...' }}</p>
+                     {% endif %}
+                    
+                    <div class="block">Country:&nbsp;
+                    {% for key,value in node.field_left.getValue %}
+                        {% if 'Country:' in value['value'] %}
+                         {{ value['value']|replace({ 'Country:': '' }) }}
+                         {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block">Genre: {% for key, item in content.field_tags if key|first != '#' %}
+      {{ item }},
+    {% endfor %}
+                    </div>
+                    <div class="jtip-bottom">
+                      <a href="{{ url }}" class="btn btn-block btn-successful">
+                        <i class="fa fa-play-circle mr10"></i> Watch Movie </a>
+                      
+                      </a>
+                    </div>
+                  </div>
+                </div>

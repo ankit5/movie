@@ -1,0 +1,373 @@
+<?php
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Url;
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\file\FileInterface;
+
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+
+use Drupal\views\ViewExecutable;
+
+function admission_form_views_pre_render(ViewExecutable $view) {
+    switch ($view->id()){
+        case 'search':
+            if ($view->current_display == 'page_1'){
+              $values = $view->getExposedInput();
+                $view->setTitle('Search for '.$values["title"]);
+            }
+            break;
+    }
+}
+
+/**
+* Implements hook_ENTITY_TYPE_view() for node entities.
+*/
+
+function admission_form_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  // $build['body'][0]['#text'] = 'test by sdajay'; 
+}
+
+function admission_form_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  if ($form_id == 'user_register_form') {
+     $form['actions']['submit']['#submit'][] = '_form_submit_register';
+  }
+  
+}
+
+function _form_submit_register(&$form, FormStateInterface $form_state)
+{
+  \Drupal::service('messenger')->addMessage("Please fill the application form.");
+/*$url = Url::fromUserInput('/application-form-for-admission', [], ['absolute' => 'true']);
+     $response = new RedirectResponse($url->toString());
+      $response->send();*/
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function admission_form_form_node_admission_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  $request = \Drupal::request();
+  $_url = Url::createFromRequest($request);
+  $userCurrent = \Drupal::currentUser();
+   if ($_url->access($userCurrent)) {
+    /* print "yes";
+     exit; */
+  }
+ 
+   // exit;
+    $current_path = \Drupal::service('path.current')->getPath();
+  if($current_path == '/node/add/admission'){ $form['#title'] = t('APPLICATION ADMISSION FORM');}
+   if($current_path == '/admission-form-bfa') $form['#title'] = t('APPLICATION FORM BFA');
+  $form['#theme'] = ['node_admission_forms'];
+
+   $form['#validate'][] = '_form_validation_admission';
+  $form['actions']['submit']['#submit'][] = '_form_submit_admission';
+  $form['title']['widget'][0]['value']['#description'] = t('(in block letters as in Senior School Certificate)');
+  $form['actions']['submit']['#value'] = t('Save');
+   $form['field_category_certificate']['widget'][0]['#upload_validators']['_validate_file'] = [];
+   $form['field_annual_income_certificate']['widget'][0]['#upload_validators']['_validate_file'] = [];
+   $form['field_date_of_birth_certificate']['widget'][0]['#upload_validators']['_validate_file'] = [];
+    $form['field_date_of_birth_certificate']['widget'][0]['#upload_validators']['field_payment_recipe'] = [];
+   
+}
+
+function _validate_file(FileInterface $file) {
+  $errors = [];
+  $size = $file->getSize();
+  if($size < 100000){
+ $errors[] = t($size."Minimum file size 100 KB is required.");
+}
+ 
+  return $errors;
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function admission_form_field_widget_form_alter(&$element, FormStateInterface &$form_state, $context) {
+  if (isset($element['#field_name']) && ($element['#field_name'] == 'field_category_certificate' || $element['#field_name'] == 'field_annual_income_certificate' || $element['#field_name'] == 'field_date_of_birth_certificate' || $element['#field_name'] =='field_certificate' || $element['#field_name'] =='field_payment_recipe'))
+
+   {
+      // Add process callback to change field description.
+      $element['#process'][] = '_change_description';
+    }
+  }
+
+
+/**
+ *  The description field is build in a #process callback so we need to add another callback.
+ */
+function _change_description($element, FormStateInterface $form_state, $form) {
+  $element['#description'] = t('File size 100 KB to 5 MB limit.<br>
+Allowed types: pdf.');
+  return $element;
+}
+
+function _form_validation_admission(&$form, FormStateInterface $form_state)
+{
+  # code...
+  $field_a_course_type = $form_state->getValue('field_a_course_type')[0]['value'];
+   $field_a_category = isset($form_state->getValue('field_a_category')[0]['value'])?$form_state->getValue('field_a_category')[0]['value']:'';
+   $field_mfa_category = isset($form_state->getValue('field_mfa_category')[0]['value'])?$form_state->getValue('field_mfa_category')[0]['value']:'';
+   $field_college_last_attended = isset($form_state->getValue('field_college_last_attended')[0]['value'])?$form_state->getValue('field_college_last_attended')[0]['value']:'';
+   $field_school_last_attended = isset($form_state->getValue('field_school_last_attended')[0]['value'])?$form_state->getValue('field_school_last_attended')[0]['value']:'';
+   $field_category_certificate = empty($form_state->getValue('field_category_certificate')[0]['fids'])?'':'1';
+   $field_annual_income_certificate = empty($form_state->getValue('field_annual_income_certificate')[0]['fids'])?'':'1';
+  // print $field_category_certificate;
+   //print $field_a_course_type." ".$field_a_category." ".$field_mfa_category;
+  // var_dump($form_state->getValue('field_category_certificate')[0]['fids']);
+  if ($field_a_course_type=='MFA-ADFA')  {
+     if($field_mfa_category==''){
+      $form_state->setErrorByName('field_mfa_category', t('MFA Category field is required.'));
+      }  
+      if ($field_college_last_attended=='') {
+     // $form_state->setErrorByName('field_college_last_attended', t('College last attended field is required.'));  
+      }
+      if($field_mfa_category!='GNGND (General Delhi)' && $field_mfa_category!='GNGNO (General Outside-Delhi)' && $field_category_certificate=='') {
+        $form_state->setErrorByName('field_category_certificate', t('Category Certificate field is required.'));
+      }
+       if($field_mfa_category!='GNGND (General Delhi)' && $field_mfa_category!='GNGNO (General Outside-Delhi)' && $field_annual_income_certificate=='') {
+        $form_state->setErrorByName('field_annual_income_certificate', t('Annual Income Certificate field is required.'));
+      }
+
+    }
+    
+  if ($field_a_course_type=='DFA') {
+      if($field_a_category==''){
+      $form_state->setErrorByName('field_a_category', t('DFA Category field is required.')); 
+      } 
+      if ($field_school_last_attended=='') {
+     // $form_state->setErrorByName('field_school_last_attended', t('School last attended field is required.'));  
+      }
+       if($field_a_category!='General' && $field_category_certificate=='') {
+        $form_state->setErrorByName('field_category_certificate', t('Category Certificate field is required.'));
+      }
+      if($field_a_category!='General' && $field_annual_income_certificate=='') {
+        $form_state->setErrorByName('field_annual_income_certificate', t('Annual Income Certificate field is required.'));
+      }
+    }
+   
+     
+   
+   
+
+}
+
+function _form_submit_admission(&$form, FormStateInterface $form_state)
+{
+  \Drupal::service('messenger')->addMessage("Application Submit Succesfully");
+/*$url = Url::fromUserInput('/thank-you', [], ['absolute' => 'true']);
+     $response = new RedirectResponse($url->toString());
+      $response->send();*/
+}
+
+function admission_form_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  $view_mode = $variables['view_mode'];
+
+  //check content type
+  if ($node->getType() == 'admission') {
+   
+     $variables['#attached']['library'][] = 'admission_form/global-styling';
+   $variables['#attached']['library'][] = 'admission_form/user_module_external';
+ 
+  }
+  $node3 = \Drupal::routeMatch()->getParameter('node');
+ if ($node->getType() == 'movie' && $view_mode=='full' && $node3 instanceof \Drupal\node\NodeInterface) {
+  // Get the node ID.
+  
+$context ='';
+  $nid = $variables['node']->id();
+ 
+   $node2 = \Drupal\admission_form\ReplaceLanguageCode::replaceLangcode($nid,$context);
+
+ $variables['#cache']['max-age'] = 0;
+ 
+}
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function admission_form_theme_registry_alter(&$theme_registry) {
+ // $theme_registry['status_messages']['path'] = drupal_get_path('module', 'admission_form') . '/templates';
+}
+
+/**
+ * Implements hook_theme().
+ */
+function admission_form_theme($existing, $type, $theme, $path) {
+  return array(
+    'node_admission_forms' => [
+      'render element' => 'form',
+    ],
+    'thank_you' => [  
+      'variables' => ['test_var' =>NULL],
+    ],
+    'node__admission__full' => [  
+      'template'  => 'node--admission--full',
+      'base hook' => 'node',
+      'cache' => false,
+    ],
+     'field__node__admission' => [  
+      'template'  => 'field--node--admission',
+      'base hook' => 'field',
+      'cache' => false,
+    ],
+    
+  );
+}
+
+/**
+ * Implements hook_mail_alter().
+ *
+ * Don't send any mail during registration.
+ */
+function admission_form_mail_alter(&$message) {
+  if ($message['id'] == 'user_register_no_approval_required' && $message['key'] == 'register_no_approval_required') {
+      $message['send'] = FALSE;
+      return;
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function admission_form_preprocess(&$variables, $hook) {
+ 
+ $current_path = \Drupal::service('path.current')->getPath();
+  if($current_path == '/node/add/admission' || $current_path == '/admission-form-bfa'){
+  if($hook == 'input' || $hook == 'select' || $hook == 'textarea') {
+     if($variables['element']['#type'] == 'submit'){
+     $variables['attributes']['class'][] = Html::cleanCssIdentifier('btn-primary');
+     }
+    if($variables['element']['#type'] != 'checkbox' and $variables['element']['#type'] != 'radio'){
+     $variables['attributes']['class'][] = Html::cleanCssIdentifier('form-control');
+     }
+    
+}
+}
+
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function admission_form_form_node_preview_form_select_alter2(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // Get frontend from request.
+  $frontends = druxt_node_preview_frontends();
+  $frontend = \Drupal::request()->query->get('frontend');
+  // Otherwise use the first available frontend.
+  if (!$frontend) {
+    $frontend = 0;
+  }
+
+  // Add Preview frontend option.
+  /*$form['frontend'] = [
+    '#type' => 'select',
+    '#title' => t('Frontend'),
+    '#options' => array_keys($frontends),
+    '#default_value' => $frontend,
+    '#attributes' => [
+      'data-drupal-autosubmit' => TRUE,
+    ],
+  ];
+
+  // Adjust weights.
+  $form['view_mode']['#weight'] = 1;
+  $form['submit']['#weight'] = 2;
+
+
+  // Replace submit handler.
+  $form['#submit'] = ['druxt_node_preview_form_node_preview_form_select_submit'];*/
+}
+
+function druxt_node_preview_form_node_preview_form_select_submit(array &$form, FormStateInterface $form_state) {
+  $route_parameters = [
+    'frontend' => $form_state->getValue('frontend'),
+    'node_preview' => $form_state->getValue('uuid'),
+    'view_mode_id' => $form_state->getValue('view_mode'),
+  ];
+
+  $options = [];
+  $query = \Drupal::request()->query;
+  if ($query->has('destination')) {
+    $options['query']['destination'] = $query->get('destination');
+    $query->remove('destination');
+  }
+//  $form_state->setRedirect('entity.node.preview', $route_parameters, $options);
+}
+
+/**
+ * Return available preview frontends.
+ */
+function druxt_node_preview_frontends() {
+  $options = [];
+  $config = \Drupal::config('druxt_node_preview.settings');
+
+  // Extract allowed values.
+  $list = explode("\n", $config->get('frontends'));
+  $list = array_map('trim', $list);
+  $list = array_filter($list, 'strlen');
+  foreach ($list as $item) {
+    // Check for an explicit key.
+    $matches = [];
+    if (preg_match('/(.*)\|(.*)/', $item, $matches)) {
+      // Trim url and label to avoid unwanted spaces issues.
+      $label = trim($matches[1]);
+      $url = trim($matches[2]);
+    }
+    // Otherwise we use the value as the key.
+    else {
+      $label = $url = $item;
+    }
+    $options[$label] = $url;
+  }
+
+  return $options;
+}
+
+function admission_form_update_8001() {
+  // Prepare relevant variables.
+  $entity_type  = 'node';
+  $field_name   = 'field_image_urls';
+  $field_length = 600;
+
+  // Update database schema.
+  $database = \Drupal::database();
+  // Resize the main field data table.
+  $database->query("UPDATE {$entity_type}__{$field_name} SET field_image_urls_value = LEFT(RTRIM(field_image_urls_value), {$field_length});");
+  $database->query("ALTER TABLE {$entity_type}__{$field_name} MODIFY {$field_name}_value VARCHAR({$field_length})");
+  // Resize the revision field data table (if revisions are enabled).
+  $database->query("UPDATE {$entity_type}_revision__{$field_name} SET field_image_urls_value = LEFT(RTRIM(field_image_urls_value), {$field_length});");
+  $database->query("ALTER TABLE {$entity_type}_revision__{$field_name} MODIFY {$field_name}_value VARCHAR({$field_length})");
+
+  // Update storage schema.
+  $storage_key = $entity_type . '.field_schema_data.' . $field_name;
+  $storage_schema = \Drupal::keyValue('entity.storage_schema.sql');
+  $field_schema = $storage_schema->get($storage_key);
+  $field_schema[$entity_type . '__' . $field_name]['fields'][$field_name . '_value']['length'] = $field_length;
+  $field_schema[$entity_type . '_revision__' . $field_name]['fields'][$field_name . '_value']['length'] = $field_length;
+  $storage_schema->set($storage_key, $field_schema);
+
+  // Update field configuration.
+  $config = \Drupal::configFactory()
+    ->getEditable("field.storage.{$entity_type}.{$field_name}");
+  $config->set('settings.max_length', $field_length);
+  $config->save(TRUE);
+
+  // Update field storage configuration.
+  FieldStorageConfig::loadByName($entity_type, $field_name)->save();
+
+  return t('Length of @entity-type.@field-name was updated to @field-length', [
+    '@entity-type' => $entity_type,
+    '@field-name' => $field_name,
+    '@field-length' => $field_length,
+  ]);
+}
+

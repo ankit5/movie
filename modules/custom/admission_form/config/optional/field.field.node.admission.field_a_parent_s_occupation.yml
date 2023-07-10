@@ -1,0 +1,19 @@
+uuid: 6e986c72-a6ce-4358-addc-4738d6049216
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_parent_s_occupation
+    - node.type.admission
+id: node.admission.field_a_parent_s_occupation
+field_name: field_a_parent_s_occupation
+entity_type: node
+bundle: admission
+label: 'Parent’s Occupation'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

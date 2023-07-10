@@ -1,0 +1,21 @@
+{
+    "name": "drupal/disable_user_view",
+    "type": "drupal-module",
+    "description": "Module removes user page functionality and redirects to user edit page.",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "George Anderson (geoanders)",
+            "homepage": "https://www.drupal.org/u/geoanders",
+            "role": "Maintainer"
+        }
+    ],
+    "homepage": "https://drupal.org/project/disable_user_view",
+    "support": {
+        "issues": "https://drupal.org/project/issues/disable_user_view",
+        "source": "https://git.drupalcode.org/project/disable_user_view"
+    },
+    "require": {
+        "drupal/core": "^8.8 || ^9.0"
+    }
+}

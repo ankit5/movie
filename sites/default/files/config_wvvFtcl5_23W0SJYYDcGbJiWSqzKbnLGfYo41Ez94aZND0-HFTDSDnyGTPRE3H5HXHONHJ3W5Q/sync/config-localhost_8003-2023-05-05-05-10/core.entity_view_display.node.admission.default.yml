@@ -1,0 +1,272 @@
+uuid: 75e5daaa-68e7-45cd-b34e-2d92cb2718ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.admission.field_a_category
+    - field.field.node.admission.field_a_course_type
+    - field.field.node.admission.field_a_date_of_birth
+    - field.field.node.admission.field_a_date_of_leaving
+    - field.field.node.admission.field_a_email
+    - field.field.node.admission.field_a_gender
+    - field.field.node.admission.field_a_local_address
+    - field.field.node.admission.field_a_nationality
+    - field.field.node.admission.field_a_parent_s_occupation
+    - field.field.node.admission.field_a_permanent_address
+    - field.field.node.admission.field_a_phone_no
+    - field.field.node.admission.field_a_photo
+    - field.field.node.admission.field_a_please_mark
+    - field.field.node.admission.field_a_religion
+    - field.field.node.admission.field_a_specialisation
+    - field.field.node.admission.field_a_total_annual_income
+    - field.field.node.admission.field_a_university_enrolment_no
+    - field.field.node.admission.field_annual_income_certificate
+    - field.field.node.admission.field_category_certificate
+    - field.field.node.admission.field_college_last_attended
+    - field.field.node.admission.field_date_of_birth_certificate
+    - field.field.node.admission.field_examination
+    - field.field.node.admission.field_father_s_name
+    - field.field.node.admission.field_guardian_s_name
+    - field.field.node.admission.field_mfa_category
+    - field.field.node.admission.field_mother_s_name
+    - field.field.node.admission.field_payment_recipe
+    - field.field.node.admission.field_school_last_attended
+    - image.style.thumbnail
+    - node.type.admission
+  module:
+    - datetime
+    - entity_reference_revisions
+    - file
+    - image
+    - options
+    - user
+id: node.admission.default
+targetEntityType: node
+bundle: admission
+mode: default
+content:
+  field_a_category:
+    weight: 114
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_a_course_type:
+    weight: 123
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_a_date_of_birth:
+    weight: 119
+    label: inline
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_a_date_of_leaving:
+    weight: 117
+    label: inline
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_a_email:
+    weight: 129
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_a_gender:
+    weight: 106
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_a_local_address:
+    weight: 110
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_a_nationality:
+    weight: 104
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_a_parent_s_occupation:
+    weight: 113
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_a_permanent_address:
+    weight: 111
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_a_phone_no:
+    weight: 112
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_a_photo:
+    weight: 122
+    label: inline
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_a_please_mark:
+    weight: 115
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_a_religion:
+    weight: 105
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_a_specialisation:
+    weight: 102
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_a_total_annual_income:
+    weight: 120
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_a_university_enrolment_no:
+    weight: 118
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_annual_income_certificate:
+    weight: 128
+    label: inline
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_category_certificate:
+    weight: 126
+    label: inline
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_college_last_attended:
+    weight: 116
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_date_of_birth_certificate:
+    weight: 125
+    label: inline
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_examination:
+    type: entity_reference_revisions_entity_view
+    weight: 121
+    label: inline
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_father_s_name:
+    weight: 107
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_guardian_s_name:
+    weight: 109
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mfa_category:
+    weight: 127
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_mother_s_name:
+    weight: 108
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_payment_recipe:
+    weight: 130
+    label: inline
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_school_last_attended:
+    weight: 124
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

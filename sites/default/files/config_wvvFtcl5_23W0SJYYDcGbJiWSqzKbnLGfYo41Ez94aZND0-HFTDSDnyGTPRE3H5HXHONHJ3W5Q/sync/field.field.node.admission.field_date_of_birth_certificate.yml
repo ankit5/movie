@@ -1,0 +1,27 @@
+uuid: e48e01fa-16ad-45e8-8775-de4717fe5e0d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_of_birth_certificate
+    - node.type.admission
+  module:
+    - file
+id: node.admission.field_date_of_birth_certificate
+field_name: field_date_of_birth_certificate
+entity_type: node
+bundle: admission
+label: 'Date of birth certificate'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: '5 MB'
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

@@ -1,0 +1,19 @@
+uuid: a897a7f1-043a-4d73-96e6-df8f4d54b712
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_a_permanent_address
+field_name: field_a_permanent_address
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

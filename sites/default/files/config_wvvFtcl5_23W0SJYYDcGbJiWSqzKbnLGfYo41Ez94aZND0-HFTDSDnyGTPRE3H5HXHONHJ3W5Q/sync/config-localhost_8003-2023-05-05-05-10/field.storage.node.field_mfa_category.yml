@@ -1,0 +1,39 @@
+uuid: 2a7b6f63-7a11-418d-aa9a-9f364a6c0c75
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_mfa_category
+field_name: field_mfa_category
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'GNGND (General Delhi)'
+      label: 'GNGND (General Delhi)'
+    -
+      value: 'SCGND(SC General Delhi)'
+      label: 'SCGND(SC General Delhi)'
+    -
+      value: 'STGND(ST General Delhi)'
+      label: 'STGND(ST General Delhi)'
+    -
+      value: 'OBGND (OBC General Delhi)'
+      label: 'OBGND (OBC General Delhi)'
+    -
+      value: 'EWS (General Delhi)'
+      label: 'EWS (General Delhi)'
+    -
+      value: 'GNGNO (General Outside-Delhi)'
+      label: 'GNGNO (General Outside-Delhi)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

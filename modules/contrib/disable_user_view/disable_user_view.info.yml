@@ -1,0 +1,10 @@
+name: 'Disable User View'
+type: module
+description: 'Module removes user page functionality and redirects to user edit page.'
+package: user
+core_version_requirement: ^8.8 || ^9.0
+
+# Information added by Drupal.org packaging script on 2022-02-10
+version: '2.0.0'
+project: 'disable_user_view'
+datestamp: 1644499699

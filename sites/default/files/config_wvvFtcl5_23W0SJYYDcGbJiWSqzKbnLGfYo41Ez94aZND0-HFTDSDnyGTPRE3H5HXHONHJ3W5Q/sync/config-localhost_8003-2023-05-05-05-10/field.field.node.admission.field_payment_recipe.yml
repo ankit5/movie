@@ -1,0 +1,27 @@
+uuid: d0a9e923-ee02-45e2-afa3-e00450c3c146
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_payment_recipe
+    - node.type.admission
+  module:
+    - file
+id: node.admission.field_payment_recipe
+field_name: field_payment_recipe
+entity_type: node
+bundle: admission
+label: 'Payment Recipe'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: '5 MB'
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

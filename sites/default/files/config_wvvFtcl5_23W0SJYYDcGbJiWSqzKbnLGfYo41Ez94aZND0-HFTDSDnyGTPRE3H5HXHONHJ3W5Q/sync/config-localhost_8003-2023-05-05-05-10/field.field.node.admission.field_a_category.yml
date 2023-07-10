@@ -1,0 +1,21 @@
+uuid: 2756b95a-31f6-4ac4-adb6-5105763b3c22
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_category
+    - node.type.admission
+  module:
+    - options
+id: node.admission.field_a_category
+field_name: field_a_category
+entity_type: node
+bundle: admission
+label: Category
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

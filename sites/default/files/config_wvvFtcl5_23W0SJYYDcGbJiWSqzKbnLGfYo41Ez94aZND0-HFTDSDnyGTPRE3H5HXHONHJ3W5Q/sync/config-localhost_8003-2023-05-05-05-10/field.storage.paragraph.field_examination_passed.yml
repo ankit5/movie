@@ -1,0 +1,21 @@
+uuid: 65f8263a-a53b-4bd2-8986-4f94006a3e76
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_examination_passed
+field_name: field_examination_passed
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

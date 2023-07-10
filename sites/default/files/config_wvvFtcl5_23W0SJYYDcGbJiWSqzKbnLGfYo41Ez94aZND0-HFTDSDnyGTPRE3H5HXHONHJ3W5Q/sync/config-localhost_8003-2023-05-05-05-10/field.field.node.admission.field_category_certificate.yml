@@ -1,0 +1,27 @@
+uuid: df78abc4-16e0-481d-9404-d3ea55a54939
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_category_certificate
+    - node.type.admission
+  module:
+    - file
+id: node.admission.field_category_certificate
+field_name: field_category_certificate
+entity_type: node
+bundle: admission
+label: 'Category Certificate'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: '5 MB'
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

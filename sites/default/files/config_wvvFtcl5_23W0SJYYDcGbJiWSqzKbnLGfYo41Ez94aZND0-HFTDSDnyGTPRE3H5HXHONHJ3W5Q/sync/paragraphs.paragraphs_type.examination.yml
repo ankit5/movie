@@ -1,0 +1,10 @@
+uuid: b462540f-cdaa-44d3-bd41-b429b0858197
+langcode: en
+status: true
+dependencies: {  }
+id: examination
+label: 'Another Examination'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

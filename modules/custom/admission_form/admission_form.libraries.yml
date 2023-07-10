@@ -1,0 +1,18 @@
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      css/style.css: {}
+  js:
+    js/script.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/jquery.once
+    - classy/messages
+
+user_module_external:
+  version: 1.x
+  css:
+    base:
+      https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css: { type: external, minified: true }

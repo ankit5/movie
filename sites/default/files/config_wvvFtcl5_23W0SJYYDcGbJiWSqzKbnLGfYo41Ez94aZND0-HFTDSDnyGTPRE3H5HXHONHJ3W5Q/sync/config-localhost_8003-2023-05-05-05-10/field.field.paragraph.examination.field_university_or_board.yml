@@ -1,0 +1,19 @@
+uuid: f4651348-d8c4-4f54-8769-7b1d8e3a1760
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_university_or_board
+    - paragraphs.paragraphs_type.examination
+id: paragraph.examination.field_university_or_board
+field_name: field_university_or_board
+entity_type: paragraph
+bundle: examination
+label: 'University or Board'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

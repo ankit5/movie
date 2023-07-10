@@ -1,0 +1,76 @@
+uuid: 2e3ae9cd-d1c7-437b-a43d-9c804001ec6d
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.admission.field_a_category
+    - field.field.node.admission.field_a_course_type
+    - field.field.node.admission.field_a_date_of_birth
+    - field.field.node.admission.field_a_date_of_leaving
+    - field.field.node.admission.field_a_email
+    - field.field.node.admission.field_a_gender
+    - field.field.node.admission.field_a_local_address
+    - field.field.node.admission.field_a_nationality
+    - field.field.node.admission.field_a_parent_s_occupation
+    - field.field.node.admission.field_a_permanent_address
+    - field.field.node.admission.field_a_phone_no
+    - field.field.node.admission.field_a_photo
+    - field.field.node.admission.field_a_please_mark
+    - field.field.node.admission.field_a_religion
+    - field.field.node.admission.field_a_specialisation
+    - field.field.node.admission.field_a_total_annual_income
+    - field.field.node.admission.field_a_university_enrolment_no
+    - field.field.node.admission.field_annual_income_certificate
+    - field.field.node.admission.field_category_certificate
+    - field.field.node.admission.field_college_last_attended
+    - field.field.node.admission.field_date_of_birth_certificate
+    - field.field.node.admission.field_examination
+    - field.field.node.admission.field_father_s_name
+    - field.field.node.admission.field_guardian_s_name
+    - field.field.node.admission.field_mfa_category
+    - field.field.node.admission.field_mother_s_name
+    - field.field.node.admission.field_payment_recipe
+    - field.field.node.admission.field_school_last_attended
+    - node.type.admission
+  module:
+    - user
+id: node.admission.teaser
+targetEntityType: node
+bundle: admission
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_a_category: true
+  field_a_course_type: true
+  field_a_date_of_birth: true
+  field_a_date_of_leaving: true
+  field_a_email: true
+  field_a_gender: true
+  field_a_local_address: true
+  field_a_nationality: true
+  field_a_parent_s_occupation: true
+  field_a_permanent_address: true
+  field_a_phone_no: true
+  field_a_photo: true
+  field_a_please_mark: true
+  field_a_religion: true
+  field_a_specialisation: true
+  field_a_total_annual_income: true
+  field_a_university_enrolment_no: true
+  field_annual_income_certificate: true
+  field_category_certificate: true
+  field_college_last_attended: true
+  field_date_of_birth_certificate: true
+  field_examination: true
+  field_father_s_name: true
+  field_guardian_s_name: true
+  field_mfa_category: true
+  field_mother_s_name: true
+  field_payment_recipe: true
+  field_school_last_attended: true

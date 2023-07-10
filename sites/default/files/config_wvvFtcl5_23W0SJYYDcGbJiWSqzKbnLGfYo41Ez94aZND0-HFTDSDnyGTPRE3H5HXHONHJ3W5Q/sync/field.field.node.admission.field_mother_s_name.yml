@@ -1,0 +1,19 @@
+uuid: 7693065b-1108-47b3-aa57-8395ba0e1090
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mother_s_name
+    - node.type.admission
+id: node.admission.field_mother_s_name
+field_name: field_mother_s_name
+entity_type: node
+bundle: admission
+label: 'Mother’s Name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

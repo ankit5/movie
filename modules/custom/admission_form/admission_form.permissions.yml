@@ -1,0 +1,7 @@
+employee Access:
+  title: 'Employee Access'
+  restrict access: true
+
+admin custom module:
+  title: 'Admin Custom module'
+  restrict access: true

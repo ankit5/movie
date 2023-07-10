@@ -1,0 +1,23 @@
+uuid: 37f2fce3-4a2a-4222-a6ae-c5e5d0c4c373
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: node.field_annual_income_certificate
+field_name: field_annual_income_certificate
+entity_type: node
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

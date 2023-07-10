@@ -1,0 +1,21 @@
+uuid: 359fe701-2d0d-4b9f-b4a4-3534ab841814
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_gender
+    - node.type.admission
+  module:
+    - options
+id: node.admission.field_a_gender
+field_name: field_a_gender
+entity_type: node
+bundle: admission
+label: Gender
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

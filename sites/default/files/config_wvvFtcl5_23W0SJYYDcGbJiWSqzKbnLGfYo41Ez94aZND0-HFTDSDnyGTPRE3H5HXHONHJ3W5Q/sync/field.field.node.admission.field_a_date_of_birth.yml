@@ -1,0 +1,21 @@
+uuid: 90f49476-ff03-4e3d-82b8-d294c08d542a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_date_of_birth
+    - node.type.admission
+  module:
+    - datetime
+id: node.admission.field_a_date_of_birth
+field_name: field_a_date_of_birth
+entity_type: node
+bundle: admission
+label: 'Date of Birth'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

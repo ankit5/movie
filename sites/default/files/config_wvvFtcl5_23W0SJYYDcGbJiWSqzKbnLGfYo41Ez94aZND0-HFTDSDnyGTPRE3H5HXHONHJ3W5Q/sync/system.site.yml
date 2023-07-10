@@ -1,0 +1,15 @@
+uuid: fc4c6ef8-6bfa-4932-ae0a-5690a8869e9d
+name: colart
+mail: vermankit5@gmail.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE
+mail_notification: ''
