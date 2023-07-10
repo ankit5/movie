@@ -838,7 +838,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
-$databases['default']['default'] = array (
+/*$databases['default']['default'] = array (
   'database' => 'movie',
   'username' => 'root',
   'password' => 'admin',
@@ -848,9 +848,9 @@ $databases['default']['default'] = array (
   'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
   'driver' => 'mysql',
   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
-);
-/*$databases['default']['default'] = array (
-  'database' => 'ankitver_form_new',
+);*/
+$databases['default']['default'] = array (
+  'database' => 'ankitver_movie',
   'username' => 'ankitver_drupal',
   'password' => '8y{a(o-IrhQ~',
   'prefix' => '',
@@ -859,5 +859,5 @@ $databases['default']['default'] = array (
   'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
   'driver' => 'mysql',
   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
-);*/
+);
 $settings['config_sync_directory'] = 'sites/default/files/config_wvvFtcl5_23W0SJYYDcGbJiWSqzKbnLGfYo41Ez94aZND0-HFTDSDnyGTPRE3H5HXHONHJ3W5Q/sync';
