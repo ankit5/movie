@@ -110,7 +110,7 @@ $(this).addClass("selected");
         if (isMobile){
          ifload_mobile();
         }else{
-        ifload();
+        ifload_mobile();
       }
         
        
@@ -143,14 +143,17 @@ if(keyheight==null){
  
 $("#load").height(mvi_content);
 
-      focus();
-const listener = window.addEventListener('touchmove', () => {
+    window.focus()
+
+window.addEventListener("touchmove", () => {
+  setTimeout(() => {
+    if (document.activeElement.tagName === "IFRAME") {
    var checkCounter = 0;
-if (document.activeElement === document.querySelector('iframe') && checkCounter==0) {
+
      var top = parseInt($('#mvi-content').css('top'));
      // $('.mvi-content').css({'top': top+23 });
   checkCounter = checkCounter + 1;
-  alert(checkCounter);
+  //alert(checkCounter);
 if($("#seasons").height()) return true;
     $(".player_nav").show();
     $(".dl-des").show();
@@ -164,10 +167,11 @@ if($("#seasons").height()) return true;
    $('#mvi-content').css({'padding-bottom': 80 + traler +'px'});
    mvi_content = mvi_content + player_nav + 60 ;
     $("#load").height(mvi_content);
-   
-  }
-  window.removeEventListener('blur', listener);
-});    
+   }
+  });
+}, { once: true }); 
+  
+     
     }
 
 
