@@ -144,7 +144,7 @@ if(keyheight==null){
 $("#load").height(mvi_content);
 
      focus();
-  const listener = window.addEventListener('touchmove', () => {
+  const listener = window.addEventListener('blur', () => {
   alert("ad");
   setTimeout(() => {
     if (document.activeElement === document.querySelector('iframe')) {
@@ -168,7 +168,7 @@ if($("#seasons").height()) return true;
    mvi_content = mvi_content + player_nav + 60 ;
     $("#load").height(mvi_content);
    }
-    window.removeEventListener('touchmove', listener);
+    window.removeEventListener('blur', listener);
   });
 }, { once: true }); 
   
