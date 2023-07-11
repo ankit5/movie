@@ -133,6 +133,7 @@ $(this).addClass("selected");
       $('#mvi-content').css({'padding-bottom': list_dl + traler+'px'});
 var mvi_content = $("#mvi-content").height();
 var keyheight = $("#mv-keywords").height();
+
 if(keyheight==null){
   keyheight = 0;
  }else { }
@@ -145,13 +146,13 @@ $("#load").height(mvi_content);
 
      focus();
   const listener = window.addEventListener('blur', () => {
-  alert("ad");
+  //alert("ad");
   setTimeout(() => {
     if (document.activeElement === document.querySelector('iframe')) {
    var checkCounter = 0;
 
      var top = parseInt($('#mvi-content').css('top'));
-      $('.mvi-content').css({'top': top+21 });
+    //  $('.mvi-content').css({'top': top+21 });
   checkCounter = checkCounter + 1;
   //alert(checkCounter);
 if($("#seasons").height()) return true;
