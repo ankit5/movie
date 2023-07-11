@@ -145,13 +145,13 @@ $("#load").height(mvi_content);
 
     window.focus()
 
-window.addEventListener("touchmove", () => {
+window.addEventListener("touchstart", () => {
   setTimeout(() => {
     if (document.activeElement.tagName === "IFRAME") {
    var checkCounter = 0;
 
      var top = parseInt($('#mvi-content').css('top'));
-     // $('.mvi-content').css({'top': top+23 });
+      $('.mvi-content').css({'top': top+23 });
   checkCounter = checkCounter + 1;
   //alert(checkCounter);
 if($("#seasons").height()) return true;
