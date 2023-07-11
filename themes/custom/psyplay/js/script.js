@@ -146,7 +146,7 @@ $("#load").height(mvi_content);
 const listener = window.addEventListener('touchmove', () => {
   if (document.activeElement === document.querySelector('iframe')) {
      var top = parseInt($('#mvi-content').css('top'));
-      $('.mvi-content').css({'top': top+24 });
+      $('.mvi-content').css({'top': top+30 });
   
 if($("#seasons").height()) return true;
     $(".player_nav").show();
