@@ -38,7 +38,10 @@ const isMobile = {
     }
 };
 
-if( isMobile.any() ) alert('Mobile');
+
+if( isMobile.any() ) {
+  alert('Mobile');
+}
 
 
 
