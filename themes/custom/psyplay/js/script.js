@@ -145,9 +145,9 @@ $("#load").height(mvi_content);
 
      focus();
   const listener = window.addEventListener('touchmove', () => {
- // alert("ad");
+  alert("ad");
   setTimeout(() => {
-    if (document.activeElement.tagName === "IFRAME") {
+    if (document.activeElement === document.querySelector('iframe')) {
    var checkCounter = 0;
 
      var top = parseInt($('#mvi-content').css('top'));
