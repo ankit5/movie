@@ -17,9 +17,28 @@ Drupal.behaviors.customConfig = {
     
   }
 
+const isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
 
-
-
+if( isMobile.any() ) alert('Mobile');
 
 
 
@@ -72,7 +91,7 @@ function doChange() {
  $("#load").height(mvi_content);
 $('a.splash-image,.idTabs a,#seasons .les-content a').click(function(){
  // alert($(this).data('value'));
-   $('.mvi-content').css({'top': $("#mvi-cover").height()+20});
+  
   $('#seasons .les-content a:first').addClass("selected");
    
   $('#seasons .les-content a').click(function(){
@@ -139,7 +158,7 @@ if(keyheight==null){
  // alert($("#mvi-cover").height());
  var top = parseInt($('#mvi-content').css('top'));;
  //alert(top);
- mvi_content = top + mvi_content + traler + list_dl -28;
+ mvi_content = top + mvi_content + traler + list_dl;
  // var mvi_content = $("#mvi-content").height();
    // var hei = 980 + keyheight;
   // mvi_content = mvi_content+85;
@@ -149,7 +168,6 @@ $("#load").height(mvi_content);
       focus();
 const listener = window.addEventListener('blur', () => {
   if (document.activeElement === document.querySelector('iframe')) {
-     $('.mvi-content').css({'top': $("#mvi-cover").height()+23});
    // console.log('clicked on iframe');
 if($("#seasons").height()) return true;
     $(".player_nav").show();
@@ -164,7 +182,7 @@ if($("#seasons").height()) return true;
    $('#mvi-content').css({'padding-bottom': 80 + traler +'px'});
   // var mvi_content = $("#mvi-content").height();
   // alert(mvi_content);
-   mvi_content = mvi_content + player_nav + 60;
+   mvi_content = mvi_content + player_nav + 60 ;
    // $('#mvi-content').css({'padding-bottom': player_nav+'px'});
     $("#load").height(mvi_content);
    
