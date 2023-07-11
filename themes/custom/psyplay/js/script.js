@@ -19,7 +19,7 @@ Drupal.behaviors.customConfig = {
 
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 if (isMobile) {
-   alert('Mobile');
+  // alert('Mobile');
 }
 
 
@@ -56,7 +56,7 @@ function doChange() {
         // alert(data);
 
          $('#selection-ajax').html(data);
-         ifload();
+        // ifload();
         }
       });
 }
@@ -125,7 +125,7 @@ $(this).addClass("selected");
 });
 
     function ifload_mobile() {
-      ifload = function(){};
+      ifload_mobile = function(){};
       var traler = 32;
        var list_dl = $("#list-dl").height() + 62;
        if($("#list-dl").height()==null) var list_dl = 136;
@@ -146,7 +146,7 @@ $("#load").height(mvi_content);
 const listener = window.addEventListener('touchmove', () => {
   if (document.activeElement === document.querySelector('iframe')) {
      var top = parseInt($('#mvi-content').css('top'));
-      $('.mvi-content').css({'top': top+30 });
+      $('.mvi-content').css({'top': top+23 });
   
 if($("#seasons").height()) return true;
     $(".player_nav").show();
