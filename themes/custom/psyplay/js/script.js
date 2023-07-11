@@ -150,6 +150,7 @@ if (document.activeElement === document.querySelector('iframe') && checkCounter=
      var top = parseInt($('#mvi-content').css('top'));
      // $('.mvi-content').css({'top': top+23 });
   checkCounter = checkCounter + 1;
+  alert(checkCounter);
 if($("#seasons").height()) return true;
     $(".player_nav").show();
     $(".dl-des").show();
@@ -165,7 +166,7 @@ if($("#seasons").height()) return true;
     $("#load").height(mvi_content);
    
   }
-  window.removeEventListener('touchmove', listener);
+  window.removeEventListener('blur', listener);
 });    
     }
 
