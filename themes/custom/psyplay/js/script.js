@@ -126,7 +126,7 @@ $(this).addClass("selected");
 
     function ifload_mobile() {
      // alert("Ad");
-      ifload_mobile = function(){};
+    //  ifload_mobile = function(){};
       var traler = 32;
        var list_dl = $("#list-dl").height() + 62;
        if($("#list-dl").height()==null) var list_dl = 136;
@@ -143,9 +143,9 @@ if(keyheight==null){
  
 $("#load").height(mvi_content);
 
-    window.focus()
-
-window.addEventListener("touchmove", () => {
+     focus();
+  const listener = window.addEventListener('touchmove', () => {
+ // alert("ad");
   setTimeout(() => {
     if (document.activeElement.tagName === "IFRAME") {
    var checkCounter = 0;
@@ -164,10 +164,11 @@ if($("#seasons").height()) return true;
   }else {
 
   }
-   $('#mvi-content').css({'padding-bottom': 80 + traler +'px'});
+   $('#mvi-content').css({'padding-bottom': 70 + traler +'px'});
    mvi_content = mvi_content + player_nav + 60 ;
     $("#load").height(mvi_content);
    }
+    window.removeEventListener('touchmove', listener);
   });
 }, { once: true }); 
   
