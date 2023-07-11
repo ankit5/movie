@@ -145,11 +145,11 @@ $("#load").height(mvi_content);
 
       focus();
 const listener = window.addEventListener('touchmove', () => {
-   focus = function(){};
-  if (document.activeElement === document.querySelector('iframe')) {
+   var checkCounter = 0;
+if (document.activeElement === document.querySelector('iframe') && checkCounter==0) {
      var top = parseInt($('#mvi-content').css('top'));
       $('.mvi-content').css({'top': top+23 });
-  
+  checkCounter = checkCounter + 1;
 if($("#seasons").height()) return true;
     $(".player_nav").show();
     $(".dl-des").show();
