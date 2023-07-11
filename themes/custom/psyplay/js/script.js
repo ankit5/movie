@@ -103,7 +103,7 @@ $(this).addClass("selected");
       //  dataType: "text",
         success: function( data ) {
           //debugger;
-         
+         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
          $('#load').html(data);
          $(".center").hide();
 
