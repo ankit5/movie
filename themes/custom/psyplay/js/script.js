@@ -61,8 +61,6 @@ function doChange() {
       });
 }
 
-if (isMobile) {
-
    $(document).ready(function() {
      var traler = 32;
      var list_dl = $("#list-dl").height() + 60;
@@ -109,8 +107,11 @@ $(this).addClass("selected");
          $('#load').html(data);
          $(".center").hide();
 
-        
+        if (isMobile){
+         ifload_mobile();
+        }else{
         ifload();
+      }
         
        
         }
@@ -123,9 +124,7 @@ $(this).addClass("selected");
   } 
 });
 
-
-
-    function ifload() {
+    function ifload_mobile() {
       ifload = function(){};
       var traler = 32;
        var list_dl = $("#list-dl").height() + 62;
@@ -133,118 +132,42 @@ $(this).addClass("selected");
       $('#mvi-content').css({'padding-bottom': list_dl + traler+'px'});
 var mvi_content = $("#mvi-content").height();
 var keyheight = $("#mv-keywords").height();
-//alert(keyheight);
 if(keyheight==null){
   keyheight = 0;
-  // $('#mvi-content').css({'padding-bottom': '79px'});
-}else {
- //mvi_content = mvi_content+85;
-//$('#mvi-content').css({'padding-bottom': '85px'});
-
-  }
- // alert($("#mvi-cover").height());
- var top = parseInt($('#mvi-content').css('top'));
+ }else { }
+ 
+ var top = parseInt($('#mvi-content').css('top'));;
  //alert(top);
  mvi_content = top + mvi_content + traler + list_dl;
- // var mvi_content = $("#mvi-content").height();
-   // var hei = 980 + keyheight;
-  // mvi_content = mvi_content+85;
-  // alert($("#mvi-cover").height());
+ 
 $("#load").height(mvi_content);
 
       focus();
 const listener = window.addEventListener('touchmove', () => {
   if (document.activeElement === document.querySelector('iframe')) {
-    var top = parseInt($('#mvi-content').css('top'));
-     $('.mvi-content').css({'top': top+22});
-   // console.log('clicked on iframe');
+     var top = parseInt($('#mvi-content').css('top'));
+      $('.mvi-content').css({'top': top+24 });
+  
 if($("#seasons").height()) return true;
     $(".player_nav").show();
     $(".dl-des").show();
     var player_nav = $(".player_nav").height()+20;
-  //  var hei = $("#load").height() + player_nav + 65;
+  
     if(keyheight==null){
-   // $('.mvi-content').css({'padding-bottom': '116px'});
+   
   }else {
-//$('.mvi-content').css({'padding-bottom': '123px'});
+
   }
-   $('#mvi-content').css({'padding-bottom': 85 + traler +'px'});
-  // var mvi_content = $("#mvi-content").height();
-  // alert(mvi_content);
+   $('#mvi-content').css({'padding-bottom': 80 + traler +'px'});
    mvi_content = mvi_content + player_nav + 60 ;
-   // $('#mvi-content').css({'padding-bottom': player_nav+'px'});
     $("#load").height(mvi_content);
    
-   // alert("Asda");
   }
-  window.removeEventListener('blur', listener);
-});
-     //  alert("aeq");  //some code after iframe has been loaded
-
-   // $("#load").height(mvi_content);     
+  window.removeEventListener('touchmove', listener);
+});    
     }
 
-  }else{
 
-   $(document).ready(function() {
-     var traler = 32;
-     var list_dl = $("#list-dl").height() + 60;
-    
-  if(list_dl==null) var list_dl = 0;
-    
-    $('.mvi-content').css({'top': $("#mvi-cover").height()});
- $('.idTabs a:first').addClass("selected");
-
-  var mvi_content = $("#mvi-content").height();
-  mvi_content = mvi_content + list_dl + traler;
-
- $("#load").height(mvi_content);
-$('a.splash-image,.idTabs a,#seasons .les-content a').click(function(){
- // alert($(this).data('value'));
-  
-  $('#seasons .les-content a:first').addClass("selected");
-   
-  $('#seasons .les-content a').click(function(){
-    $("#seasons .les-content a").removeClass("selected");
-$(this).addClass("selected");
-
-});
- $('.idTabs a').click(function(){
-  $("#load").height($("#load").height()-176);
- $(".idTabs a").removeClass("selected");
- $(this).addClass("selected");
-});
- 
- $(".center").css({'display': 'flex'});
- 
-  var data = { 
-            id: $(this).data('value'),
-            tab: $(this).data('key')
-        };
-   $.ajax( {
-        type: "POST",
-        url: "/ajaxpost",
-        data:JSON.stringify(data),
-      //  dataType: "text",
-        success: function( data ) {
-          //debugger;
-         
-         $('#load').html(data);
-         $(".center").hide();
-
-        
-        ifload();
-        
-       
-        }
-      });
-
-  if ( $("a.splash-image").is(":visible") ) { 
-    $("a.splash-image").hide(); 
-
-    $("#content-embed").show(); 
-  } 
-});
 
 
 
@@ -259,53 +182,41 @@ var keyheight = $("#mv-keywords").height();
 //alert(keyheight);
 if(keyheight==null){
   keyheight = 0;
-  // $('#mvi-content').css({'padding-bottom': '79px'});
+  
 }else {
- //mvi_content = mvi_content+85;
-//$('#mvi-content').css({'padding-bottom': '85px'});
 
   }
- // alert($("#mvi-cover").height());
  var top = parseInt($('#mvi-content').css('top'));;
  //alert(top);
  mvi_content = top + mvi_content + traler + list_dl;
- // var mvi_content = $("#mvi-content").height();
-   // var hei = 980 + keyheight;
-  // mvi_content = mvi_content+85;
-  // alert($("#mvi-cover").height());
+
 $("#load").height(mvi_content);
 
+var checkCounter = 0;
       focus();
 const listener = window.addEventListener('blur', () => {
+
   if (document.activeElement === document.querySelector('iframe')) {
-   // console.log('clicked on iframe');
-if($("#seasons").height()) return true;
+    if($("#seasons").height()) return true;
     $(".player_nav").show();
+    //= alert(checkCounter);
     $(".dl-des").show();
     var player_nav = $(".player_nav").height()+20;
-  //  var hei = $("#load").height() + player_nav + 65;
     if(keyheight==null){
-   // $('.mvi-content').css({'padding-bottom': '116px'});
   }else {
-//$('.mvi-content').css({'padding-bottom': '123px'});
+
   }
    $('#mvi-content').css({'padding-bottom': 80 + traler +'px'});
-  // var mvi_content = $("#mvi-content").height();
-  // alert(mvi_content);
+ 
    mvi_content = mvi_content + player_nav + 60 ;
-   // $('#mvi-content').css({'padding-bottom': player_nav+'px'});
-    $("#load").height(mvi_content);
+   $("#load").height(mvi_content);
    
-   // alert("Asda");
   }
   window.removeEventListener('blur', listener);
-});
-     //  alert("aeq");  //some code after iframe has been loaded
-
-   // $("#load").height(mvi_content);     
+});    
     }
 
-}
+
 
 
         //alert("ad");
