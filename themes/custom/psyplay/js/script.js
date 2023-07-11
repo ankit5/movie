@@ -125,7 +125,7 @@ $(this).addClass("selected");
 });
 
     function ifload_mobile() {
-      alert("Ad");
+     // alert("Ad");
       ifload_mobile = function(){};
       var traler = 32;
        var list_dl = $("#list-dl").height() + 62;
@@ -145,6 +145,7 @@ $("#load").height(mvi_content);
 
       focus();
 const listener = window.addEventListener('touchmove', () => {
+   focus = function(){};
   if (document.activeElement === document.querySelector('iframe')) {
      var top = parseInt($('#mvi-content').css('top'));
       $('.mvi-content').css({'top': top+23 });
