@@ -125,6 +125,7 @@ $(this).addClass("selected");
 });
 
     function ifload_mobile() {
+      alert("Ad");
       ifload_mobile = function(){};
       var traler = 32;
        var list_dl = $("#list-dl").height() + 62;
