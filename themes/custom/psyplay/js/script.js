@@ -143,7 +143,7 @@ if(keyheight==null){
 
   }
  // alert($("#mvi-cover").height());
- var top = parseInt($('#mvi-content').css('top'));;
+ var top = parseInt($('#mvi-content').css('top'));
  //alert(top);
  mvi_content = top + mvi_content + traler + list_dl;
  // var mvi_content = $("#mvi-content").height();
@@ -155,6 +155,8 @@ $("#load").height(mvi_content);
       focus();
 const listener = window.addEventListener('touchmove', () => {
   if (document.activeElement === document.querySelector('iframe')) {
+    var top = parseInt($('#mvi-content').css('top'));
+     $('.mvi-content').css({'top': top+22});
    // console.log('clicked on iframe');
 if($("#seasons").height()) return true;
     $(".player_nav").show();
@@ -166,7 +168,7 @@ if($("#seasons").height()) return true;
   }else {
 //$('.mvi-content').css({'padding-bottom': '123px'});
   }
-   $('#mvi-content').css({'padding-bottom': 80 + traler +'px'});
+   $('#mvi-content').css({'padding-bottom': 85 + traler +'px'});
   // var mvi_content = $("#mvi-content").height();
   // alert(mvi_content);
    mvi_content = mvi_content + player_nav + 60 ;
