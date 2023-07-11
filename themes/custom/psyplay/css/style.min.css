@@ -398,10 +398,7 @@
       }
 
       #mv-info .mvi-content .mvic-desc {
-        width: calc(100% - 160px);
-        padding-right: 0;
-        margin-right: 0;
-        border-right: 0
+        
       }
 
       #mv-info .mvi-content .mvic-btn {
@@ -1109,7 +1106,7 @@ border: 0px none;
 }
 #mv-keywords {
 	     overflow: hidden;
-    font-size: 14px;
+   font-size: 15px;
 
     
 }
@@ -1127,6 +1124,10 @@ border: 0px none;
     font-size: 10px;
     margin-right: 10px;
     font-weight: 400;
+}
+#mv-info .mvi-content .mvic-thumb {
+   
+    margin-bottom: 20px;
 }
 @media only screen and (max-width: 960px) {
 		
@@ -1162,7 +1163,7 @@ border: 0px none;
     }
 #mv-keywords {
     padding: 10px;
-    font-size: 13.17px;
+    font-size: 13.10px;
 }
 }
 .class_if {

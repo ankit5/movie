@@ -110,7 +110,7 @@ $(this).addClass("selected");
         if (isMobile){
          ifload_mobile();
         }else{
-        ifload_mobile();
+        ifload();
       }
         
        
@@ -145,13 +145,13 @@ $("#load").height(mvi_content);
 
     window.focus()
 
-window.addEventListener("touchstart", () => {
+window.addEventListener("touchmove", () => {
   setTimeout(() => {
     if (document.activeElement.tagName === "IFRAME") {
    var checkCounter = 0;
 
      var top = parseInt($('#mvi-content').css('top'));
-      $('.mvi-content').css({'top': top+23 });
+      $('.mvi-content').css({'top': top+21 });
   checkCounter = checkCounter + 1;
   //alert(checkCounter);
 if($("#seasons").height()) return true;
@@ -173,55 +173,67 @@ if($("#seasons").height()) return true;
   
      
     }
-
-
-
-
-
-    function ifload() {
-      ifload = function(){};
+//////////////
+  function ifload() {
+      $(".player_nav").hide();
+    $(".dl-des").hide();
+    //  ifload = function(){};
       var traler = 32;
        var list_dl = $("#list-dl").height() + 62;
        if($("#list-dl").height()==null) var list_dl = 136;
       $('#mvi-content').css({'padding-bottom': list_dl + traler+'px'});
 var mvi_content = $("#mvi-content").height();
 var keyheight = $("#mv-keywords").height();
-//alert(keyheight);
 if(keyheight==null){
   keyheight = 0;
-  
-}else {
-
-  }
+ }else { }
+ 
  var top = parseInt($('#mvi-content').css('top'));;
  //alert(top);
  mvi_content = top + mvi_content + traler + list_dl;
-
+ 
 $("#load").height(mvi_content);
 
-var checkCounter = 0;
-      focus();
-const listener = window.addEventListener('blur', () => {
+    window.focus()
 
-  if (document.activeElement === document.querySelector('iframe')) {
-    if($("#seasons").height()) return true;
+window.addEventListener("blur", () => {
+  setTimeout(() => {
+    if (document.activeElement.tagName === "IFRAME") {
+   var checkCounter = 0;
+
+     var top = parseInt($('#mvi-content').css('top'));
+     // $('.mvi-content').css({'top': top+21 });
+  checkCounter = checkCounter + 1;
+  //alert(checkCounter);
+if($("#seasons").height()) return true;
     $(".player_nav").show();
-    //= alert(checkCounter);
     $(".dl-des").show();
     var player_nav = $(".player_nav").height()+20;
+  
     if(keyheight==null){
+   
   }else {
 
   }
    $('#mvi-content').css({'padding-bottom': 80 + traler +'px'});
- 
    mvi_content = mvi_content + player_nav + 60 ;
-   $("#load").height(mvi_content);
-   
-  }
-  window.removeEventListener('blur', listener);
-});    
+    $("#load").height(mvi_content);
+   }
+  });
+}, { once: true }); 
+  
+     
     }
+/////////////
+
+
+
+
+
+
+
+
+
 
 
 
