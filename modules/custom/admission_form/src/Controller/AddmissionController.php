@@ -143,7 +143,7 @@ public function ajaxpost(Request $request)
 exit();*/
 //allow-popups
 if($sandbox_if){
-  print '<iframe scrolling="no" sandbox="'.$sandbox.' allow-forms allow-same-origin allow-scripts" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+  print '<iframe scrolling="no" height="180" sandbox="'.$sandbox.' allow-forms allow-same-origin allow-scripts" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
 }else {
    print '<iframe scrolling="no" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
 }
