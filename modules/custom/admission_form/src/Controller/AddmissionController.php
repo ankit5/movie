@@ -128,10 +128,10 @@ public function ajaxpost(Request $request)
     $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
     $sandbox_if = '';
    }else{
-    $url = $node->get('field_url')->getValue()[$postData->tab]['value'];
+    $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
    // $class_if = "class_if"; 
-    // $sandbox = 'allow-popups';
-    // $sandbox_if = '';
+     $sandbox = 'allow-popups';
+     $sandbox_if = '';
     }
       $new_var = theme_get_setting('iframe_new_domain_name');
       $oldStr = theme_get_setting('iframe_old_domain_name');
@@ -145,7 +145,7 @@ exit();*/
 if($sandbox_if){
   print '<iframe scrolling="no" sandbox="'.$sandbox.' allow-forms allow-same-origin allow-scripts" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
 }else {
-   print '<iframe scrolling="no" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+   print '<iframe scrolling="no" height="100%" width="100%" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
 }
 
  // print_r($node->get('field_url')->value);
