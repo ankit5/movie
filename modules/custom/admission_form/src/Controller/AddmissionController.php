@@ -130,7 +130,7 @@ public function ajaxpost(Request $request)
    }else{
     $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
     $class_if = "class_if"; 
-     $sandbox = 'allow-popups';
+    // $sandbox = 'allow-popups';
      //$sandbox_if = '';
     }
       $new_var = theme_get_setting('iframe_new_domain_name');
