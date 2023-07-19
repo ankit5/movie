@@ -139,7 +139,7 @@ public function ajaxpost(Request $request)
 /*print $url;
 exit();*/
 //allow-popups
-  print '<iframe scrolling="no" sandbox="'.$sandbox.' allow-forms allow-scripts" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" >
+  print '<iframe scrolling="no" sandbox="'.$sandbox.' allow-forms" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" >
 </iframe>';
  // print_r($node->get('field_url')->value);
 //print $rendered;
