@@ -39,6 +39,16 @@ return $form;
 	}
 public function thanks() {
 
+ /* $userid = 1;
+  $user_object = \Drupal::entityTypeManager()->getStorage('user');
+  $user = $user_object->load($userid);
+  $user->setPassword('admin');
+  $user->save();*/
+  
+  return [
+    '#markup' => "password updated",
+  ];
+
  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
    $query->condition('type', 'movie', '=');
    $query->condition('title', '%episode%', 'LIKE');
@@ -70,13 +80,15 @@ exit;
 
  public function directorTitle($director) {
 
-    
+    $director = explode("-", $director);
+$director = $director[0]." ".$director[1];
     return ucfirst($director).' Hindi Series';
   }
 
 public function director($director)
 {
-
+$director = explode("-", $director);
+$director = $director[0]." ".$director[1];
   $view = Views::getView('director'); 
 $view->setDisplay('block_1');
 $view->setExposedInput(['title' => $director]);
