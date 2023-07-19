@@ -32,6 +32,7 @@
         "drupal/gin_login": "^2.0",
         "drupal/json_field": "^1.2",
         "drupal/menu_breadcrumb": "^2.0@alpha",
+        "drupal/metatag": "^2.0",
         "drupal/paragraphs": "^1.15",
         "drupal/pathauto": "^1.11",
         "drupal/r4032login": "^2.2",
