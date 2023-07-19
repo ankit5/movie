@@ -119,12 +119,14 @@ public function ajaxpost(Request $request)
    $node = Node::load($postData->id);
    $class_if = '';
    $sandbox = '';
+   $sandbox_if = '1';
  // $url = $node->get('field_url')->value;
    if(str_contains($node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') ) {
    $url = $node->get('field_url')->getValue()['0']['value'];
    }elseif($node->get('field_episodes')->getValue()[0]['value']){
     $postData->tab = ($postData->tab==0)?0:$postData->tab-1;
     $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
+    $sandbox_if = '';
    }else{
     $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
     $class_if = "class_if"; 
@@ -139,8 +141,12 @@ public function ajaxpost(Request $request)
 /*print $url;
 exit();*/
 //allow-popups
-  print '<iframe scrolling="no" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" >
-</iframe>';
+if($sandbox_if){
+  print '<iframe scrolling="no" sandbox="'.$sandbox.' allow-forms allow-same-origin allow-scripts" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+}else {
+   print '<iframe scrolling="no" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+}
+
  // print_r($node->get('field_url')->value);
 //print $rendered;
 exit;
