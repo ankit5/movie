@@ -145,7 +145,8 @@ exit();*/
 if($sandbox_if){
   print '<iframe scrolling="no" sandbox="'.$sandbox.' allow-forms allow-same-origin allow-scripts" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
 }else {
-   print '<iframe scrolling="no" height="100%" width="100%" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+ //  print '<iframe scrolling="no" height="100%" width="100%" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+  print '<div class=""><a href="'.$url.'" target="_blank"><img style="width:100%; height:100%;" src="https://goodtimesinoc.com/uploads/images/setupvideo1.png"/></a></div>';
 }
 
  // print_r($node->get('field_url')->value);
