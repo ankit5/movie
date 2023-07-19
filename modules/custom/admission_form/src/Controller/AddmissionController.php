@@ -129,7 +129,7 @@ public function ajaxpost(Request $request)
     $sandbox_if = '';
    }else{
     $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
-   // $class_if = "class_if"; 
+    $class_if = "class_if"; 
      $sandbox = 'allow-popups';
      $sandbox_if = '';
     }
