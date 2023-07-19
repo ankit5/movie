@@ -128,10 +128,10 @@ public function ajaxpost(Request $request)
     $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
     $sandbox_if = '';
    }else{
-    $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
+    $url = $node->get('field_download_url')->getValue()[$postData->tab]['value'];
     $class_if = "class_if"; 
      $sandbox = 'allow-popups';
-     $sandbox_if = '';
+    // $sandbox_if = '';
     }
       $new_var = theme_get_setting('iframe_new_domain_name');
       $oldStr = theme_get_setting('iframe_old_domain_name');
