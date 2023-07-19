@@ -81,14 +81,14 @@ exit;
  public function directorTitle($director) {
 
     $director = explode("-", $director);
-$director = $director[0]." ".$director[1];
+@$director = $director[0]." ".$director[1];
     return ucfirst($director).' Hindi Series';
   }
 
 public function director($director)
 {
 $director = explode("-", $director);
-$director = $director[0]." ".$director[1];
+@$director = $director[0]." ".$director[1];
   $view = Views::getView('director'); 
 $view->setDisplay('block_1');
 $view->setExposedInput(['title' => $director]);
