@@ -49,7 +49,10 @@
                         </div>
                       <div class="clearfix"></div>
                     </div>
-                    {% if node.body.value %}<p class="f-desc">{{ node.body.value|slice(0, 100) ~ '...'|raw }}</p>
+                    {% if node.body.value %}<p class="f-desc">
+                     {% set body_value_new = node.body.value|slice(0, 100) ~ '...' %}
+                    {{ body_value_new|raw }}
+                    </p>
                      {% endif %}
                     
                     <div class="block">Country:&nbsp;
