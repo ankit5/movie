@@ -36,7 +36,7 @@ return $form;
       '#variable2' => $myNumber,
       '#variable3' => $myArray,
     ];
-	}
+  }
 public function thanks() {
 
  /* $userid = 1;
@@ -126,7 +126,7 @@ public function ajaxpost(Request $request)
    }elseif($node->get('field_episodes')->getValue()[0]['value']){
     $postData->tab = ($postData->tab==0)?0:$postData->tab-1;
     $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
-    $sandbox_if = '';
+    $sandbox_if = 'eps';
    }else{
     $url = $node->get('field_download_url')->getValue()[$postData->tab]['value'];
     $class_if = "class_if"; 
@@ -142,10 +142,11 @@ public function ajaxpost(Request $request)
 /*print $url;
 exit();*/
 //allow-popups
-if($sandbox_if){
+if($sandbox_if=='1'){
   print '<iframe scrolling="no" sandbox="'.$sandbox.' allow-forms allow-same-origin allow-scripts" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
-}else {
- //  print '<iframe scrolling="no" height="100%" width="100%" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+}elseif($sandbox_if=='eps'){
+  print '<iframe scrolling="no" height="100%" width="100%" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+ }else{
   print '<div class=""><a href="'.$url.'" target="_blank"><img style="width:100%; height:80%;" src="https://goodtimesinoc.com/uploads/images/setupvideo1.png"/></a></div>';
 }
 
