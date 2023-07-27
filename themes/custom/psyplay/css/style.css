@@ -271,9 +271,6 @@ body .is-layout-flex>* {
   color: inherit
 }
 
-:where(.wp-block-columns.is-layout-flex) {
-  gap: 2em
-}
 
 .wp-block-pullquote {
   font-size: 1.5em;
