@@ -1073,6 +1073,18 @@
    {
    	display: block !important;
    }  
+   .page-title {
+   	font-size: 18px;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    display: inline-block;
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    background: #79C142;
+    color: #fff;
+    border-radius: 3px 3px 0 0;
+   }
    select, input {
    	height: 34px;
     padding: 6px 12px;
