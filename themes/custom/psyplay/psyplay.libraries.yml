@@ -3,7 +3,7 @@ global-styling:
   version: VERSION
   css:
     theme:
-      css/classic-themes.min.css: {}
+      css/classic-themes.css: {}
       css/mu-style-1686571048.css: {}
       css/theme.style-1.2.5.css: {}
       css/theme.main-1.2.5.css: {}
