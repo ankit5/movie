@@ -1066,10 +1066,10 @@
         width: max-content;
       }
 
-   .view-filters {
+   .views-exposed-form {
    	display:none:
    } 
-   .view-display-id-page_1 .view-filters , .views-exposed-form-taxonomy-term-page-1
+   .view-display-id-page_1 .view-filters , #views-exposed-form-taxonomy-term-page-1
    {
    	display: block !important;
    }  
