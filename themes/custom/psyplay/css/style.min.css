@@ -1067,7 +1067,7 @@
       }
 
    .views-exposed-form {
-   	display:none:
+   	display:none;
    } 
    .view-display-id-page_1 .view-filters , #views-exposed-form-taxonomy-term-page-1
    {
