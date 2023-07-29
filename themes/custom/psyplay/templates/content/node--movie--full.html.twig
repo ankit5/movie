@@ -106,7 +106,7 @@
               <div class="mvic-desc">
                 <h3 itemprop="name">{{ node.label }}</h3>
                 {% if node.field_trailer.0.value %} 
-                <div class="block-trailer"> <a data-target="#pop-trailer" data-toggle="modal" class="pop-trailer btn btn-primary"> <i class="fa fa-video-camera mr5"></i>Trailer</a></div>
+                <div class="block-trailer"> <a data-target="#pop-trailer" data-toggle="modal" href="{{ node.field_trailer.0.value }}" class="pop-trailer btn btn-primary"> <i class="fa fa-video-camera mr5"></i>Trailer</a></div>
                 {% endif %} 
                 <div class="block-social">
                   <div class="addthis_inline_share_toolbox"></div>
