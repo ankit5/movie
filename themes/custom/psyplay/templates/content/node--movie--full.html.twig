@@ -256,7 +256,7 @@
               </div>
               {% if node.field_keyword.0.value %}
               <div id="mv-keywords"> 
-               {{ node.field_keyword.0.value|striptags }}
+               {{ node.field_keyword.0.value|striptags|replace({ 'yomovies': 'prmovies' }) }}
 
               </div>
                {% endif %}
