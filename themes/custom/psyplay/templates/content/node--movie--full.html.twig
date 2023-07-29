@@ -334,3 +334,17 @@
  <div class="movies-list movies-list-full">
 {{ related(node.label,node.field_quality.0.value,node.id,tag_s) }}
  </div>
+
+ <script> 
+jQuery(function() {
+alert("asd");
+    jQuery("a.pop-trailer").on("click", function(e) {
+        jQuery('#iframe-trailer').attr('src', "//www.youtube.com/embed/6mdxy3zohEk");
+    });
+    jQuery(document).on("click", function(e) {
+        if (jQuery(e.target).is("a.pop-trailer") === false) {
+            jQuery('#iframe-trailer').attr('src', '');
+        }
+    });
+}); 
+< /script>
