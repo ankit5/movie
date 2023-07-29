@@ -10,9 +10,9 @@ Drupal.behaviors.customConfig = {
    //  $('#autocomplete').on('autocompleteclose', function(event, node) {
   
     $("a.pop-trailer").on("click", function(e) {
-      $url = $(this).attr('href');
-      alert($url);
-        $('#iframe-trailer').attr('src', $url);
+      var url = $(this).attr('href');
+      
+        $('#iframe-trailer').attr('src', url);
     });
     $(document).on("click", function(e) {
         if ($(e.target).is("a.pop-trailer") === false) {
