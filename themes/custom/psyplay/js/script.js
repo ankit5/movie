@@ -11,6 +11,7 @@ Drupal.behaviors.customConfig = {
   
     $("a.pop-trailer").on("click", function(e) {
       $url = $(this).attr('href');
+      alert($url);
         $('#iframe-trailer').attr('src', $url);
     });
     $(document).on("click", function(e) {
