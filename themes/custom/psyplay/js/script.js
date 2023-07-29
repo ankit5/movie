@@ -8,7 +8,16 @@ Drupal.behaviors.customConfig = {
    
     
    //  $('#autocomplete').on('autocompleteclose', function(event, node) {
-   
+  
+    $("a.pop-trailer").on("click", function(e) {
+        $('#iframe-trailer').attr('src', "//www.youtube.com/embed/6mdxy3zohEk");
+    });
+    $(document).on("click", function(e) {
+        if ($(e.target).is("a.pop-trailer") === false) {
+            $('#iframe-trailer').attr('src', '');
+        }
+    });
+
  
 
 

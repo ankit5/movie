@@ -14,6 +14,7 @@ global-styling:
     js/jquery.lazyload-1.2.5.js: {}
     js/jquery.qtip.min-1.2.5.js: {}
     js/slide.min-1.2.5.js: {}
+    js/bootstrap.min-1.2.5.js: {}
     js/script.js: {}
   dependencies:
     - core/jquery
