@@ -158,7 +158,7 @@ $("#load").height(mvi_content);
 
      focus();
   const listener = window.addEventListener('mouseout', () => {
-  //alert("ad");
+  alert("ad");
   setTimeout(() => {
     if (document.activeElement === document.querySelector('iframe')) {
    var checkCounter = 0;
