@@ -158,9 +158,10 @@ $("#load").height(mvi_content);
 
      focus();
   const listener = window.addEventListener('mouseout', () => {
-  alert("ad");
+  
   setTimeout(() => {
     if (document.activeElement === document.querySelector('iframe')) {
+      alert("ad2");
    var checkCounter = 0;
 
      var top = parseInt($('#mvi-content').css('top'));
