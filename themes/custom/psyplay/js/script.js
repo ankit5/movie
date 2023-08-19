@@ -213,7 +213,7 @@ $("#load").height(mvi_content);
 window.addEventListener("blur", () => {
   setTimeout(() => {
     if (document.activeElement.tagName === "IFRAME") {
-      console.log("frame click");
+      alert("frame click");
    var checkCounter = 0;
 
      var top = parseInt($('#mvi-content').css('top'));
