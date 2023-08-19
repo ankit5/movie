@@ -161,7 +161,7 @@ $("#load").height(mvi_content);
   
   setTimeout(() => {
      if (document.activeElement.tagName === "IFRAME") {
-      alert("ad2");
+     // alert("ad2");
    var checkCounter = 0;
 
      var top = parseInt($('#mvi-content').css('top'));
