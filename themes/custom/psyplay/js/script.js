@@ -121,6 +121,7 @@ $(this).addClass("selected");
         if (isMobile){
          ifload_mobile();
         }else{
+          console.log("web load");
         ifload();
       }
         
@@ -157,9 +158,10 @@ $("#load").height(mvi_content);
 
      focus();
   const listener = window.addEventListener('mouseout', () => {
-  //alert("ad");
+  
   setTimeout(() => {
-    if (document.activeElement === document.querySelector('iframe')) {
+     if (document.activeElement.tagName === "IFRAME") {
+     // alert("ad2");
    var checkCounter = 0;
 
      var top = parseInt($('#mvi-content').css('top'));
@@ -212,6 +214,7 @@ $("#load").height(mvi_content);
 window.addEventListener("blur", () => {
   setTimeout(() => {
     if (document.activeElement.tagName === "IFRAME") {
+     // alert("frame click");
    var checkCounter = 0;
 
      var top = parseInt($('#mvi-content').css('top'));
