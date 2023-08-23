@@ -113,6 +113,12 @@ print $rendered;
 exit;
 }
 
+public function autosearchTitle() {
+$title = \Drupal::request()->query->get('title');
+    
+    return ucfirst($title);
+  }
+
 public function ajaxpost(Request $request)
 {
   $postData = json_decode($request->getContent());

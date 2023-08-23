@@ -25,6 +25,7 @@ admission_form.replace_with_de_langcode:
 admission_form.autosearch:
   path: '/movie-search'
   defaults:
+    _title_callback: 'Drupal\admission_form\Controller\AddmissionController::autosearchTitle'
     _controller: 'Drupal\admission_form\Controller\AddmissionController::autosearch'
     _title: 'Search'
   requirements:
