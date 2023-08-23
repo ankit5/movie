@@ -66,7 +66,7 @@ class CustomTwigExtension extends \Twig_Extension {
 {
    $view = Views::getView('related'); 
 $view->setDisplay('block_1');
-$title = explode(' ', trim($title))[0];
+$title = explode(' ', trim($title))[0]." ".explode(' ', trim($title))[1]." ".explode(' ', trim($title))[2];
 $view->setExposedInput([
   'title' => $title,
  // 'field_quality_value' => $quality,
