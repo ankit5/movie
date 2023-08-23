@@ -17,6 +17,10 @@ function admission_form_views_pre_render(ViewExecutable $view) {
             if ($view->current_display == 'page_1'){
               $values = $view->getExposedInput();
                 $view->setTitle('Search for '.$values["title"]);
+                \Drupal::routeMatch()->getRouteObject()->setDefault(
+            '_title',
+            $values["title"]
+        );
             }
             break;
     }
