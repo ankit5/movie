@@ -3,10 +3,9 @@ global-styling:
   version: VERSION
   css:
     theme:
-      css/classic-themes.css: {}
       css/theme.style-1.2.5.css: {}
       css/theme.main-1.2.5.css: {}
-      css/style.min.css: {}
+      css/style.css: {}
   js:
     js/jquery.min-3.6.4.js: {}
     js/jquery-migrate.min-3.4.0.js: {}
