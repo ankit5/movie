@@ -127,7 +127,7 @@ public function ajaxpost(Request $request)
    $sandbox = '';
    $sandbox_if = '1';
  // $url = $node->get('field_url')->value;
-   if(str_contains($node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') ) {
+   if(str_contains($node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') || str_contains($node->get('field_player')->getValue()[$postData->tab]['value'], 'minoplres')) {
    $url = $node->get('field_url')->getValue()['0']['value'];
    }elseif($node->get('field_episodes')->getValue()[0]['value']){
     $postData->tab = ($postData->tab==0)?0:$postData->tab-1;

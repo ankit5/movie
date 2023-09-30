@@ -33,8 +33,27 @@ if (isMobile) {
   // alert('Mobile');
 }
 
+ $("#searchform").click(function(e) {
+    e.stopPropagation(); // This is the preferred method.
+    $("#selection-ajax").show();
+    return false;        // This should not be used unless you do not want
+                         // any click events registering inside the div
+});
+$(document).click(function (e)
+{
 
+  var container = $("#selection-ajax");
+  
+ 
 
+   if (!container.is(e.target) && container.has(e.target).length === 0)
+  {
+ container.fadeOut('slow');
+ container.hide();
+
+   }
+
+});
 
 
 

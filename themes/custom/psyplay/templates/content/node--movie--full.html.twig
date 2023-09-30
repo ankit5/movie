@@ -79,7 +79,7 @@
      <div class="player_nav">
     <ul class="idTabs">
     {% for key,value in node.field_player.getValue %}
-      {% if 'speedostream' in value['value'] %}
+      {% if ('speedostream' in value['value']) or ('minoplres' in value['value']) %}
          {% set class_tab = '' %}
           {% else %}
          {% set class_tab = 'tab_load' %}
@@ -276,7 +276,7 @@
               <div class="clearfix"></div>
             </div>
           </div>
-          {% if 'speedostream' in node.field_player.0.value or node.field_episodes.0.value %}
+          {% if 'speedostream' in node.field_player.0.value  or ('minoplres' in node.field_player.0.value) or node.field_episodes.0.value %}
 
           {% else %}
           <div id="list-dl" class="tab-pane active">

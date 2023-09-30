@@ -36,7 +36,7 @@ $node->field_year->value = $string;
     /*print $node->field_trailer->value;
 exit;*/
 //if($node->field_left->value!='' && $node->field_trailer->value!=''){
-  if($node->field_left->value!='' && $node->field_trailer->value!=''){
+  if($node->field_left->value!=''){
     return true;
 
   }
