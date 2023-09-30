@@ -1,0 +1,257 @@
+uuid: 8f02b223-f6d9-4dc3-86d3-225e6974f311
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.admission.field_a_category
+    - field.field.node.admission.field_a_course_type
+    - field.field.node.admission.field_a_date_of_birth
+    - field.field.node.admission.field_a_date_of_leaving
+    - field.field.node.admission.field_a_gender
+    - field.field.node.admission.field_a_local_address
+    - field.field.node.admission.field_a_nationality
+    - field.field.node.admission.field_a_parent_s_occupation
+    - field.field.node.admission.field_a_permanent_address
+    - field.field.node.admission.field_a_phone_no
+    - field.field.node.admission.field_a_photo
+    - field.field.node.admission.field_a_please_mark
+    - field.field.node.admission.field_a_religion
+    - field.field.node.admission.field_a_specialisation
+    - field.field.node.admission.field_a_total_annual_income
+    - field.field.node.admission.field_a_university_enrolment_no
+    - field.field.node.admission.field_college_last_attended
+    - field.field.node.admission.field_examination
+    - field.field.node.admission.field_father_s_name
+    - field.field.node.admission.field_guardian_s_name
+    - field.field.node.admission.field_mother_s_name
+    - field.field.node.admission.field_school_last_attended
+    - image.style.thumbnail
+    - node.type.admission
+  module:
+    - datetime
+    - image
+    - paragraphs
+id: node.admission.default
+targetEntityType: node
+bundle: admission
+mode: default
+content:
+  field_a_category:
+    weight: 13
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_a_course_type:
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_a_date_of_birth:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_a_date_of_leaving:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_a_gender:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_a_local_address:
+    weight: 9
+    settings:
+      rows: 2
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_a_nationality:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_a_parent_s_occupation:
+    weight: 12
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_a_permanent_address:
+    weight: 10
+    settings:
+      rows: 2
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_a_phone_no:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_a_photo:
+    weight: 29
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_a_please_mark:
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_a_religion:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_a_specialisation:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_a_total_annual_income:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_a_university_enrolment_no:
+    weight: 17
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_college_last_attended:
+    weight: 15
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        f68f91c9-4b98-446e-8066-0c6fc84e51d8:
+          dependee: field_a_course_type
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: MFA-ADFA
+            effect: show
+            effect_options: {  }
+            selector: ''
+            reset: false
+          entity_type: node
+          bundle: admission
+    type: string_textfield
+    region: content
+  field_examination:
+    type: entity_reference_paragraphs
+    weight: 28
+    settings:
+      title: Pfdg
+      title_plural: Pdfgdf
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: examination
+    third_party_settings: {  }
+    region: content
+  field_father_s_name:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_guardian_s_name:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_mother_s_name:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_school_last_attended:
+    weight: 31
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        f9574884-97a1-4dbf-b040-a0a979cd50ff:
+          dependee: field_a_course_type
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: BFA-DFA
+            effect: show
+            effect_options: {  }
+            selector: ''
+            reset: false
+          entity_type: node
+          bundle: admission
+    type: string_textfield
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

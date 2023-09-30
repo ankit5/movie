@@ -1,0 +1,33 @@
+uuid: a26579e8-b802-4e29-8aa0-a2f841150d2e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_a_please_mark
+field_name: field_a_please_mark
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Physically Handicapped'
+      label: 'Physically Handicapped'
+    -
+      value: 'Armed Forces'
+      label: 'Armed Forces'
+    -
+      value: 'Foreign National'
+      label: 'Foreign National'
+    -
+      value: 'Speech Impaired'
+      label: 'Speech Impaired'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

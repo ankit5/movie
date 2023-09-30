@@ -1,0 +1,12 @@
+<div class="item-p">
+    <label>{{ label }} : </label>
+    {% if multiple %}
+      <div>
+    {% endif %}
+    {% for item in items %}
+      <div class="value">{{ item.content }}</div>
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>

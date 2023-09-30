@@ -1,0 +1,31 @@
+uuid: 2161e927-140d-429c-9d33-e7f0c25c445f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_examination
+    - node.type.admission
+    - paragraphs.paragraphs_type.examination
+  module:
+    - entity_reference_revisions
+id: node.admission.field_examination
+field_name: field_examination
+entity_type: node
+bundle: admission
+label: Examination
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      examination: examination
+    target_bundles_drag_drop:
+      examination:
+        enabled: true
+        weight: 2
+field_type: entity_reference_revisions

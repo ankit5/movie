@@ -1,0 +1,11 @@
+
+            <div id="sug-cont" class="tab-content">
+              <div id="movie-featured" class="movies-list movies-list-full tab-pane in fade active">
+{% for row in rows %} {% set row_classes = [ default_row_class ? 'views-row', 'panel', 'panel-default', ] %}
+
+{{ row.content }}
+ 
+{% endfor %}
+</div>
+    </div>
+ 
