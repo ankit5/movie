@@ -1,0 +1,19 @@
+uuid: 8e9c8874-ac03-4703-bfc6-289830706009
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_permanent_address
+    - node.type.admission
+id: node.admission.field_a_permanent_address
+field_name: field_a_permanent_address
+entity_type: node
+bundle: admission
+label: 'Permanent Address'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

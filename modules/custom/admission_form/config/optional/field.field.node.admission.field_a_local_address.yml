@@ -1,0 +1,19 @@
+uuid: 7c06c79c-f682-409a-bfdc-20c8fc724c86
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_local_address
+    - node.type.admission
+id: node.admission.field_a_local_address
+field_name: field_a_local_address
+entity_type: node
+bundle: admission
+label: 'Local Address'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

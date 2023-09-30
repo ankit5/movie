@@ -1,0 +1,21 @@
+uuid: 6efb32b3-b976-4cd0-a23a-6f153f9791f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_course_type
+    - node.type.admission
+  module:
+    - options
+id: node.admission.field_a_course_type
+field_name: field_a_course_type
+entity_type: node
+bundle: admission
+label: 'Course Type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

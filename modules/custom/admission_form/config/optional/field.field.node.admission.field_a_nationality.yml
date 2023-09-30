@@ -1,0 +1,19 @@
+uuid: d031a5e3-5025-40ac-90a6-559baae91637
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_nationality
+    - node.type.admission
+id: node.admission.field_a_nationality
+field_name: field_a_nationality
+entity_type: node
+bundle: admission
+label: Nationality
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
