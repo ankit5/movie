@@ -1,5 +1,0 @@
-services:
-  admission_form.customTwigExtension:
-    class: Drupal\admission_form\CustomTwigExtension
-    tags:
-      - { name: twig.extension }
