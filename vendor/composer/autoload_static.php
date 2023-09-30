@@ -49,6 +49,10 @@ class ComposerStaticInit3ffe9ff26cb3af9d2cec7be43f39d365
         array (
             'voku\\helper\\' => 12,
         ),
+        't' => 
+        array (
+            'tubalmartin\\CssMin\\' => 19,
+        ),
         'T' => 
         array (
             'Twig\\' => 5,
@@ -167,6 +171,10 @@ class ComposerStaticInit3ffe9ff26cb3af9d2cec7be43f39d365
         'voku\\helper\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/simple_html_dom/src/voku/helper',
+        ),
+        'tubalmartin\\CssMin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tubalmartin/cssmin/src',
         ),
         'Twig\\' => 
         array (

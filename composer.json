@@ -17,6 +17,7 @@
     "require": {
         "composer/installers": "^1.9",
         "drupal/admin_toolbar": "^3.3",
+        "drupal/advagg": "^6.0@alpha",
         "drupal/captcha": "^1.10",
         "drupal/conditional_fields": "^4.0@alpha",
         "drupal/config_ignore": "^2.4",
