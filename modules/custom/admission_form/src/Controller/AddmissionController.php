@@ -132,7 +132,7 @@ public function ajaxpost(Request $request)
    }
    elseif($node->get('field_embed')->getValue()[0]['value'] && $node->get('field_player')->getValue()[$postData->tab]['value']){
     $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
-    $sandbox_if = 'eps';
+    $sandbox_if = '1';
    }
    elseif($node->get('field_episodes')->getValue()[0]['value']){
     $postData->tab = ($postData->tab==0)?0:$postData->tab-1;
