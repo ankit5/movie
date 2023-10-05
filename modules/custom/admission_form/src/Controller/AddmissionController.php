@@ -130,10 +130,10 @@ public function ajaxpost(Request $request)
    if(str_contains($node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') || str_contains($node->get('field_player')->getValue()[$postData->tab]['value'], 'minoplres')) {
    $url = $node->get('field_url')->getValue()['0']['value'];
    }
-   elseif($node->get('field_embed')->getValue()[0]['value'] && $node->get('field_player')->getValue()[$postData->tab]['value']){
-    $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
-    $sandbox_if = 'eps';
-   }
+  //  elseif($node->get('field_embed')->getValue()[0]['value'] && $node->get('field_player')->getValue()[$postData->tab]['value']){
+  //   $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
+  //   $sandbox_if = 'eps';
+  //  }
    elseif($node->get('field_episodes')->getValue()[0]['value']){
     $postData->tab = ($postData->tab==0)?0:$postData->tab-1;
     $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
