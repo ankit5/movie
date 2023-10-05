@@ -158,7 +158,7 @@ if($sandbox_if=='1'){
 }elseif($sandbox_if=='eps'){
   print '<iframe scrolling="no" height="100%" width="100%" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
  }else{
-  print '<div class=""><a href="'.$url.'" target="_blank"><img style="width:100%; height:80%;" src="https://goodtimesinoc.com/uploads/images/setupvideo1.png"/></a></div>';
+  print '<div class=""><a href="'.$url.'" target="_blank"><img style="width:100%; height:80%;" src="/sites/default/files/click-to-watch.png"/></a></div>';
 }
 
  // print_r($node->get('field_url')->value);
