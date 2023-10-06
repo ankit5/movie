@@ -79,7 +79,7 @@ function doChange() {
         success: function( data ) {
           //debugger;
         // alert(data);
-
+        $('#selection-ajax').show();
          $('#selection-ajax').html(data);
         // ifload();
         }
