@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "93f276a324b69f43ef2913be094e12a5",
+    "content-hash": "4008e3022eade22988bba964e2f91e67",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2512,6 +2512,58 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/disable_user_view",
                 "issues": "https://drupal.org/project/issues/disable_user_view"
+            }
+        },
+        {
+            "name": "drupal/domain",
+            "version": "2.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/domain.git",
+                "reference": "2.0.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/domain-2.0.0-beta1.zip",
+                "reference": "2.0.0-beta1",
+                "shasum": "0edbc9d6c79cb0a61c08c656e9258c2450710664"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10"
+            },
+            "require-dev": {
+                "drupal/domain_access": "*",
+                "drupal/domain_config": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0-beta1",
+                    "datestamp": "1686067462",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "agentrickard",
+                    "homepage": "https://www.drupal.org/user/20975"
+                },
+                {
+                    "name": "nonsie",
+                    "homepage": "https://www.drupal.org/user/29899"
+                }
+            ],
+            "description": "Creates domain records within a Drupal installation.",
+            "homepage": "https://www.drupal.org/project/domain",
+            "support": {
+                "source": "https://git.drupalcode.org/project/domain"
             }
         },
         {
@@ -8370,6 +8422,7 @@
     "stability-flags": {
         "drupal/advagg": 15,
         "drupal/conditional_fields": 15,
+        "drupal/domain": 10,
         "drupal/feeds": 10,
         "drupal/menu_breadcrumb": 15,
         "drupal/tamper": 15

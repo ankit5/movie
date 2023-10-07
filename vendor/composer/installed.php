@@ -3,7 +3,7 @@
         'name' => 'drupal/legacy-project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'e824ce40ad8da59a168f24c1d1f0b79f63f7b914',
+        'reference' => '0882a2c6be6368e44fc63eb9f8939d61cfc0b029',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -466,6 +466,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'drupal/domain' => array(
+            'pretty_version' => '2.0.0-beta1',
+            'version' => '2.0.0.0-beta1',
+            'reference' => '2.0.0-beta1',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../modules/contrib/domain',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'drupal/email_registration' => array(
             'pretty_version' => '1.2.0',
             'version' => '1.2.0.0',
@@ -523,7 +532,7 @@
         'drupal/legacy-project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'e824ce40ad8da59a168f24c1d1f0b79f63f7b914',
+            'reference' => '0882a2c6be6368e44fc63eb9f8939d61cfc0b029',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
