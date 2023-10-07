@@ -1,11 +1,11 @@
-name: psythemenew
+name: Psyplaynew
 type: theme
 description: 'My Awesome theme new'
 base theme: classy
 package: PackageName
 core_version_requirement: ^9.4 || ^10
 libraries:
-  - psyplay/global-styling
+  - psyplaynew/global-styling
 
 regions:
   header: header
@@ -14,5 +14,5 @@ regions:
   content_home: content_home
 
 version: '1.1.0'
-project: 'psythemenew'
+project: 'drupal'
 datestamp: 1661826904
