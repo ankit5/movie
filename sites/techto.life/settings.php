@@ -666,8 +666,9 @@ $settings['update_free_access'] = FALSE;
  * configuration values in settings.php will not fire any of the configuration
  * change events.
  */
-# $config['system.site']['name'] = 'My Drupal site';
-# $config['user.settings']['anonymous'] = 'Visitor';
+ $config['system.site']['name'] = 'My Drupal site';
+ $config['user.settings']['anonymous'] = 'Visitor';
+ $config['system.theme']['default'] = 'psythemenew';
 
 /**
  * Load services definition file.
@@ -849,6 +850,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 //   'driver' => 'mysql',
 //   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 // );
+
 $databases['default']['default'] = array (
   'database' => 'ankitver_movie',
   'username' => 'ankitver_drupal',
