@@ -144,6 +144,7 @@ public function ajaxpost(Request $request)
      $sandbox = 'allow-popups';
      $sandbox_if = '';
     }else{
+      $class_if = "class_if";
       $postData->tab = ($postData->tab==0)?0:$postData->tab-1;
       $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
       $sandbox_if = 'eps';
