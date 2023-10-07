@@ -4,7 +4,7 @@ use Drupal\Core\Form\FormStateInterface;
  * @file
  * Custom setting for gypsum theme.
  */
-function psyplay_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {
+function psyplaynew_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {
 
  $form['movie'] = [
     '#type'        => 'details',
