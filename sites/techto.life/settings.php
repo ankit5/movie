@@ -666,9 +666,9 @@ $settings['update_free_access'] = FALSE;
  * configuration values in settings.php will not fire any of the configuration
  * change events.
  */
-//  $config['system.site']['name'] = 'My Drupal site';
-//  $config['user.settings']['anonymous'] = 'Visitor';
-//  $config['system.theme']['default'] = 'psythemenew';
+ $config['system.site']['name'] = 'Yomovies';
+ $config['user.settings']['anonymous'] = 'Visitor';
+ $config['system.theme']['default'] = 'psythemenew';
 
 /**
  * Load services definition file.
