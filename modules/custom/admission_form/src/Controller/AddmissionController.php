@@ -138,11 +138,15 @@ public function ajaxpost(Request $request)
     $postData->tab = ($postData->tab==0)?0:$postData->tab-1;
     $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
     $sandbox_if = 'eps';
-   }else{
+   }elseif($node->get('field_download_url')->getValue()[$postData->tab]['value']){
     $url = $node->get('field_download_url')->getValue()[$postData->tab]['value'];
     $class_if = "class_if"; 
      $sandbox = 'allow-popups';
      $sandbox_if = '';
+    }else{
+      $postData->tab = ($postData->tab==0)?0:$postData->tab-1;
+      $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
+      $sandbox_if = 'eps';
     }
       $new_var = theme_get_setting('iframe_new_domain_name');
       $oldStr = theme_get_setting('iframe_old_domain_name');
