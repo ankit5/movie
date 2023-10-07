@@ -1,6 +1,6 @@
 name: psythemenew
 type: theme
-description: 'My Awesome theme'
+description: 'My Awesome theme new'
 base theme: classy
 package: PackageName
 core_version_requirement: ^9.4 || ^10

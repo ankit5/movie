@@ -8,7 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
-/*function psyplay_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+/*function psyplaynew_theme_suggestions_form_alter(array &$suggestions, array $variables) {
   if (isset($variables['element']['#theme']) && is_array($variables['element']['#theme'])) {
     foreach ($variables['element']['#theme'] as $theme) {
       if (strpos($theme, '_edit_') !== FALSE) {
@@ -21,7 +21,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_page_attachments_alter
  */
-function psyplay_page_attachments_alter(array &$page) {
+function psyplaynew_page_attachments_alter(array &$page) {
   // Get current path
   $route = \Drupal::routeMatch()->getRouteName();
   //print $route;
@@ -40,7 +40,7 @@ function psyplay_page_attachments_alter(array &$page) {
 /**
  * Implements hook_preprocess_HOOK() for html.html.twig.
  */
-function psyplay_preprocess_html(array &$variables) {
+function psyplaynew_preprocess_html(array &$variables) {
   
   /* Add class to html tag */
   //$variables['html_attributes']->addClass('no-js');
@@ -54,7 +54,7 @@ function psyplay_preprocess_html(array &$variables) {
 /**
  * Implements hook_page_attachments_alter().
  */
-function psyplay_page_attachments_alter2(array &$page) {
+function psyplaynew_page_attachments_alter2(array &$page) {
   // Tell IE to use latest rendering engine (not to use compatibility mode).
   
 }
@@ -62,7 +62,7 @@ function psyplay_page_attachments_alter2(array &$page) {
 /**
  * Implements hook_preprocess_page() for page.html.twig.
  */
-function psyplay_preprocess_page(array &$variables) {
+function psyplaynew_preprocess_page(array &$variables) {
   $site_config = \Drupal::config('system.site');
 
     $variables['site_name'] = $site_config->get('name');
@@ -77,14 +77,14 @@ function psyplay_preprocess_page(array &$variables) {
 /**
  * Implements hook_theme_suggestions_page_alter().
  */
-function psyplay_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+function psyplaynew_theme_suggestions_page_alter(array &$suggestions, array $variables) {
 
 }
 
 /**
  * Implements hook_theme_suggestions_node_alter().
  */
-function psyplay_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+function psyplaynew_theme_suggestions_node_alter(array &$suggestions, array $variables) {
   /*$node = $variables['elements']['#node'];
 
   if ($variables['elements']['#view_mode'] == "full") {
@@ -92,7 +92,7 @@ function psyplay_theme_suggestions_node_alter(array &$suggestions, array $variab
   }*/
 }
 
-function psyplay_suggestions_block_alter(&$suggestions, $variables) {
+function psyplaynew_suggestions_block_alter(&$suggestions, $variables) {
   // Block suggestions for custom block bundles.
   if (isset($variables['elements']['content']['#block_content'])) {
     array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
@@ -101,14 +101,14 @@ function psyplay_suggestions_block_alter(&$suggestions, $variables) {
 /**
  * Implements hook_preprocess_HOOK() for Block document templates.
  */
-function psyplay_preprocess_block(array &$variables) {
+function psyplaynew_preprocess_block(array &$variables) {
 
 }
 
 /**
  * Implements hook_theme_suggestions_field_alter().
  */
-function psyplay_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+function psyplaynew_theme_suggestions_field_alter(array &$suggestions, array $variables) {
   /*$element = $variables['element'];
   $suggestions[] = 'field__' . $element['#view_mode'];
   $suggestions[] = 'field__' . $element['#view_mode'] . '__' . $element['#field_name'];*/
@@ -117,7 +117,7 @@ function psyplay_theme_suggestions_field_alter(array &$suggestions, array $varia
 /**
  * Implements hook_theme_suggestions_field_alter().
  */
-function psyplay_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
+function psyplaynew_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
   /*$element = $variables['element'];
   if (isset($element['#attributes']['class']) && in_array('form-composite', $element['#attributes']['class'])) {
     $suggestions[] = 'fieldset__form_composite';
@@ -127,7 +127,7 @@ function psyplay_theme_suggestions_fieldset_alter(array &$suggestions, array $va
 /**
  * Implements hook_preprocess_node().
  */
-function psyplay_preprocess_node(array &$variables) {
+function psyplaynew_preprocess_node(array &$variables) {
   // Default to turning off byline/submitted.
   //$variables['display_submitted'] = FALSE;
 }
@@ -135,28 +135,28 @@ function psyplay_preprocess_node(array &$variables) {
 /**
  * Implements hook_theme_suggestions_views_view_alter().
  */
-function psyplay_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
+function psyplaynew_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
 
 }
 
 /**
  * Implements hook_preprocess_form().
  */
-function psyplay_preprocess_form(array &$variables) {
+function psyplaynew_preprocess_form(array &$variables) {
   //$variables['attributes']['novalidate'] = 'novalidate';
 }
 
 /**
  * Implements hook_preprocess_select().
  */
-function psyplay_preprocess_select(array &$variables) {
+function psyplaynew_preprocess_select(array &$variables) {
   //$variables['attributes']['class'][] = 'select-chosen';
 }
 
 /**
  * Implements hook_preprocess_field().
  */
-function psyplay_preprocess_field(array &$variables, $hook) {
+function psyplaynew_preprocess_field(array &$variables, $hook) {
   /*switch ($variables['element']['#field_name']) {
   }*/
 }
@@ -164,7 +164,7 @@ function psyplay_preprocess_field(array &$variables, $hook) {
 /**
  * Implements hook_preprocess_details().
  */
-function psyplay_preprocess_details(array &$variables) {
+function psyplaynew_preprocess_details(array &$variables) {
   /*$variables['attributes']['class'][] = 'details';
   $variables['summary_attributes']['class'] = 'summary';*/
 }
@@ -172,13 +172,13 @@ function psyplay_preprocess_details(array &$variables) {
 /**
  * Implements hook_theme_suggestions_details_alter().
  */
-function psyplay_theme_suggestions_details_alter(array &$suggestions, array $variables) {
+function psyplaynew_theme_suggestions_details_alter(array &$suggestions, array $variables) {
 
 }
 
 /**
  * Implements hook_preprocess_menu_local_task().
  */
-function psyplay_preprocess_menu_local_task(array &$variables) {
+function psyplaynew_preprocess_menu_local_task(array &$variables) {
   //$variables['element']['#link']['url']->setOption('attributes', ['class'=>'rounded']);
 }
