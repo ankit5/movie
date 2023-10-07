@@ -2,6 +2,22 @@
 :where(.is-layout-flex) {
   gap: .5em
 }
+body {
+  background: #484747;
+  color: #fff;
+}
+header {
+  background: #020202;
+}
+#menu ul.top-menu li a {
+  color: #fff;
+}
+#menu .sub-container {
+  background: #000;
+}
+#menu ul.top-menu li:hover .sub-container ul.sub-menu li a {
+  color: #fff;
+}
 
 body .is-layout-flow>.alignleft {
   float: left;
