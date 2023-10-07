@@ -668,7 +668,7 @@ $settings['update_free_access'] = FALSE;
  */
  $config['system.site']['name'] = 'Yomovies';
  $config['user.settings']['anonymous'] = 'Visitor';
- $config['system.theme']['default'] = 'psythemenew';
+ $config['system.theme']['default'] = 'bartik';
 
 /**
  * Load services definition file.
