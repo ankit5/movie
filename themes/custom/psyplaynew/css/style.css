@@ -19,6 +19,22 @@ header {
   color: #fff;
 }
 
+#mv-info .mvi-content {
+  background: #000;
+}
+#media-player, #content-embed {
+  background: #000000;
+}
+.searchwp-live-search-results {
+  background: #060606;
+}
+.search-suggest ul li .ss-info a.ss-title {
+  color: #fff;
+}
+#bread .breadcrumb a {
+  color: #fff;
+}
+
 body .is-layout-flow>.alignleft {
   float: left;
   margin-inline-start: 0;

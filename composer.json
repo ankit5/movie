@@ -39,6 +39,7 @@
         "drupal/pathauto": "^1.11",
         "drupal/r4032login": "^2.2",
         "drupal/tamper": "^1.0@alpha",
+        "drupal/xmlsitemap": "^1.5",
         "drush/drush": "^11.5",
         "voku/simple_html_dom": "^4.8"
     },
