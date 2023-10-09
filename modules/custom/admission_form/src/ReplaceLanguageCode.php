@@ -33,7 +33,7 @@ $node->field_year->value = $string;
   public static function replaceLangcode($nid, &$context){
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
     $message = 'Replacing langcode(und to de)...';
-   if($node_load->isPublished()){
+   if($node->isPublished()){
 
    }else{
     return true;
