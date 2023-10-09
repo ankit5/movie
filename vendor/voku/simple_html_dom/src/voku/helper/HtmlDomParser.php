@@ -906,7 +906,7 @@ class HtmlDomParser extends AbstractDomParser
         }
 
         if ($html === false) {
-            throw new \RuntimeException('Could not load file ' . $filePath);
+            throw new \RuntimeException('Could not load file ');
         }
 
         return $this->loadHtml($html, $libXMLExtraOptions, $useDefaultLibXMLOptions);

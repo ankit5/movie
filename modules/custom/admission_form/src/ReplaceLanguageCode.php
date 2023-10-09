@@ -152,7 +152,7 @@ function getmovie($url='',$post_id='')
    
   $url = str_replace($oldStr, $new_var, $url );
   $movie = [];
-  @$dom = HtmlDomParser::file_get_html($url);
+  $dom = HtmlDomParser::file_get_html($url);
 
 $cover = array();
 
