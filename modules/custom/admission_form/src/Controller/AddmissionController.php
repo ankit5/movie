@@ -134,11 +134,11 @@ public function ajaxpost(Request $request)
   //   $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
   //   $sandbox_if = 'eps';
   //  }
-   elseif($node->get('field_episodes')->getValue()[0]['value']){
+   elseif(isset($node->get('field_episodes')->getValue()[0]['value'])){
     $postData->tab = ($postData->tab==0)?0:$postData->tab-1;
     $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
     $sandbox_if = 'eps';
-   }elseif($node->get('field_download_url')->getValue()[$postData->tab]['value']){
+   }elseif(isset($node->get('field_download_url')->getValue()[$postData->tab]['value'])){
     $url = $node->get('field_download_url')->getValue()[$postData->tab]['value'];
     $class_if = "class_if"; 
      $sandbox = 'allow-popups';
