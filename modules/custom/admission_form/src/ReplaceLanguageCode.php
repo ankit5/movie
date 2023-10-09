@@ -33,6 +33,11 @@ $node->field_year->value = $string;
   public static function replaceLangcode($nid, &$context){
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
     $message = 'Replacing langcode(und to de)...';
+   if($node_load->isPublished()){
+
+   }else{
+    return true;
+   }
     /*print $node->field_trailer->value;
 exit;*/
 //if($node->field_left->value!='' && $node->field_trailer->value!=''){
