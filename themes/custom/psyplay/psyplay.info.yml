@@ -8,7 +8,7 @@ libraries:
   - psyplay/global-styling
 
 regions:
-  head: head
+  head_top: head_top
   header: header
   primary_menu: Primary menu
   content: content
