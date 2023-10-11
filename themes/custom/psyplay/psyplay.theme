@@ -41,7 +41,7 @@ function psyplay_page_attachments_alter(array &$page) {
  * Implements hook_preprocess_HOOK() for html.html.twig.
  */
 function psyplay_preprocess_html(array &$variables) {
-  
+  $variables['base_path'] = base_path();
   /* Add class to html tag */
   //$variables['html_attributes']->addClass('no-js');
 
@@ -64,7 +64,7 @@ function psyplay_page_attachments_alter2(array &$page) {
  */
 function psyplay_preprocess_page(array &$variables) {
   $site_config = \Drupal::config('system.site');
-
+    $variables['base_path'] = base_path();
     $variables['site_name'] = $site_config->get('name');
     $variables['site_slogan'] = $site_config->get('slogan');
     $variables['logopath'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
