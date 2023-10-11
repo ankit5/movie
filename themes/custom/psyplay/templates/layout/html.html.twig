@@ -32,20 +32,20 @@
         "@context": "https://schema.org",
         "@graph": [{
           "@type": "CollectionPage",
-          "@id": "{{ base_path }}",
-          "url": "{{ base_path }}",
+          "@id": "{{ site_url }}",
+          "url": "{{ site_url }}",
           "name": "Prmovies - Watch Free Movies and TV Shows Online « prmovies",
           "isPartOf": {
-            "@id": "{{ base_path }}#website"
+            "@id": "{{ site_url }}#website"
           },
           "description": "Prmovies Watch Latest Movies,TV Series Online for free and Download in HD on Prmovies website,Prmovies Bollywood,Prmovies app,Prmovies online.",
           "breadcrumb": {
-            "@id": "{{ base_path }}#breadcrumb"
+            "@id": "{{ site_url }}#breadcrumb"
           },
           "inLanguage": "en-US"
         }, {
           "@type": "BreadcrumbList",
-          "@id": "{{ base_path }}#breadcrumb",
+          "@id": "{{ site_url }}#breadcrumb",
           "itemListElement": [{
             "@type": "ListItem",
             "position": 1,
@@ -53,8 +53,8 @@
           }]
         }, {
           "@type": "WebSite",
-          "@id": "{{ base_path }}#website",
-          "url": "{{ base_path }}",
+          "@id": "{{ site_url }}#website",
+          "url": "{{ site_url }}",
           "name": "Prmovies - Watch Free Movies and TV Shows Online « prmovies",
           "description": "Prmovies Watch Latest Movies,TV Series Online for free and Download in HD on Prmovies website,Prmovies Bollywood,Prmovies app,Prmovies online.",
           "alternateName": "Prmovies - Watch Free Movies and TV Shows Online « prmovies",
@@ -62,7 +62,7 @@
             "@type": "SearchAction",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "{{ base_path }}?title={search_term_string}"
+              "urlTemplate": "{{ site_url }}?title={search_term_string}"
             },
             "query-input": "required title=search_term_string"
           }],
