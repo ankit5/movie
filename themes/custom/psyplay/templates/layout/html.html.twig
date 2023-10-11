@@ -27,6 +27,49 @@
 <html{{ html_attributes }}>
   <head>
     <head-placeholder token="{{ placeholder_token|raw }}">
+     <script type="application/ld+json" class="yoast-schema-graph">
+      {
+        "@context": "https://schema.org",
+        "@graph": [{
+          "@type": "CollectionPage",
+          "@id": "{{ base_path }}",
+          "url": "{{ base_path }}",
+          "name": "Prmovies - Watch Free Movies and TV Shows Online « prmovies",
+          "isPartOf": {
+            "@id": "{{ base_path }}#website"
+          },
+          "description": "Prmovies Watch Latest Movies,TV Series Online for free and Download in HD on Prmovies website,Prmovies Bollywood,Prmovies app,Prmovies online.",
+          "breadcrumb": {
+            "@id": "{{ base_path }}#breadcrumb"
+          },
+          "inLanguage": "en-US"
+        }, {
+          "@type": "BreadcrumbList",
+          "@id": "{{ base_path }}#breadcrumb",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home"
+          }]
+        }, {
+          "@type": "WebSite",
+          "@id": "{{ base_path }}#website",
+          "url": "{{ base_path }}",
+          "name": "Prmovies - Watch Free Movies and TV Shows Online « prmovies",
+          "description": "Prmovies Watch Latest Movies,TV Series Online for free and Download in HD on Prmovies website,Prmovies Bollywood,Prmovies app,Prmovies online.",
+          "alternateName": "Prmovies - Watch Free Movies and TV Shows Online « prmovies",
+          "potentialAction": [{
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "{{ base_path }}?title={search_term_string}"
+            },
+            "query-input": "required title=search_term_string"
+          }],
+          "inLanguage": "en-US"
+        }]
+      }
+    </script>
     <title>{{ head_title|safe_join(' | ') }}</title>
    
     <css-placeholder token="{{ placeholder_token|raw }}">
