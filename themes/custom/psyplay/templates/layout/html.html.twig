@@ -27,49 +27,7 @@
 <html{{ html_attributes }}>
   <head>
     <head-placeholder token="{{ placeholder_token|raw }}">
-     <script type="application/ld+json" class="yoast-schema-graph">
-      {
-        "@context": "https://schema.org",
-        "@graph": [{
-          "@type": "CollectionPage",
-          "@id": "{{ site_url }}",
-          "url": "{{ site_url }}",
-          "name": "{{ site_name }} - Watch Free Movies and TV Shows Online « {{ site_name }}",
-          "isPartOf": {
-            "@id": "{{ site_url }}#website"
-          },
-          "description": "{{ site_name }} Watch Latest Movies,TV Series Online for free and Download in HD on {{ site_name }} website,{{ site_name }} Bollywood,{{ site_name }} app,{{ site_name }} online.",
-          "breadcrumb": {
-            "@id": "{{ site_url }}#breadcrumb"
-          },
-          "inLanguage": "en-US"
-        }, {
-          "@type": "BreadcrumbList",
-          "@id": "{{ site_url }}#breadcrumb",
-          "itemListElement": [{
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home"
-          }]
-        }, {
-          "@type": "WebSite",
-          "@id": "{{ site_url }}#website",
-          "url": "{{ site_url }}",
-          "name": "{{ site_name }} - Watch Free Movies and TV Shows Online « {{ site_name }}",
-          "description": "{{ site_name }} Watch Latest Movies,TV Series Online for free and Download in HD on {{ site_name }} website,{{ site_name }} Bollywood,{{ site_name }} app,{{ site_name }} online.",
-          "alternateName": "{{ site_name }} - Watch Free Movies and TV Shows Online « {{ site_name }}",
-          "potentialAction": [{
-            "@type": "SearchAction",
-            "target": {
-              "@type": "EntryPoint",
-              "urlTemplate": "{{ site_url }}?title={search_term_string}"
-            },
-            "query-input": "required title=search_term_string"
-          }],
-          "inLanguage": "en-US"
-        }]
-      }
-    </script>
+    {{ head }}
     <title>{{ head_title|safe_join(' | ') }}</title>
    
     <css-placeholder token="{{ placeholder_token|raw }}">
