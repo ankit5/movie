@@ -44,6 +44,7 @@ class CustomTwigExtension extends \Twig_Extension {
   public function getFunctions() {
     return [
       new \Twig_SimpleFunction('related', [$this, 'related']),
+      new \Twig_SimpleFunction('custom_block', [$this, 'custom_block']),
       new \Twig_SimpleFunction('twig_json_decode', [$this, 'twigJsonDecode']),
       new \Twig_SimpleFunction(
         'twig_json_decode_table',
@@ -61,7 +62,11 @@ class CustomTwigExtension extends \Twig_Extension {
       new \Twig_SimpleFunction('parse_url_remove', [$this, 'parse_url_remove']),
     ];
   }
-
+  public function custom_block($id)
+  {
+  $custom_block = \Drupal::entityTypeManager()->getStorage('block_content')->load($id);
+return $custom_block->body->value;
+  }
  public function related($title='',$quality='',$id='',$tag='')
 {
    $view = Views::getView('related'); 
