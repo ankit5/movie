@@ -27,7 +27,7 @@
 <html{{ html_attributes }}>
   <head>
     <head-placeholder token="{{ placeholder_token|raw }}">
-    
+    {{ drupal_region('head_top') }}
     <title>{{ head_title|safe_join(' | ') }}</title>
    
     <css-placeholder token="{{ placeholder_token|raw }}">
@@ -56,7 +56,7 @@
     <a href="#main-content" class="visually-hidden focusable">
       {{ 'Skip to main content'|t }}
     </a>
-    {{ drupal_region('head_top') }}
+    
     {{ page_top }}
     {{ page }}
     {{ page_bottom }}
