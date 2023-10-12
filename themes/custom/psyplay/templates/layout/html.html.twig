@@ -27,7 +27,7 @@
 <html{{ html_attributes }}>
   <head>
     <head-placeholder token="{{ placeholder_token|raw }}">
-    {{ drupal_entity('block_content','1')|raw }}
+    {{ custom_block('1') }}
     <title>{{ head_title|safe_join(' | ') }}</title>
    
     <css-placeholder token="{{ placeholder_token|raw }}">
