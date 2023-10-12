@@ -65,7 +65,8 @@ class CustomTwigExtension extends \Twig_Extension {
   public function custom_block($id)
   {
   $custom_block = \Drupal::entityTypeManager()->getStorage('block_content')->load($id);
-return $custom_block->body->value;
+  $token = \Drupal::token();
+return $token->replace($custom_block->body->value);
   }
  public function related($title='',$quality='',$id='',$tag='')
 {
