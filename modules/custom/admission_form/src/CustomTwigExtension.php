@@ -65,7 +65,17 @@ class CustomTwigExtension extends \Twig_Extension {
   public function custom_block($id)
   {
   $custom_block = \Drupal::entityTypeManager()->getStorage('block_content')->load($id);
+  $node = \Drupal::routeMatch()->getParameter('node');
   $token = \Drupal::token();
+if ($node instanceof \Drupal\node\NodeInterface) {
+  $token_data = array(  //assigns the current node data to the 'node' key in the $data array; the node key is recognized by the Token service
+    'node' => $node,
+  );
+  $token_options = ['clear' => TRUE];  //part of the Token replacement service; A boolean flag indicating that tokens should be removed from the final text if no replacement value can be generated
+  return $token->replace($custom_block, $token_data, $token_options);
+  
+}
+ 
 return $token->replace($custom_block->body->value);
   }
  public function related($title='',$quality='',$id='',$tag='')
