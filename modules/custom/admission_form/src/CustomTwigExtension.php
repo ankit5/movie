@@ -72,7 +72,7 @@ if ($node instanceof \Drupal\node\NodeInterface) {
     'node' => $node,
   );
   $token_options = ['clear' => TRUE];  //part of the Token replacement service; A boolean flag indicating that tokens should be removed from the final text if no replacement value can be generated
-  return $token->replace($custom_block, $token_data, $token_options);
+  return $token->replace($custom_block->body->value, $token_data, $token_options);
   
 }
  
