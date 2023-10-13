@@ -8,8 +8,17 @@
            
  <div data-movie-id="376819" class="ml-item">
                   <a href="{{ url }}" data-url="" class="ml-mask jt" data-hasqtip="0" oldtitle="{{ node.label }}" title="">
+                   
+                          {% for key,value in node.field_right.getValue %}
+                        {% if 'IMDb:' in value['value'] %}
+                        <div class="mli-quality" style="margin-right: 51px;"> IMDb: 
+                         {{ value['value']|replace({ 'IMDb:': '' }) }}
+                          </div>
+                         {% endif %}
+                        {% endfor %}
+                     
                    {% if node.field_quality.0.value %}
-                    <span class="mli-quality {% if node.field_eps.0.value %} tv {% endif %}">{{ node.field_quality.0.value }}</span>
+               margin-right: 51px;     <span class="mli-quality {% if node.field_eps.0.value %} tv {% endif %}">{{ node.field_quality.0.value }}</span>
                      {% endif %}
                      {% if node.field_eps.0.value %}
                  <span class="mli-eps">Eps<i>{{ node.field_eps.0.value }}</i></span>
