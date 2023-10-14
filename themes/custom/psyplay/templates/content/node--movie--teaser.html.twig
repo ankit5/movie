@@ -18,7 +18,7 @@
                         {% endfor %}
                      
                    {% if node.field_quality.0.value %}
-               margin-right: 51px;     <span class="mli-quality {% if node.field_eps.0.value %} tv {% endif %}">{{ node.field_quality.0.value }}</span>
+                  <span class="mli-quality {% if node.field_eps.0.value %} tv {% endif %}">{{ node.field_quality.0.value }}</span>
                      {% endif %}
                      {% if node.field_eps.0.value %}
                  <span class="mli-eps">Eps<i>{{ node.field_eps.0.value }}</i></span>
