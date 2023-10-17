@@ -8,11 +8,11 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class CsvImportForm
+ * Class CsvForm
  *
  * @package Drupal\csvimport\Form
  */
-class CsvImportForm extends FormBase {
+class CsvForm extends FormBase {
 
   /**
    * {@inheritdoc}

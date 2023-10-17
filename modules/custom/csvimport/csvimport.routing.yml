@@ -5,3 +5,11 @@ csvimport:
     _title: Import CSV
   requirements:
     _permission: administer site configuration
+
+csvimport.import:
+  path: '/admin/import'
+  defaults:
+    _form: '\Drupal\csvimport\Form\CsvForm'
+    _title: 'Batch Language Code'
+  requirements:
+    _permission: 'access content'
