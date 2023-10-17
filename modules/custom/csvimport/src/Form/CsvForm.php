@@ -76,13 +76,13 @@ class CsvForm extends FormBase {
           // if ( $line[0] == 'Index' || $line[1] != 'Supplier' || $line[2] != 'Title' )
           // @codingStandardsIgnoreEnd
           if ($line[0] != 'title') {
-            $form_state->setErrorByName('csvfile', $this->t('Sorry, this file does not match the expected format.'));
+            $form_state->setErrorByName('csvupload', $this->t('Sorry, this file does not match the expected format.'));
           }
         }
         fclose($handle);
       }
       else {
-        $form_state->setErrorByName('csvfile', $this->t('Unable to read uploaded file @filepath', ['@filepath' => $csvupload]));
+        $form_state->setErrorByName('csvupload', $this->t('Unable to read uploaded file @filepath', ['@filepath' => $csvupload]));
       }
     }
   }
