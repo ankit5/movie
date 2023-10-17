@@ -8,10 +8,9 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Implements form to upload a file and start the batch on form submit.
+ * Class CsvImportForm.
  *
- * @see \Drupal\Core\Form\FormBase
- * @see \Drupal\Core\Form\ConfigFormBase
+ * @package Drupal\csvimport\Form
  */
 class CsvImportForm extends FormBase {
 
