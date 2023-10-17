@@ -75,7 +75,7 @@ class CsvImportBatch {
     // @codingStandardsIgnoreEnd
     // Convert the line of the CSV file into a new node.
    
-    if ($context['results']['rows_imported'] > 1) { // Skip header line.
+    if ($context['results']['rows_imported'] > 1 && $line[0]) { // Skip header line.
      
       
      /* @var \Drupal\node\NodeInterface $node */
