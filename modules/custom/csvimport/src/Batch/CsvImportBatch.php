@@ -36,7 +36,7 @@ class CsvImportBatch {
     }
     \Drupal::messenger()->addMessage($message);
   }
-  }
+  
 
   /**
    * Remember the uploaded CSV filename.
