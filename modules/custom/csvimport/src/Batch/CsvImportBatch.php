@@ -76,13 +76,13 @@ class CsvImportBatch {
     // Convert the line of the CSV file into a new node.
    
     if ($context['results']['rows_imported'] > 1) { // Skip header line.
-      print_r($line);
+      print_r($line[4]);
       exit;
       
      /* @var \Drupal\node\NodeInterface $node */
      $node = Node::create([
        'type'  => 'article',
-       'title' => $line[2],
+       'title' => $line[4],
        'body'  => $line[0],
      ]);
      $node->save();
