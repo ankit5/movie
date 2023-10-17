@@ -56,8 +56,7 @@ class CsvImportBatch {
 
     $context['results']['rows_imported']++;
     $line = array_map('base64_decode', $line);
-    print_r($line);
-exit;
+   
     // Simply show the import row count.
     $context['message'] = t('Importing row !c', ['!c' => $context['results']['rows_imported']]);
 
@@ -77,7 +76,8 @@ exit;
     // Convert the line of the CSV file into a new node.
    
     if ($context['results']['rows_imported'] > 1) { // Skip header line.
-    
+      print_r($line);
+      exit;
       
      /* @var \Drupal\node\NodeInterface $node */
      $node = Node::create([
