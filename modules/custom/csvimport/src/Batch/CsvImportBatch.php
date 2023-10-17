@@ -77,8 +77,7 @@ class CsvImportBatch {
    
     if ($context['results']['rows_imported'] > 1) { // Skip header line.
     
-      print $line[0];
-      exit;
+      
      /* @var \Drupal\node\NodeInterface $node */
      $node = Node::create([
        'type'  => 'article',
