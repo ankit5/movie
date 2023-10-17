@@ -28,7 +28,7 @@ class CsvForm extends FormBase {
 
    
 
-    $form['csvfile'] = [
+    $form['csvupload'] = [
       '#type'              => 'managed_file',
       '#title'             => t('Upload file here'),
       '#upload_location'   => 'public://importcsv/',
