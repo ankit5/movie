@@ -6,6 +6,7 @@ use Drupal\Component\Utility\Environment;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\Entity\File;
 
 /**
  * Class CsvForm
@@ -55,8 +56,12 @@ class CsvForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-
-    if ($csvupload = $form_state->getValue('csvupload')) {
+    $csvupload = $form_state->getValue('csvupload');
+   $file = File::load($csvupload[0]);
+    $file_real_path = \Drupal::service('file_system')->realpath($file->getFileUri());
+    $csvupload = file_get_contents($file_real_path);
+   
+    if ($csvupload) {
 
       if ($handle = fopen($csvupload, 'r')) {
 
