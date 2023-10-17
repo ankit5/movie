@@ -58,8 +58,8 @@ class CsvForm extends FormBase {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $csvupload = $form_state->getValue('csvupload');
    $file = File::load($csvupload[0]);
-    $file_real_path = \Drupal::service('file_system')->realpath($file->getFileUri());
-    $csvupload = file_get_contents($file_real_path);
+    $csvupload = \Drupal::service('file_system')->realpath($file->getFileUri());
+   // $csvupload = file_get_contents($file_real_path);
    
     if ($csvupload) {
 
