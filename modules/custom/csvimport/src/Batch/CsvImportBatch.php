@@ -57,7 +57,7 @@ class CsvImportBatch {
     $context['results']['rows_imported']++;
     $line = array_map('base64_decode', $line);
     print_r($line);
-
+exit;
     // Simply show the import row count.
     $context['message'] = t('Importing row !c', ['!c' => $context['results']['rows_imported']]);
 
