@@ -25,43 +25,17 @@ class CsvImportBatch {
    */
   public static function csvimportImportFinished($success, $results, $operations) {
 
-    $messenger = \Drupal::messenger();
-
-    if (!empty($results['failed_rows'])) {
-
-      $dir = 'public://csvimport';
-      if (\Drupal::service('file_system')
-        ->prepareDirectory($dir, FileSystemInterface::CREATE_DIRECTORY)) {
-
-        // We validated extension on upload.
-        $csv_filename = 'failed_rows-' . basename($results['uploaded_filename']);
-        $csv_filepath = $dir . '/' . $csv_filename;
-
-        $targs = [
-          ':csv_url'      => file_create_url($csv_filepath),
-          '@csv_filename' => $csv_filename,
-          '@csv_filepath' => $csv_filepath,
-        ];
-
-        if ($handle = fopen($csv_filepath, 'w+')) {
-
-          foreach ($results['failed_rows'] as $failed_row) {
-            fputcsv($handle, $failed_row);
-          }
-
-          fclose($handle);
-          $messenger->addMessage(t('Some rows failed to import. You may download a CSV of these rows: <a href=":csv_url">@csv_filename</a>', $targs), 'error');
-        }
-        else {
-          $messenger->addMessage(t('Some rows failed to import, but unable to write error CSV to @csv_filepath', $targs), 'error');
-        }
-      }
-      else {
-        $messenger->addMessage(t('Some rows failed to import, but unable to create directory for error CSV at @csv_directory', $targs), 'error');
-      }
+    if ($success) {
+      $message = \Drupal::translation()->formatPlural(
+        count($results),
+        'One post processed.', '@count posts processed.'
+      );
     }
-
-    return t('The CSV import has completed.');
+    else {
+      $message = t('Finished with an error.');
+    }
+    \Drupal::messenger()->addMessage($message);
+  }
   }
 
   /**
@@ -100,18 +74,20 @@ class CsvImportBatch {
 
     // @codingStandardsIgnoreEnd
     // Convert the line of the CSV file into a new node.
-    // @codingStandardsIgnoreStart
-    //if ($context['results']['rows_imported'] > 1) { // Skip header line.
-    //
-    //  /* @var \Drupal\node\NodeInterface $node */
-    //  $node = Node::create([
-    //    'type'  => 'article',
-    //    'title' => $line[2],
-    //    'body'  => $line[0],
-    //  ]);
-    //  $node->save();
-    //}
-    // @codingStandardsIgnoreEnd
+   
+    if ($context['results']['rows_imported'] > 1) { // Skip header line.
+    
+      print $line[0];
+      exit;
+     /* @var \Drupal\node\NodeInterface $node */
+     $node = Node::create([
+       'type'  => 'article',
+       'title' => $line[2],
+       'body'  => $line[0],
+     ]);
+     $node->save();
+    }
+    
 
     // If the first two columns in the row are "ROW", "FAILS" then we
     // will add that row to the CSV we'll return to the importing person

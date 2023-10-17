@@ -100,8 +100,10 @@ class CsvForm extends FormBase {
       'error_message'    => $this->t('An error occurred during processing'),
       'finished'         => '\Drupal\csvimport\Batch\CsvImportBatch::csvimportImportFinished',
     ];
-
-    if ($csvupload = $form_state->getValue('csvupload')) {
+    $csvupload = $form_state->getValue('csvupload');
+    $file = File::load($csvupload[0]);
+     $csvupload = \Drupal::service('file_system')->realpath($file->getFileUri());
+    if ($csvupload) {
 
       if ($handle = fopen($csvupload, 'r')) {
 
