@@ -7,9 +7,9 @@
 {{ title_suffix }}
            
 <div id="bread">
-            <ol class="breadcrumb">
-              <li>
-                <a href="/">Home </a>
+            <ol class="breadcrumb" itemtype="https://schema.org/BreadcrumbList" itemscope="">
+              <li itemtype="https://schema.org/ListItem" itemscope="" itemprop="itemListElement">
+                <a itemprop="item" href="/">Home </a>
               </li>
               <li>
                 <a href="/most-favorites/">Movies </a>
@@ -27,7 +27,10 @@
  </div>
  <div class="modal-body"><div class="modal-body-trailer"> 
  <iframe id="iframe-trailer" width="600" height="450" src="//www.youtube.com/embed/6mdxy3zohEk" frameborder="0" allowfullscreen=""></iframe>
- 
+ <div itemscope="" itemtype="http://schema.org/VideoObject"><meta itemprop="embedUrl" content="https://www.youtube.com/embed/6mdxy3zohEk">
+ <meta itemprop="name" content="{{ node.label }}">
+ <meta itemprop="description" content="{{ node.label }} Trailer">
+ <meta itemprop="thumbnailUrl" content="{{ content.field_image_urls.0 }}">
  </div></div></div></div></div></div>
            
             <div id="content-embed" style="display:block;">
@@ -71,7 +74,7 @@
     <div style="display:none;"></div>
     <div id="load"></div>
 
-     <div class="mvi-content" id="mvi-content">
+     <div class="mvi-content" id="mvi-content" itemscope="" itemtype="http://schema.org/Movie">
      <div class="dl-des">For Download -&gt; Right Click -&gt; Open link in new tab</div>
      <div class="player_nav">
     <ul class="idTabs">
@@ -98,17 +101,17 @@
               </div>
              
               <div class="thumb mvic-thumb" style="background-image: url('{{ content.field_image_urls.0 }}');">
-                <img title="{{ node.label }}" alt="{{ node.label }}" src="{{ content.field_image_urls.0 }}" class="hidden" style="width: 140px; height: 210px;">
+                <img itemprop="image" title="{{ node.label }}" alt="{{ node.label }}" src="{{ content.field_image_urls.0 }}" class="hidden" style="width: 140px; height: 210px;">
               </div>
               <div class="mvic-desc">
-                <h3>{{ node.label }}</h3>
+                <h3 itemprop="name">{{ node.label }}</h3>
                 {% if node.field_trailer.0.value %} 
                 <div class="block-trailer"> <a data-target="#pop-trailer" data-toggle="modal" href="{{ node.field_trailer.0.value }}" class="pop-trailer btn btn-primary"> <i class="fa fa-video-camera mr5"></i>Trailer</a></div>
                 {% endif %} 
                 <div class="block-social">
                   <div class="addthis_inline_share_toolbox"></div>
                 </div>
-                <div class="desc">
+                <div itemprop="description" class="desc">
                   <p class="f-desc">{{ node.body.value|raw }}</p>
                 </div>
                 <div class="mvic-info">
@@ -220,13 +223,25 @@
                    {% endfor %}
                    
                    
+                   
+                    <div itemscope="" itemtype="http://schema.org/VideoObject">
+                      <meta itemprop="name" content="{{ node.label }}">
+                      <meta itemprop="description" content="">
+                      <meta itemprop="thumbnailUrl" content="{{ poster_url }}">
+                    </div>
+                    <meta itemprop="url" content="{{ url }}">
+                    <meta itemprop="datePublished" content="">
+                  {% for key, value in content.field_tags if key|first != '#' %}
+          {% set value_new = value|render|render|striptags %}
+                    <meta itemprop="genre" content="{{ value_new }}">
+                  {% endfor %}
                     
                     {% for key,value in node.field_right.getValue %}
                         {% if 'IMDb:' in value['value'] %}
                         <div class="imdb_r">
                         <p>
                         <strong>IMDb: </strong>
-                        <span class="imdb-r">  
+                        <span itemprop="ratingValue" class="imdb-r">  
                          {{ value['value']|replace({ 'IMDb:': '' }) }}
                         </span>
                         </p>
@@ -239,7 +254,7 @@
                         <div class="imdb_r">
                         <p>
                         <strong>TMDb: </strong>
-                        <span  class="imdb-r">  
+                        <span itemprop="ratingValue" class="imdb-r">  
                          {{ value['value']|replace({ 'TMDb:': '' }) }}
                         </span>
                         </p>
@@ -320,5 +335,3 @@
  <div class="movies-list movies-list-full">
 {{ related(node.label,node.field_quality.0.value,node.id,tag_s) }}
  </div>
-
- 
