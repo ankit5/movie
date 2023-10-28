@@ -122,7 +122,7 @@ exit;*/
     $node->field_download_url = $field_download_url;
     }
    //////////////////////////////////////////////
-
+   $node->changed = $node->changed;
   //  $node->set('langcode', 'de');
     $results[] = $node->save();
    /* $context['message'] = $message;
