@@ -45,6 +45,7 @@ class CustomTwigExtension extends \Twig_Extension {
     return [
       new \Twig_SimpleFunction('related', [$this, 'related']),
       new \Twig_SimpleFunction('custom_block', [$this, 'custom_block']),
+      new \Twig_SimpleFunction('token_replace', [$this, 'token_replace']),
       new \Twig_SimpleFunction('twig_json_decode', [$this, 'twigJsonDecode']),
       new \Twig_SimpleFunction(
         'twig_json_decode_table',
@@ -78,6 +79,24 @@ if ($node instanceof \Drupal\node\NodeInterface) {
  
 return $token->replace($custom_block->body->value);
   }
+/////////////////////////////////////////////////////////////////  
+  public function token_replace($text)
+  {
+ // $custom_block = \Drupal::entityTypeManager()->getStorage('block_content')->load($id);
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $token = \Drupal::token();
+if ($node instanceof \Drupal\node\NodeInterface) {
+  $token_data = array(  //assigns the current node data to the 'node' key in the $data array; the node key is recognized by the Token service
+    'node' => $node,
+  );
+  $token_options = ['clear' => TRUE];  //part of the Token replacement service; A boolean flag indicating that tokens should be removed from the final text if no replacement value can be generated
+  return $token->replace($text, $token_data, $token_options);
+  
+}
+ ///////////////////////////////////////////////////////////////////
+return $token->replace($text);
+  }
+
  public function related($title='',$quality='',$id='',$tag='')
 {
    $view = Views::getView('related'); 
