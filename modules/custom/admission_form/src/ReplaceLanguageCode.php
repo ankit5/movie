@@ -123,10 +123,10 @@ exit;*/
     }
    //////////////////////////////////////////////
    //print $node->changed->value;
-   $node->changed = $node->changed->value;
-   // $node->set('changed', $node->changed->value);
+   //$node->changed = $node->changed->value;
+    $node->set('changed', $node->changed->value);
     $results[] = $node->save();
-    exit;
+   
    /* $context['message'] = $message;
     $context['results'][] = $nid;*/
   }
