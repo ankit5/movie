@@ -27,11 +27,7 @@
 <html{{ html_attributes }}>
   <head>
     <head-placeholder token="{{ placeholder_token|raw }}">
-    {% if root_path == 'node' %}
-    {{ custom_block('1')|raw }}
-    {% else %}
-    {{ custom_block('2')|raw }}
-    {% endif %}
+    {{ drupal_region('head_top')|raw }}
     <title>{{ head_title|safe_join(' | ') }}</title>
    
     <css-placeholder token="{{ placeholder_token|raw }}">
