@@ -20,6 +20,6 @@
 %}
 {% if content %}
  
-    {{ token_replace(content) }}
+    {{ token_replace(content)|raw }}
   
 {% endif %}
