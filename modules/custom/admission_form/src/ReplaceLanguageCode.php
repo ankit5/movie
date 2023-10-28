@@ -123,8 +123,8 @@ exit;*/
     }
    //////////////////////////////////////////////
    //print $node->changed->value;
-   //$node->changed = $node->changed->value;
-    $node->set('changed', $node->changed->value);
+   $node->changed = $node->changed->value;
+   // $node->set('changed', $node->changed->value);
     $results[] = $node->save();
    
    /* $context['message'] = $message;
