@@ -122,7 +122,7 @@ exit;*/
     $node->field_download_url = $field_download_url;
     }
    //////////////////////////////////////////////
-   print $node->changed->value;
+   //print $node->changed->value;
    $node->changed = $node->changed->value;
    // $node->set('changed', $node->changed->value);
     $results[] = $node->save();
