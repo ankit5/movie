@@ -122,9 +122,11 @@ exit;*/
     $node->field_download_url = $field_download_url;
     }
    //////////////////////////////////////////////
-   $node->changed = $node->changed;
-  //  $node->set('langcode', 'de');
+   print $node->changed->value;
+   $node->changed = $node->changed->value;
+   // $node->set('changed', $node->changed->value);
     $results[] = $node->save();
+    exit;
    /* $context['message'] = $message;
     $context['results'][] = $nid;*/
   }
