@@ -93,6 +93,16 @@ if ($node instanceof \Drupal\node\NodeInterface) {
   return $token->replace($text, $token_data, $token_options);
   
 }
+if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical') {
+  $term_id = \Drupal::routeMatch()->getRawParameter('taxonomy_term');
+  $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($term_id);
+  $token_data = array(  //assigns the current node data to the 'node' key in the $data array; the node key is recognized by the Token service
+    'term' => $term,
+  );
+  $token_options = ['clear' => TRUE];  //part of the Token replacement service; A boolean flag indicating that tokens should be removed from the final text if no replacement value can be generated
+  return $token->replace($text, $token_data, $token_options);
+
+}
  ///////////////////////////////////////////////////////////////////
 return $token->replace($text);
   }
