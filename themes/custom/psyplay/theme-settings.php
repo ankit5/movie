@@ -35,6 +35,7 @@ function psyplay_form_system_theme_settings_alter(&$form, FormStateInterface &$f
     '#title'         => t('Iframe Old Domain name'),
     '#description'   => t("Enter Iframe Old Domain name."),
     '#default_value' => theme_get_setting('iframe_old_domain_name'),
+    '#attributes' => array('maxlength' => 255),
   ];
 
   $form['movie_iframe']['iframe_new_domain_name'] = [
