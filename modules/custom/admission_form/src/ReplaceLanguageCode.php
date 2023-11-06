@@ -123,7 +123,7 @@ exit;*/
     }
    //////////////////////////////////////////////
    //print $node->changed->value;
-   $node->changed = $node->changed->value;
+   $node->changed = $node->created->value;
    // $node->set('changed', $node->changed->value);
     $results[] = $node->save();
    
