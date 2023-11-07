@@ -62,7 +62,7 @@ body .is-layout-flex>* {
 
 .movies-list-wrap .ml-title span h1 {
   font-size: 18px;
-
+  margin: 11px 4px -31px 25px;
 }
 
 :where(.wp-block-columns.is-layout-flex) {
