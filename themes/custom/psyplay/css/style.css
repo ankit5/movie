@@ -60,6 +60,11 @@ body .is-layout-flex>* {
   margin: 0
 }
 
+.movies-list-wrap .ml-title span h1 {
+  font-size: 18px;
+
+}
+
 :where(.wp-block-columns.is-layout-flex) {
   gap: 2em
 }
