@@ -15,7 +15,9 @@ function psyplaynew_form_system_theme_settings_alter(&$form, FormStateInterface 
     '#title'         => t('Old Domain name'),
     '#description'   => t("Enter Old Domain name."),
     '#default_value' => theme_get_setting('old_domain_name'),
+    '#attributes' => array('maxlength' => 255),
   ];
+  
 
   $form['movie']['new_domain_name'] = [
     '#type'          => 'textfield',

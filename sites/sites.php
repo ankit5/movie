@@ -60,4 +60,4 @@
  */
 
  //URL: http://localhost:8080/example
- $sites['techto.life'] = 'techto.life';
+ $sites['123hdmovies2.xyz'] = '123hdmovies2.xyz';
