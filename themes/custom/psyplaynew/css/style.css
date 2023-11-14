@@ -1097,9 +1097,10 @@ font-size: 12px;
 #mv-keywords {
  overflow: hidden;
 font-size: 15px;
-
+background:none;
 
 }
+
 .mlw-related .movies-list-wrap {
 margin: 0px !important;
 }
