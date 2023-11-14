@@ -608,8 +608,12 @@ form#psy-loginform p input[type=submit]:hover {
 
 @media screen and (max-width:991px) {
   .movies-list-wrap .ml-title span {
-    background: none
+    color: white;
   }
+  .movies-list-wrap .ml-title span h1 {
+    font-size: 18px;
+    margin: 7px 5px -26px 24px;
+}
 
   #menu .sub-container {
     border: 0
@@ -1030,16 +1034,16 @@ display:none;
 display: block !important;
 }  
 .page-title {
-font-size: 18px;
-font-family: 'Montserrat';
-font-weight: 400;
-display: inline-block;
-padding: 0 20px;
-height: 40px;
-line-height: 40px;
-background: #79C142;
-color: #fff;
-border-radius: 3px 3px 0 0;
+  font-size: 18px;
+  font-family: 'Montserrat';
+  font-weight: 400;
+  display: inline-block;
+  padding: 0 3px;
+  height: 40px;
+  line-height: 22px;
+  background: none;
+  color: #fff;
+  border-radius: 3px 3px 0 0;
 }
 select, input {
 height: 34px;
@@ -1081,7 +1085,7 @@ margin-top: -216px;
 width: 1407px;
 }
 #mv-info .mvi-content {
-background: #fff;
+background: #000;
 padding: 20px;
 position: absolute;
 width: 100%;
