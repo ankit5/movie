@@ -8,11 +8,12 @@ libraries:
   - psyplaynew/global-styling
 
 regions:
-  head: head
+  head_top: head_top
   header: header
   primary_menu: Primary menu
   content: content
   content_home: content_home
+  footer: footer
 
 version: '1.1.0'
 project: 'drupal'

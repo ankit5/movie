@@ -1100,7 +1100,17 @@ font-size: 15px;
 background:none;
 
 }
-
+@media screen and (max-width: 520px){
+header .header-logo {
+    left: 51px;
+    top: 5px;
+    margin: 0;
+}
+#logo {
+  width: 144px;
+  height: 37px;
+}
+}
 .mlw-related .movies-list-wrap {
 margin: 0px !important;
 }
