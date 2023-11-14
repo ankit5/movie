@@ -666,7 +666,7 @@ $settings['update_free_access'] = FALSE;
  * configuration values in settings.php will not fire any of the configuration
  * change events.
  */
- $config['system.site']['name'] = 'Yomovies';
+ $config['system.site']['name'] = '123Movies';
  $config['user.settings']['anonymous'] = 'Visitor';
  $config['system.theme']['default'] = 'psyplaynew';
 
