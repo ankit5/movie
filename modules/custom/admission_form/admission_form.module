@@ -36,7 +36,7 @@ function admission_form_views_query_alter(Drupal\views\ViewExecutable $view, Dru
   if ($view->id() == "front_latest") {
  // $query->addField('node', 'nid', 'node_nid', array('function' => 'groupby'));
   $query->addField('node_field_data', 'title', 'node_title', array('function' => 'groupby'));
-  $query->distinct=TRUE;
+ // $query->distinct=TRUE;
    
   }
 if(isMobile())
