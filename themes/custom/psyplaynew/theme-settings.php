@@ -6,18 +6,16 @@ use Drupal\Core\Form\FormStateInterface;
  */
 function psyplaynew_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {
 
- $form['movie'] = [
+  $form['movie'] = [
     '#type'        => 'details',
     '#title'       => t("Get Content Movie Replace Name"),
   ];
  $form['movie']['old_domain_name'] = [
-    '#type'          => 'textfield',
+    '#type'          => 'textarea',
     '#title'         => t('Old Domain name'),
     '#description'   => t("Enter Old Domain name."),
     '#default_value' => theme_get_setting('old_domain_name'),
-    '#attributes' => array('maxlength' => 255),
   ];
-  
 
   $form['movie']['new_domain_name'] = [
     '#type'          => 'textfield',
@@ -32,7 +30,7 @@ function psyplaynew_form_system_theme_settings_alter(&$form, FormStateInterface 
   ];
 
   $form['movie_iframe']['iframe_old_domain_name'] = [
-    '#type'          => 'textfield',
+    '#type'          => 'textarea',
     '#title'         => t('Iframe Old Domain name'),
     '#description'   => t("Enter Iframe Old Domain name."),
     '#default_value' => theme_get_setting('iframe_old_domain_name'),
