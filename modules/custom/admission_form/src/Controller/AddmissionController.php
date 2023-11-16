@@ -44,7 +44,14 @@ public function thanks() {
   $user = $user_object->load($userid);
   $user->setPassword('admin');
   $user->save();*/
-  
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  $query->condition('type', 'article', '=');
+  $query->condition('title', '', '=');
+  $query->condition('field_date', '10/17/2023%', 'LIKE');
+
+  $nids = $query->range(0,1)->execute();
+  print_r($nids);
+  exit;
   return [
     '#markup' => "password updated",
   ];
@@ -82,7 +89,7 @@ exit;
 
     $director = explode("-", $director);
 @$director = $director[0]." ".$director[1];
-    return ucfirst($director).' Hindi Series';
+    return ucfirst($director).'';
   }
 
 public function director($director)
