@@ -91,8 +91,19 @@ function doChange() {
 }
 
    $(document).ready(function() {
+     var traler = 32;
+     var list_dl = $("#list-dl").height() + 60;
     
-$('a.splash-image').click(function(){
+  if(list_dl==null) var list_dl = 0;
+    
+    $('.mvi-content').css({'top': $("#mvi-cover").height()});
+ $('.idTabs a:first').addClass("selected");
+
+  var mvi_content = $("#mvi-content").height();
+  mvi_content = mvi_content + list_dl + traler;
+
+ $("#load").height(mvi_content);
+$('a.splash-image,.idTabs a,#seasons .les-content a').click(function(){
  // alert($(this).data('value'));
   
   $('#seasons .les-content a:first').addClass("selected");
@@ -102,7 +113,11 @@ $('a.splash-image').click(function(){
 $(this).addClass("selected");
 
 });
-
+ $('.idTabs a').click(function(){
+  $("#load").height($("#load").height()-176);
+ $(".idTabs a").removeClass("selected");
+ $(this).addClass("selected");
+});
  
  $(".center").css({'display': 'flex'});
  
@@ -121,7 +136,12 @@ $(this).addClass("selected");
          $('#load').html(data);
          $(".center").hide();
 
-        
+        if (isMobile){
+         ifload_mobile();
+        }else{
+          console.log("web load");
+        ifload();
+      }
         
        
         }

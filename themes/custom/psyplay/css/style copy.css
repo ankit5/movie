@@ -1094,15 +1094,20 @@ margin-bottom: 20px;
 padding-right: 34px;
 padding-left: 34px;
 }
-
+#mv-info .mvi-cover {
+height: 320px;
+}
+.parentif  iframe {
+width: 104%;
+margin-left: -14px;
+margin-top: -207px;
+}
   /* styles for browsers larger than 960px; */
 }
 
 @media screen and (max-width: 479px) {
 #mv-info .mvi-content {
-  padding: 10px;
-  position: sticky !important;
-  margin-top: -64px;
+padding: 10px;
 }
 #mv-info .mvi-cover {
 height: 180px;
@@ -1127,7 +1132,7 @@ width: 100% !important;
 }
 .parentif #load {
 
-
+height: 270px;
 }
 .movieplay .wp-video .mejs-container {
 height: 714px!important; 
@@ -1213,32 +1218,18 @@ transform: scale(0);
 .mvi-content {
   position: initial !important;
 }
-
 .parentif iframe {
   border: 0px none;
-    margin-left: -15%;
-    height: 833px;
-    margin-top: -318px;
-    width: 1512px;
+  margin-left: -24%;
+  margin-right: 61%;
+  height: 818px;
+  margin-top: -318px;
+  width: 1407px;
 }
-.genrate-div {
-  display: none;
-}
-
-@media screen and (max-width: 1025px){
-  .parentif iframe {
-    border: 0px none;
-    margin-left: -32%;
-    height: 796px;
-    margin-top: -318px;
-    width: 1390px;
-  }
-  }
 @media screen and (max-width: 479px){
 .parentif iframe {
-  width: 100%;
-  margin-top: -343px;
-  height: 632px;
-  margin-left: 0px;
+    width: 400px;
+    margin-top: -343px;
+    height: 573px;
 }
 }

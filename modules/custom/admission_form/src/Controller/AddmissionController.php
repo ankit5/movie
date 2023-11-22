@@ -166,13 +166,21 @@ public function ajaxpost(Request $request)
 /*print $url;
 exit();*/
 //allow-popups
-if($sandbox_if=='1'){
-  print '<iframe scrolling="no" sandbox="'.$sandbox.' allow-forms allow-same-origin allow-scripts" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
-}elseif($sandbox_if=='eps'){
-  print '<iframe scrolling="no" height="100%" width="100%" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
- }else{
-  print '<div class=""><a href="'.$url.'" target="_blank"><img style="width: 100%; margin-top: -121px;" src="/sites/default/files/click-to-watch.png"/></a></div>';
-}
+// if($sandbox_if=='1'){
+//   print '<iframe scrolling="no" sandbox="'.$sandbox.' allow-forms allow-same-origin allow-scripts" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+// }elseif($sandbox_if=='eps'){
+//   print '<iframe scrolling="no" height="100%" width="100%" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+//  }else{
+//   print '<div class=""><a href="'.$url.'" target="_blank"><img style="width: 100%; margin-top: -121px;" src="/sites/default/files/click-to-watch.png"/></a></div>';
+// }
+$json = file_get_contents('https://techto.life/test.php?url='.$url);
+$obj = json_decode($json);
+// $html = '<div id="direct-link">
+// <h3>Direct link watch in Player</h3>
+// <div class="direct-desktop">How to use in Desktop:</div>
+// </div>';
+print '<iframe frameborder="0" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>';
+//print_r( urlencode($obj->first));
 
  // print_r($node->get('field_url')->value);
 //print $rendered;
