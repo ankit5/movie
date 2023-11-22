@@ -1149,7 +1149,9 @@ margin-top: -207px;
 
 @media screen and (max-width: 479px) {
 #mv-info .mvi-content {
-padding: 10px;
+  padding: 10px;
+  position: sticky !important;
+  margin-top: -64px;
 }
 #mv-info .mvi-cover {
 height: 180px;
