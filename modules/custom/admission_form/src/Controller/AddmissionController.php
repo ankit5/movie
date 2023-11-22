@@ -179,7 +179,7 @@ $obj = json_decode($json);
 // <h3>Direct link watch in Player</h3>
 // <div class="direct-desktop">How to use in Desktop:</div>
 // </div>';
-print '<iframe frameborder="0" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>';
+print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>';
 //print_r( urlencode($obj->first));
 
  // print_r($node->get('field_url')->value);
