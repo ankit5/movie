@@ -184,9 +184,10 @@ $obj = json_decode($json);
 // </div>';
 if($obj->first){
 print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>';
-}else {
-  print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+}if($obj->embed){
+  print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$obj->embed.'" ></iframe>';
 }
+ 
   //print_r( urlencode($obj->first));
 
  // print_r($node->get('field_url')->value);
