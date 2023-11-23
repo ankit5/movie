@@ -92,7 +92,7 @@ function doChange() {
 
    $(document).ready(function() {
     
-$('a.splash-image').click(function(){
+$('a.splash-image,#seasons .les-content a').click(function(){
  // alert($(this).data('value'));
   
   $('#seasons .les-content a:first').addClass("selected");
@@ -120,6 +120,7 @@ $(this).addClass("selected");
          const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
          $('#load').html(data);
          $(".center").hide();
+         
 
         
         

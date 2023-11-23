@@ -39,8 +39,8 @@
             </div>
             <div class="les-content" style="display: block">
             {% for key,value in node.field_episodes.getValue %}
-            {% set key = key+1 %}
-             <a href="javascript:void(0)" data-value="{{ node.id }}" data-key="{{ key }}" data-types="eps"> Episode {{ key }} </a> 
+             <a href="javascript:void(0)" data-value="{{ node.id }}" data-key="{{ key }}" data-types="eps"> Episode {{ key+1 }} </a> 
+             {% set key = key+1 %}
              {% endfor %}
              </div>
              </div>
