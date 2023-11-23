@@ -180,9 +180,9 @@ $obj = json_decode($json);
 // <div class="direct-desktop">How to use in Desktop:</div>
 // </div>';
 if($obj->first){
-print '<iframe frameborder="0" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>';
+print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>';
 }else {
-  print '<iframe scrolling="no" sandbox="allow-forms allow-same-origin allow-scripts" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+  print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
 }
   //print_r( urlencode($obj->first));
 
