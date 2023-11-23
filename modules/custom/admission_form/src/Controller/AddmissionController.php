@@ -135,18 +135,18 @@ public function ajaxpost(Request $request)
    $sandbox = '';
    $sandbox_if = '1';
  // $url = $node->get('field_url')->value;
-   if(str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'minoplres')) {
+ if(isset($node->get('field_episodes')->getValue()[0]['value'])){
+  $postData->tab = ($postData->tab==0)?0:$postData->tab;
+  $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
+  $sandbox_if = 'eps';
+ }elseif(str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'minoplres')) {
    $url = $node->get('field_url')->getValue()['0']['value'];
    }
   //  elseif($node->get('field_embed')->getValue()[0]['value'] && $node->get('field_player')->getValue()[$postData->tab]['value']){
   //   $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
   //   $sandbox_if = 'eps';
   //  }
-   if(isset($node->get('field_episodes')->getValue()[0]['value'])){
-    $postData->tab = ($postData->tab==0)?0:$postData->tab;
-    $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
-    $sandbox_if = 'eps';
-   }elseif(isset($node->get('field_download_url')->getValue()[$postData->tab]['value'])){
+   elseif(isset($node->get('field_download_url')->getValue()[$postData->tab]['value'])){
     $url = $node->get('field_download_url')->getValue()[$postData->tab]['value'];
     $class_if = "class_if"; 
      $sandbox = 'allow-popups';
@@ -175,11 +175,14 @@ public function ajaxpost(Request $request)
 // }
 $json = file_get_contents('https://techto.life/test.php?url='.$url);
 $obj = json_decode($json);
+// print $url;
+// print $obj->first;
+//   exit();
 // $html = '<div id="direct-link">
 // <h3>Direct link watch in Player</h3>
 // <div class="direct-desktop">How to use in Desktop:</div>
 // </div>';
-if($url){
+if($obj->first){
 print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>';
 }else {
   print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
