@@ -67,9 +67,7 @@ return false;
 
 });
 
-$('#genrate-link').click(function(){
-alert("da");
-});
+
  
 function doChange() {
     var test =  $("#autocomplete").val();
@@ -91,6 +89,9 @@ function doChange() {
 }
 
    $(document).ready(function() {
+    $('#genrate-link').click(function(){
+      alert("da");
+      });
     
 $('a.splash-image,#seasons .les-content a').click(function(){
  // alert($(this).data('value'));

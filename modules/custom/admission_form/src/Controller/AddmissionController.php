@@ -130,6 +130,12 @@ $title = \Drupal::request()->query->get('title');
 public function ajaxpost(Request $request)
 {
   $postData = json_decode($request->getContent());
+  if($postData->link){
+    print '<iframe frameborder="0" width="1200" allowfullscreen="" scrolling="no" src="https://9xbuddy.in/process?url='.urlencode($postData->link).'"></iframe>'; 
+    
+    exit;
+  }
+  
    $node = Node::load($postData->id);
    $class_if = '';
    $sandbox = '';
@@ -173,16 +179,44 @@ $obj = json_decode($json);
 // <div class="direct-desktop">How to use in Desktop:</div>
 // </div>';
 if($obj->first){
-print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>';
+print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>
+  <div class="genrate-div">
+          <button id="genrate-button" class="btn">Genrate Download Link</button> 
+          <input type="hidden" id="genrate-link" value="'.$obj->first.'">
+          <div class="genrate-content">
+          </div>
+          </div>
+          <script>
+          $(document).ready(function() {
+            $("#genrate-button").click(function(){
+              var data = { 
+                link: $("#genrate-link").val()
+            };
+           // alert($("#genrate-link").val());
+       $.ajax( {
+            type: "POST",
+            url: "/ajaxpost",
+            data:JSON.stringify(data),
+            success: function( data ) {
+             $(".genrate-content").html(data);
+             
+             }
+          });
+              });
+            });
+          </script>
+  ';
 }if($obj->embed){
   print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$obj->embed.'" ></iframe>';
 }
- 
   //print_r( urlencode($obj->first));
 
  // print_r($node->get('field_url')->value);
 //print $rendered;
 exit;
+}
+public function genrate(){
+ 
 }
 
 }

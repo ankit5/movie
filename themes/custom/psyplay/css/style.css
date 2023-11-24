@@ -1102,7 +1102,6 @@ padding-left: 34px;
 #mv-info .mvi-content {
   padding: 10px;
   position: sticky !important;
-  margin-top: -64px;
 }
 #mv-info .mvi-cover {
 height: 180px;
@@ -1202,13 +1201,38 @@ transform: scale(0);
 }
 .genrate-div {
   padding: 10px;
-  background: white;
-  margin-bottom: 10px;
-  width: 100%;
+    background: white;
+    margin-bottom: 10px;
+    width: 100%;
+}
+@media screen and (max-width: 479px) {
+  .genrate-div {
+    
+      position: sticky;
+      margin-top: -68px;
+  }
 }
 #genrate-button {
   margin: 0 auto;
   display: block;
+}
+.genrate-content{
+  position: relative;
+  overflow: hidden;
+}
+.genrate-content iframe{
+  width: 1200px !important;
+  margin-top: -814px !important;
+    height: 1203px !important;
+    margin-left: 0px !important;
+}
+@media screen and (max-width: 1025px){
+.genrate-content iframe {
+  width: 100% !important;
+  margin-top: -1090px !important;
+  height: 1760px !important;
+  margin-left: 0px !important;
+}
 }
 .mvi-content {
   position: initial !important;
@@ -1222,7 +1246,7 @@ transform: scale(0);
     width: 1512px;
 }
 .genrate-div {
-  display: none;
+  
 }
 
 @media screen and (max-width: 1025px){
