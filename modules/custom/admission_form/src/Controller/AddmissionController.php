@@ -157,7 +157,9 @@ public function ajaxpost(Request $request)
   $url = str_replace($oldStr, $new_var, $url );
 
   if($postData->link){
-    print '<iframe frameborder="0" width="1200" scrolling="no" src="'.$url.'#list-dl" id="miframe" sandbox="allow-forms allow-same-origin allow-scripts"></iframe>'; 
+    print '<div class="dl-des">Download Icon-&gt; Right Click -&gt; Open link in new tab</div>
+    <iframe frameborder="0" width="1200" scrolling="no" src="'.$url.'#list-dl" id="miframe" sandbox="allow-forms allow-same-origin allow-scripts"></iframe>
+    '; 
     
     exit;
   }
@@ -185,7 +187,6 @@ if($obj->first){
 print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>
   <div class="genrate-div">
           <button id="genrate-button" class="btn">Genrate Download Link</button> 
-          <div class="dl-des">Download Icon-&gt; Right Click -&gt; Open link in new tab</div>
           <input type="hidden" id="genrate-link" value="1">
           <div class="genrate-content">
           </div>
