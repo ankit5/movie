@@ -1136,11 +1136,10 @@ display: none;
 }
 .dl-des {
 
-position: absolute;
+
 bottom: 0px;
 right: 13px;
 color: red;
-display: none;
 }
 
 .center {
@@ -1223,14 +1222,14 @@ transform: scale(0);
 .genrate-content iframe{
   width: 100% !important;
     margin-top: 0px !important;
-    height: 144px !important;
+    height: 183px !important;
     margin-left: 0px !important;
 }
 @media screen and (max-width: 1025px){
 .genrate-content iframe {
   width: 100% !important;
     margin-top: 0px !important;
-    height: 144px !important;
+    height: 183px !important;
     margin-left: 0px !important;
 }
 }
