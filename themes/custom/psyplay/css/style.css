@@ -1221,21 +1221,21 @@ transform: scale(0);
   overflow: hidden;
 }
 .genrate-content iframe{
-  width: 1200px !important;
-  margin-top: -814px !important;
-    height: 1203px !important;
+  width: 100% !important;
+    margin-top: 0px !important;
+    height: 144px !important;
     margin-left: 0px !important;
 }
 @media screen and (max-width: 1025px){
 .genrate-content iframe {
   width: 100% !important;
-  margin-top: -1090px !important;
-  height: 1760px !important;
-  margin-left: 0px !important;
+    margin-top: 0px !important;
+    height: 144px !important;
+    margin-left: 0px !important;
 }
 }
 .mvi-content {
-  position: initial !important;
+  position: sticky !important;
 }
 
 .parentif iframe {

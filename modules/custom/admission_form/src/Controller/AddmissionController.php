@@ -130,13 +130,10 @@ $title = \Drupal::request()->query->get('title');
 public function ajaxpost(Request $request)
 {
   $postData = json_decode($request->getContent());
-  if($postData->link){
-    print '<iframe frameborder="0" width="1200" allowfullscreen="" scrolling="no" src="https://9xbuddy.in/process?url='.urlencode($postData->link).'"></iframe>'; 
-    
-    exit;
-  }
+  $node = Node::load($postData->id);
   
-   $node = Node::load($postData->id);
+  
+   
    $class_if = '';
    $sandbox = '';
    $sandbox_if = '1';
@@ -158,6 +155,12 @@ public function ajaxpost(Request $request)
       $oldStr = explode(",", $oldStr);
    
   $url = str_replace($oldStr, $new_var, $url );
+
+  if($postData->link){
+    print '<iframe frameborder="0" width="1200" scrolling="no" src="'.$url.'#list-dl" id="miframe" sandbox="allow-forms allow-same-origin allow-scripts"></iframe>'; 
+    
+    exit;
+  }
 
   // print $url;
   // exit();
@@ -182,15 +185,17 @@ if($obj->first){
 print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>
   <div class="genrate-div">
           <button id="genrate-button" class="btn">Genrate Download Link</button> 
-          <input type="hidden" id="genrate-link" value="'.$obj->first.'">
+          <input type="hidden" id="genrate-link" value="1">
           <div class="genrate-content">
           </div>
           </div>
           <script>
           $(document).ready(function() {
+           
             $("#genrate-button").click(function(){
               var data = { 
-                link: $("#genrate-link").val()
+                link: $("#genrate-link").val(),
+                id:'.$postData->id.'
             };
            // alert($("#genrate-link").val());
        $.ajax( {
@@ -199,7 +204,7 @@ print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scri
             data:JSON.stringify(data),
             success: function( data ) {
              $(".genrate-content").html(data);
-             
+             $("#mvi-content").css({"margin-top": "-75px"});
              }
           });
               });
