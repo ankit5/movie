@@ -184,7 +184,7 @@ $obj = json_decode($json);
 // <div class="direct-desktop">How to use in Desktop:</div>
 // </div>';
 if($obj->first){
-print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>
+print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="fullscreen" src="https://anym3u8player.com/?url='.urlencode($obj->first).'"></iframe>
   <div class="genrate-div">
           <button id="genrate-button" class="btn">Genrate Download Link</button> 
           <input type="hidden" id="genrate-link" value="1">
