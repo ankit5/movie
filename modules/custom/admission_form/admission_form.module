@@ -47,7 +47,13 @@ $limit = 8;
    $view->setOffset($offset);
    $view->getPager()->setItemsPerPage($limit);
  } 
- } 
+ }
+ if ($view->id() == "front_latest") {
+  $offset = 0;
+  $limit = 8;
+     $view->setOffset($offset);
+     $view->getPager()->setItemsPerPage($limit);
+   }  
 }
 function isMobile() {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
