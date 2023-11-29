@@ -39,16 +39,16 @@ function admission_form_views_query_alter(Drupal\views\ViewExecutable $view, Dru
  // $query->distinct=TRUE;
    
   }
-if(isMobile())
-{
-    if ($view->id() == "front_latest") {
-$offset = 0;
-$limit = 8;
-   $view->setOffset($offset);
-   $view->getPager()->setItemsPerPage($limit);
- } 
- }
- if ($view->id() == "front_latest") {
+// if(isMobile())
+// {
+//     if ($view->id() == "front_latest") {
+// $offset = 0;
+// $limit = 8;
+//    $view->setOffset($offset);
+//    $view->getPager()->setItemsPerPage($limit);
+//  } 
+//  }
+ if ($view->id() == "front_latest"  && $view->current_display != 'block_1') {
   $offset = 0;
   $limit = 8;
      $view->setOffset($offset);
