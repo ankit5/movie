@@ -206,7 +206,7 @@ print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scri
             data:JSON.stringify(data),
             success: function( data ) {
              $(".genrate-content").html(data);
-             $("#mvi-content").css({"margin-top": "-75px"});
+             $("#mvi-content").css({"margin-top": "-150px"});
              }
           });
               });
