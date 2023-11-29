@@ -1224,14 +1224,14 @@ transform: scale(0);
 .genrate-content iframe{
   width: 100% !important;
     margin-top: 0px !important;
-    height: 280px !important;
+    height: 300px !important;
     margin-left: 0px !important;
 }
 @media screen and (max-width: 1025px){
 .genrate-content iframe {
   width: 100% !important;
     margin-top: 0px !important;
-    height: 280px !important;
+    height: 300px !important;
     margin-left: 0px !important;
 }
 }
