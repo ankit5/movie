@@ -9,6 +9,12 @@ body .is-layout-flow>.alignleft {
   margin-inline-end: 2em
 }
 
+.home-title {
+  font-size: 20px;
+}
+
+
+
 body .is-layout-flow>.alignright {
   float: right;
   margin-inline-start: 2em;
