@@ -89,9 +89,7 @@ function doChange() {
 }
 
    $(document).ready(function() {
-    $('#genrate-link').click(function(){
-      alert("da");
-      });
+   
     
 $('a.splash-image,#seasons .les-content a').click(function(){
  // alert($(this).data('value'));
@@ -120,7 +118,12 @@ $(this).addClass("selected");
           //debugger;
          const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
          $('#load').html(data);
+         $("#load").hide();
+         setTimeout(() => {
          $(".center").hide();
+         $("#load").show();
+         }, 2000);
+        
          
 
         
