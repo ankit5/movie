@@ -195,13 +195,13 @@ print '<iframe id="ifpr" frameborder="0" sandbox="allow-forms allow-same-origin 
           $(document).ready(function() {
            
             window.addEventListener("blur", () => {
-              setTimeout(() => {
+              
                 if (document.activeElement.tagName === "IFRAME") {
                  // alert("frame click");
                  $("#ifpr").attr("src", "'.$url.'#player2"); 
                   
                 }
-              });
+              
             }, { once: true });
            
             $("#genrate-button").click(function(){
