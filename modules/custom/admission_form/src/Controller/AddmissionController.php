@@ -174,8 +174,8 @@ public function ajaxpost(Request $request)
 //  }else{
 //   print '<div class=""><a href="'.$url.'" target="_blank"><img style="width: 100%; margin-top: -121px;" src="/sites/default/files/click-to-watch.png"/></a></div>';
 // }
-$json = file_get_contents('https://techto.life/test.php?url='.$url);
-$obj = json_decode($json);
+//$json = file_get_contents('https://techto.life/test.php?url='.$url);
+//$obj = json_decode($json);
 // print $url;
 // print_r($json);
 //   exit();
@@ -183,7 +183,7 @@ $obj = json_decode($json);
 // <h3>Direct link watch in Player</h3>
 // <div class="direct-desktop">How to use in Desktop:</div>
 // </div>';
-if($obj->first){
+if(str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'minoplres')){
 print '<iframe id="ifpr" frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="fullscreen" src="'.$url.'#mv-info"></iframe>
   <div class="genrate-div">
           <button id="genrate-button" class="btn">Genrate Download Link</button> 
@@ -229,7 +229,11 @@ print '<iframe id="ifpr" frameborder="0" sandbox="allow-forms allow-same-origin 
             });
           </script>
   ';
-}if($obj->embed){
+}
+exit;
+$json = file_get_contents('https://techto.life/test.php?url='.$url);
+$obj = json_decode($json);
+if($obj->embed){
   print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$obj->embed.'" ></iframe>';
 }
   //print_r( urlencode($obj->first));
