@@ -228,6 +228,10 @@ print '<iframe id="ifpr" frameborder="0" sandbox="allow-forms allow-same-origin 
   ';
 }
 exit;
+if(@$node->get('field_player')->getValue()[$postData->tab]['value']){
+  print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$node->get('field_player')->getValue()[$postData->tab]['value'].'" ></iframe>';
+  exit;
+}
 $json = file_get_contents('https://techto.life/test.php?url='.$url);
 $obj = json_decode($json);
 if($obj->embed){
