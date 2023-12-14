@@ -107,9 +107,7 @@
                 <div class="block-social">
                   <div class="addthis_inline_share_toolbox"></div>
                 </div>
-                <div class="desc">
-                  <p class="f-desc">{{ node.body.value|raw }}</p>
-                </div>
+               
                 <div class="mvic-info">
                   <div class="mvici-left">
                     <p>
@@ -256,6 +254,9 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="clearfix"></div>
+                 <div class="desc">
+                  <p class="f-desc">{{ node.field_download_detail.value|raw }}</p>
+                </div>
               </div>
               {% if node.field_keyword.0.value %}
               <div id="mv-keywords">

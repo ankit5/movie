@@ -4,6 +4,9 @@ namespace Drupal\admission_form;
 use Drupal\paragraphs\Entity\Paragraph;
 use voku\helper\HtmlDomParser;
 use Drupal\Component\Serialization\Json;
+use Drupal\pathauto\PathautoState;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\File\FileSystemInterface;
 
 class ReplaceLanguageCode {
 public static function replaceLangcode3($nid, &$context){
@@ -41,12 +44,13 @@ $node->field_year->value = $string;
     /*print $node->field_trailer->value;
 exit;*/
 //if($node->field_left->value!='' && $node->field_trailer->value!=''){
-  if($node->field_left->value!=''){
+  if($node->field_player->value!='' && $node->field_movie_image->value!=''){
     return true;
 
   }
 
- 
+//  print $node->field_url->value;
+//  exit;
    $message2 = getmovie($node->field_url->value,$node->field_id->value);
   
 /*print_r($message2['field_trailer']);
@@ -56,47 +60,48 @@ exit;*/
     $results = array();
 
    //////////////////////////////////////////////
-   if (isset($message2['field_poster_url'])) {
-    $node->field_poster_url->value = $message2['field_poster_url'];
-    }
+  
+   
      //////////////////////////////////////////////
+     if($node->field_movie_image->value==''){
+     $http = \Drupal::httpClient();
+     $options = [
+      'headers' => [
+        'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0',
+        'Referer' => 'https://www.movieswatchonline0.com.pk/'
+        ]
+    ];
+     $result = $http->request('get',$node->field_image_urls->value, $options);
+     $body_data = $result->getBody()->getContents();
+     
 
-    if (isset($message2['field_trailer'])) {
-    $node->field_trailer->value = $message2['field_trailer'];
-    }
-     //////////////////////////////////////////////
+      $image_url = $node->field_image_urls->value;
+      $file = file_save_data($body_data, "public://".\Drupal::service('file_system')->basename($image_url), FileSystemInterface::EXISTS_RENAME);
+      
+      $node->field_movie_image[] = [
+        'target_id' => $file->id(),
+        'alt' => 'Alt text',
+        'title' => 'Title',
+      ];
+      }
 
-    if (isset($message2['field_keyword'])) {
-    $node->field_keyword->value = $message2['field_keyword'];
+  
+  
+   if ($message2['field_download_detail']) {
+    $node->field_download_detail->value = preg_replace('/ style=("|\')(.*?)("|\')/','', $message2['field_download_detail']);
     }
-     //////////////////////////////////////////////
     
-
-    if (isset($message2['field_season_title'])) {
-    $node->field_season_title->value = $message2['field_season_title'];
-    }
+    if ($message2['publushdate']) {
+      $node->field_published->value = strtotime($message2['publushdate']);
+      }
      //////////////////////////////////////////////
-  
-  
-   if ($message2['body']) {
-    $node->body->value = $message2['body'];
-    }
-     //////////////////////////////////////////////
-   $field_left =[];
-       foreach($message2['field_left'] as $item) {
-      $field_left[] = $item[0];
-    }
-   if (isset($field_left[0])) {
-    $node->field_left = $field_left;
-    }
-      //////////////////////////////////////////////
-   $field_right =[];
-       foreach($message2['field_right'] as $item) {
-      $field_right[] = $item[0];
-    }
-   if (isset($field_right[0])) {
-    $node->field_right = $field_right;
-    }
+     $field_download_url =[];
+     foreach($message2['field_download_url'] as $item) {
+    $field_download_url[] = $item[0]."|".$item[1];
+  }
+ if (isset($field_download_url[0])) {
+  $node->field_download_url = $field_download_url;
+  }
     //////////////////////////////////////////////
    $field_player =[];
        foreach($message2['field_player'] as $item) {
@@ -106,21 +111,20 @@ exit;*/
     $node->field_player = $field_player;
     }
      //////////////////////////////////////////////
-   $field_episodes =[];
-       foreach($message2['field_episodes'] as $item) {
-      $field_episodes[] = $item[0];
-    }
-   if (isset($field_episodes[0])) {
-    $node->field_episodes = $field_episodes;
-    }
+   $field_tags =[];
+   
+   foreach($message2['genre'] as $item) {
+    $path = str_replace("https://www.movieswatchonline0.com.pk/category/","/genre/",$item[1]);
+    $field_tags[] = tags_create($item[0],$path);
+}
+// print $field_tags;
+ 
+ if (isset($field_tags[0])) {
+$node->field_tags = $field_tags;
+ }
+
      //////////////////////////////////////////////
-   $field_download_url =[];
-       foreach($message2['field_download_url'] as $item) {
-      $field_download_url[] = $item[0];
-    }
-   if (isset($field_download_url[0])) {
-    $node->field_download_url = $field_download_url;
-    }
+  
    //////////////////////////////////////////////
    //print $node->changed->value;
   // $node->changed = $node->created->value;
@@ -170,135 +174,122 @@ function getmovie($url='',$post_id='')
   $movie = [];
   $dom = HtmlDomParser::file_get_html($url);
 
-$cover = array();
+  $player2 = array();
 
-    $cover = $dom->findOne('#mv-info a.mvi-cover')->getAttribute('style');
-   if(!$cover) $cover = $dom->findOne('#mv-info #content-cover')->getAttribute('style');
-     preg_match('/\(([^)]+)\)/', $cover, $match);
-    //$src[$i++] = $match[1];
-     if ($cover) {
-      $cover = $match[1];
-      
-     }
-$movie['field_poster_url'] = $cover;
-
-    $des = array();
-
-    $des = $dom->findOne('#mv-info .mvic-desc .desc .f-desc')->text();
-    $movie['body'] = $des;
-
-/*print_r($movie);
-exit;*/
-$left = array();
-
-    $items = $dom->find('#mv-info .mvic-desc .mvic-info .mvici-left');
-    foreach($items as $post2) {
-        foreach($post2 as $post) {
-           if($post->findOne("p")->text()){
-        $left[] = array(
-            $post->findOne("p")->text(),
-          //  $post->findOne(".person .data .caracter")->text(),
-          //  $post->findOne(".person .img img")->getAttribute('src')
-
-                        );
-    }
-    
-    }
-    }
-$movie['field_left'] = $left;
-
-$right = array();
-
-    $items = $dom->find('#mv-info .mvic-desc .mvic-info .mvici-right');
-    foreach($items as $post2) {
-        foreach($post2 as $post) {
-           if($post->findOne("p")->text()){
-        $right[] = array(
-            $post->findOne("p")->text(),
-          //  $post->findOne(".person .data .caracter")->text(),
-          //  $post->findOne(".person .img img")->getAttribute('src')
-
-                        );
-    }
-    
-    }
-    }
-
-$movie['field_right'] = $right;
-
-$keyword = array();
-
-    $keyword = $dom->findOne('#mv-keywords')->text();
-    
-
-$movie['field_keyword'] = $keyword;
-
-   $player2 = array();
-
-    $items = $dom->find('#content-embed #player2');
-    foreach($items as $post2) {
-        foreach($post2 as $post) {
-            if ($post->findOne("iframe")->hasAttribute('src')) {
-        $player2[] = array(
-            $post->findOne("iframe")->getAttribute('src'),
-          //  $post->findOne(".person .data .caracter")->text(),
-          //  $post->findOne(".person .img img")->getAttribute('src')
-
-                        );
-    }
-    
-    }
-    }
-$movie['field_player'] = $player2;
-
- $episodes = array();
-
-    $items = $dom->find('#seasons .les-content');
-    foreach($items as $post2) {
-        foreach($post2 as $post) {
-            if ($post->findOne("a")->hasAttribute('href')) {
-        $episodes[] = array(
-            $post->findOne("a")->getAttribute('href'),
-
-                        );
-    }
-    
-    }
-    }
-$movie['field_episodes'] = $episodes;
-
- $field_season_title = array(); 
-    $field_season_title = $dom->findOne("#seasons .les-title")->text();
-  $movie['field_season_title'] = $field_season_title;
-
+  $items = $dom->find('#entry_info .singcont p');
+  foreach($items as $post2) {
+      foreach($post2 as $post) {
+        if ($post->findOne("iframe")->hasAttribute('data-src')) {
+      $player2[] = array(
+        $post->findOne("iframe")->getAttribute('data-src'),
+        );
   
-  $field_trailer = array(); 
-    $field_trailer = $dom->findOne("#iframe-trailer")->getAttribute('src');
-  $movie['field_trailer'] = $field_trailer;
+                    }
+  }
+  }
+$movie['field_player'] = $player2;
+//////////////////////////////////////////////////////////
+$genre = array();
+
+$items = $dom->find('#entry_info .rightinfo p');
+foreach($items as $post2) {
+    foreach($post2 as $post) {
+      if ($post->findOne("a")->getAttribute('itemprop')=='genre') {
+    $genre[] = array(
+      $post->findOne("a")->text(),
+      $post->findOne("a")->getAttribute('href'),
+
+                    );
+
+                  }
+}
+}
+$movie['genre'] = $genre;
+
+//////////////////////////////////////////////////////////
+
+$download_des = array();
+
+$download_des = $dom->find('#entry_info .singcont', 1)->innerText();
+ 
+$movie['field_download_detail'] = $download_des;
+
+//////////////////////////////////////////////////////////
+
+$download_link = array();
+
+$items = $dom->find('#entry_info .singcont ', 1);
+foreach($items as $post2) {
+  $rep_link = '';
+    foreach($post2 as $post) {
+      if ($post->findOne("a")->hasAttribute('href')) {
+       if($rep_link != $post->findOne("a")->getAttribute('href') )
+    $download_link[] = array(
+      $post->findOne("a")->text(),
+      $post->findOne("a")->getAttribute('href'),
+
+                    );
+       $rep_link = $post->findOne("a")->getAttribute('href');
+                  }     
+}
+}
+$movie['field_download_url'] = $download_link;
+
+
+//////////////////////////////////////////////////////////
+
+$publushdate = array();
+
+$publushdate = $dom->find('#entry_info meta', 1)->getAttribute('content');
+$movie['publushdate'] = $publushdate;
+//////////////////////////////////////////////////////////
+// print "<pre>";
+//     print_r($movie);
+//     print "</pre>";
+//     exit;
 
 
 
-    
-
-   $download_link = array();
-
-    $items = $dom->find('#list-dl .embed-selector');
-    foreach($items as $post2) {
-        foreach($post2 as $post) {
-            if ($post->findOne("a")->hasAttribute('href')) {
-        $download_link[] = array(
-            $post->findOne("a")->getAttribute('href'),
-          //  $post->findOne(".person .data .caracter")->text(),
-          //  $post->findOne(".person .img img")->getAttribute('src')
-
-                        );
-    }
-    
-    }
-    }
-     $movie['field_download_url'] = $download_link;
-/*print "<pre>";
-    print_r($articles);
-    print "</pre>";*/
     return $movie;
+}
+
+function tags_create($cat,$path){
+  
+$storage = \Drupal::entityTypeManager()
+  ->getStorage('taxonomy_term');
+$terms = $storage->loadByProperties([ 
+  'name' => $cat,
+  'vid' => 'tags',
+]);
+
+if($terms == NULL) { //Create term and use
+$created = _create_term($cat,'tags',$path);
+if($created) {
+//finding term by name
+$storage = \Drupal::entityTypeManager()
+  ->getStorage('taxonomy_term');
+$newTerm = $storage->loadByProperties([ 
+  'name' => $cat,
+  'vid' => 'tags',
+]);
+$newTerm = reset($newTerm);
+return !empty($newTerm) ? $newTerm->id() : '';
+}
+}
+$terms = reset($terms);
+return !empty($terms) ? $terms->id() : '';
+}
+
+
+function _create_term($name,$taxonomy_type,$path) {
+
+$term = Term::create([
+'name' => $name,
+'vid' => $taxonomy_type,
+'path' => [
+  'alias' => $path,
+  'pathauto' => PathautoState::SKIP,
+],
+])->save();
+return TRUE;
 }

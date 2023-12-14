@@ -130,20 +130,55 @@ $title = \Drupal::request()->query->get('title');
 public function ajaxpost(Request $request)
 {
   $postData = json_decode($request->getContent());
-  
-  $node = Node::load($postData->id);
-  
+   $node = Node::load($postData->id);
+   $class_if = '';
+   $sandbox = '';
+   $sandbox_if = '1';
+ // $url = $node->get('field_url')->value;
+   if(str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'minoplres')) {
+   $url = $node->get('field_url')->getValue()['0']['value'];
+   }
+  //  elseif($node->get('field_embed')->getValue()[0]['value'] && $node->get('field_player')->getValue()[$postData->tab]['value']){
+  //   $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
+  //   $sandbox_if = 'eps';
+  //  }
+   elseif(isset($node->get('field_episodes')->getValue()[0]['value'])){
+    $postData->tab = ($postData->tab==0)?0:$postData->tab-1;
+    $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
+    $sandbox_if = 'eps';
+   }elseif(isset($node->get('field_download_url')->getValue()[$postData->tab]['value'])){
+    $url = $node->get('field_download_url')->getValue()[$postData->tab]['value'];
+    $class_if = "class_if"; 
+     $sandbox = 'allow-popups';
+     $sandbox_if = '';
+    }else{
+      $class_if = "class_if";
+      $postData->tab = ($postData->tab==0)?0:$postData->tab-1;
+      $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
+      $sandbox_if = 'eps';
+    }
+      $new_var = theme_get_setting('iframe_new_domain_name');
+      $oldStr = theme_get_setting('iframe_old_domain_name');
+      $oldStr = explode(",", $oldStr);
+   
+  $url = str_replace($oldStr, $new_var, $url );
 
-
-
-if($node->get('field_player')->getValue()[$postData->tab]['value']){
-  print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$node->get('field_player')->getValue()[$postData->tab]['value'].'" ></iframe>';
-  exit;
+/*print $url;
+exit();*/
+//allow-popups
+if($sandbox_if=='1'){
+  print '<iframe scrolling="no" sandbox="'.$sandbox.' allow-forms allow-same-origin allow-scripts" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+}elseif($sandbox_if=='eps'){
+  print '<iframe scrolling="no" height="100%" width="100%" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+ }else{
+  print '<div class=""><a href="'.$url.'" target="_blank"><img style="width: 100%; margin-top: -121px;" src="/sites/default/files/click-to-watch.png"/></a></div>';
 }
-}
-
-public function genrate(){
- 
+$json = file_get_contents('https://techto.life/test.php?url='.$url);
+$obj = json_decode($json);
+print_r($obj->first);
+ // print_r($node->get('field_url')->value);
+//print $rendered;
+exit;
 }
 
 }

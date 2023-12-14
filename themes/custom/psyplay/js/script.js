@@ -91,17 +91,22 @@ function doChange() {
    $(document).ready(function() {
    
     
-$('a.splash-image,#seasons .les-content a').click(function(){
+$('a.splash-image,#seasons .les-content a,.idTabs a').click(function(){
  // alert($(this).data('value'));
   
   $('#seasons .les-content a:first').addClass("selected");
+  $('.idTabs a:first').addClass("selected");
    
   $('#seasons .les-content a').click(function(){
     $("#seasons .les-content a").removeClass("selected");
 $(this).addClass("selected");
 
 });
-
+$('.idTabs a').click(function(){
+  
+ $(".idTabs a").removeClass("selected");
+ $(this).addClass("selected");
+});
  
  $(".center").css({'display': 'flex'});
  
@@ -118,11 +123,8 @@ $(this).addClass("selected");
           //debugger;
          const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
          $('#load').html(data);
-         $("#load").hide();
-         setTimeout(() => {
          $(".center").hide();
-         $("#load").show();
-         }, 2000);
+         $(".player_nav").show();
         
          
 
