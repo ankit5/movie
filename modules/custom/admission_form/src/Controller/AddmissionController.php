@@ -130,18 +130,91 @@ $title = \Drupal::request()->query->get('title');
 public function ajaxpost(Request $request)
 {
   $postData = json_decode($request->getContent());
-  
   $node = Node::load($postData->id);
   
+  
+   
+   $class_if = '';
+   $sandbox = '';
+   $sandbox_if = '1';
+ // $url = $node->get('field_url')->value;
+ if(isset($node->get('field_episodes')->getValue()[0]['value'])){
+  $postData->tab = ($postData->tab==0)?0:$postData->tab;
+  $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
+  $sandbox_if = 'eps';
+ }else {
+   $url = $node->get('field_url')->getValue()['0']['value'];
+   }
+  //  elseif($node->get('field_embed')->getValue()[0]['value'] && $node->get('field_player')->getValue()[$postData->tab]['value']){
+  //   $url = $node->get('field_player')->getValue()[$postData->tab]['value'];
+  //   $sandbox_if = 'eps';
+  //  }
+ 
+      $new_var = theme_get_setting('iframe_new_domain_name');
+      $oldStr = theme_get_setting('iframe_old_domain_name');
+      $oldStr = explode(",", $oldStr);
+   
+  $url = str_replace($oldStr, $new_var, $url );
+  // print $url;
+  // exit;
+
+  if($postData->link){
+    print '<div class="dl-des">Download Icon-&gt; Right Click -&gt; Open link in new tab</div>
+    <iframe frameborder="0" width="1200" scrolling="no" src="'.$url.'#list-dl" id="miframe" sandbox="allow-forms allow-same-origin allow-scripts"></iframe>
+    '; 
+    
+    exit;
+  }
+
+  // print $url;
+  // exit();
+//allow-popups
+// if($sandbox_if=='1'){
+//   print '<iframe scrolling="no" sandbox="'.$sandbox.' allow-forms allow-same-origin allow-scripts" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+// }elseif($sandbox_if=='eps'){
+//   print '<iframe scrolling="no" height="100%" width="100%" class="'.$class_if.'" id="iframe-src" allowfullscreen src="'.$url.'" ></iframe>';
+//  }else{
+//   print '<div class=""><a href="'.$url.'" target="_blank"><img style="width: 100%; margin-top: -121px;" src="/sites/default/files/click-to-watch.png"/></a></div>';
+// }
+//$json = file_get_contents('https://techto.life/test.php?url='.$url);
+//$obj = json_decode($json);
+// print $url;
+// print_r($json);
+//   exit();
+// $html = '<div id="direct-link">
+// <h3>Direct link watch in Player</h3>
+// <div class="direct-desktop">How to use in Desktop:</div>
+// </div>';
+if(isset($node->get('field_episodes')->getValue()[0]['value']) || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'minoplres')){
+  $json = file_get_contents('http://13.200.103.33/hello.php?url='.$url);
+  $obj = json_decode($json);
+  if($obj->first){
+    print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="fullscreen" allow="autoplay" src="https://anym3u8player.com/tv/video-player.php?url='.urlencode($obj->first).'"></iframe>';
+  }
+ 
+    
+    if($obj->embed){
+      print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$obj->embed.'" ></iframe>';
+    }
+  exit;
+}
 
 
-
-if($node->get('field_player')->getValue()[$postData->tab]['value']){
+if(@$node->get('field_player')->getValue()[$postData->tab]['value']){
   print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$node->get('field_player')->getValue()[$postData->tab]['value'].'" ></iframe>';
   exit;
 }
+$json = file_get_contents('http://13.200.103.33/hello.php?url='.$url);
+$obj = json_decode($json);
+if($obj->embed){
+  print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$obj->embed.'" ></iframe>';
 }
+  //print_r( urlencode($obj->first));
 
+ // print_r($node->get('field_url')->value);
+//print $rendered;
+exit;
+}
 public function genrate(){
  
 }

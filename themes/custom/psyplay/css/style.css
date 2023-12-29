@@ -1246,10 +1246,10 @@ transform: scale(0);
 
 .parentif iframe {
   border: 0px none;
-    margin-left: -56px;
-    height: 500px;
-    margin-top: 0;
-    width: 111%;
+  margin-left: 0px;
+  height: 500px;
+  margin-top: 0;
+  width: 100%;
 }
 .genrate-div {
   

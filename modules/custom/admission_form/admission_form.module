@@ -206,7 +206,7 @@ function _form_submit_admission(&$form, FormStateInterface $form_state)
 function admission_form_preprocess_node(&$variables) {
   $node = $variables['node'];
   $view_mode = $variables['view_mode'];
-
+  
   //check content type
   if ($node->getType() == 'admission') {
    

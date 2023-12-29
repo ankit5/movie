@@ -23,8 +23,13 @@
                      {% if node.field_eps.0.value %}
                  <span class="mli-eps">Eps<i>{{ node.field_eps.0.value }}</i></span>
                      {% endif %}
-                     
-                    <img data-original="{{ node.field_image_urls.0.value }}" src="" class="lazy thumb mli-thumb" style="display: inline-block; ">
+                     {% if node.field_movie_image.0.value %} 
+               {% set image_url = node.field_movie_image.0.value %}
+              {% else %}
+               {% set image_url = content.field_image_urls.0 %}
+              {% endif %}
+              {% set image_url = content.field_image_urls.0 %}
+                    <img data-original="{{ image_url }}" src="" class="lazy thumb mli-thumb" style="display: inline-block; ">
                     <span class="mli-info">
                       <h2>{{ node.label }}</h2>
                     </span>

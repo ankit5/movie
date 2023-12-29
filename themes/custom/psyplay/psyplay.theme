@@ -23,6 +23,7 @@ use Drupal\Core\Url;
  * Implements hook_page_attachments_alter
  */
 function psyplay_page_attachments_alter(array &$page) {
+ 
   // Get current path
   $route = \Drupal::routeMatch()->getRouteName();
   //print $route;

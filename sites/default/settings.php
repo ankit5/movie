@@ -839,7 +839,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 // $databases['default']['default'] = array (
-//   'database' => 'moviemew',
+//   'database' => 'movie',
 //   'username' => 'root',
 //   'password' => '',
 //   'prefix' => '',
@@ -850,7 +850,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 //   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 // );
 $databases['default']['default'] = array (
-  'database' => 'movienew',
+  'database' => 'movie',
   'username' => 'admin',
   'password' => 'Ankitrds123#',
   'prefix' => '',
