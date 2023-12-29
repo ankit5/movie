@@ -186,14 +186,37 @@ public function ajaxpost(Request $request)
 // <div class="direct-desktop">How to use in Desktop:</div>
 // </div>';
 if(isset($node->get('field_episodes')->getValue()[0]['value']) || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'minoplres')){
-  $json = file_get_contents('http://13.200.103.33/hello.php?url='.$url);
-  $obj = json_decode($json);
-  if($obj->first){
+ 
+  $ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL,"http://13.200.103.33/hello.php");
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+            "url=".$url."&mtype=ankit");
+
+// In real life you should use something like:
+// curl_setopt($ch, CURLOPT_POSTFIELDS, 
+//          http_build_query(array('postvar1' => 'value1')));
+
+// Receive server response ...
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$server_output = curl_exec($ch);
+
+curl_close($ch);
+
+
+// Further processing ...
+//var_dump($server_output);
+// exit;
+// $json = file_get_contents('http://13.200.103.33/hello.php?url='.$url);
+  $obj = json_decode($server_output);
+  if(@$obj->first){
     print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="fullscreen" allow="autoplay" src="https://anym3u8player.com/tv/video-player.php?url='.urlencode($obj->first).'"></iframe>';
   }
  
     
-    if($obj->embed){
+    if(@$obj->embed){
       print '<iframe scrolling="no" height="100%" width="100%" class="class_if" id="iframe-src" allowfullscreen src="'.$obj->embed.'" ></iframe>';
     }
   exit;
