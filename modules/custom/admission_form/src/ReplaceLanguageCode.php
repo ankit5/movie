@@ -43,7 +43,7 @@ $node->field_year->value = $string;
       )
   );
   
-  echo file_get_contents("https://prmovies.best/main-yahan-tu-wahan-2023-season-1-part-1-ullu-originals-Watch-online-full-movie/", false, $context);
+  echo file_get_contents("https://www.google.com");
     exit;
    if($node->isPublished()){
 
