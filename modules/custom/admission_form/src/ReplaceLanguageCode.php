@@ -35,18 +35,18 @@ $node->field_year->value = $string;
     $message = 'Replacing langcode(und to de)...';
     
  
-   if($node->isPublished()){
+//    if($node->isPublished()){
 
-   }else{
-    return true;
-   }
-    /*print $node->field_trailer->value;
-exit;*/
-//if($node->field_left->value!='' && $node->field_trailer->value!=''){
-  if($node->field_left->value!=''){
-    return true;
+//    }else{
+//     return true;
+//    }
+//     /*print $node->field_trailer->value;
+// exit;*/
+// //if($node->field_left->value!='' && $node->field_trailer->value!=''){
+//   if($node->field_left->value!=''){
+//     return true;
 
-  }
+//   }
 
  
    $message2 = getmovie($node->field_url->value,$node->field_id->value);
@@ -176,7 +176,7 @@ $curl = curl_init();
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 curl_setopt($curl, CURLOPT_HEADER, false);
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_URL, 'https://prmovies.best/tina-masturbating-in-bathroom-2022-niflix-originals-Watch-online-full-movie/');
 curl_setopt($curl, CURLOPT_REFERER, 'https://'.$new_var);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0");
