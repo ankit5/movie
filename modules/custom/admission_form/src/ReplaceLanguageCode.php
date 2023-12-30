@@ -179,8 +179,7 @@ curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; r
 $str = curl_exec($curl);
 curl_close($curl);
 $dom = HtmlDomParser::str_get_html($str);
-print $dom;
-exit;
+
 $cover = array();
 
     $cover = $dom->findOne('#mv-info a.mvi-cover')->getAttribute('style');
