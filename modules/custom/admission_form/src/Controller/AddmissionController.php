@@ -107,6 +107,27 @@ return array(
  '#markup' => Markup::create($rendered));
 
 }
+public function tagTitle($tag) {
+
+ $tag = str_replace("-"," ",$tag);
+  return ucfirst($tag);
+}
+
+public function tag($tag)
+{
+$tag = str_replace("-"," ",$tag);
+$healthy = ["download","full","watch","online","hd","free","yomovies","prmovies","movie","on"];
+$tag = str_replace($healthy,"",$tag);
+$view = Views::getView('search'); 
+$view->setDisplay('page_1');
+$view->setExposedInput(['title' => $tag]);
+$view->execute();
+@$rendered = \Drupal::service('renderer')->render($view->render());
+
+return array(
+'#markup' => Markup::create($rendered));
+
+}
 
 public function autosearch(Request $request)
 {

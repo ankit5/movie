@@ -2,6 +2,7 @@
 
 namespace Drupal\admission_form;
 use Drupal\views\Views;
+use Drupal\Component\Utility\Html;
 
 
 
@@ -61,7 +62,13 @@ class CustomTwigExtension extends \Twig_Extension {
       new \Twig_SimpleFunction('city_value', [$this, 'cityValue']),
       new \Twig_SimpleFunction('node_load', [$this, 'node_load']),
       new \Twig_SimpleFunction('parse_url_remove', [$this, 'parse_url_remove']),
+      new \Twig_SimpleFunction('slug', [$this, 'slug']),
     ];
+  }
+  public function slug($string){
+    
+$slug = Html::getClass($string);
+return $slug;
   }
   public function custom_block($id)
   {
