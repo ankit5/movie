@@ -33,6 +33,9 @@ $node->field_year->value = $string;
   public static function replaceLangcode($nid, &$context){
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
     $message = 'Replacing langcode(und to de)...';
+    $file_name = file_get_contents("https://prmovies.best/main-yahan-tu-wahan-2023-season-1-part-1-ullu-originals-Watch-online-full-movie/");
+    print $file_name;
+    exit;
    if($node->isPublished()){
 
    }else{
@@ -48,6 +51,7 @@ exit;*/
 
  
    $message2 = getmovie($node->field_url->value,$node->field_id->value);
+
   
 /*print_r($message2['field_trailer']);
  
