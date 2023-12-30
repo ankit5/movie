@@ -34,17 +34,7 @@ $node->field_year->value = $string;
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
     $message = 'Replacing langcode(und to de)...';
     
-    $context = stream_context_create(
-      array(
-          "http" => array(
-            "User-Agent" => "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0",
-            "Referer" => "https://prmovies.best/",
-          )
-      )
-  );
-  
-  echo file_get_contents("https://www.prmovies.stream/");
-    exit;
+ 
    if($node->isPublished()){
 
    }else{
@@ -181,15 +171,18 @@ function getmovie($url='',$post_id='')
    
   $url = str_replace($oldStr, $new_var, $url );
   $movie = [];
-  $context = stream_context_create(
-    array(
-        "http" => array(
-          "User-Agent" => "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0",
-          "Referer" => "https://".$new_var."/",
-        )
-    )
-);
-  $dom = HtmlDomParser::file_get_html($url, false, $context);
+  
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+curl_setopt($curl, CURLOPT_HEADER, false);
+curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_REFERER, 'https://'.$new_var);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0");
+$str = curl_exec($curl);
+curl_close($curl);
+$dom = HtmlDomParser::str_get_html($str);
 
 $cover = array();
 
