@@ -233,7 +233,7 @@ curl_close($ch);
 // $json = file_get_contents('http://13.200.103.33/hello.php?url='.$url);
   $obj = json_decode($server_output);
   if(@$obj->first){
-    print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="fullscreen" allow="autoplay" src="https://anym3u8player.com/tv/video-player.php?url='.urlencode($obj->first).'"></iframe>';
+    print '<iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/tv/video-player.php?url='.urlencode($obj->first).'"></iframe>';
   }
  
     
