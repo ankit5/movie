@@ -852,11 +852,11 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 // );
 
 $databases['default']['default'] = array (
-  'database' => 'ankitver_movie',
-  'username' => 'ankitver_drupal',
-  'password' => '8y{a(o-IrhQ~',
+  'database' => 'movie',
+  'username' => 'admin',
+  'password' => 'Ankitrds123#',
   'prefix' => '',
-  'host' => 'localhost',
+  'host' => 'movie.cgu3e1qweipr.ap-south-1.rds.amazonaws.com',
   'port' => '3306',
   'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
   'driver' => 'mysql',
