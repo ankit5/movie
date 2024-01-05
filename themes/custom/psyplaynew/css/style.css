@@ -1274,6 +1274,10 @@ transform: scale(0);
 .genrate-div {
   display: none;
 }
+.player_nav {
+  margin-bottom: 20px;
+  background: black;
+}
 
 @media screen and (max-width: 1025px){
   .parentif iframe {
