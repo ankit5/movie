@@ -273,9 +273,7 @@
               <div class="clearfix"></div>
             </div>
           </div>
-          {% if 'speedostream' in node.field_player.0.value  or ('minoplres' in node.field_player.0.value) or node.field_episodes.0.value %}
-
-          {% else %}
+          
           <div id="list-dl" class="tab-pane active">
           <div id="lnk list-downloads">
           <div class="btn-group btn-group-justified embed-selector" style="margin-bottom:1px;"> 
@@ -285,7 +283,7 @@
             <span class="lnk lnk-title" role="" target="_blank">Links</span>
             </div>
             <div class="btn-group btn-group-justified embed-selector">
-             <a href="{{ node.field_download_url.0.value }}" class="lnk-lnk lnk-1" target="_blank"> <span style="" class="lnk lnk-dl"><img style="" src="https://www.google.com/s2/favicons?domain=HD" alt="HD"> <span class="serv_tit">HD</span></span> <span class="lnk lnk-dl">
+             <a href="{{ node.field_download_url.0.value }}" class="lnk-lnk lnk-1"> <span style="" class="lnk lnk-dl"><img style="" src="https://www.google.com/s2/favicons?domain=HD" alt="HD"> <span class="serv_tit">HD</span></span> <span class="lnk lnk-dl">
               <span class="lang_tit">
                {% for key,value in node.field_right.getValue %}
                         {% if 'Quality:' in value['value'] %}
@@ -293,7 +291,7 @@
                          {% endif %}
                         {% endfor %}
                         </span></span> <span class="lnk lnk-dl">HD</span> <span class="lnk lnk-dl" id="lnk-dl-button" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> <span class="dl_tit">Download</span></span> </a></div></div></div>
-             {% endif %}
+            
 </div>
                   </div>
                 </div>
