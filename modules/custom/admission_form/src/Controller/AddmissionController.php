@@ -233,9 +233,34 @@ curl_close($ch);
 // $json = file_get_contents('http://13.200.103.33/hello.php?url='.$url);
   $obj = json_decode($server_output);
   if(@$obj->first){
+    foreach($node->get('field_right')->getValue() as $value){
+      if(str_contains($value['value'], 'Quality:')){
+       $qua = str_replace("Quality:","",$value['value']);
+      }
+             
+    }
+    $urlde = urlencode($obj->second);
+    $urlde = str_replace("%","%25",$urlde);
     print '
-    <a href="'.$obj->first.'" style="display:none;">'.$obj->first.'</a>
-    <iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/tv/video-player.php?url='.urlencode($obj->first).'"></iframe>';
+    <iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/tv/video-player.php?url='.urlencode($obj->first).'"></iframe>
+      <div id="list-dl" class="tab-pane active">
+      <div id="lnk list-downloads">
+      <div class="btn-group btn-group-justified embed-selector" style="margin-bottom:1px;"> 
+      <span style="" class="lnk lnk-title">Server</span>
+       <span class="lnk lnk-title">Language</span>
+        <span class="lnk lnk-title">Quality</span> 
+        <span class="lnk lnk-title" role="" target="_blank">Links</span>
+        </div>
+      <div class="btn-group btn-group-justified embed-selector">
+      <a href="https://youtube4kdownloader.com/download/video/'.$urlde.'" target="_blank" class="lnk-lnk lnk-1"> <span style="" class="lnk lnk-dl"><img style="" src="https://www.google.com/s2/favicons?domain=HD" alt="HD"> <span class="serv_tit">HD</span></span> <span class="lnk lnk-dl">
+       <span class="lang_tit">
+        '.$qua.'
+                 </span></span> <span class="lnk lnk-dl">HD</span> <span class="lnk lnk-dl" id="lnk-dl-button" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> <span class="dl_tit">Download</span></span> </a></div></div></div>
+     
+</div>
+</div>
+</div>
+      ';
   }
  
     
