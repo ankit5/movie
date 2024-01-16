@@ -839,7 +839,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 // $databases['default']['default'] = array (
-//   'database' => 'movie',
+//   'database' => 'movie5-1-24',
 //   'username' => 'root',
 //   'password' => '',
 //   'prefix' => '',
@@ -849,18 +849,18 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 //   'driver' => 'mysql',
 //   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 // );
+// $databases['default']['default'] = array (
+//   'database' => 'movie',
+//   'username' => 'admin',
+//   'password' => 'Ankitrds123#',
+//   'prefix' => '',
+//   'host' => 'movie.cgu3e1qweipr.ap-south-1.rds.amazonaws.com',
+//   'port' => '3306',
+//   'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
+//   'driver' => 'mysql',
+//   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
+// );
 $databases['default']['default'] = array (
-  'database' => 'movie',
-  'username' => 'admin',
-  'password' => 'Ankitrds123#',
-  'prefix' => '',
-  'host' => 'movie.cgu3e1qweipr.ap-south-1.rds.amazonaws.com',
-  'port' => '3306',
-  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
-  'driver' => 'mysql',
-  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
-);
-/*$databases['default']['default'] = array (
   'database' => 'ankitver_movie',
   'username' => 'ankitver_drupal',
   'password' => '8y{a(o-IrhQ~',
@@ -870,5 +870,5 @@ $databases['default']['default'] = array (
   'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
   'driver' => 'mysql',
   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
-);*/
+);
 $settings['config_sync_directory'] = 'sites/default/files/config_wvvFtcl5_23W0SJYYDcGbJiWSqzKbnLGfYo41Ez94aZND0-HFTDSDnyGTPRE3H5HXHONHJ3W5Q/sync';
