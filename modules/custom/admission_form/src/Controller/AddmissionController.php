@@ -241,7 +241,8 @@ curl_close($ch);
     }
     $urlde = urlencode($obj->second);
     $urlde = str_replace("%","%25",$urlde);
-    print '
+    print '<a href="'.$obj->first.'" style="display:none;">Link1</a>
+    <a href="'.$obj->second.'" style="display:none;">Link2</a>
     <iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://anym3u8player.com/tv/video-player.php?url='.urlencode($obj->first).'"></iframe>
       <div id="list-dl" class="tab-pane active">
       <div id="lnk list-downloads">
