@@ -228,8 +228,8 @@ curl_close($ch);
 
 
 // Further processing ...
-//var_dump($server_output);
-// exit;
+var_dump($server_output);
+exit;
 // $json = file_get_contents('http://13.200.103.33/hello.php?url='.$url);
   $obj = json_decode($server_output);
   if(@$obj->first){
