@@ -63,7 +63,7 @@ curl_close($ch);
  
    $message2 = getmovie($node->field_url->value,$node->field_id->value);
 
-  print "load";
+ // print "load";
 /*print_r($message2['field_trailer']);
  
    exit;*/
