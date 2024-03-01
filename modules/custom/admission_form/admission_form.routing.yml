@@ -39,6 +39,14 @@ admission_form.director:
   requirements:
     _permission: 'access content'
 
+admission_form.search:
+  path: '/search/{search}'
+  defaults:
+    _title_callback: 'Drupal\admission_form\Controller\AddmissionController::searchTitle'
+    _controller: 'Drupal\admission_form\Controller\AddmissionController::search'
+  requirements:
+    _permission: 'access content'
+
 admission_form.tag:
   path: '/tag/{tag}'
   defaults:

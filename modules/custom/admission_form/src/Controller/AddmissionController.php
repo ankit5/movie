@@ -107,6 +107,24 @@ return array(
  '#markup' => Markup::create($rendered));
 
 }
+public function searchTitle($search) {
+
+  
+  return ucfirst($search).' for search';
+}
+public function search($search)
+{
+
+  $view = Views::getView('search'); 
+$view->setDisplay('page_1');
+$view->setExposedInput(['title' => $search]);
+$view->execute();
+@$rendered = \Drupal::service('renderer')->render($view->render());
+
+return array(
+ '#markup' => Markup::create($rendered));
+
+}
 public function tagTitle($tag) {
 
  $tag = str_replace("-"," ",$tag);
