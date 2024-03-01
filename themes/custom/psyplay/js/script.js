@@ -2,6 +2,9 @@
 
  'use strict';
 
+ $('.search-content button').click(function(){
+  window.location ='/search/'+$(".search-input").val();   
+});
 
 Drupal.behaviors.customConfig = {
     attach: function (context, settings) {
