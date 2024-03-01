@@ -42,12 +42,25 @@ exit;*/
   if($node->field_left->value!=''){
     return true;
 
+  }else {
+  if ($node->field_image_urls->value) {
+    $ch = curl_init($node->field_image_urls->value);
+curl_setopt($ch, CURLOPT_NOBODY, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+curl_exec($ch);
+if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
+{
+  return true;  // Found Image
+}
+curl_close($ch);
+    }
   }
 
  
    $message2 = getmovie($node->field_url->value,$node->field_id->value);
 
-  
+  print "load";
 /*print_r($message2['field_trailer']);
  
    exit;*/
@@ -57,6 +70,10 @@ exit;*/
    //////////////////////////////////////////////
    if (isset($message2['field_poster_url'])) {
     $node->field_poster_url->value = $message2['field_poster_url'];
+    }
+    //////////////////////////////////////////////
+   if (isset($message2['field_image_urls'])) {
+    $node->field_image_urls->value = $message2['field_image_urls'];
     }
      //////////////////////////////////////////////
 
@@ -191,6 +208,10 @@ $cover = array();
       
      }
 $movie['field_poster_url'] = $cover;
+
+$field_image_urls = array(); 
+$field_image_urls = $dom->findOne(".mvic-thumb img")->getAttribute('src');
+$movie['field_image_urls'] = $field_image_urls;
 
     $des = array();
 
