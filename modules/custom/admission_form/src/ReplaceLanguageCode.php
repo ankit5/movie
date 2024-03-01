@@ -49,7 +49,7 @@ curl_exec($ch);
 if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 {
  
-  return true;  // Found Image
+ // return true;  // Found Image
 }
 curl_close($ch);
     }
@@ -58,7 +58,8 @@ curl_close($ch);
     return true;
 
   }
- 
+//  print $node->field_left->value;
+//  exit;
 
  
    $message2 = getmovie($node->field_url->value,$node->field_id->value);
