@@ -39,11 +39,8 @@ $node->field_year->value = $string;
     /*print $node->field_trailer->value;
 exit;*/
 //if($node->field_left->value!='' && $node->field_trailer->value!=''){
-  if($node->field_left->value!=''){
-    return true;
-
-  }else {
   if ($node->field_image_urls->value) {
+   
     $ch = curl_init($node->field_image_urls->value);
 curl_setopt($ch, CURLOPT_NOBODY, true);
 curl_setopt($ch, CURLOPT_TIMEOUT, 2);
@@ -51,11 +48,17 @@ curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
 curl_exec($ch);
 if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 {
+ 
   return true;  // Found Image
 }
 curl_close($ch);
     }
+  else 
+  if($node->field_left->value!=''){
+    return true;
+
   }
+ 
 
  
    $message2 = getmovie($node->field_url->value,$node->field_id->value);
