@@ -224,7 +224,7 @@ public function ajaxpost(Request $request)
 // <h3>Direct link watch in Player</h3>
 // <div class="direct-desktop">How to use in Desktop:</div>
 // </div>';
-if(isset($node->get('field_episodes')->getValue()[0]['value']) || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'minoplres')){
+if($node->field_m3_direct->value=="yes" || isset($node->get('field_episodes')->getValue()[0]['value']) || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') || str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'minoplres')){
  
   $ch = curl_init();
 
@@ -257,12 +257,13 @@ curl_close($ch);
       }
              
     }
+    $m3_direct=$node->get('field_m3_direct')->getValue()[0]['value'];
     $urlde = urlencode($obj->second);
     $urlde = str_replace("%","%25",$urlde);
     print '<a href="'.$obj->first.'" style="display:none;">Link1</a>
     <a href="'.$obj->second.'" style="display:none;">Link2</a>
-    <iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://hdmovies2.online/player.php?url='.urlencode($obj->first).'"></iframe>
-      <div id="list-dl" class="tab-pane active">
+    <iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://hdmovies2.online/player.php?m3_direct='.$m3_direct.'&url='.urlencode($obj->second).'"></iframe>
+      <div id="list-dl" class="tab-pane active" style="display:none;">
       <div id="lnk list-downloads">
       <div class="btn-group btn-group-justified embed-selector" style="margin-bottom:1px;"> 
       <span style="" class="lnk lnk-title">Server</span>
