@@ -262,7 +262,7 @@ curl_close($ch);
     $urlde = str_replace("%","%25",$urlde);
     print '<a href="'.$obj->first.'" style="display:none;">Link1</a>
     <a href="'.$obj->second.'" style="display:none;">Link2</a>
-    <iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://hdmovies2.online/player.php?m3_direct='.$m3_direct.'&url='.urlencode($obj->second).'"></iframe>
+    <iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://hdmovies2.online/player.php?m3_direct='.$m3_direct.'&url='.urlencode($obj->first).'"></iframe>
       <div id="list-dl" class="tab-pane active" style="display:none;">
       <div id="lnk list-downloads">
       <div class="btn-group btn-group-justified embed-selector" style="margin-bottom:1px;"> 
