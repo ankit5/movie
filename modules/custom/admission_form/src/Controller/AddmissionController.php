@@ -264,6 +264,13 @@ curl_close($ch);
     <a href="'.$obj->second.'" style="display:none;">Link2</a>
     <iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://hdmovies2.online/player.php?m3_direct='.$m3_direct.'&url='.urlencode($obj->first).'"></iframe>
       <div id="list-dl" class="tab-pane active">
+      <a data-toggle="tab" href="https://m3u8downloader.hdmovies2.online/?name='.$node->title->value.'&source=https://hdmovies2.online/convert.php?url='.$obj->second.'" aria-expanded="true" style="
+"><span class="lnk lnk-dl" id="lnk-dl-button" target="_blank" style="
+    width: 103px;
+    display: flex;
+"><i class="fa fa-download" aria-hidden="true"></i> <span class="dl_tit" style="
+    display: block;
+">Download</span></span></a>
       <div id="lnk list-downloads">
       <div class="btn-group btn-group-justified embed-selector" style="margin-bottom:1px;"> 
       <span style="" class="lnk lnk-title">Server</span>
