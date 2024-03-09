@@ -263,7 +263,7 @@ curl_close($ch);
     print '<a href="'.$obj->first.'" style="display:none;">Link1</a>
     <a href="'.$obj->second.'" style="display:none;">Link2</a>
     <iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://hdmovies2.online/player.php?m3_direct='.$m3_direct.'&url='.urlencode($obj->first).'"></iframe>
-      <div id="list-dl" class="tab-pane active" style="display:none;">
+      <div id="list-dl" class="tab-pane active">
       <div id="lnk list-downloads">
       <div class="btn-group btn-group-justified embed-selector" style="margin-bottom:1px;"> 
       <span style="" class="lnk lnk-title">Server</span>
@@ -272,7 +272,7 @@ curl_close($ch);
         <span class="lnk lnk-title" role="" target="_blank">Links</span>
         </div>
       <div class="btn-group btn-group-justified embed-selector">
-      <a href="https://youtube4kdownloader.com/download/video/'.$urlde.'" target="_blank" class="lnk-lnk lnk-1"> <span style="" class="lnk lnk-dl"><img style="" src="https://www.google.com/s2/favicons?domain=HD" alt="HD"> <span class="serv_tit">HD</span></span> <span class="lnk lnk-dl">
+      <a href="https://m3u8downloader.hdmovies2.online/?source='.$obj->second.'" target="_blank" class="lnk-lnk lnk-1"> <span style="" class="lnk lnk-dl"><img style="" src="https://www.google.com/s2/favicons?domain=HD" alt="HD"> <span class="serv_tit">HD</span></span> <span class="lnk lnk-dl">
        <span class="lang_tit">
         '.$qua.'
                  </span></span> <span class="lnk lnk-dl">HD</span> <span class="lnk lnk-dl" id="lnk-dl-button" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> <span class="dl_tit">Download</span></span> </a></div></div></div>
