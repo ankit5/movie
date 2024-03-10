@@ -46,7 +46,7 @@ $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
    $query->condition('type', 'movie', '=');
   //  $query->condition('title', '%episode%', 'LIKE');
   //  $query->notExists('field_year');
-  $query->orderBy('created', 'DESC');
+  $query->sort('created', 'DESC');
    $nids = $query->range(0,10000)->execute();
 
    $batch = [
