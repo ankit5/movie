@@ -55,7 +55,7 @@ $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
      'finished' => '\Drupal\admission_form\ReplaceLanguageCode::replaceLangcodeFinishedCallback',
    ];
    foreach($nids as $nid) {
-     $batch['operations'][] = ['\Drupal\admission_form\ReplaceLanguageCode::replaceLangcode3', [$nid]];
+     $batch['operations'][] = ['\Drupal\admission_form\ReplaceLanguageCode::imageupdate', [$nid]];
    }
 
    batch_set($batch);

@@ -30,6 +30,41 @@ $node->field_year->value = $string;
  $results[] = $node->save();
    }
 
+   public static function imageupdate($nid, &$context){
+    $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+       $message = 'Replacing langcode(und to de)...';
+        $results = array();
+   $title = $node->title->value;
+   if ($node->field_image_urls->value) {
+   
+    $ch = curl_init($node->field_image_urls->value);
+curl_setopt($ch, CURLOPT_NOBODY, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+curl_exec($ch);
+if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
+{
+ 
+ // return true;  // Found Image
+}else{
+  $message2 = getmovie($node->field_url->value,$node->field_id->value);
+  if (isset($message2['field_image_urls'])) {
+    $node->field_image_urls->value = $message2['field_image_urls'];
+    }
+}
+   }elseif($node->field_image_urls->value=='' || $node->field_poster_url->value==''){
+    $message2 = getmovie($node->field_url->value,$node->field_id->value);
+    if (isset($message2['field_image_urls'])) {
+      $node->field_image_urls->value = $message2['field_image_urls'];
+      }
+      if (isset($message2['field_poster_url'])) {
+        $node->field_poster_url->value = $message2['field_poster_url'];
+        }
+   }
+   
+    $results[] = $node->save();
+      }
+
   public static function replaceLangcode($nid, &$context){
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
     $message = 'Replacing langcode(und to de)...';
