@@ -20,7 +20,7 @@ admission_form.replace_with_de_langcode:
     _form: '\Drupal\admission_form\Form\ReplaceLanguageCodeForm'
     _title: 'Batch Language Code'
   requirements:
-    _permission: 'access content'
+    _permission: 'administer site configuration'
 
 admission_form.autosearch:
   path: '/movie-search'
