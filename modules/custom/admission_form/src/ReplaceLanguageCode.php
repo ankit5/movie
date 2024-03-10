@@ -48,28 +48,24 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
  // return true;  // Found Image
 }else{
   $message2 = getmovie($node->field_url->value,$node->field_id->value);
- if (isset($message2['field_image_urls'])) {
+ if (isset($message2['field_image_urls']) && strlen($message2['field_image_urls'])<600) {
       $node->field_image_urls->value = $message2['field_image_urls'];
       }
-      if (isset($message2['field_poster_url'])) {
+      if (isset($message2['field_poster_url']) && strlen($message2['field_image_urls'])<600) {
         $node->field_poster_url->value = $message2['field_poster_url'];
         }
         $results[] = $node->save();
 }
    }elseif($node->field_image_urls->value=='' || $node->field_poster_url->value==''){
     $message2 = getmovie($node->field_url->value,$node->field_id->value);
-    if (isset($message2['field_image_urls'])) {
+    if (isset($message2['field_image_urls']) && strlen($message2['field_image_urls'])<600) {
       $node->field_image_urls->value = $message2['field_image_urls'];
       }
-      if (isset($message2['field_poster_url'])) {
+      if (isset($message2['field_poster_url']) && strlen($message2['field_image_urls'])<600) {
         $node->field_poster_url->value = $message2['field_poster_url'];
         }
-        try {
-          $results[] = $node->save();
-        } catch (\Throwable $e) { // For PHP 7
-          // handle $e
-        } 
         
+        $results[] = $node->save();
    }
    
    
