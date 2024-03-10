@@ -34,7 +34,9 @@ $node->field_year->value = $string;
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
     $message = 'Replacing langcode(und to de)...';
     
- 
+ if($m3_direct=$node->field_m3_direct->value=="yes"){
+  return true; 
+ }
   
     /*print $node->field_trailer->value;
 exit;*/
@@ -54,7 +56,7 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 curl_close($ch);
     }
   else 
-  if($node->field_left->value!=''){
+  if($node->field_left->value!='' && $node->field_image_urls->value!=''){
     return true;
 
   }
