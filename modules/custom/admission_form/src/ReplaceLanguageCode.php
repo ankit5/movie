@@ -51,7 +51,7 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
  if (isset($message2['field_image_urls']) && strlen($message2['field_image_urls'])<600) {
       $node->field_image_urls->value = $message2['field_image_urls'];
       }
-      if (isset($message2['field_poster_url']) && strlen($message2['field_image_urls'])<600) {
+      if (isset($message2['field_poster_url']) && strlen($message2['field_poster_url'])<600) {
         $node->field_poster_url->value = $message2['field_poster_url'];
         }
         $results[] = $node->save();
@@ -61,7 +61,7 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
     if (isset($message2['field_image_urls']) && strlen($message2['field_image_urls'])<600) {
       $node->field_image_urls->value = $message2['field_image_urls'];
       }
-      if (isset($message2['field_poster_url']) && strlen($message2['field_image_urls'])<600) {
+      if (isset($message2['field_poster_url']) && strlen($message2['field_poster_url'])<600) {
         $node->field_poster_url->value = $message2['field_poster_url'];
         }
         
