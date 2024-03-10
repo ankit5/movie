@@ -47,7 +47,7 @@ $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
   //  $query->condition('title', '%episode%', 'LIKE');
   //  $query->notExists('field_year');
 
-   $nids = $query->range(0,11000)->execute();
+   $nids = $query->range(0,10300)->execute();
 
    $batch = [
      'title' => t('Replacing Language Code...'),
