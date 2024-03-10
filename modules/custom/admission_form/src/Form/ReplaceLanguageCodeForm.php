@@ -44,8 +44,8 @@ class ReplaceLanguageCodeForm extends FormBase {
 
 $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
    $query->condition('type', 'movie', '=');
-   $query->condition('title', '%episode%', 'LIKE');
-   $query->notExists('field_year');
+  //  $query->condition('title', '%episode%', 'LIKE');
+  //  $query->notExists('field_year');
 
    $nids = $query->range(0,11000)->execute();
 
