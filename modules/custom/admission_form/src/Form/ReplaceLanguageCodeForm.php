@@ -46,8 +46,8 @@ $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
    $query->condition('type', 'movie', '=');
   //  $query->condition('title', '%episode%', 'LIKE');
   //  $query->notExists('field_year');
-
-   $nids = $query->range(600,11000)->execute();
+  $query->orderBy('created', 'DESC');
+   $nids = $query->range(0,10000)->execute();
 
    $batch = [
      'title' => t('Replacing Language Code...'),
