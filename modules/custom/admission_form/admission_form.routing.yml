@@ -31,6 +31,40 @@ admission_form.autosearch:
   requirements:
     _permission: 'access content'
 
+admission_form.erroesolve:
+  path: '/admin/admin/structure/types/manage/movie/fields/node.movie.field_image_urls'
+  defaults:
+    _controller: 'Drupal\admission_form\Controller\AddmissionController::erroesolve'
+    _title: 'Search'
+  requirements:
+    _permission: 'access content'
+
+admission_form.erroesolvestorage:
+  path: '/admin/admin/structure/types/manage/movie/fields/node.movie.field_image_urls/storage'
+  defaults:
+    _controller: 'Drupal\admission_form\Controller\AddmissionController::erroesolve'
+    _title: 'Search'
+  requirements:
+    _permission: 'access content'
+
+admission_form.erroesolvedelete:
+  path: '/admin/admin/structure/types/manage/movie/fields/node.movie.field_m3_direct/delete'
+  defaults:
+    _controller: 'Drupal\admission_form\Controller\AddmissionController::erroesolve'
+    _title: 'Search'
+  requirements:
+    _permission: 'access content'
+
+admission_form.erroesolvemestorage:
+  path: '/admin/admin/structure/types/manage/movie/fields/node.movie.field_m3_direct/storage'
+  defaults:
+    _controller: 'Drupal\admission_form\Controller\AddmissionController::erroesolve'
+    _title: 'Search'
+  requirements:
+    _permission: 'access content'
+
+
+
 admission_form.director:
   path: '/director/{director}'
   defaults:
@@ -47,6 +81,14 @@ admission_form.search:
   requirements:
     _permission: 'access content'
 
+admission_form.searchnew:
+  path: '/search'
+  defaults:
+    _title_callback: 'Drupal\admission_form\Controller\AddmissionController::searchnewTitle'
+    _controller: 'Drupal\admission_form\Controller\AddmissionController::searchnew'
+  requirements:
+    _permission: 'access content'
+
 admission_form.tag:
   path: '/tag/{tag}'
   defaults:
@@ -59,6 +101,14 @@ admission_form.ajaxpost:
   path: '/ajaxpost'
   defaults:
     _controller: 'Drupal\admission_form\Controller\AddmissionController::ajaxpost'
+    _title: 'ajaxpost'
+  requirements:
+    _permission: 'access content'
+
+admission_form.customajaxpost:
+  path: '/engine/ajax/custom'
+  defaults:
+    _controller: 'Drupal\admission_form\Controller\AddmissionController::customajaxpost'
     _title: 'ajaxpost'
   requirements:
     _permission: 'access content'

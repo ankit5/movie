@@ -1,0 +1,19 @@
+{% if node.field_movie_image.0.value %} 
+               {% set image_url = node.field_movie_image.0.value %}
+              {% else %}
+               {% set image_url = content.field_image_urls.0 %}
+              {% endif %}
+              {% set image_url = node.field_image_urls.0.value %}
+<article class="w_item_b">
+<a href="{{url}}">
+<div class="image"><img src="{{image_url}}g" alt="{{node.label}}"></div>
+<div class="data">
+<h3>{{node.label}}</h3>
+<div class="wextra"><b>{% for key,value in node.field_right.getValue %}
+                        {% if 'IMDb:' in value['value'] %}
+                         {{ value['value']|replace({ 'IMDb:': '' }) }}
+                         {% endif %}
+                        {% endfor %}</b><span class="year">{{ node.field_year.value }}</span></div>
+</div>
+</a>
+</article>

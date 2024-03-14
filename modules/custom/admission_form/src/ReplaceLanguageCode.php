@@ -30,7 +30,7 @@ $node->field_year->value = $string;
  $results[] = $node->save();
    }
 
-   public static function imageupdate($nid, &$context){
+   public static function imageupdate2($nid, &$context){
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
        $message = 'Replacing langcode(und to de)...';
         $results = array();
@@ -70,7 +70,32 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
    
    
       }
+      public static function imageupdate($nid, &$context){
+        $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+           $message = 'Replacing langcode(und to de)...';
+            $results = array();
+       $title = $node->title->value;
+       if ($node->field_image_urls->value) {
+        $message2 = getmovie($node->field_url->value,$node->field_id->value);
+        if (isset($message2['field_image_urls'])) {
+          $node->field_image_urls->value = $message2['field_image_urls'];
+          
+          }
 
+          $results[] = $node->save();
+    $connection = \Drupal::database();
+    $query = $connection->update('node_field_data');
+    $query->fields(array('changed' => $node->created->value)); 
+    $query->condition('nid', $node->id());
+    $query->execute();
+
+    $query = $connection->update('node_field_revision');
+    $query->fields(array('changed' => $node->created->value)); 
+    $query->condition('nid', $node->id());
+    $query->execute();
+        
+       }
+      }
   public static function replaceLangcode($nid, &$context){
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
     $message = 'Replacing langcode(und to de)...';
@@ -82,32 +107,35 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
     /*print $node->field_trailer->value;
 exit;*/
 //if($node->field_left->value!='' && $node->field_trailer->value!=''){
-  if ($node->field_image_urls->value) {
+  if (str_contains($node->field_image_urls->value, 'imagetot.com')) {
    
-    $ch = curl_init($node->field_image_urls->value);
-curl_setopt($ch, CURLOPT_NOBODY, true);
-curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
-curl_exec($ch);
-if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
-{
+//     $ch = curl_init($node->field_image_urls->value);
+// curl_setopt($ch, CURLOPT_NOBODY, true);
+// curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+// curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+// $str = curl_exec($ch);
+// // print curl_getinfo($ch, CURLINFO_HTTP_CODE);
+// // exit;
+// curl_close($ch);
+// if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
+// {
  
- // return true;  // Found Image
-}
-curl_close($ch);
+//   return true;  // Found Image
+// }
+
     }
   else 
   if($node->field_left->value!='' && $node->field_image_urls->value!=''){
     return true;
 
   }
-//  print $node->field_left->value;
+ print "load";
 //  exit;
 
  
    $message2 = getmovie($node->field_url->value,$node->field_id->value);
 
- // print "load";
+// print "load";
 /*print_r($message2['field_trailer']);
  
    exit;*/

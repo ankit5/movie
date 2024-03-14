@@ -105,7 +105,7 @@ class Result extends AreaPluginBase {
     $replacements = [];
     $replacements['@start'] = $start;
     $replacements['@end'] = $end;
-    $replacements['@total'] = $total;
+    $replacements['@total'] = number_format($total);
     $replacements['@label'] = $label;
     $replacements['@per_page'] = $per_page;
     $replacements['@current_page'] = $current_page;

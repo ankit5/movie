@@ -1,0 +1,26 @@
+<div class="movies-list-wrap mlw-topview mt20">
+ {% if header %}
+<div class="ml-title">
+             
+    <div class="view-header">
+      {{ header }}
+    </div>
+    <div class="clearfix"></div>
+            </div>
+  {% endif %}
+              
+         {{ exposed }}       
+            {% if rows %}
+    <div class="view-content">
+      {{ rows }}
+    </div>
+  {% elseif empty %}
+    <div class="view-empty">
+      {{ empty }}
+    </div>
+  {% endif %}
+
+  {% if pager %}
+    {{ pager }}
+  {% endif %}
+</div>

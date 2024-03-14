@@ -1,0 +1,21 @@
+# These will be loaded on every pages.
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      css/theme.style-1.2.5.css: {}
+      css/theme.main-1.2.5.css: {}
+      css/style.css: {}
+  js:
+    js/jquery.min-3.6.4.js: {}
+    js/jquery-migrate.min-3.4.0.js: {}
+    js/jquery.min.js: {}
+    js/jquery.lazyload-1.2.5.js: {}
+    js/jquery.qtip.min-1.2.5.js: {}
+    js/slide.min-1.2.5.js: {}
+    js/bootstrap.min-1.2.5.js: {}
+    js/script.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/jquery.once

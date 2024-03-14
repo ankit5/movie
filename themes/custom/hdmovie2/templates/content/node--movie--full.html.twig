@@ -1,0 +1,255 @@
+{{ title_prefix }}
+  {% if not page %}
+    <h2 class="visually-hidden">
+      
+    </h2>
+  {% endif %}
+{{ title_suffix }}
+<div class="tabs__content tabs__content_4" id="mv-info">
+              {% if node.field_poster_url.0.value %} 
+               {% set poster_url = node.field_poster_url.0.value %}
+              {% else %}
+               {% set poster_url = content.field_image_urls.0 %}
+              {% endif %}
+  <a title="{{ node.label }}" id="mvi-cover" data-value="{{ node.id }}" data-key="0" class="thumb mvi-cover splash-image" style="background-image: url({{ poster_url }});"></a>
+                     <div class="center">
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
+<div class="" id="load">
+</div>
+</div>
+{% if node.field_episodes.0.value %} 
+            <div id="seasons">
+            <div class="tvseason">
+            <div class="les-title"> <i class="fa fa-server mr5"></i>
+            <strong>{{ node.field_season_title.0.value }}</strong>
+            </div>
+            <div class="les-content" style="display: block">
+            {% for key,value in node.field_episodes.getValue %}
+             <a href="javascript:void(0)" data-value="{{ node.id }}" data-key="{{ key }}" data-types="eps"> Episode {{ key+1 }} </a> 
+             {% set key = key+1 %}
+             {% endfor %}
+             </div>
+             </div>
+             </div>
+{% endif %}
+<div class="dooplay_player">
+<h2>Video Sources <span id="playernotice" data-text="157 082 128 Views"></span> </h2>
+<div id="playeroptions" class="options pmovie__big-btns d-flex jc-center">
+ <div class="player_nav">
+    <ul id="playeroptionsul pmovie__stream-select" class="ajax_mode tabs-block__select idTabs">
+    {% for key,value in node.field_player.getValue %}
+      {% if ('speedostream' in value['value']) or ('minoplres' in value['value']) %}
+         {% set class_tab = '' %}
+          {% else %}
+         {% set class_tab = 'tab_load' %}
+          {% endif %}
+    <li id="player-option-{{ key }}" class="dooplay_player_option nopl" data-value="{{ node.id }}" data-key="{{ key }}" class="{{ class_tab }}" style="display: block;"><i class="fas fa-play-circle"></i><span class="title">Server {{ key }}</span><span class="loader"></span></li>
+   
+    {% endfor %}
+    </ul>
+    
+    </div>
+
+</div>
+</div>
+<div class="sheader">
+<div class="poster"> <img itemprop="image" src="{{ node.field_image_urls.0.value }}" alt="{{ node.label }}"> </div>
+<div class="data">
+<h1>{{ node.label }}</h1>
+<div class="extra">
+<span class="date" itemprop="dateCreated">
+{% for key,value in node.field_right.getValue %}
+                        {% if 'Release:' in value['value'] %}
+                        
+                         {{ value['value']|replace({ 'Release:': '' }) }}
+                        
+                         {% endif %}
+                   {% endfor %}
+</span>
+<span class="country">
+{% for key,value in node.field_left.getValue %}
+                        {% if 'Country:' in value['value'] %}
+                        
+                         {{ value['value']|replace({ 'Country:': '' }) }}
+                        
+                         {% endif %}
+                        {% endfor %}
+</span>
+<span itemprop="duration" class="runtime"> 
+{% if node.field_episodes.0.value is null %}
+                   {% for key,value in node.field_right.getValue %}
+                        {% if 'Duration:' in value['value'] %}
+                        
+                         {{ value['value']|replace({ 'Duration:': '' }) }}
+                        
+                         {% endif %}
+                   {% endfor %}
+                  {% endif %}
+</span>
+</div>
+<div class="starstruck-ptype" style="">
+<div>
+<meta itemprop="name" content="{{ node.label }}">
+<div itemscope="" class="starstruck-wrap" itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating">
+<div class="dt_rating_data">
+<div class="starstruck-rating">
+  {% for key,value in node.field_right.getValue %}
+                        {% if 'IMDb:' in value['value'] %}
+                        <span class="dt_rating_vgs" itemprop="ratingValue">{{ value['value']|replace({ 'IMDb:': '' }) }}</span><i class="fas fa-user-circle"></i>
+<span class="rating-text">IMDb</span>
+                         {% endif %}
+                   {% endfor %}
+
+                    {% for key,value in node.field_right.getValue %}
+                         {% if 'TMDb:' in value['value'] %}
+                        <span class="dt_rating_vgs" itemprop="ratingValue">{{ value['value']|replace({ 'TMDb:': '' }) }}</span><i class="fas fa-user-circle"></i>
+<span class="rating-text">TMDb</span>
+                         {% endif %}
+                   {% endfor %}
+                   
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sgeneros">
+{% for key, item in content.field_tags if key|first != '#' %}
+      {{ item }}
+{% endfor %}
+</div>
+</div>
+</div>
+<div class="single_tabs">
+<ul id="section" class="smenu idTabs">
+<li><a id="main_ali" href="{{ url }}#info" class="selected">Info</a></li>
+<li><a href="{{ url }}#cast" class="">Cast</a></li>
+</ul>
+</div>
+<div id="info" class="sbox" style="">
+<h2>Synopsis</h2>
+<div itemprop="description" class="wp-content">
+<p>{{ node.label }} Watch online Movies Free Download,</p>
+ {% for key,value in node.field_right.getValue %}
+                        {% if 'Quality:' in value['value'] %}
+                        <p>
+                        <strong>Quality: </strong>
+                        <span>
+                         {{ value['value']|replace({ 'Quality:': '' }) }}
+                        </span>
+                        </p>
+                         {% endif %}
+                   {% endfor %}
+ {% for key,value in node.field_left.getValue %}
+                        {% if 'Studio:' in value['value'] %}
+                        <p>
+                        <strong>Studio: </strong>
+                        <span>
+                         {{ value['value']|replace({ 'Studio:': '' }) }}
+                        </span>
+                        </p>
+                         {% endif %}
+                        {% endfor %}
+ {% for key,value in node.field_right.getValue %}
+                        {% if 'TV Status:' in value['value'] %}
+                        <p>
+                        <strong>TV Status: </strong>
+                        <span>
+                         {{ value['value']|replace({ 'TV Status:': '' }) }}
+                        </span>
+                        </p>
+                         {% endif %}
+                   {% endfor %}
+
+<h3 style="text-align: center;front-size:18px;">WE DO NOT HOST ANY OF THE VIDEOS ON OUR SERVERS, WE JUST INDEX THEM.</h3>
+<p><a href="#" id="dl" data-value="{{ node.id }}" data-key="0"><button class="dipesh" style="width: 100%;"><i class="fa fa-download"></i> Genrate Download </button></a></p>
+<hr>
+
+<div class="ftext"><p>{{ node.field_download_detail.value|raw }}</p></div>
+<div class="wp-tags"></div>
+</div>
+</div>
+<div id="cast" class="sbox fixidtab" style="display: none;">
+{% for key,value in node.field_left.getValue %}
+                        {% if 'Director:' in value['value'] %}
+                        <h2>Director</h2>
+                        <div class="persons">
+<div class="person" itemprop="director" itemscope="" itemtype="http://schema.org/Person">
+<meta itemprop="name" content="{{ value['value']|replace({ 'Director:': '' }) }}">
+<div class="data">
+<div class="name">{{ value['value']|replace({ 'Director:': '' }) }}</div>
+<div class="caracter">Director</div>
+</div>
+</div></div>
+                      
+                         {% endif %}
+                        {% endfor %}
+
+{% for key,value in node.field_left.getValue %}
+                        {% if 'Actors:' in value['value'] %}
+                        <h2>Cast</h2>
+<div class="persons">
+<div class="person" itemprop="actor" itemscope="" itemtype="http://schema.org/Person">
+<meta itemprop="name" content="{{ value['value']|replace({ 'Actors:': '' }) }}">
+<div class="data">
+<div class="name">{{ value['value']|replace({ 'Actors:': '' }) }}</div>
+</div>
+</div></div>
+                       
+                         {% endif %}
+                        {% endfor %}
+
+
+</div>
+ {% if node.field_keyword.0.value %}
+              <div id="mv-keywords">
+  <strong class="mr10">Keywords:</strong>
+  <a href="{{ url('<front>') }}tag/{{ slug("Download #{ node.label } on yomovies") }}" rel="tag">#Download {{ node.label }} on yomovies</a>
+  <a href="{{ url('<front>') }}tag/{{ slug("#{ node.label } Full Movie Watch Online HD Free Download") }}" rel="tag">#{{ node.label }} Full Movie Watch Online HD Free Download</a>
+  <a href="{{ url('<front>') }}tag/{{ slug("#{ node.label } Watch Online on prmovies") }}" rel="tag">#{{ node.label }} Watch Online on prmovies</a>
+  <a href="{{ url('<front>') }}tag/{{ slug("#{ node.label } Watch online") }}" rel="tag">#{{ node.label }} Watch online</a>
+  <a href="{{ url('<front>') }}tag/{{ slug("Watch #{ node.label } Movie Online Free") }}" rel="tag">#Watch {{ node.label }} Movie Online Free</a>
+  <a href="{{ url('<front>') }}tag/{{ slug("Watch #{ node.label } Online Full Movie Free") }}" rel="tag">#Watch {{ node.label }} Online Full Movie Free</a>
+  <a href="{{ url('<front>') }}tag/{{ slug("Watch #{ node.label } Full Movie Free Online") }}" rel="tag">#Watch {{ node.label }} Full Movie Free Online</a>
+</div>
+               {% endif %}
+<div class="box_links"> </div>
+<div class="sbox">
+<div class="dt_social_single">
+<span>Shared </span>
+<a data-id="43713" rel="nofollow" href="javascript: void(0);" onclick="window.open(&quot;https://facebook.com/sharer.php?u={{ url('<current>') }}&quot;,&quot;facebook&quot;,&quot;toolbar=0, status=0, width=650, height=450&quot;)" class="facebook dt_social"><i class="fab fa-facebook-f"></i> <b>Facebook</b></a>
+<a data-id="43713" rel="nofollow" href="javascript: void(0);" onclick="window.open(&quot;https://twitter.com/intent/tweet?text={{ node.label }}&amp;url={{url}}&quot;,&quot;twitter&quot;,&quot;toolbar=0, status=0, width=650, height=450&quot;)" data-rurl="{{ url('<current>') }}" class="twitter dt_social"><i class="fab fa-twitter"></i> <b>Twitter</b></a>
+<a data-id="43713" rel="nofollow" href="javascript: void(0);" onclick="window.open(&quot;https://pinterest.com/pin/create/button/?url={{ url('<current>') }}&amp;media=https://image.tmdb.org/t/p/w500/mwvNmLVdHn5BPWyTCX2pn14PGh6.jpg&amp;description=Animal&quot;,&quot;pinterest&quot;,&quot;toolbar=0, status=0, width=650, height=450&quot;)" class="pinterest dt_social"><i class="fab fa-pinterest-p"></i></a>
+<a data-id="43713" rel="nofollow" href="whatsapp://send?text={{ node.label }} - {{ url('<current>') }}" class="whatsapp dt_social"><i class="fab fa-whatsapp"></i></a>
+</div>
+</div>
+<div class="sbox srelacionados module">
+<h2>Similar titles</h2>
+  {% set tag_s = '' %}
+          {% for key, value in content.field_tags if key|first != '#' %}
+          {% set value_new = value|render|render|striptags %}
+{% if 'Bollywood' in value_new %}
+ {% set tag_s = 'Bollywood' %}
+{% elseif 'Hollywood' in value_new %}
+ {% set tag_s = 'Hollywood' %}
+{% elseif 'South Special' in value_new %}
+ {%  set tag_s = 'South Special' %}
+{% endif %}
+
+{% endfor %}
+
+
+ <div class="content" style="width:100%;">
+{{ related(node.label,node.field_quality.0.value,node.id,tag_s) }}
+ </div>
+</div>

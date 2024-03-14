@@ -44,10 +44,10 @@ class ReplaceLanguageCodeForm extends FormBase {
 
 $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
    $query->condition('type', 'movie', '=');
-  //  $query->condition('title', '%episode%', 'LIKE');
+    $query->condition('field_image_urls', '%imagetot.com%', 'LIKE');
   //  $query->notExists('field_year');
   $query->sort('created', 'DESC');
-   $nids = $query->range(0,10000)->execute();
+   $nids = $query->range(0,300)->execute();
 
    $batch = [
      'title' => t('Replacing Language Code...'),

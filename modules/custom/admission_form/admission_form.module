@@ -32,7 +32,17 @@ function admission_form_views_pre_render(ViewExecutable $view) {
 }
 
 function admission_form_views_query_alter(Drupal\views\ViewExecutable $view, Drupal\views\Plugin\views\query\Sql  $query) { 
- 
+ //print $view->id();
+
+ if ($view->id() != "get_year" && $view->id() != 'tag_count' && $view->id() != 'english_series' && $view->id() != 'watchdog') {
+  $query->addField('node__field_quality', 'field_quality_value', 'field_quality_value');
+ // $query->setWhereGroup('AND', 1);
+  $query->addWhere(1, "node__field_quality.field_quality_value", '18+', "!=");
+ }
+  
+
+
+
   if ($view->id() == "front_latest") {
  // $query->addField('node', 'nid', 'node_nid', array('function' => 'groupby'));
  // $query->addField('node_field_data', 'title', 'node_title', array('function' => 'groupby'));
@@ -51,8 +61,8 @@ function admission_form_views_query_alter(Drupal\views\ViewExecutable $view, Dru
  if ($view->id() == "front_latest"  && $view->current_display != 'block_1') {
   $offset = 0;
   $limit = 8;
-     $view->setOffset($offset);
-     $view->getPager()->setItemsPerPage($limit);
+   //  $view->setOffset($offset);
+    // $view->getPager()->setItemsPerPage($limit);
    }  
 }
 function isMobile() {
