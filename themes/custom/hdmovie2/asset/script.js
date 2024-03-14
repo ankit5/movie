@@ -182,7 +182,7 @@ $(document).ready(function() {
    
     
     $('a.splash-image,#seasons .les-content a,.idTabs li,#dl').click(function(){
-      alert($(this).data('value'));
+     // alert($(this).data('value'));
       
       $('#seasons .les-content a:first').addClass("selected");
       $('.idTabs a:first').addClass("selected");
