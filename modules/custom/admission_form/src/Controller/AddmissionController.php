@@ -240,11 +240,9 @@ public function ajaxpost(Request $request)
    
   $url = str_replace($oldStr, $new_var, $url );
  
+  
 
-
-if(isset($node->get('field_episodes')->getValue()[0]['value']) || 
-str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'speedostream') || 
-str_contains(@$node->get('field_player')->getValue()[$postData->tab]['value'], 'minoplres'))
+if(isset($node->get('field_episodes')->getValue()[0]['value']) || $url)
  {
   
   $ch = curl_init();
@@ -254,7 +252,7 @@ curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS,
             "url=".$url."&mtype=ankit");
 
-
+          
 
 // Receive server response ...
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -269,6 +267,8 @@ curl_close($ch);
 // exit;
 // $json = file_get_contents('http://13.200.103.33/hello.php?url='.$url);
   $obj = json_decode($server_output);
+  // print $obj->embed;
+  // exit;
   $obj->first = str_replace("_l/","_h/",$obj->first);
  
   $obj->second = str_replace("_l/","_h/",$obj->second);
