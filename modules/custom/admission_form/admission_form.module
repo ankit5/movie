@@ -33,12 +33,15 @@ function admission_form_views_pre_render(ViewExecutable $view) {
 
 function admission_form_views_query_alter(Drupal\views\ViewExecutable $view, Drupal\views\Plugin\views\query\Sql  $query) { 
  //print $view->id();
-
+$current_path = \Drupal::service('path.current')->getPath();
+$path_args = explode('/', $current_path);
+if($path_args[1]!='admin'){
  if ($view->id() != "get_year" && $view->id() != 'tag_count' && $view->id() != 'english_series' && $view->id() != 'watchdog' && $view->id() != 'block_content') {
   $query->addField('node__field_quality', 'field_quality_value', 'field_quality_value');
  // $query->setWhereGroup('AND', 1);
   $query->addWhere(1, "node__field_quality.field_quality_value", '18+', "!=");
  }
+}
   
 
 
