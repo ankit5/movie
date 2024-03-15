@@ -269,9 +269,11 @@ curl_close($ch);
   $obj = json_decode($server_output);
   // print $obj->embed;
   // exit;
+  if(@$obj->first){
   $obj->first = str_replace("_l/","_h/",$obj->first);
  
   $obj->second = str_replace("_l/","_h/",$obj->second);
+  }
   if(@$obj->first){
   //  $m3_direct=$node->get('field_m3_direct')->getValue()[0]['value'];
     $urlde = urlencode($obj->second);
