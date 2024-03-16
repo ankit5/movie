@@ -345,6 +345,7 @@ a.dl {
     font-weight: bold;
     padding: 28px;
     color: #ffc100;
+    font-size: 18px !important;
 }
 .swiper-horizontal>.swiper-scrollbar, .swiper-scrollbar.swiper-scrollbar-horizontal {
     bottom: var(--swiper-scrollbar-bottom, 27px) !important;
@@ -357,3 +358,10 @@ a.dl {
     cursor: pointer !important;
     pointer-events: painted !important;
   }
+  .swiper-button-next, .swiper-rtl .swiper-button-prev {
+    background: black;
+    border-radius: 42px;
+    border: 2px solid rgba(255, 255, 255, 1);
+    width: 42px;
+    height: 42px;
+}
