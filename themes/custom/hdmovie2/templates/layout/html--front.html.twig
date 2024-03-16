@@ -23,6 +23,7 @@
 <link rel="stylesheet" id="dooplay-css" href="/themes/custom/hdmovie2/asset/front.style.min.css?{{random_s}}" type="text/css" media="all">
 <link rel="stylesheet" id="dooplay-color-scheme-css" href="/themes/custom/hdmovie2/asset/colors.dark.min.css?{{random_s}}" type="text/css" media="all">
 <link rel="stylesheet" id="dooplay-responsive-css" href="/themes/custom/hdmovie2/asset/front.mobile.min.css?{{random_s}}" type="text/css" media="all">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
 {{ drupal_region('head_top')|raw }}
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GYYNXLQBXX"></script>
@@ -119,8 +120,53 @@
 <footer class="main">
 {% include '@hdmovie2/template-parts/footer.html.twig' %}
 </footer>
+<style>
+.swiper {
+  width: 100%;
+/*   height: 100%; */
+}
+
+.swiper-slide {
+ 
+}
+
+</style>
+<div class="swiper horizontal_scroll_swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <img src="https://wizardinfosys.com/assets/img/brands/ask-fino-logo.svg" alt="img">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://wizardinfosys.com/assets/img/brands/dolm-it-logo.svg" alt="img">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://wizardinfosys.com/assets/img/brands/logo-ovision.svg" alt="img">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://wizardinfosys.com/assets/img/brands/Makena-Logo-site.png" alt="img">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://wizardinfosys.com/assets/img/brands/minoxidil.png" alt="img">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://wizardinfosys.com/assets/img/brands/Subcodev_white.png" alt="img">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://wizardinfosys.com/assets/img/brands/westbaywebsite.png" alt="img">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://wizardinfosys.com/assets/img/brands/antidote.png" alt="img">
+    </div>
+    <div class="swiper-slide">
+      <img src="https://wizardinfosys.com/assets/img/brands/switch-rates.png" alt="img">
+    </div>
+  </div>
+  <div class="swiper-scrollbar"></div>
+</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script type="text/javascript" src="/themes/custom/hdmovie2/asset/script.js?{{random_s}}" id="scripts-js"></script>
 
 

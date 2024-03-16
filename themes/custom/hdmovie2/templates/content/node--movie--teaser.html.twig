@@ -5,7 +5,7 @@
                {% set image_url = content.field_image_urls.0 %}
               {% endif %}
               {% set image_url = node.field_image_urls.0.value %}
-<article class="item movies">
+<article class="item movies swiper-slide">
 <div class="poster">
 <img src="{{image_url}}" alt="{{node.label}}">
 <div class="rating"> {% for key,value in node.field_right.getValue %}

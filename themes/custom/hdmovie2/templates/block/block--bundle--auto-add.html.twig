@@ -3,6 +3,16 @@
     <h2>{{ label }}</h2>
   {% endif %}
 </header>
-<div class="items featured">
+<div class="swiper horizontal_scroll_swiper">
+<div class="items featured swiper-wrapper">
 {{ content }}
+</div>
+ <div class="swiper-pagination"></div>
+
+    <!-- scrollbar -->
+    <div class="swiper-scrollbar"></div>
+
+    <!-- buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
 </div>

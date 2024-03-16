@@ -178,7 +178,9 @@ var js = {};
         }
     })
 }(jQuery);
+
 $(document).ready(function() {
+   
    
     
     $('a.splash-image,#seasons .les-content a,.idTabs li,#dl').click(function(){
@@ -265,3 +267,39 @@ $(document).ready(function(){
   e.stopPropagation();
 });
 });
+
+var swiper = new Swiper(".horizontal_scroll_swiper", {
+    //slidesPerView: 5.5,
+    breakpoints: {
+        1920: {
+          slidesPerView: 6.5,
+          slidesPerGroup: 6
+        },
+        992: {
+          slidesPerView: 5.5,
+          slidesPerGroup: 5
+        },
+        320: {
+           slidesPerView: 3.3,
+           slidesPerGroup: 3
+        }
+    },
+    // centeredSlides: true,
+    spaceBetween: 0,
+    // grabCursor: true,
+    // pagination: {
+    //   el: ".swiper-pagination",
+    //   clickable: true,
+    // },
+    freeMode: true,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      scrollbar: {
+        el: '.swiper-scrollbar',
+        draggable: true,
+        dragSize: 50
+      },
+    mousewheel: true,
+  });
