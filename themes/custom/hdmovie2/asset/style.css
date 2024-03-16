@@ -332,6 +332,10 @@ a.dl {
 .module .content .items.scroll .item .data {
     display: grid !important;
 }
+.swiper-button-next,.swiper-button-prev {
+
+display: none !important;
+}
 }
 .swiper-scrollbar-drag {
 
@@ -365,3 +369,4 @@ a.dl {
     width: 42px !important;
     height: 42px !important;
 }
+
