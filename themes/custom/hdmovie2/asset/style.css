@@ -337,6 +337,10 @@ a.dl {
 display: none !important;
 }
 }
+.swiper {
+    width: 100%;
+    
+}
 .swiper-scrollbar-drag {
 
     background: white !important;
