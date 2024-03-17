@@ -270,11 +270,22 @@ curl_close($ch);
 // exit;
 // $json = file_get_contents('http://13.200.103.33/hello.php?url='.$url);
   $obj = json_decode($server_output);
-  
-  if(@$obj->first){
-  $obj->first = str_replace("_l/","_h/",$obj->first);
+
  
-  $obj->second = str_replace("_l/","_h/",$obj->second);
+  
+
+  if(@$obj->first){
+  $obj->first2 = str_replace("_l/","_h/",$obj->first);
+  $ch = curl_init('https://hdmovies2.online/convert.php?url='.$obj->first2);
+  curl_setopt($ch, CURLOPT_NOBODY, true);
+  curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+  curl_exec($ch);
+  print curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200){  
+    $obj->first = $obj->first2;
+    $obj->second = str_replace("_l/","_h/",$obj->second);
+  }
   }
   if(@$obj->first){
   //  $m3_direct=$node->get('field_m3_direct')->getValue()[0]['value'];
