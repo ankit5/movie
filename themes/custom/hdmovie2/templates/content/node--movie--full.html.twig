@@ -42,6 +42,18 @@
              </div>
              </div>
 {% endif %}
+{% if node.field_download_url.20.value %} 
+            <div id="seasons">
+            <div class="tvseason">
+            <div class="les-content" style="display: block;padding: 0;">
+            {% for key,value in node.field_download_url.getValue %}
+             <a href="javascript:void(0)" data-value="{{ node.id }}" data-key="{{ key }}" data-types="eps"> Episode {{ key+1 }} </a> 
+             {% set key = key+1 %}
+             {% endfor %}
+             </div>
+             </div>
+             </div>
+{% endif %}
 <div class="dooplay_player" style="display:none">
 <h2>Video Sources <span id="playernotice" data-text="157 082 128 Views"></span> </h2>
 <div id="playeroptions" class="options pmovie__big-btns d-flex jc-center">
