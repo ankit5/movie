@@ -100,7 +100,7 @@
 <div class="starstruck-ptype" style="">
 <div>
 <meta itemprop="name" content="{{ node.label }}">
-<div itemscope="" class="starstruck-wrap" itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating">
+<div itemscope="" class="starstruck-wrap" >
 <div class="dt_rating_data">
 <div class="starstruck-rating">
   {% for key,value in node.field_right.getValue %}
@@ -112,7 +112,7 @@
 
                     {% for key,value in node.field_right.getValue %}
                          {% if 'TMDb:' in value['value'] %}
-                        <span class="dt_rating_vgs" itemprop="ratingValue">{{ value['value']|replace({ 'TMDb:': '' }) }}</span><i class="fas fa-user-circle"></i>
+                        <span class="dt_rating_vgs" >{{ value['value']|replace({ 'TMDb:': '' }) }}</span><i class="fas fa-user-circle"></i>
 <span class="rating-text">TMDb</span>
                          {% endif %}
                    {% endfor %}
