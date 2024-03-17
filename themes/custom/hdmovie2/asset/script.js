@@ -252,6 +252,7 @@ $(document).ready(function(){
         success: function( data ) {
         $('.items_glossary').css('display','block');
 			$targetBox.html('<div class="items animation-2 content">'+data+'</div>');
+            swipercall();
         }
       });
 
@@ -267,7 +268,8 @@ $(document).ready(function(){
   e.stopPropagation();
 });
 });
-
+swipercall();
+function swipercall(){
 var swiper = new Swiper(".horizontal_scroll_swiper", {
     //slidesPerView: 5.5,
     breakpoints: {
@@ -303,3 +305,4 @@ var swiper = new Swiper(".horizontal_scroll_swiper", {
       },
     mousewheel: true,
   });
+}
