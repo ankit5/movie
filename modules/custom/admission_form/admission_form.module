@@ -4,12 +4,45 @@ use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\file\FileInterface;
-
-
+use Drupal\node\Entity\Node;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 use Drupal\views\ViewExecutable;
+
+/** 
+* Implements hook_tokens(). 
+*/
+function admission_form_tokens($type, $tokens, array $data, array $options, \Drupal\Core\Render\BubbleableMetadata $bubbleable_metadata) {
+ 
+$token_service = \Drupal::token(); 
+$replacements = []; 
+ 
+if ($type == 'node' && !empty($data['node'])) { 
+
+$node = $data['node']; 
+
+ //$node = Node::load($node->id());
+ //print_r($node->field_url->value);
+//exit;
+foreach ($tokens as $name => $original) { 
+switch ($name) { 
+ 
+// Simple key values on the node. 
+case 'field_url':
+$url = basename($node->field_url->value);
+$replacements[$original] = $url; 
+break; 
+ 
+
+}
+}
+ 
+
+} 
+ 
+return $replacements; 
+}
 
 function admission_form_views_pre_render(ViewExecutable $view) {
     switch ($view->id()){
