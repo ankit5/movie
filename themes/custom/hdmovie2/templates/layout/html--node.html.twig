@@ -9,7 +9,7 @@
 <meta property="og:site_name" content="Hdmovie2 - Watch Online Movies Free Download | Stream Movies Online Free Download">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{{page.title}}">
-<meta property="og:url" content="{{ url('<current>') }}">
+<meta property="og:url" content="{{page.url}}">
 <meta property="og:image" content="{{page.image_url}}">
 <meta property="og:description" content="{{page.body_value}}">
 <link rel="canonical" href="{{ url('<current>') }}">
@@ -30,7 +30,6 @@
 <link rel="stylesheet" id="dooplay-color-scheme-css" href="/themes/custom/hdmovie2/asset/colors.dark.min.css?{{random_s}}" type="text/css" media="all">
 <link rel="stylesheet" id="dooplay-responsive-css" href="/themes/custom/hdmovie2/asset/front.mobile.min.css?{{random_s}}" type="text/css" media="all">
 {{ drupal_region('head_top')|raw }}
-<head-placeholder token="{{ placeholder_token|raw }}">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GYYNXLQBXX"></script>
 <script>
@@ -47,7 +46,7 @@
 <div id="contenedor">
 <div id="single" class="dtsingle" itemscope="" itemtype="http://schema.org/Movie">
 <div class="content right normal">
-{{ page }}
+{{ page.content }}
 </div>
 
 
