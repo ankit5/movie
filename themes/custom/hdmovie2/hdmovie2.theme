@@ -71,7 +71,7 @@ function hdmovie2_preprocess_html(array &$variables) {
     $nid = $node->id();
     $variables['page']['title'] = $node->title->value;
     $variables['page']['url'] = $node->toUrl();
-    $variables['page']['image_url'] = $node->field_image_urls->value;
+    $variables['page']['image_url'] = (isset($node->field_image_urls->value))?$node->field_image_urls->value:'';
     $variables['page']['body_value'] = $node->body->value;
      }
   $variables['random_s'] = generateRandomString();
