@@ -1,41 +1,109 @@
-{#
-/**
- * @file
- * Tara's theme implementation to display front page.
- *
- * The doctype, html, head and body tags are not in this template. Instead they
- * can be found in the html.html.twig template.
- *
- */
-#}
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="utf-8">
+<title>Hdmovie2 - Watch Online Movies Free Download | Stream Movies Online Free Download</title>
+<meta name="description" content="Hdmovie2, Watch and download Latest Bollywood Movies Free, Stream Movies Online Free Download, Latest Bollywood Movies | Tamil HD Movies | Teague Movies | Hindi Dubbed Movies.">
+<meta name="keywords" content="">
+<meta name="generator" content="Allmovieland Engine">
+<link rel="canonical" href="{{site_url}}">
+<link rel="apple-touch-icon" href="{{site_url}}themes/custom/hdmovie2/asset/favicon-1.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="theme-color" content="#000000">
+<link rel="shortcut icon" href="{{site_url}}themes/custom/hdmovie2/asset/favicon-1.png" type="image/x-icon">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="stylesheet" id="fontawesome-pro-css" href="/themes/custom/hdmovie2/asset/all.min.css?{{random_s}}" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="/themes/custom/hdmovie2/asset/style.css?{{random_s}}" type="text/css" media="all">
+<style id="google-fonts-css" media="all">
+		 @font-face {font-family: 'Roboto';font-style: normal;font-weight: 300;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fCRc4EsA.woff2) format('woff2');unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 300;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fABc4EsA.woff2) format('woff2');unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 300;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fCBc4EsA.woff2) format('woff2');unicode-range: U+1F00-1FFF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 300;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fBxc4EsA.woff2) format('woff2');unicode-range: U+0370-03FF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 300;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fCxc4EsA.woff2) format('woff2');unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 300;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fChc4EsA.woff2) format('woff2');unicode-range: U+0100-02AF, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 300;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fBBc4.woff2) format('woff2');unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 400;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format('woff2');unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 400;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu5mxKOzY.woff2) format('woff2');unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 400;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu7mxKOzY.woff2) format('woff2');unicode-range: U+1F00-1FFF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 400;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4WxKOzY.woff2) format('woff2');unicode-range: U+0370-03FF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 400;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu7WxKOzY.woff2) format('woff2');unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 400;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format('woff2');unicode-range: U+0100-02AF, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 400;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 500;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fCRc4EsA.woff2) format('woff2');unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 500;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2) format('woff2');unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 500;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2) format('woff2');unicode-range: U+1F00-1FFF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 500;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBxc4EsA.woff2) format('woff2');unicode-range: U+0370-03FF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 500;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fCxc4EsA.woff2) format('woff2');unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 500;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fChc4EsA.woff2) format('woff2');unicode-range: U+0100-02AF, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 500;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format('woff2');unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 700;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfCRc4EsA.woff2) format('woff2');unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 700;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfABc4EsA.woff2) format('woff2');unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 700;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfCBc4EsA.woff2) format('woff2');unicode-range: U+1F00-1FFF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 700;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBxc4EsA.woff2) format('woff2');unicode-range: U+0370-03FF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 700;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfCxc4EsA.woff2) format('woff2');unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 700;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfChc4EsA.woff2) format('woff2');unicode-range: U+0100-02AF, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face {font-family: 'Roboto';font-style: normal;font-weight: 700;font-display: swap;src: url(//fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc4.woff2) format('woff2');unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+		</style>
+<link rel="stylesheet" id="dooplay-css" href="/themes/custom/hdmovie2/asset/front.style.min.css?{{random_s}}" type="text/css" media="all">
+<link rel="stylesheet" id="dooplay-color-scheme-css" href="/themes/custom/hdmovie2/asset/colors.dark.min.css?{{random_s}}" type="text/css" media="all">
+<link rel="stylesheet" id="dooplay-responsive-css" href="/themes/custom/hdmovie2/asset/front.mobile.min.css?{{random_s}}" type="text/css" media="all">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+{{ drupal_region('head_top')|raw }}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GYYNXLQBXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GYYNXLQBXX');
+</script>
+</head>
+<body class="home blog">
+
+{% include '@hdmovie2/template-parts/header.html.twig' %}
+
+<div id="contenedor">
+<div class="letter_home">
+<div class="fixresp">
+<ul class="glossary">
+<li><a class="lglossary" data-ajaxc="a-z">#</a></li>
+<li><a class="lglossary" data-ajaxc="a">A</a></li>
+<li><a class="lglossary" data-ajaxc="b">B</a></li>
+<li><a class="lglossary" data-ajaxc="c">C</a></li>
+<li><a class="lglossary" data-ajaxc="d">D</a></li>
+<li><a class="lglossary" data-ajaxc="e">E</a></li>
+<li><a class="lglossary" data-ajaxc="f">F</a></li>
+<li><a class="lglossary" data-ajaxc="g">G</a></li>
+<li><a class="lglossary" data-ajaxc="h">H</a></li>
+<li><a class="lglossary" data-ajaxc="i">I</a></li>
+<li><a class="lglossary" data-ajaxc="j">J</a></li>
+<li><a class="lglossary" data-ajaxc="k">K</a></li>
+<li><a class="lglossary" data-ajaxc="l">L</a></li>
+<li><a class="lglossary" data-ajaxc="m">M</a></li>
+<li><a class="lglossary" data-ajaxc="n">N</a></li>
+<li><a class="lglossary" data-ajaxc="o">O</a></li>
+<li><a class="lglossary" data-ajaxc="p">P</a></li>
+<li><a class="lglossary" data-ajaxc="q">Q</a></li>
+<li><a class="lglossary" data-ajaxc="r">R</a></li>
+<li><a class="lglossary" data-ajaxc="s">S</a></li>
+<li><a class="lglossary" data-ajaxc="t">T</a></li>
+<li><a class="lglossary" data-ajaxc="u">U</a></li>
+<li><a class="lglossary" data-ajaxc="v">V</a></li>
+<li><a class="lglossary" data-ajaxc="w">W</a></li>
+<li><a class="lglossary" data-ajaxc="x">X</a></li>
+<li><a class="lglossary" data-ajaxc="y">Y</a></li>
+<li><a class="lglossary" data-ajaxc="z">Z</a></li>
+</ul>
+</div>
+<div class="items_glossary module" style="display: none;"></div>
+</div>
+<div class="module">
+<div class="content right normal">
+<header>
+<h2>Hdmovie2 - Watch Online Movies Free Download</h2>
+<p></p>
+</header>
+<div class="search-page">
+<div class="search_page_form">
+<form method="get" action="/search" id="searchformpage">
+<input type="text" placeholder="Search Movie.." name="title" id="story" value="">
+<button type="submit"><span class="fas fa-search"></span></button>
+</form>
+</div>
+</div>
+{{ page.content_home }}
+
+{% include '@hdmovie2/template-parts/sidebar.html.twig' %}
+
+</div>
+</div>
+<footer class="main">
+{% include '@hdmovie2/template-parts/footer.html.twig' %}
+</footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="/themes/custom/hdmovie2/asset/script.js?{{random_s}}" id="scripts-js"></script>
 
 
-<div id="main-wrapper" class="main-wrapper">
-{% include '@psyplay/template-parts/header.html.twig' %}
-
-
- <div class="header-pad"></div>
-    <div id="main" style="padding-top: 0px;">
-      <div class="container">
-        
-       
-       
-
-
-   <div class="main-content">
-   <h1 class="home-title">Hdmovie2 - Watch Free Movies, Tv Shows and Web Series Online</h1>
-   {{ page.content_home }}
-         
-  </div>
-
-
-
-    
-
-  </div> 
-   </div> 
-
-  {% include '@psyplay/template-parts/footer.html.twig' %} 
- 
-		
-</div><!-- /main-wrapper -->
+<div id="popupMenu"></div>
+</body>
+</html>
