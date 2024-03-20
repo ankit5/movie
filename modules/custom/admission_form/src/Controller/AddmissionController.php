@@ -301,7 +301,7 @@ $pieces = array_chunk($pieces, 2);
 // echo "</pre>";
   
   $download_link= '';
-  $download_link .= '<a href="https://m3u8downloader.hdmovies2.online/?name='.$node->title->value.'&qt='.findResolution($pieces[0][0]).'&source='.$pieces[0][1].'" target="_blank" class="lnk-lnk lnk-1"> 
+  $download_link .= '<a href="https://download.hdmovies2.online/?name='.$node->title->value.'&qt='.findResolution($pieces[0][0]).'&source='.$pieces[0][1].'" target="_blank" class="lnk-lnk lnk-1"> 
   <button class="dipesh" style="width: 100%;"><i class="fa fa-download"></i>'.findResolution($pieces[0][0]).' Download Now </button>
     </a>';
   if(isset($pieces[1][1])) {
@@ -309,7 +309,7 @@ $pieces = array_chunk($pieces, 2);
      $obj->first = str_replace("https://hdmovies2.online/convert.php?url=","",$pieces[1][1]);
     //  print $obj->first;
     // exit;
-     $download_link .= '<a href="https://m3u8downloader.hdmovies2.online/?name='.$node->title->value.'&qt='.findResolution($pieces[1][0]).'&source='.$pieces[1][1].'" target="_blank" class="lnk-lnk lnk-1"> 
+     $download_link .= '<a href="https://download.hdmovies2.online/?name='.$node->title->value.'&qt='.findResolution($pieces[1][0]).'&source='.$pieces[1][1].'" target="_blank" class="lnk-lnk lnk-1"> 
      <button class="dipesh" style="width: 100%;"><i class="fa fa-download"></i>'.findResolution($pieces[1][0]).' Download Now </button>
        </a>';
   }
