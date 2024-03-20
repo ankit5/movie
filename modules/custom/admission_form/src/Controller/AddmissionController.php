@@ -229,10 +229,17 @@ public function ajaxpost(Request $request)
   $postData->tab = ($postData->tab==0)?0:$postData->tab;
   $url = $node->get('field_episodes')->getValue()[$postData->tab]['value'];
 
- }else {
+ }
+//  elseif(isset($node->get('field_download_url')->getValue()[1]['value'])){
+//   $postData->tab = ($postData->tab==0)?0:$postData->tab;
+//   $url = $node->get('field_download_url')->getValue()[$postData->tab]['value'];
+
+//  }
+ else {
    $url = $node->get('field_url')->getValue()['0']['value'];
    }
-
+// print $url;
+// exit;
  
       $new_var = theme_get_setting('iframe_new_domain_name');
       $oldStr = theme_get_setting('iframe_old_domain_name');
@@ -245,8 +252,8 @@ public function ajaxpost(Request $request)
 if(isset($node->get('field_episodes')->getValue()[0]['value']) || $url)
  {
   
-  // print $url;
-  // exit;
+ // print $url;
+  //exit;
   $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL,"http://13.200.103.33/hello.php");
@@ -262,39 +269,67 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $server_output = curl_exec($ch);
 
 curl_close($ch);
-// print $server_output;
-//   exit;
+//print $server_output;
+ // exit;
 
-// Further processing ...
-//var_dump($server_output);
-// exit;
-// $json = file_get_contents('http://13.200.103.33/hello.php?url='.$url);
   $obj = json_decode($server_output);
 
  
   
 
   if(@$obj->first){
-  $obj->first2 = str_replace("_l/","_h/",$obj->first);
-  $ch = file_get_contents('https://hdmovies2.online/convert.php?url='.$obj->first2);
-  // print $ch;
-  // exit;
+  //$obj->first2 = str_replace("_l/","_h/",$obj->first);
+  $ch = file_get_contents('https://hdmovies2.online/convert.php?url='.$obj->first);
+  
   if($ch!='Not Found'){  
-    $obj->first = $obj->first2;
-    $obj->second = str_replace("_l/","_h/",$obj->second);
+    // process the HLS string
+   // make PHP array
+$pieces = explode("\n", $ch); 
+// remove #EXTM3U
+unset($pieces[0]); 
+// remove unnecessary space from array
+$pieces = array_map('trim', $pieces); 
+// group array elements by two's (1. BANDWIDTH, RESOLUTION  2. LINK) 
+$pieces = array_chunk($pieces, 2); 
+// debug output
+// print findResolution($pieces[0][0]);echo "<br>";
+// print $pieces[0][1];echo "<br>";
+// print findResolution($pieces[1][0]);echo "<br>";
+// print $pieces[1][1];echo "<br>";
+// echo "<pre>";
+// print_r($pieces);
+// echo "</pre>";
+  
+  $download_link= '';
+  $download_link .= '<a href="https://m3u8downloader.hdmovies2.online/?name='.$node->title->value.'&source='.$pieces[0][1].'" target="_blank" class="lnk-lnk lnk-1"> 
+  <button class="dipesh" style="width: 100%;"><i class="fa fa-download"></i>'.findResolution($pieces[0][0]).' Download Now </button>
+    </a>';
+  if(isset($pieces[1][1])) {
+    
+     $obj->first = str_replace("https://hdmovies2.online/convert.php?url=","",$pieces[1][1]);
+    //  print $obj->first;
+    // exit;
+     $download_link .= '<a href="https://m3u8downloader.hdmovies2.online/?name='.$node->title->value.'&source='.$pieces[1][1].'" target="_blank" class="lnk-lnk lnk-1"> 
+     <button class="dipesh" style="width: 100%;"><i class="fa fa-download"></i>'.findResolution($pieces[1][0]).' Download Now </button>
+       </a>';
+  }
+  //  $obj->second = str_replace("_l/","_h/",$obj->second);
+   
   }
   }
   if(@$obj->first){
   //  $m3_direct=$node->get('field_m3_direct')->getValue()[0]['value'];
-    $urlde = urlencode($obj->second);
-    $urlde = str_replace("%","%25",$urlde);
+  //  $urlde = urlencode($obj->second);
+  //  $urlde = str_replace("%","%25",$urlde);
     
-    print '<a href="https://m3u8downloader.hdmovies2.online/?name='.$node->title->value.'&source=https://hdmovies2.online/convert.php?url='.$obj->second.'" target="_blank" class="lnk-lnk lnk-1"> 
-    <button class="dipesh" style="width: 100%;"><i class="fa fa-download"></i> Download Now </button>
-      </a>
+    print $download_link.'
     <div class="video-container"><iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://hdmovies2.online/player.php?m3_direct=&url='.urlencode($obj->first).'">
       </iframe>
     </div>';
+    // print '
+    // <div class="video-container"><iframe frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://hdmovies2.online/player.php?m3_direct=&url='.urlencode($obj->first).'">
+    //   </iframe>
+    // </div>';
     
   }
  
@@ -313,4 +348,12 @@ public function genrate(){
  
 }
 
+}
+function findResolution($string){
+  $array = explode(",",$string);
+  foreach ($array as $item){
+      if (strpos($item,"RESOLUTION")!==false){
+          return str_replace("RESOLUTION=","",$item);
+      }
+  }
 }
