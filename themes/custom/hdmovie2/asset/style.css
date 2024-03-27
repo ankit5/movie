@@ -337,9 +337,15 @@ a.dl {
 display: none !important;
 }
 }
+.module .content .items .item .data {
+    height: 67px;
+}
 .swiper {
     width: 100%;
     
+}
+.module .content .swiper .items .item .data {
+    height: inherit;
 }
 .swiper-scrollbar-drag {
 
