@@ -269,18 +269,21 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $server_output = curl_exec($ch);
 
 curl_close($ch);
-//print $server_output;
- // exit;
+// print $server_output;
+//  exit;
 
   $obj = json_decode($server_output);
 
+  $convert_url = 'https://hdmovies2.online';
+  //$convert_url = 'http://localhost:8007';
  
-  
 
   if(@$obj->first){
   //$obj->first2 = str_replace("_l/","_h/",$obj->first);
-  $ch = file_get_contents('https://hdmovies2.online/convert.php?url='.$obj->first);
+  $ch = file_get_contents($convert_url.'/convert.php?url='.$obj->first);
   
+  // print $ch;
+  // exit;
   if($ch!='Not Found'){  
     // process the HLS string
    // make PHP array
@@ -299,14 +302,15 @@ $pieces = array_chunk($pieces, 2);
 // echo "<pre>";
 // print_r($pieces);
 // echo "</pre>";
-  
+// exit;
   $download_link= '';
-  $download_link .= '<a href="https://download.hdmovies2.online/?name='.$node->title->value.'&qt='.findResolution($pieces[0][0]).'&source='.$pieces[0][1].'" target="_blank" class="lnk-lnk lnk-1"> 
+  $query_string = doEncrypt('name='.$node->title->value.'&qt='.findResolution($pieces[0][0]).'&source='.$pieces[0][1]);
+  $download_link .= '<a href="https://download.hdmovies2.online/?'.$query_string.'" target="_blank" class="lnk-lnk lnk-1"> 
   <button class="dipesh" style="width: 100%;"><i class="fa fa-download"></i>'.findResolution($pieces[0][0]).' Download Now </button>
     </a>';
   if(isset($pieces[1][1])) {
     
-     $obj->first = str_replace("https://hdmovies2.online/convert.php?url=","",$pieces[1][1]);
+     $obj->first = str_replace($convert_url."/convert.php?url=","",$pieces[1][1]);
     //  print $obj->first;
     // exit;
      $download_link .= '<a href="https://download.hdmovies2.online/?name='.$node->title->value.'&qt='.findResolution($pieces[1][0]).'&source='.$pieces[1][1].'" target="_blank" class="lnk-lnk lnk-1"> 
@@ -357,3 +361,29 @@ function findResolution($string){
       }
   }
 }
+// I'm paranoid OK!
+$crypt_key = "oru-9(£20fjasdiofewfqwfh;klncsahei223gfpaoeighew";
+
+	//Encrypt Function
+	function doEncrypt($encrypt)
+	{
+		global $crypt_key;
+		
+		$iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND);
+		$passcrypt = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $crypt_key, $encrypt, MCRYPT_MODE_ECB, $iv);
+		$encode = base64_encode($passcrypt);
+		
+		return $encode;
+	}
+
+	//Decrypt Function
+	function doDecrypt($decrypt)
+	{
+		global $crypt_key;
+		
+		$decoded = base64_decode($decrypt);
+		$iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND);
+		$decrypted = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $crypt_key, $decoded, MCRYPT_MODE_ECB, $iv);
+		
+		return str_replace("\\0", '', $decrypted);
+	}
