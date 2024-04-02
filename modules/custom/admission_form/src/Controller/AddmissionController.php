@@ -362,13 +362,13 @@ function findResolution($string){
   }
 }
 // I'm paranoid OK!
-$crypt_key = "oru-9(£20fjasdiofewfqwfh;klncsahei223gfpaoeighew";
+
 
 	//Encrypt Function
 	function doEncrypt($encrypt)
 	{
 		global $crypt_key;
-		
+		$crypt_key = "oru-9(£20fjasdiofewfqwfh;klncsahei223gfpaoeighew";
 		$iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND);
 		$passcrypt = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $crypt_key, $encrypt, MCRYPT_MODE_ECB, $iv);
 		$encode = base64_encode($passcrypt);
