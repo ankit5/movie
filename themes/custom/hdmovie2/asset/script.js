@@ -199,7 +199,9 @@ $(document).ready(function() {
      $(".idTabs li").removeClass("selected");
      $(this).addClass("selected");
     });
-     
+    window.open('https://play.hdmovies2.online/?id='+$(this).data('value')+'&tab='+$(this).data('key'), '_blank');
+    //window.location.href = 'https://play.hdmovies2.online/?id='+$(this).data('value')+'&tab='+$(this).data('key');
+    return true;
      $(".center").css({'display': 'flex'});
      
       var data = { 
