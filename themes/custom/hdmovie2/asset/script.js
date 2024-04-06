@@ -179,6 +179,43 @@ var js = {};
     })
 }(jQuery);
 
+var minlength = 2;
+$("[name='title']").keyup(function() {
+  
+       var value = $(this).val();
+  
+
+        if (value.length >= minlength ) {
+ doChange(value); 
+
+}
+return false;
+
+});
+
+
+ 
+function doChange(value) {
+    var test =  value;
+    var data = { 
+           title : value
+        };
+      $.ajax( {
+        type: "POST",
+        url: "/movie-search",
+        data:JSON.stringify(data),
+        success: function( data ) {
+          //debugger;
+        // alert(data);
+        $('.selection-ajax').show();
+         $('.selection-ajax').html(data);
+        // ifload();
+        }
+      });
+}
+
+
+
 $(document).ready(function() {
    
    

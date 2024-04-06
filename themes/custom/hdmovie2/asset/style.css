@@ -380,3 +380,16 @@ display: none !important;
     height: 42px !important;
 }
 
+.selection-ajax{
+    position: absolute;
+    top: 50px;
+    background-color: black;
+    z-index: 1000;
+    width: 100%;
+}
+
+.selection-ajax .dipesh{
+    width: 100%;
+    float: left;
+    text-align: center;
+}
