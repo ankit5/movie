@@ -415,7 +415,7 @@ function druxt_node_preview_frontends() {
   return $options;
 }
 
-function admission_form_update_8001() {
+function admission_form_update2_8001() {
   // Prepare relevant variables.
   $entity_type  = 'node';
   $field_name   = 'field_image_urls';
