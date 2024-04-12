@@ -116,7 +116,7 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
   }
 //  exit;
 if($load==''){ return true; }
-print "load";
+print ".";
    $message2 = getmovie($node->field_url->value,$node->field_id->value);
 
 // print "load";
