@@ -100,39 +100,23 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
     $message = 'Replacing langcode(und to de)...';
     
- if($m3_direct=$node->field_m3_direct->value=="yes"){
-  return true; 
- }
-  
-    /*print $node->field_trailer->value;
-exit;*/
-//if($node->field_left->value!='' && $node->field_trailer->value!=''){
-  if (str_contains($node->field_image_urls->value, 'imagetot.com')) {
-   
-//     $ch = curl_init($node->field_image_urls->value);
-// curl_setopt($ch, CURLOPT_NOBODY, true);
-// curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-// curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
-// $str = curl_exec($ch);
-// // print curl_getinfo($ch, CURLINFO_HTTP_CODE);
-// // exit;
-// curl_close($ch);
-// if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
-// {
- 
-//   return true;  // Found Image
-// }
+//  if($m3_direct=$node->field_m3_direct->value=="yes"){
+//   return true; 
+//  }
+  $load ='';
 
-    }
-  else 
-  if($node->field_left->value!='' && $node->field_image_urls->value!=''){
-    return true;
-
+  if($node->field_left->value==''){
+    $load =1;
+  } 
+  if($node->field_image_urls->value==''){
+    $load =1;
   }
- print "load";
+  if(str_contains($node->field_player->value, 'movembed')){
+    $load =1;
+  }
 //  exit;
-
- 
+if($load==''){ return true; }
+print "load";
    $message2 = getmovie($node->field_url->value,$node->field_id->value);
 
 // print "load";
