@@ -61,28 +61,31 @@ function admission_form_views_pre_render(ViewExecutable $view) {
         );
             }
              if ($view->id()=='country'){
-               $title = $view->args[0];
-               $view->setTitle('Search for '.$title); 
+               $title = explode("-", $view->args[0]);
+                $title = $title[0]." ".$title[1];
+               $view->setTitle('Search for '.ucfirst($title)); 
  
              }
              if ($view->id()=='director'){
-               $director = explode("-", $view->args[0]);
-                $director = $director[0]." ".$director[1];
-               $view->setTitle('Search for '.ucfirst($director)); 
+               $title = explode("-", $view->args[0]);
+                $title = $title[0]." ".$title[1];
+               $view->setTitle('Search for '.ucfirst($title)); 
  
              }
        
 }
 function admission_form_views_pre_view(ViewExecutable $view) {
  if ($view->id()=='country'){
-   $exposed_filters = ['field_left_value' => $view->args[0]];
+     $title = explode("-", $view->args[0]);
+     $title = $title[0]." ".$title[1];
+     $exposed_filters = ['field_left_value' => $title];
      $view->setExposedInput($exposed_filters);
      }
 
      if ($view->id()=='director'){
-      $director = explode("-", $view->args[0]);
-      $director = $director[0];
-   $exposed_filters = ['title' => $director];
+     $title = explode("-", $view->args[0]);
+     $title = $title[0];
+     $exposed_filters = ['title' => $title];
      $view->setExposedInput($exposed_filters);
      }
 }
