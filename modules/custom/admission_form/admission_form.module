@@ -7,6 +7,7 @@ use Drupal\file\FileInterface;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\views\Views;
 
 use Drupal\views\ViewExecutable;
 
@@ -44,10 +45,9 @@ break;
 return $replacements; 
 }
 
+
 function admission_form_views_pre_render(ViewExecutable $view) {
-    switch ($view->id()){
-        case 'search':
-            if ($view->current_display == 'page_1'){
+  if ($view->id()=='search' && $view->current_display == 'page_1'){
               $values = $view->getExposedInput();
               if(isset($values["title"])){
 
@@ -60,8 +60,31 @@ function admission_form_views_pre_render(ViewExecutable $view) {
             $values["title"]
         );
             }
-            break;
-    }
+             if ($view->id()=='country'){
+               $title = $view->args[0];
+               $view->setTitle('Search for '.$title); 
+ 
+             }
+             if ($view->id()=='director'){
+               $director = explode("-", $view->args[0]);
+                $director = $director[0]." ".$director[1];
+               $view->setTitle('Search for '.ucfirst($director)); 
+ 
+             }
+       
+}
+function admission_form_views_pre_view(ViewExecutable $view) {
+ if ($view->id()=='country'){
+   $exposed_filters = ['field_left_value' => $view->args[0]];
+     $view->setExposedInput($exposed_filters);
+     }
+
+     if ($view->id()=='director'){
+      $director = explode("-", $view->args[0]);
+      $director = $director[0];
+   $exposed_filters = ['title' => $director];
+     $view->setExposedInput($exposed_filters);
+     }
 }
 
 function admission_form_views_query_alter(Drupal\views\ViewExecutable $view, Drupal\views\Plugin\views\query\Sql  $query) { 

@@ -31,42 +31,8 @@ admission_form.autosearch:
   requirements:
     _permission: 'access content'
 
-admission_form.erroesolve:
-  path: '/admin/admin/structure/types/manage/movie/fields/node.movie.field_image_urls'
-  defaults:
-    _controller: 'Drupal\admission_form\Controller\AddmissionController::erroesolve'
-    _title: 'Search'
-  requirements:
-    _permission: 'access content'
-
-admission_form.erroesolvestorage:
-  path: '/admin/admin/structure/types/manage/movie/fields/node.movie.field_image_urls/storage'
-  defaults:
-    _controller: 'Drupal\admission_form\Controller\AddmissionController::erroesolve'
-    _title: 'Search'
-  requirements:
-    _permission: 'access content'
-
-admission_form.erroesolvedelete:
-  path: '/admin/admin/structure/types/manage/movie/fields/node.movie.field_m3_direct/delete'
-  defaults:
-    _controller: 'Drupal\admission_form\Controller\AddmissionController::erroesolve'
-    _title: 'Search'
-  requirements:
-    _permission: 'access content'
-
-admission_form.erroesolvemestorage:
-  path: '/admin/admin/structure/types/manage/movie/fields/node.movie.field_m3_direct/storage'
-  defaults:
-    _controller: 'Drupal\admission_form\Controller\AddmissionController::erroesolve'
-    _title: 'Search'
-  requirements:
-    _permission: 'access content'
-
-
-
 admission_form.director:
-  path: '/director/{director}'
+  path: '/director-old/{director}'
   defaults:
     _title_callback: 'Drupal\admission_form\Controller\AddmissionController::directorTitle'
     _controller: 'Drupal\admission_form\Controller\AddmissionController::director'

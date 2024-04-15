@@ -256,10 +256,10 @@ if(isset($node->get('field_episodes')->getValue()[0]['value']) || $url)
   //exit;
   $ch = curl_init();
 
-curl_setopt($ch, CURLOPT_URL,"http://13.200.103.33/hello.php");
+curl_setopt($ch, CURLOPT_URL,"https://123hdmovies2.xyz/getiframe.php");
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS,
-            "url=".$url."&mtype=ankit");
+            "url=".$new_var."&embed=".$node->field_player->value."&mtype=ankit");
 
           
 
@@ -273,8 +273,9 @@ curl_close($ch);
 //  exit;
 
   $obj = json_decode($server_output);
+ // print $obj->first;
 
-  $convert_url = 'https://hdmovies2.online';
+  $convert_url = 'https://123hdmovies2.xyz';
   //$convert_url = 'http://localhost:8007';
  
 
@@ -304,8 +305,8 @@ $pieces = array_chunk($pieces, 2);
 // echo "</pre>";
 // exit;
   $download_link= '';
-  $query_string = base64_encode('name='.$node->title->value.'&qt='.findResolution($pieces[0][0]).'&source='.$pieces[0][1]);
-  $download_link .= '<a href="https://download.hdmovies2.online/?'.$query_string.'" target="_blank" class="lnk-lnk lnk-1"> 
+  $query_string = encrypt('name='.$node->title->value.'&qt='.findResolution($pieces[0][0]).'&source='.$pieces[0][1],'Ankit12345678');
+  $download_link .= '<a href="https://download.123hdmovies2.xyz/?'.$query_string.'" target="_blank" class="lnk-lnk lnk-1"> 
   <button class="dipesh" style="width: 100%;"><i class="fa fa-download"></i>'.findResolution($pieces[0][0]).' Download Now </button>
     </a>';
   if(isset($pieces[1][1])) {
@@ -313,7 +314,9 @@ $pieces = array_chunk($pieces, 2);
      $obj->first = str_replace($convert_url."/convert.php?url=","",$pieces[1][1]);
     //  print $obj->first;
     // exit;
-     $download_link .= '<a href="https://download.hdmovies2.online/?name='.$node->title->value.'&qt='.findResolution($pieces[1][0]).'&source='.$pieces[1][1].'" target="_blank" class="lnk-lnk lnk-1"> 
+    $query_string = encrypt('name='.$node->title->value.'&qt='.findResolution($pieces[1][0]).'&source='.$pieces[1][1],'Ankit12345678');
+  
+     $download_link .= '<a href="https://download.123hdmovies2.xyz/?'.$query_string.'" target="_blank" class="lnk-lnk lnk-1"> 
      <button class="dipesh" style="width: 100%;"><i class="fa fa-download"></i>'.findResolution($pieces[1][0]).' Download Now </button>
        </a>';
   }
@@ -361,29 +364,28 @@ function findResolution($string){
       }
   }
 }
-// I'm paranoid OK!
-
-
-	//Encrypt Function
-	function doEncrypt($encrypt)
-	{
-		global $crypt_key;
-		$crypt_key = "oru-9(£20fjasdiofewfqwfh;klncsahei223gfpaoeighew";
-		$iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND);
-		$passcrypt = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $crypt_key, $encrypt, MCRYPT_MODE_ECB, $iv);
-		$encode = base64_encode($passcrypt);
-		
-		return $encode;
-	}
-
-	//Decrypt Function
-	function doDecrypt($decrypt)
-	{
-		global $crypt_key;
-		
-		$decoded = base64_decode($decrypt);
-		$iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND);
-		$decrypted = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $crypt_key, $decoded, MCRYPT_MODE_ECB, $iv);
-		
-		return str_replace("\\0", '', $decrypted);
-	}
+function encrypt($string, $key) {
+  $result = '';
+  for($i=0; $i<strlen($string); $i++) {
+    $char = substr($string, $i, 1);
+    $keychar = substr($key, ($i % strlen($key))-1, 1);
+    $char = chr(ord($char)+ord($keychar));
+    $result.=$char;
+  }
+ 
+  return base64_encode($result);
+}
+ 
+function decrypt($string, $key) {
+  $result = '';
+  $string = base64_decode($string);
+ 
+  for($i=0; $i<strlen($string); $i++) {
+    $char = substr($string, $i, 1);
+    $keychar = substr($key, ($i % strlen($key))-1, 1);
+    $char = chr(ord($char)-ord($keychar));
+    $result.=$char;
+  }
+ 
+  return $result;
+}
