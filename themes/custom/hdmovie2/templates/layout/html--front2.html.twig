@@ -136,7 +136,8 @@
 <div class="d-flex flex-column min-vh-70 justify-content-center align-items-center"><img src="https://hdmovies2.online/sites/default/files/logohd.png" class="logo-index my-5"  height="73" aria-hidden="false">
 <use xlink:href="#logo"></use>
 </svg>
-<div class="input-group mb-5 w-lg-50"><input id="search-index" name="search-index" class="form-control" type="text" placeholder="Search" aria-label="Search"> <button class="btnsearch btn btn-primary px-3" aria-label="Submit">Submit</button>
+<div class="input-group mb-5 w-lg-50" style="position:relative;"><input id="search-index" name="search" class="form-control" type="text" placeholder="Search" aria-label="Search"> <button class="btnsearch btn btn-primary px-3" aria-label="Submit">Submit</button>
+<div class="selection-ajax"></div>
 </div><a class="btn btn-primary btn-lg mb-2" href="https://hdmovies2.online/hdmovie2/">Use the old hdmovie2 site? Click here</a>
 <div class="container align-content-start text-start mt-2">
 <h1 class="fw-bold fs-5">Hdmovie2 - Watch Online Movies Free Download | Stream Movies Online Free Download</h1>
@@ -206,7 +207,15 @@
 </div>
 <div class="bg-darker text-center py-3">Copyright © 2024 hdmovie2.baby. All Rights Reserved</div>
 </footer>
-
+<style>
+.selection-ajax {
+    position: absolute;
+    top: 50px;
+    background-color: black;
+    z-index: 1000;
+    width: 100%;
+}
+</style>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script src="https://getbootstrap.com/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script>
@@ -217,6 +226,41 @@
   $('.search-btn-icon').click(function(){
     window.location ='/search/'+$("#search").val();   
 });
+var minlength = 2;
+$("[name='search']").keyup(function() {
+  
+       var value = $(this).val();
+  
+
+        if (value.length >= minlength ) {
+ doChange(value); 
+
+}
+return false;
+
+});
+
+
+ 
+function doChange(value) {
+    var test =  value;
+    var data = { 
+           title : value
+        };
+      $.ajax( {
+        type: "POST",
+        url: "/movie-search",
+        data:JSON.stringify(data),
+        success: function( data ) {
+          //debugger;
+        // alert(data);
+        $('.selection-ajax').show();
+         $('.selection-ajax').html(data);
+        // ifload();
+        }
+      });
+}
+
 </script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GYYNXLQBXX"></script>

@@ -129,6 +129,7 @@ $rendered = '<div class="search-page">
 <form method="get" action="/search" id="searchformpage">
 <input type="text" placeholder="Search Movie.." name="title" id="story" value="'.$search.'">
 <button type="submit"><span class="fas fa-search"></span></button>
+<div class="selection-ajax"></div>
 </form>
 </div>
 </div>'.$rendered;
