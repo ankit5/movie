@@ -165,6 +165,7 @@ function hdmovie2_preprocess_node(array &$variables) {
 
    $node->field_image_urls->value = str_replace("www.themoviedb.org","image.tmdb.org",$node->field_image_urls->value);
     $download = substr($node->field_download_url->value, strrpos($node->field_download_url->value, '/') + 1);
+      $download = str_replace(".html","",$download);
     $variables['download'] = $download;
 
   }
