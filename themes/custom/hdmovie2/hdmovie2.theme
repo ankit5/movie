@@ -163,8 +163,9 @@ function hdmovie2_preprocess_node(array &$variables) {
  $node = $variables['node'];
   if ($node->bundle() == 'movie') {
 
-   $node->field_image_urls->value = str_replace("www.themoviedb.org","image.tmdb.org",$node->field_image_urls->value);;
-   
+   $node->field_image_urls->value = str_replace("www.themoviedb.org","image.tmdb.org",$node->field_image_urls->value);
+    $download = substr($node->field_download_url->value, strrpos($node->field_download_url->value, '/') + 1);
+    $variables['download'] = $download;
 
   }
 }
