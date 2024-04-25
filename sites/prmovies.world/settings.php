@@ -852,7 +852,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 // );
 
 $databases['default']['default'] = array (
-  'database' => 'ankitver_movie',
+  'database' => 'ankitver_movienew',
   'username' => 'ankitver_drupal',
   'password' => '8y{a(o-IrhQ~',
   'prefix' => '',
@@ -862,5 +862,6 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 );
+
 
 $settings['config_sync_directory'] = 'sites/123hdmovies2.xyz/files/config_wvvFtcl5_23W0SJYYDcGbJiWSqzKbnLGfYo41Ez94aZND0-HFTDSDnyGTPRE3H5HXHONHJ3W5Q/sync';
