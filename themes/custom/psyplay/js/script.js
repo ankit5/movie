@@ -94,7 +94,7 @@ function doChange() {
    $(document).ready(function() {
    
     
-$('a.splash-image,#seasons .les-content a,.idTabs a').click(function(){
+$('a.splash-image,#seasons .les-content a,.idTabs a,.embed-selector a').click(function(){
  // alert($(this).data('value'));
   
   $('#seasons .les-content a:first').addClass("selected");
@@ -110,13 +110,16 @@ $('.idTabs a').click(function(){
  $(".idTabs a").removeClass("selected");
  $(this).addClass("selected");
 });
- 
+window.open('https://play.123hdmovies2.xyz/?id='+$(this).data('value')+'&tab='+$(this).data('key'), '_blank');
+//window.location.href = 'https://play.hdmovies2.online/?id='+$(this).data('value')+'&tab='+$(this).data('key');
+return true;
  $(".center").css({'display': 'flex'});
  
   var data = { 
             id: $(this).data('value'),
             tab: $(this).data('key')
         };
+    
    $.ajax( {
         type: "POST",
         url: "/ajaxpost",

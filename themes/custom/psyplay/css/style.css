@@ -1255,9 +1255,12 @@ transform: scale(0);
   
 }
 
-
+#sidebar-nav {
+  display: inline-flex !important;
+}
 
 @media screen and (max-width: 1025px){
+ 
   .parentif iframe {
     margin-left: 0px;
     width: 100%;
@@ -1272,6 +1275,9 @@ transform: scale(0);
     }
 
     @media screen and (max-width: 850px){
+      #sidebar-nav {
+        display: block !important;
+      }
       .parentif iframe {
           height: 400px;
       }
@@ -1282,6 +1288,7 @@ transform: scale(0);
       }
 
 @media screen and (max-width: 479px){
+  
 .parentif iframe {
   margin-left: 0px;
     width: 100%;
@@ -1292,3 +1299,4 @@ transform: scale(0);
       margin-top: -54px;
 }
 }
+
