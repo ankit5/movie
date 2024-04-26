@@ -68,7 +68,7 @@ function admission_form_views_pre_render(ViewExecutable $view) {
              }
              if ($view->id()=='director'){
                $title = explode("-", $view->args[0]);
-                $title = $title[0]." ".$title[1];
+                $title = $title[0]." ".@$title[1];
                $view->setTitle('Search for '.ucfirst($title)); 
  
              }
@@ -92,12 +92,16 @@ function admission_form_views_pre_view(ViewExecutable $view) {
 
 function admission_form_views_query_alter(Drupal\views\ViewExecutable $view, Drupal\views\Plugin\views\query\Sql  $query) { 
  //print $view->id();
+  $defaultThemeName = \Drupal::config('system.theme')->get('default');  
+  
 $current_path = \Drupal::service('path.current')->getPath();
 $path_args = explode('/', $current_path);
-if($path_args[1]!='admin'){
- if ($view->id() != "get_year" && $view->id() != 'tag_count' && $view->id() != 'english_series' && $view->id() != 'watchdog' && $view->id() != 'admin_movie') {
+if($path_args[1]!='admin' && $defaultThemeName!='psyplay'){
+ if ($view->id() != "get_year" && $view->id() != 'tag_count') {
   $query->addField('node__field_quality', 'field_quality_value', 'field_quality_value');
+   $query->addField('node__field_tags', 'field_tags_target_id', 'field_tags_target_id');
  // $query->setWhereGroup('AND', 1);
+  $query->addWhere(1, "node__field_tags.field_tags_target_id", '106', "!=");
   $query->addWhere(1, "node__field_quality.field_quality_value", '18+', "!=");
  }
 }

@@ -1,38 +1,20 @@
+{% if node.field_movie_image.0.value %} 
+               {% set image_url = node.field_movie_image.0.value %}
+              {% else %}
+               {% set image_url = content.field_image_urls.0 %}
+              {% endif %}
+              {% set image_url = node.field_image_urls.0.value %}
 
-              {% set image_url = node.field_poster_url.0.value %}
-<div class="swiper-slide" style="background-image: url({{ image_url }}); width: 1270px;" >
-                <a href="{{ url }}" class="slide-link" title="{{ node.label }}"></a>
-                <span class="slide-caption">
-                  <h2>{{ node.label }}</h2>
-                  <p class="sc-desc"></p>
-                  {% if node.body.value %}<p>
-                     {% set body_value_new = node.body.value|slice(0, 100) ~ '...' %}
-                    {{ body_value_new|raw }}
-                    </p>
-                     {% endif %}
-                    <p></p>
-
-                  <div class="slide-caption-info">
-                    <div class="block">
-                     {% for key, item in content.field_tags if key|first != '#' %}
+	
+ <li>
+<a style="background-image: url({{image_url}})" class="thumb" href="{{url}}"></a>
+<div class="ss-info">
+<a href="{{url}}" class="ss-title">{{node.label}}</a>
+ {% set metadata = node.field_metadata.0.value|split('|', 3) %}
+<p>{{ metadata[2] }}</p>
+ {% for key, item in content.field_tags if key|first != '#' %}
       {{ item }},
-    {% endfor %}
-                    </div>
-                     {% set metadata = node.field_metadata.0.value|split('|', 3) %}
-                    <div class="block">
-                      <strong>Duration:</strong> {{ metadata[2] }}
-                    </div>
-                    <div class="block">
-                      <strong>Release:</strong> {{ metadata[1] }}
-                    </div>
-                    <div class="block">
-                      <strong>IMDb:</strong> {{ metadata[0] }}
-                    </div>
-                  </div>
-                  <a href="{{ url }}">
-                    <div class="btn btn-successful mt20">Watching</div>
-                  </a>
-                </span>
-              </div>
-             
-           
+    {% endfor %} </div>
+<div class="clearfix"></div>
+</li>
+
