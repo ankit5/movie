@@ -62,7 +62,7 @@ function admission_form_views_pre_render(ViewExecutable $view) {
             }
              if ($view->id()=='country'){
                $title = explode("-", $view->args[0]);
-                $title = $title[0]." ".$title[1];
+                $title = $title[0]." ".@$title[1];
                $view->setTitle('Search for '.ucfirst($title)); 
  
              }
@@ -77,7 +77,7 @@ function admission_form_views_pre_render(ViewExecutable $view) {
 function admission_form_views_pre_view(ViewExecutable $view) {
  if ($view->id()=='country'){
      $title = explode("-", $view->args[0]);
-     $title = $title[0]." ".$title[1];
+     $title = $title[0]." ".@$title[1];
      $exposed_filters = ['field_left_value' => $title];
      $view->setExposedInput($exposed_filters);
      }
