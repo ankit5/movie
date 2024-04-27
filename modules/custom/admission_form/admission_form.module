@@ -99,10 +99,11 @@ $path_args = explode('/', $current_path);
 if($path_args[1]!='admin' && $defaultThemeName!='psyplay'){
  if ($view->id() != "get_year" && $view->id() != 'tag_count') {
   $query->addField('node__field_quality', 'field_quality_value', 'field_quality_value');
-   $query->addField('node__field_tags', 'field_tags_target_id', 'field_tags_target_id');
+ // $query->addField('node__field_tags', 'field_tags_target_id', 'field_tags_target_id');
  // $query->setWhereGroup('AND', 1);
-  $query->addWhere(1, "node__field_tags.field_tags_target_id", '106', "!=");
+ // $query->addWhere(1, "node__field_tags.field_tags_target_id", '106', "!=");
   $query->addWhere(1, "node__field_quality.field_quality_value", '18+', "!=");
+  
  }
 }
   
