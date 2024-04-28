@@ -203,8 +203,7 @@ class RouteProvider implements CacheableRouteProviderInterface, PreloadableRoute
   public function getRouteByName($name) {
     $routes = $this->getRoutesByNames([$name]);
     if (empty($routes)) {
-    // throw new RouteNotFoundException(sprintf('Route "%s" does not exist.', $name));
-    return '/';
+     throw new RouteNotFoundException(sprintf('Route "%s" does not exist.', $name));
     }
 
     return reset($routes);
