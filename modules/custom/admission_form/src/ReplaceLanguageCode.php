@@ -97,7 +97,9 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
        }
       }
   public static function replaceLangcode($nid, &$context){
-    $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+    //$node = \Drupal::entityTypeManager()->getStorage('node');
+    $storage = \Drupal::entityTypeManager()->getStorage('node');
+    $node = $storage->load($nid);
     $message = 'Replacing langcode(und to de)...';
     
 //  if($m3_direct=$node->field_m3_direct->value=="yes"){
@@ -200,6 +202,7 @@ print ".";
    //print $node->changed->value;
   // $node->changed = $node->created->value;
    // $node->set('changed', $node->created->value);
+   
     $results[] = $node->save();
     $connection = \Drupal::database();
     $query = $connection->update('node_field_data');
@@ -211,6 +214,7 @@ print ".";
     $query->fields(array('changed' => $node->created->value)); 
     $query->condition('nid', $node->id());
     $query->execute();
+    $storage->resetCache([$node->id()]);
    /* $context['message'] = $message;
     $context['results'][] = $nid;*/
   }
