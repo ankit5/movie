@@ -863,5 +863,5 @@ $databases['default']['default'] = array (
   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 );
 
-
+$settings['simple_sitemap_engines.index_now.key'] = '077180ea-5150-47f0-813a-2ace4849ac3a';
 $settings['config_sync_directory'] = 'sites/123hdmovies2.xyz/files/config_wvvFtcl5_23W0SJYYDcGbJiWSqzKbnLGfYo41Ez94aZND0-HFTDSDnyGTPRE3H5HXHONHJ3W5Q/sync';

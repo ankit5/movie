@@ -839,7 +839,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 // $databases['default']['default'] = array (
-//   'database' => 'movie13-3',
+//   'database' => 'movie15-4',
 //   'username' => 'root',
 //   'password' => 'admin',
 //   'prefix' => '',
@@ -871,4 +871,5 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 );
+$settings['simple_sitemap_engines.index_now.key'] = '077180ea-5150-47f0-813a-2ace4849ac3a';
 $settings['config_sync_directory'] = 'sites/default/files/config_wvvFtcl5_23W0SJYYDcGbJiWSqzKbnLGfYo41Ez94aZND0-HFTDSDnyGTPRE3H5HXHONHJ3W5Q/sync';
