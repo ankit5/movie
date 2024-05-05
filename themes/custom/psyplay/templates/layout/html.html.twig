@@ -26,9 +26,10 @@
 <!DOCTYPE html>
 <html{{ html_attributes }}>
   <head>
+   <title>{{ head_title|safe_join(' | ') }}</title>
     <head-placeholder token="{{ placeholder_token|raw }}">
     {{ drupal_region('head_top')|raw }}
-    <title>{{ head_title|safe_join(' | ') }}</title>
+   
    
     <css-placeholder token="{{ placeholder_token|raw }}">
     <js-placeholder token="{{ placeholder_token|raw }}">
