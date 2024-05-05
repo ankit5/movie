@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Contains hooks update for Domain Simple Sitemap module.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Installs the default domain field on nodes. We don't do this via schema.yml
+ * files because we have an unknown number of node types.
+ */
+function domain_simple_sitemap_install() {
+  if (\Drupal::isConfigSyncing()) {
+    // Configuration is assumed to already be checked by the config importer
+    // validation events.
+    return;
+  }
+}
+
+/**
+ * Add the setting to open the domain access fieldset.
+ */
+function domain_simple_sitemap_update_8001() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('domain_simple_sitemap.settings');
+  $config->set('domain_simple_sitemap_filter', 0);
+  $config->save(TRUE);
+}

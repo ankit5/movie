@@ -1,0 +1,8 @@
+services:
+  domain_simple_sitemap.route_subscriber:
+    class: Drupal\domain_simple_sitemap\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+  domain_simple_sitemap.manager:
+    class: Drupal\domain_simple_sitemap\DomainSitemapManager
+    arguments: ['@entity_type.manager', '@domain.validator']

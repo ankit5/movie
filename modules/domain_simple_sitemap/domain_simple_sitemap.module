@@ -1,0 +1,143 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Domain Simple Sitemap module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\simple_sitemap\Entity\SimpleSitemapType;
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function domain_simple_sitemap_domain_insert(EntityInterface $domain) {
+  /** @var \Drupal\domain_simple_sitemap\DomainSitemapManager $domainSitemapManager */
+  $domainSitemapManager = Drupal::service('domain_simple_sitemap.manager');
+  $domainSitemapManager->addSitemapVariant($domain);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function domain_simple_sitemap_domain_update(EntityInterface $domain) {
+  /** @var \Drupal\domain_simple_sitemap\DomainSitemapManager $domainSitemapManager */
+  $domainSitemapManager = Drupal::service('domain_simple_sitemap.manager');
+  // Let add/delete sitemap variant only on active domain. You still can
+  // generate Sitemap variants for all enabled domain from default domain.
+  if ($domain->isActive()) {
+    if ($domain->status()) {
+      $domainSitemapManager->addSitemapVariant($domain);
+    }
+    else {
+      $domainSitemapManager->deleteSitemapVariant($domain);
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function domain_simple_sitemap_domain_delete(EntityInterface $domain) {
+  /** @var \Drupal\domain_simple_sitemap\DomainSitemapManager $domainSitemapManager */
+  $domainSitemapManager = Drupal::service('domain_simple_sitemap.manager');
+  $domainSitemapManager->deleteSitemapVariant($domain);
+}
+
+/**
+ * Implements hook_simple_sitemap_links_alter().
+ */
+function domain_simple_sitemap_simple_sitemap_links_alter(array &$links, $sitemap_variant) {
+  $replace_homepage = \Drupal::config('domain_simple_sitemap.settings')
+    ->get('domain_simple_sitemap_replace_homepage');
+  if (!$replace_homepage) {
+    return;
+  }
+  // Resolve this variant to a domain.
+  $storage = \Drupal::entityTypeManager()->getStorage('domain');
+
+  if (isset($sitemap_variant->type) && $domain = $storage->load($sitemap_variant->type)) {
+    // The base URL of the domain is also its path.
+    $front = $domain->getPath();
+    // Load the domain's configuration to find the front page.
+    if (\Drupal::moduleHandler()->moduleExists('domain_config')) {
+      $domain_config = \Drupal::config('domain.config.' . $domain->id() . '.system.site');
+      $find = substr($domain_config->get('page.front'), 1);
+    }
+    elseif (\Drupal::moduleHandler()->moduleExists('domain_site_settings')) {
+      $domain_config = \Drupal::config('domain_site_settings.domainconfigsettings');
+      $find = substr($domain_config->get($domain->id() . '.site_frontpage'), 1);
+    }
+
+    // Replace any link URLs that match the front page's URL with the domain's
+    // base URL.
+    if (!empty($find)) {
+      foreach ($links as $i => $link) {
+        if ($link['meta']['path'] == $find) {
+          $links[$i]['url'] = $front;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the sitemap variant edit form to select domain.
+ */
+function domain_simple_sitemap_form_simple_sitemap_type_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Get the Simple Sitemap Type entity we are editing.
+  $simple_sitemap = $form_state->getformObject()->getEntity();
+  // Create an options array of all domains.
+  $storage = \Drupal::entityTypeManager()->getStorage('domain');
+  $domains = $storage->loadMultiple();
+  $options = [];
+  foreach ($domains as $key => $domain) {
+    $options[$key] = $domain->label();
+  }
+
+  // Dont't allow multiple options on url_generator field becaus then the #states based on that field value wont work.
+  // $form['url_generators']['#multiple'] = FALSE;
+  // Create our domain select form element.
+  $form['sitemap_domain'] = [
+    '#type' => 'select',
+    '#title' => t('Select domain for this sitemap'),
+    '#options' => $options,
+    '#default_value' => $simple_sitemap->getThirdPartySetting('domain_simple_sitemap', 'sitemap_domain'),
+    '#weight' => 1,
+    // '#states' => [
+    //   'visible' => [
+    //     ':input[name="url_generators"]' => ['value' => 'domain_entity'],
+    //   ],
+    //   'required' => [
+    //     ':input[name="url_generators"]' => ['value' => 'domain_entity'],
+    //   ],
+    // ],
+  ];
+  $form['#entity_builders'][] = '_domain_simple_sitemap_sitemap_type_form_builder';
+}
+
+/**
+ * Entity builder for the migration config entity.
+ */
+function _domain_simple_sitemap_sitemap_type_form_builder($entity_type, SimpleSitemapType $simple_sitemap, &$form, FormStateInterface $form_state) {
+  // If a domain was selected, save it as third party setting.
+  if ($form_state->getValue('sitemap_domain')) {
+    $simple_sitemap->setThirdPartySetting('domain_simple_sitemap', 'sitemap_domain', $form_state->getValue('sitemap_domain'));
+    return;
+  }
+  // If not, remove third party setting.
+  $simple_sitemap->unsetThirdPartySetting('domain_simple_sitemap', 'sitemap_domain');
+}
+
+/**
+ * @param EntityTypeInterface[] $entity_types
+ */
+function domain_simple_sitemap_entity_type_build(&$entity_types) {
+  if (isset($entity_types['simple_sitemap'])) {
+    $entity_types['simple_sitemap']->setClass('Drupal\domain_simple_sitemap\Entity\DomainSimpleSitemap');
+  }
+}
