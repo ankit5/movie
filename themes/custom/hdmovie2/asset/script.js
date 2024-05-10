@@ -217,7 +217,10 @@ function doChange(value) {
 
 
 $(document).ready(function() {
-   
+  
+    $('img.lazy').lazyload({
+        effect: 'fadeIn'
+    });
    
     
     $('a.splash-image,#seasons .les-content a,.idTabs li,#dl').click(function(){

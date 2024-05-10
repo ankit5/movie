@@ -92,7 +92,9 @@ function doChange() {
 }
 
    $(document).ready(function() {
-   
+    $('img.lazy').lazyload({
+      effect: 'fadeIn'
+    });  
     
 $('a.splash-image,#seasons .les-content a,.idTabs li').click(function(){
  // alert($(this).data('value'));
