@@ -1,0 +1,10 @@
+name: Views alias filter
+type: module
+description: Provides exposed filter to filtering nodes by URL aliases.
+package: Views
+core_version_requirement: ^9 || ^10
+
+# Information added by Drupal.org packaging script on 2022-07-24
+version: '1.0.0'
+project: 'views_alias_filter'
+datestamp: 1658680569
