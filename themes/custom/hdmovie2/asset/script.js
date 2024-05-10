@@ -221,6 +221,10 @@ $(document).ready(function() {
     $('img.lazy').lazyload({
         effect: 'fadeIn'
     });
+
+    $('[id]').each(function () {
+        $('[id="' + this.id + '"]:gt(0)').remove();
+    });
    
     
     $('a.splash-image,#seasons .les-content a,.idTabs li,#dl').click(function(){
