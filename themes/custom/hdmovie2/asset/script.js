@@ -218,9 +218,11 @@ function doChange(value) {
 
 $(document).ready(function() {
   
-    $('img.lazy').lazyload({
+    if($('img.lazy').attr('src') == '') { 
+    $("img.lazy").lazyload({
         effect: 'fadeIn'
-    });
+      }); 
+    }
 
     $('[id]').each(function () {
         $('[id="' + this.id + '"]:gt(0)').remove();
@@ -352,9 +354,11 @@ function swipercall(){
     mousewheel: true,
     on: { 
         slideChange: function() {
-            $('img.lazy').lazyload({
-                effect: 'fadeIn'
-            });
+           
+                $("img[src='']").lazyload({
+                    effect: 'fadeIn'
+                  }); 
+               
     }}
   });
  

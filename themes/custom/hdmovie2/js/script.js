@@ -92,7 +92,7 @@ function doChange() {
 }
 
    $(document).ready(function() {
-    $('img.lazy').lazyload({
+    $("img.lazy[src=='']").lazyload({
       effect: 'fadeIn'
     });  
     
