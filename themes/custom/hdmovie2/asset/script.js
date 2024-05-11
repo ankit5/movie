@@ -218,11 +218,11 @@ function doChange(value) {
 
 $(document).ready(function() {
   
-    if($('img.lazy').attr('src') == '') { 
+    
     $("img.lazy").lazyload({
         effect: 'fadeIn'
       }); 
-    }
+    
 
     $('[id]').each(function () {
         $('[id="' + this.id + '"]:gt(0)').remove();
