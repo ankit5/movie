@@ -316,7 +316,7 @@ $(document).ready(function(){
 });
 swipercall();
 function swipercall(){
-var swiper = new Swiper(".horizontal_scroll_swiper", {
+    var swiper = new Swiper(".horizontal_scroll_swiper", {
     //slidesPerView: 5.5,
     breakpoints: {
         1920: {
@@ -350,5 +350,13 @@ var swiper = new Swiper(".horizontal_scroll_swiper", {
         dragSize: 50
       },
     mousewheel: true,
+    on: { 
+        slideChange: function() {
+            $('img.lazy').lazyload({
+                effect: 'fadeIn'
+            });
+    }}
   });
+ 
+  
 }
