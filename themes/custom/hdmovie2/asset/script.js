@@ -224,9 +224,9 @@ $(document).ready(function() {
       }); 
     
 
-    $('[id]').each(function () {
-        $('[id="' + this.id + '"]:gt(0)').remove();
-    });
+    // $('[id]').each(function () {
+    //     $('[id="' + this.id + '"]:gt(0)').remove();
+    // });
    
     
     $('a.splash-image,#seasons .les-content a,.idTabs li,#dl').click(function(){
@@ -300,6 +300,9 @@ $(document).ready(function(){
         success: function( data ) {
         $('.items_glossary').css('display','block');
 			$targetBox.html('<div class="items animation-2 content">'+data+'</div>');
+            $('img.lazy').lazyload({
+                effect: 'fadeIn'
+              });
             swipercall();
         }
       });
