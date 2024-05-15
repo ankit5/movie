@@ -67,9 +67,9 @@ function swipercall(class_name,view_name,block_name){
                   
                  // swiper.update();
                // console.log(div1);
-                $("img[src='']").lazyload({
-                effect: 'fadeIn'
-                }); 
+                // $("img[src='']").lazyload({
+                // effect: 'fadeIn'
+                // }); 
 
                 ++appendNumber;
                 if(appendNumber==2) {
@@ -306,9 +306,9 @@ function doChange(value) {
 $(document).ready(function() {
   
     
-    $("img.lazy").lazyload({
-        effect: 'fadeIn'
-      }); 
+    // $("img.lazy").lazyload({
+    //     effect: 'fadeIn'
+    //   }); 
     
 
     // $('[id]').each(function () {
@@ -387,10 +387,10 @@ $(document).ready(function(){
         success: function( data ) {
         $('.items_glossary').css('display','block');
 			$targetBox.html('<div class="items animation-2 content">'+data+'</div>');
-            $('img.lazy').lazyload({
-                effect: 'fadeIn'
-              });
-            swipercall();
+            // $('img.lazy').lazyload({
+            //     effect: 'fadeIn'
+            //   });
+           // swipercall();
         }
       });
 

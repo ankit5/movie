@@ -7,7 +7,7 @@
               {% set image_url = node.field_image_urls.0.value %}
 <article class="item movies swiper-slide" id="{{ node.id }}">
 <div class="poster">
-<img data-original="{{ image_url }}" src="" class="lazy thumb mli-thumb" alt="{{node.label}}">
+<img data-original="" src="{{ image_url }}" class="lazy thumb mli-thumb" alt="{{node.label}}">
 <div class="rating"> {% for key,value in node.field_right.getValue %}
                         {% if 'IMDb:' in value['value'] %}
                          {{ value['value']|replace({ 'IMDb:': '' }) }}
