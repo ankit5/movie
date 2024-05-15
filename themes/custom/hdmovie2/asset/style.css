@@ -337,6 +337,9 @@ a.dl {
 .module .content .items.scroll .item .data {
     display: grid !important;
 }
+.horizontal_scroll_swiper h3{
+    text-wrap: nowrap;
+}
 .swiper-button-next,.swiper-button-prev {
 
 
