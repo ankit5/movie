@@ -28,12 +28,12 @@ function swipercall(class_name,view_name,block_name){
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      scrollbar: {
-        el: '.swiper-scrollbar',
-        draggable: true,
-        dragSize: 50
-      },
-    mousewheel: true,
+    //   scrollbar: {
+    //     el: '.swiper-scrollbar',
+    //     draggable: true,
+    //     dragSize: 50
+    //   },
+    mousewheel: false,
     on: { 
         slideNextTransitionStart: function() {
             console.log(appendNumber);
