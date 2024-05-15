@@ -44,6 +44,8 @@
 <link rel="stylesheet" id="dooplay-color-scheme-css" href="/themes/custom/hdmovie2/asset/colors.dark.min.css?{{random_s}}" type="text/css" media="all">
 <link rel="stylesheet" id="dooplay-responsive-css" href="/themes/custom/hdmovie2/asset/front.mobile.min.css?{{random_s}}" type="text/css" media="all">
 {{ drupal_region('head_top')|raw }}
+<css-placeholder token="{{ placeholder_token|raw }}">
+    <js-placeholder token="{{ placeholder_token|raw }}">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GYYNXLQBXX"></script>
 <script>
@@ -53,6 +55,7 @@
 
   gtag('config', 'G-GYYNXLQBXX');
 </script>
+
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=663c9cd7ffeb23001918fa82&product=sticky-share-buttons&source=platform" async="async"></script>
 </head>
 <body{{ attributes }}>
@@ -110,9 +113,7 @@
 </footer>
 
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script type="text/javascript" src="/themes/custom/hdmovie2/js/jquery.lazyload-1.2.5.js"></script>
-<script type="text/javascript" src="/themes/custom/hdmovie2/asset/script.js?{{random_s}}" id="scripts-js"></script>
+ <js-bottom-placeholder token="{{ placeholder_token }}">
 
 <div id="popupMenu"></div>
 </body>

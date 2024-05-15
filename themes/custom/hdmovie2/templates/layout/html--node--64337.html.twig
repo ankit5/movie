@@ -73,8 +73,10 @@
 <link rel="stylesheet" id="dooplay-css" href="/themes/custom/hdmovie2/asset/front.style.min.css?{{random_s}}" type="text/css" media="all">
 <link rel="stylesheet" id="dooplay-color-scheme-css" href="/themes/custom/hdmovie2/asset/colors.dark.min.css?{{random_s}}" type="text/css" media="all">
 <link rel="stylesheet" id="dooplay-responsive-css" href="/themes/custom/hdmovie2/asset/front.mobile.min.css?{{random_s}}" type="text/css" media="all">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 {{ drupal_region('head_top')|raw }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GYYNXLQBXX"></script>
 <script>
@@ -140,6 +142,7 @@
 </form>
 </div>
 </div>
+
 {{ page.content_home }}
 
 {% include '@hdmovie2/template-parts/sidebar.html.twig' %}
@@ -150,11 +153,11 @@
 {% include '@hdmovie2/template-parts/footer.html.twig' %}
 </footer>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script type="text/javascript" src="/themes/custom/hdmovie2/js/jquery.lazyload-1.2.5.js"></script>
-<script type="text/javascript" src="/themes/custom/hdmovie2/asset/script.js?{{random_s}}" id="scripts-js"></script>
+<script type="text/javascript" src="/themes/custom/hdmovie2/asset/script.js?{{random_s}}"></script>
 
 
 <div id="popupMenu"></div>

@@ -2,7 +2,7 @@
 {{ header }}
 {% endif %} 
 
-<div class="swiper horizontal_scroll_swiper">
+<div class="swiper horizontal_scroll_swiper {{ css_class }}">
          <div class="items normal swiper-wrapper">      
             {% if rows %}
    
@@ -17,6 +17,4 @@
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
 </div>
-  {% if pager %}
-    {{ pager }}
-  {% endif %}
+  

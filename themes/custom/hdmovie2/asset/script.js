@@ -1,3 +1,93 @@
+function swipercall(class_name,view_name,block_name){
+    var appendNumber = 1;
+    var swiper = new Swiper('.'+class_name, {
+    //slidesPerView: 5.5,
+    breakpoints: {
+        1920: {
+          slidesPerView: 6.5,
+          slidesPerGroup: 6
+        },
+        992: {
+          slidesPerView: 5.5,
+          slidesPerGroup: 5
+        },
+        320: {
+           slidesPerView: 3.3,
+           slidesPerGroup: 3
+        }
+    },
+    // centeredSlides: true,
+    spaceBetween: 0,
+    // grabCursor: true,
+    // pagination: {
+    //   el: ".swiper-pagination",
+    //   clickable: true,
+    // },
+    freeMode: true,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      scrollbar: {
+        el: '.swiper-scrollbar',
+        draggable: true,
+        dragSize: 50
+      },
+    mousewheel: true,
+    on: { 
+        slideNextTransitionStart: function() {
+            console.log(appendNumber);
+
+            $.ajax( {
+                type: "GET",
+                url: "/views/ajax?view_name="+view_name+"&view_display_id="+block_name+"&view_args=&pager_element=0&page="+appendNumber,
+                data: { get_param: 'value' }, 
+                dataType: 'json',
+                success: function( data ) {
+                //console.log(data[1].data);
+                var rawDoc= $(data[1].data).find('.swiper-wrapper').html();
+                let doc = document.createElement('html');
+                doc.innerHTML = rawDoc;
+                let div1 = doc.querySelectorAll('.item');
+                //div1.forEach(p => swiper.appendSlide(p));
+                var art = [];
+                var x=0;
+                div1.forEach(function(p) {
+                    
+                    //swiper.appendSlide(p)
+                    art[x]=p;
+                    ++x;
+                   
+                  });
+                  //console.log(x);
+                  
+                  swiper.appendSlide(art);
+                 
+                  
+                  
+                 // swiper.update();
+               // console.log(div1);
+                $("img[src='']").lazyload({
+                effect: 'fadeIn'
+                }); 
+
+                ++appendNumber;
+                if(appendNumber==2) {
+                    swiper.slideNext();
+                  
+                }
+                    
+                }
+               
+              });
+               
+               
+    }}
+  });
+}
+
+
+
 var js = {};
 !function(n) {
     n(document).on("click", ".se-q", function() {
@@ -148,10 +238,7 @@ var js = {};
             var e = n(window).scrollTop();
             this.hover = 1,
             this.opacity = 1,
-            this.show = e,
-            this.$header.stop().animate({
-                opacity: 1
-            }, 250)
+            this.show = e
         },
         mouseleave: function() {
             this.hover = 0
@@ -319,51 +406,5 @@ $(document).ready(function(){
   e.stopPropagation();
 });
 });
-swipercall();
-function swipercall(){
-    var swiper = new Swiper(".horizontal_scroll_swiper", {
-    //slidesPerView: 5.5,
-    breakpoints: {
-        1920: {
-          slidesPerView: 6.5,
-          slidesPerGroup: 6
-        },
-        992: {
-          slidesPerView: 5.5,
-          slidesPerGroup: 5
-        },
-        320: {
-           slidesPerView: 3.3,
-           slidesPerGroup: 3
-        }
-    },
-    // centeredSlides: true,
-    spaceBetween: 0,
-    // grabCursor: true,
-    // pagination: {
-    //   el: ".swiper-pagination",
-    //   clickable: true,
-    // },
-    freeMode: true,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      },
-      scrollbar: {
-        el: '.swiper-scrollbar',
-        draggable: true,
-        dragSize: 50
-      },
-    mousewheel: true,
-    on: { 
-        slideChange: function() {
-           
-                $("img[src='']").lazyload({
-                    effect: 'fadeIn'
-                  }); 
-               
-    }}
-  });
- 
-  
-}
+
+

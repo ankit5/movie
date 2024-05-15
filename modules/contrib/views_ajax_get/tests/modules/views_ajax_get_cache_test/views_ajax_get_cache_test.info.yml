@@ -1,0 +1,13 @@
+name: 'Views AJAX GET Cache test'
+type: module
+description: 'Provides a view for testing AJAX GET Request caching.'
+package: Testing
+# version: VERSION
+dependencies:
+  - drupal:node
+  - drupal:views_ajax_get
+
+# Information added by Drupal.org packaging script on 2021-05-21
+version: '2.0.0'
+project: 'views_ajax_get'
+datestamp: 1621608017
