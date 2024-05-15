@@ -97,7 +97,7 @@ function admission_form_views_query_alter(Drupal\views\ViewExecutable $view, Dru
 $current_path = \Drupal::service('path.current')->getPath();
 $path_args = explode('/', $current_path);
 if($path_args[1]!='admin' && $defaultThemeName!='psyplay'){
- if ($view->id() != "get_year" && $view->id() != "featured_movies" && $view->id() != 'tag_count') {
+ if ($view->id() != "get_year" && $view->id() != "featured_movies" && $view->id() != "marvel_universe" && $view->id() != 'tag_count') {
   $query->addField('node__field_quality', 'field_quality_value', 'field_quality_value');
  // $query->addField('node__field_tags', 'field_tags_target_id', 'field_tags_target_id');
  // $query->setWhereGroup('AND', 1);
