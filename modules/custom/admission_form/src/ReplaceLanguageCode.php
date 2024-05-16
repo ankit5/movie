@@ -202,19 +202,19 @@ print ".";
    //print $node->changed->value;
   // $node->changed = $node->created->value;
    // $node->set('changed', $node->created->value);
-   
+   $changed = $node->changed->value;
     $results[] = $node->save();
-    // $connection = \Drupal::database();
-    // $query = $connection->update('node_field_data');
-    // $query->fields(array('changed' => $node->created->value)); 
-    // $query->condition('nid', $node->id());
-    // $query->execute();
+    $connection = \Drupal::database();
+    $query = $connection->update('node_field_data');
+    $query->fields(array('changed' => $changed)); 
+    $query->condition('nid', $node->id());
+    $query->execute();
 
-    // $query = $connection->update('node_field_revision');
-    // $query->fields(array('changed' => $node->created->value)); 
-    // $query->condition('nid', $node->id());
-    // $query->execute();
-    // $storage->resetCache([$node->id()]);
+    $query = $connection->update('node_field_revision');
+    $query->fields(array('changed' => $changed)); 
+    $query->condition('nid', $node->id());
+    $query->execute();
+    $storage->resetCache([$node->id()]);
    /* $context['message'] = $message;
     $context['results'][] = $nid;*/
   }
