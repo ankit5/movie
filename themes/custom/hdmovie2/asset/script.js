@@ -1,3 +1,38 @@
+$(function() {
+    $('.lazy').Lazy();
+});
+function swipercall2(){
+    
+    var swiper = new Swiper('.items_glossary .horizontal_scroll_swiper', {
+    breakpoints: {
+        1920: {
+          slidesPerView: 6.5,
+          slidesPerGroup: 6
+        },
+        992: {
+          slidesPerView: 5.5,
+          slidesPerGroup: 5
+        },
+        320: {
+           slidesPerView: 3.3,
+           slidesPerGroup: 3
+        }
+    },
+    spaceBetween: 0,
+    freeMode: true,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+    
+    mousewheel: false,
+    on: { 
+        slideNextTransitionStart: function() {
+            $('.lazy').Lazy();
+        }}
+    
+  });
+}
 function swipercall(class_name,view_name,block_name){
     var appendNumber = 1;
     var swiper = new Swiper('.'+class_name, {
@@ -36,7 +71,7 @@ function swipercall(class_name,view_name,block_name){
     mousewheel: false,
     on: { 
         slideNextTransitionStart: function() {
-            console.log(appendNumber);
+          //  console.log(appendNumber);
 
             $.ajax( {
                 type: "GET",
@@ -62,7 +97,7 @@ function swipercall(class_name,view_name,block_name){
                   //console.log(x);
                   
                   swiper.appendSlide(art);
-                 
+                  $('.lazy').Lazy();
                   
                   
                  // swiper.update();
@@ -296,6 +331,7 @@ function doChange(value) {
         // alert(data);
         $('.selection-ajax').show();
          $('.selection-ajax').html(data);
+        
         // ifload();
         }
       });
@@ -387,10 +423,11 @@ $(document).ready(function(){
         success: function( data ) {
         $('.items_glossary').css('display','block');
 			$targetBox.html('<div class="items animation-2 content">'+data+'</div>');
+            $('.lazy').Lazy();
             // $('img.lazy').lazyload({
             //     effect: 'fadeIn'
             //   });
-           // swipercall();
+           swipercall2();
         }
       });
 
