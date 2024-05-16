@@ -46,9 +46,11 @@
             <div id="seasons">
             <div class="tvseason">
             <div class="les-content" style="display: block;padding: 0;">
+            {% set i=1 %} 
             {% for key,value in node.field_player.getValue %}
              {% if ('speedostream' in value['value']) or ('minoplres' in value['value']) %}
-             <a href="javascript:void(0)" data-value="{{ node.id }}" data-key="{{ key }}" data-types="eps"> File {{ key+1 }} </a> 
+             <a href="javascript:void(0)" data-value="{{ node.id }}" data-key="{{ key }}" data-types="eps"> File {{ i }} </a> 
+             {% set i=i+1 %} 
              {% endif %}
              {% set key = key+1 %}
              {% endfor %}
