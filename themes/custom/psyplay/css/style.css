@@ -548,6 +548,9 @@ ul.idTabs li a.selected {
 .footer-tags a:hover {
   color: #ff7c19
 }
+.menu-item a:focus, .toolbar .toolbar-icon.toolbar-handle:focus {
+  background: none !important;
+}
 
 .test_container .nav>li.active>a:focus,
 .test_container .nav>li.active>a {
