@@ -66,7 +66,7 @@ body .is-layout-flex>* {
   margin: 0
 }
 
-.movies-list-wrap .ml-title span h1 {
+.movies-list-wrap .ml-title {
   font-size: 18px;
   margin: 11px 4px -31px 25px;
 }
@@ -457,7 +457,7 @@ a:hover {
   color: #d24d0c
 }
 
-.movies-list-wrap .ml-title span {
+.movies-list-wrap .ml-title {
   background: #ff7b39
 }
 
@@ -586,7 +586,7 @@ form#psy-loginform p input[type=submit]:hover {
 }
 
 @media screen and (max-width:991px) {
-  .movies-list-wrap .ml-title span {
+  .movies-list-wrap .ml-title {
     background: none
   }
 
