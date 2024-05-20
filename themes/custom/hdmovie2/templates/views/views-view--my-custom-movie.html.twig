@@ -1,7 +1,9 @@
 {% if header %}
 {{ header }}
 {% endif %} 
-
+{% if pager %}
+    {{ pager }}
+  {% endif %}
 <div class="items normal">      
             {% if rows %}
    
