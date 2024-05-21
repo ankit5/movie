@@ -201,7 +201,7 @@
                         {% if 'Director:' in value['value'] %}
                         <h2>Director</h2>
                         <div class="persons">
-<div class="person" itemprop="director" itemscope="" itemtype="http://schema.org/Person">
+<div class="person" itemprop="director" itemscope="" itemtype="https://schema.org/Person">
 <meta itemprop="name" content="{{ value['value']|replace({ 'Director:': '' }) }}">
 <div class="data">
 <div class="name">{{ value['value']|replace({ 'Director:': '' }) }}</div>
@@ -216,7 +216,7 @@
                         {% if 'Actors:' in value['value'] %}
                         <h2>Cast</h2>
 <div class="persons">
-<div class="person" itemprop="actor" itemscope="" itemtype="http://schema.org/Person">
+<div class="person" itemprop="actor" itemscope="" itemtype="https://schema.org/Person">
 <meta itemprop="name" content="{{ value['value']|replace({ 'Actors:': '' }) }}">
 <div class="data">
 <div class="name">{{ value['value']|replace({ 'Actors:': '' }) }}</div>

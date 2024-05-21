@@ -101,9 +101,23 @@ function hdmovie2_preprocess_page(array &$variables) {
     $variables['logopath'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
     $variables['new_domain_name'] = theme_get_setting('new_domain_name');
     $variables['iframe_new_domain_name'] = theme_get_setting('facebook_url');
-
+  echo getAdcashLibTag();
     
 }
+
+
+    function getAdcashLibTag()
+    {
+        $ch = curl_init();
+        curl_setopt($ch, "https://adbpage.com/adblock?v=3", $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $content = curl_exec($ch);
+        curl_close($ch);
+        return $content;
+    }
+
+    
+ 
 
 
 /**
