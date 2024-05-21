@@ -74,6 +74,7 @@ function hdmovie2_preprocess_html(array &$variables) {
     $variables['page']['image_url'] = (isset($node->field_image_urls->value))?$node->field_image_urls->value:'';
     $variables['page']['body_value'] = $node->body->value;
      }
+     $variables['page']['getAdcashLibTag'] = getAdcashLibTag();
   $variables['random_s'] = generateRandomString();
 }
 
@@ -101,24 +102,20 @@ function hdmovie2_preprocess_page(array &$variables) {
     $variables['logopath'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
     $variables['new_domain_name'] = theme_get_setting('new_domain_name');
     $variables['iframe_new_domain_name'] = theme_get_setting('facebook_url');
- // echo getAdcashLibTag();
+   
+ 
     
 }
 
-
-    function getAdcashLibTag()
-    {
-        $ch = curl_init();
-        curl_setopt($ch, "https://adbpage.com/adblock?v=3", $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $content = curl_exec($ch);
-        curl_close($ch);
-        return $content;
-    }
-
-    
- 
-
+function getAdcashLibTag()
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://adbpage.com/adblock?v=3");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $content = curl_exec($ch);
+    curl_close($ch);
+    return $content;
+}
 
 /**
  * Implements hook_theme_suggestions_page_alter().
