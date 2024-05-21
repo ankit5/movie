@@ -1,6 +1,17 @@
 $(function() {
     $('.lazy').Lazy();
 });
+
+$('form.searchact button').click(function(){
+    //
+    if($(".search-input").val()!=''){
+      //  alert($(".search-input").val());
+    window.location = 'http://localhost:8005/search/'+$(".search-input").val(); 
+    } 
+    if($(".search-input2").val()!=''){
+        window.location ='/search/'+$(".search-input2").val(); 
+        }  
+  });
 function swipercall2(){
     
     var swiper = new Swiper('.items_glossary .horizontal_scroll_swiper', {
