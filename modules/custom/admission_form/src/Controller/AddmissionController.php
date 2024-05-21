@@ -126,9 +126,9 @@ $view->execute();
 @$rendered = \Drupal::service('renderer')->render($view->render());
 $rendered = '<div class="search-page">
 <div class="search_page_form">
-<form method="get" action="/search" id="searchformpage">
-<input type="text" placeholder="Search Movie.." name="title" id="story" value="'.$search.'">
-<button type="submit"><span class="fas fa-search"></span></button>
+<form id="searchformpage"  action="/search" class="searchact">
+<input type="text" placeholder="Search Movie.." name="title" class="search-input" id="story" value="'.$search.'">
+<button type="button"><span class="fas fa-search"></span></button>
 <div class="selection-ajax"></div>
 </form>
 </div>
@@ -153,9 +153,9 @@ $view->execute();
 @$rendered = \Drupal::service('renderer')->render($view->render());
 $rendered = '<div class="search-page">
 <div class="search_page_form">
-<form method="get" action="/search" id="searchformpage">
-<input type="text" placeholder="Search Movie.." name="title" id="story" value="'.$search.'">
-<button type="submit"><span class="fas fa-search"></span></button>
+<form id="searchformpage"  action="/search" class="searchact">
+<input type="text" name="title" placeholder="Search Movie.." id="story" class="search-input" value="'.$search.'">
+<button type="button"><span class="fas fa-search"></span></button>
 <div class="selection-ajax"></div>
 </form>
 </div>
