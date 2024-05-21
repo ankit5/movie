@@ -101,7 +101,7 @@ function hdmovie2_preprocess_page(array &$variables) {
     $variables['logopath'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
     $variables['new_domain_name'] = theme_get_setting('new_domain_name');
     $variables['iframe_new_domain_name'] = theme_get_setting('facebook_url');
-  echo getAdcashLibTag();
+ // echo getAdcashLibTag();
     
 }
 
