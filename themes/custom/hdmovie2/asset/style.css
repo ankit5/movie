@@ -401,3 +401,6 @@ a.dl {
     float: left;
     text-align: center;
 }
+.menuresp .menu ul li:nth-child(3) ul.sub-menu li {
+    width: 100% !important;
+}
