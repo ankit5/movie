@@ -410,4 +410,6 @@ a.dl {
     width: 100%;
     font-weight: bold;
     font-size: 18px;
+    padding: 39px 15px 13px 8px;
+    clear: both;
 }
