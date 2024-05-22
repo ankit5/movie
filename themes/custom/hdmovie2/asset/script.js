@@ -4,6 +4,9 @@ $(function() {
 
 var appendNumber =1;
 $('#loadmore').click(function(){
+    $('#loadmore').hide();
+    $('.loader2').show();
+
     $.ajax( {
         type: "GET",
         url: "/views/ajax?view_name=latest&view_display_id=page_1&view_args=&pager_element=0&page="+appendNumber,
@@ -17,7 +20,9 @@ $('#loadmore').click(function(){
        doc.innerHTML = rawDoc;
        let div1 = doc.querySelectorAll('.item');
        div1.forEach(p =>  $(".loadmore").append(p));
-       $('.lazy').Lazy();      
+       $('.lazy').Lazy(); 
+       $('.loader2').hide(); 
+       $('#loadmore').show();  
        // $('.loadmore').html(data[1].data);
        ++appendNumber;
         }
