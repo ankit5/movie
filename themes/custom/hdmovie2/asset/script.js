@@ -4,7 +4,7 @@ $(function() {
 
 var appendNumber =1;
 $('#loadmore').click(function(){
-    $('#loadmore').hide();
+   
     $('.loader2').show();
 
     $.ajax( {
@@ -22,7 +22,7 @@ $('#loadmore').click(function(){
        div1.forEach(p =>  $(".loadmore").append(p));
        $('.lazy').Lazy(); 
        $('.loader2').hide(); 
-       $('#loadmore').show();  
+     
        // $('.loadmore').html(data[1].data);
        ++appendNumber;
         }
