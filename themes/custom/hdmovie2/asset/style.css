@@ -404,3 +404,10 @@ a.dl {
 .menuresp .menu ul li:nth-child(3) ul.sub-menu li {
     width: 100% !important;
 }
+#loadmore {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+}

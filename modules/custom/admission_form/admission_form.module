@@ -116,15 +116,15 @@ if($path_args[1]!='admin' && $defaultThemeName!='psyplay'){
  // $query->distinct=TRUE;
    
   }
-// if(isMobile())
-// {
-//     if ($view->id() == "front_latest") {
-// $offset = 0;
-// $limit = 8;
-//    $view->setOffset($offset);
-//    $view->getPager()->setItemsPerPage($limit);
-//  } 
-//  }
+ if(isMobile())
+ {
+     if ($view->id() == "latest") {
+ $offset = 0;
+ $limit = 27;
+    $view->setOffset($offset);
+    $view->getPager()->setItemsPerPage($limit);
+  } 
+  }
  if ($view->id() == "front_latest"  && $view->current_display != 'block_1') {
  // $offset = 0;
  // $limit = 8;

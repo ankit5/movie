@@ -2,6 +2,29 @@ $(function() {
     $('.lazy').Lazy();
 });
 
+var appendNumber =1;
+$('#loadmore').click(function(){
+    $.ajax( {
+        type: "GET",
+        url: "/views/ajax?view_name=latest&view_display_id=page_1&view_args=&pager_element=0&page="+appendNumber,
+        data: { get_param: 'value' }, 
+        dataType: 'json',
+        success: function( data ) {
+       // console.log(data[1].data);
+       //var rawDoc= $(data[1].data).find('.items').html();
+       var rawDoc = data[1].data;
+       let doc = document.createElement('html');
+       doc.innerHTML = rawDoc;
+       let div1 = doc.querySelectorAll('.item');
+       div1.forEach(p =>  $(".loadmore").append(p));
+       $('.lazy').Lazy();      
+       // $('.loadmore').html(data[1].data);
+       ++appendNumber;
+        }
+      });
+   
+  });
+
 $('form.searchact button').click(function(){
     //
     if($(".search-input").val()!=''){
