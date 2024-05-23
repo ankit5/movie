@@ -60,6 +60,12 @@ function admission_form_views_pre_render(ViewExecutable $view) {
             $values["title"]
         );
             }
+             if ($view->id()=='taxonomy_term'){
+               $year = @$_GET['year'];
+               $title = $view->getTitle();
+               if($year)$view->setTitle($year.' '.$title); 
+ 
+             }
              if ($view->id()=='country'){
                $title = explode("-", $view->args[0]);
                 $title = $title[0]." ".@$title[1];
