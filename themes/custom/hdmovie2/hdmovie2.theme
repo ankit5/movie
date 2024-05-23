@@ -83,7 +83,7 @@ function hdmovie2_preprocess_html(array &$variables) {
       $ran = getAdcashLibTag();
      }
      $variables['getadcash'] = $ran;
-  $variables['random_s'] = generateRandomString();
+  $variables['random_s'] = 's3hd6y';
 }
 
 /**
