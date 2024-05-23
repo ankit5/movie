@@ -1,6 +1,15 @@
 # These will be loaded on every pages.
-global-styling:
+global-main:
   version: VERSION
+  css:
+    theme:
+      asset/all.min.css: {}
+      asset/style.css: {}
+      asset/front.style.min.css: {}
+      asset/colors.dark.min.css: {}
+      asset/front.mobile.min.css: {}
+  js:
+    asset/script.js: {}
   dependencies:
     - core/jquery
     - core/drupal.ajax

@@ -34,6 +34,7 @@ function hdmovie2_page_attachments_alter(array &$page) {
   if ($arg[1] == 'user') {
    // $page['#attached']['library'][] = 'claro/global-styling';
   }
+  
 }
 
 
@@ -74,7 +75,14 @@ function hdmovie2_preprocess_html(array &$variables) {
     $variables['page']['image_url'] = (isset($node->field_image_urls->value))?$node->field_image_urls->value:'';
     $variables['page']['body_value'] = $node->body->value;
      }
-     $variables['getadcash'] = getAdcashLibTag();
+     
+     $ran ='';
+     $user_id = \Drupal::currentUser()->id(); 
+     
+     if($user_id!='1'){
+      $ran = getAdcashLibTag();
+     }
+     $variables['getadcash'] = $ran;
   $variables['random_s'] = generateRandomString();
 }
 
@@ -103,7 +111,7 @@ function hdmovie2_preprocess_page(array &$variables) {
     $variables['new_domain_name'] = theme_get_setting('new_domain_name');
     $variables['iframe_new_domain_name'] = theme_get_setting('facebook_url');
    
- 
+  
     
 }
 
