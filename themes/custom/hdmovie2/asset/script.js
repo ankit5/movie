@@ -2,14 +2,16 @@ $(function() {
     $('.lazy').Lazy();
     
 });
-
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 var appendNumber2 = 1;
 $(window).scroll(function() {
-   
-    if ($(window).scrollTop() >= ($(document).height() - $(window).height() - 200)) {
+    
+   var scroll_height = (isMobile)?2580:200;
+  // console.log($(document).height())
+    if ($(window).scrollTop() >= ($(document).height() - $(window).height() - scroll_height)) {
        
        if(appendNumber2==1){
-        console.log('ad')
+        
         $.ajax( {
             type: "GET",
             url: "/region/load_block",
