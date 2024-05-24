@@ -71,6 +71,13 @@ admission_form.ajaxpost:
   requirements:
     _permission: 'access content'
 
+admission_form.regionblock:
+  path: '/region/{region}'
+  defaults:
+    _controller: 'Drupal\admission_form\Controller\AddmissionController::get_blocks_by_region'
+  requirements:
+    _permission: 'access content'
+
 admission_form.customajaxpost:
   path: '/engine/ajax/custom'
   defaults:

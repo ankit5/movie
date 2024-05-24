@@ -137,6 +137,36 @@ return array(
  '#markup' => Markup::create($rendered));
 
 }
+
+function get_blocks_by_region($region) {
+
+  $blocks = \Drupal::entityTypeManager()
+
+    ->getStorage('block')->loadByProperties([
+
+      'theme' => \Drupal::theme()->getActiveTheme()->getName(),
+
+      'region' => $region,
+
+    ]);
+
+  uasort($blocks, 'Drupal\block\Entity\Block::sort');
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('block');
+  $build = [];
+
+  foreach ($blocks as $key => $block) {
+
+    if ($block->access('view')) {
+
+      $build[$key] = $view_builder->view($block);
+
+    }
+
+  }
+
+   return $build;
+
+}
 public function searchnewTitle() {
 
   $search =$_REQUEST['title'];
