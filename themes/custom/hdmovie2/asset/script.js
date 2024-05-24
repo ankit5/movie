@@ -15,10 +15,10 @@ $(window).scroll(function() {
             url: "/region/load_block",
             success: function( data ) {
            
-        var rawDoc= $(data).find('.content').html();
+       // var rawDoc= $(data).find('.content').html();
            // console.log(rawDoc);
           
-            $('.load_blocks').html(rawDoc);
+            $('.load_blocks').html(data);
             $('.lazy').Lazy(); 
                      
             }
