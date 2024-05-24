@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Render\Markup;
-use Drupal\Core\Cache\CacheableMetadata;
 
 class AddmissionController extends ControllerBase {
 
@@ -141,43 +140,34 @@ return array(
 
 function get_blocks_by_region($region) {
 
+  $blocks = \Drupal::entityTypeManager()
 
-  
-  $blocks = \Drupal::entityTypeManager()->getStorage('block')->loadByProperties([
-    'region' => $region,
-    'theme'  => \Drupal::theme()->getActiveTheme()->getName(),
-  ]);
+    ->getStorage('block')->loadByProperties([
 
+      'theme' => \Drupal::theme()->getActiveTheme()->getName(),
+
+      'region' => $region,
+
+    ]);
+
+  uasort($blocks, 'Drupal\block\Entity\Block::sort');
   $view_builder = \Drupal::entityTypeManager()->getViewBuilder('block');
-
   $build = [];
 
-  $entity_type = \Drupal::entityTypeManager()->getDefinition('block');
-  $cache_metadata = (new CacheableMetadata())
-    ->addCacheTags($entity_type->getListCacheTags())
-    ->addCacheContexts($entity_type->getListCacheContexts());
+  foreach ($blocks as $key => $block) {
 
-  /** @var \Drupal\block\BlockInterface[] $blocks */
-  foreach ($blocks as $id => $block) {
-    $access = $block->access('view');
-   // $cache_metadata = $cache_metadata->addCacheableDependency($access);
-    if ($access) {
-      $block_plugin = $block->getPlugin();
-    
-      $build[$id] = $view_builder->view($block);
+    if ($block->access('view')) {
+
+      $build[$key] = $view_builder->view($block);
+
     }
-  }
 
-  if ($build) {
-    $build['#region'] = $region;
-    $build['#theme_wrappers'] = ['region'];
   }
-  $cache_metadata->applyTo($build);
-
-  //return $build;
   @$rendered = \Drupal::service('renderer')->render($build);
   print $rendered;
   exit;
+
+  // return $build;
 
 }
 public function searchnewTitle() {
