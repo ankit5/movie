@@ -156,11 +156,11 @@ function get_blocks_by_region($region) {
 
   foreach ($blocks as $key => $block) {
 
-    if ($block->access('view')) {
+   
 
       $build[$key] = $view_builder->view($block);
 
-    }
+    
 
   }
   @$rendered = \Drupal::service('renderer')->render($build);
