@@ -2,11 +2,14 @@ $(function() {
     $('.lazy').Lazy();
     
 });
+
 var appendNumber2 = 1;
 $(window).scroll(function() {
    
-    if ($(window).scrollTop() >= ($(document).height() - $(window).height() - 200) && appendNumber==1) {
+    if ($(window).scrollTop() >= ($(document).height() - $(window).height() - 200)) {
        
+       if(appendNumber2==1){
+        console.log('ad')
         $.ajax( {
             type: "GET",
             url: "/region/load_block",
@@ -14,13 +17,14 @@ $(window).scroll(function() {
            
         var rawDoc= $(data).find('.content').html();
            // console.log(rawDoc);
-           console.log('ad')
+          
             $('.load_blocks').html(rawDoc);
             $('.lazy').Lazy(); 
-            ++appendNumber2;         
+                     
             }
           });
-         
+        }
+        appendNumber2 = 2; 
     }
   });
 
