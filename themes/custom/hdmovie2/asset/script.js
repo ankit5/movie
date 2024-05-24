@@ -2,7 +2,7 @@ $(function() {
     $('.lazy').Lazy();
     
 });
-var appendNumber = 1;
+var appendNumber2 = 1;
 $(window).scroll(function() {
    
     if ($(window).scrollTop() >= ($(document).height() - $(window).height() - 200) && appendNumber==1) {
@@ -17,7 +17,7 @@ $(window).scroll(function() {
            console.log('ad')
             $('.load_blocks').html(rawDoc);
             $('.lazy').Lazy(); 
-            ++appendNumber;         
+            ++appendNumber2;         
             }
           });
          
