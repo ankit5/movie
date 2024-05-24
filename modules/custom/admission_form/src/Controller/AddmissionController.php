@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Render\Markup;
+use Symfony\Component\HttpFoundation\Response;
 
 class AddmissionController extends ControllerBase {
 
@@ -150,7 +151,7 @@ function get_blocks_by_region($region) {
 
     ]);
 
-  uasort($blocks, 'Drupal\block\Entity\Block::sort');
+  //uasort($blocks, 'Drupal\block\Entity\Block::sort');
   $view_builder = \Drupal::entityTypeManager()->getViewBuilder('block');
   $build = [];
 
@@ -163,11 +164,17 @@ function get_blocks_by_region($region) {
     
 
   }
-  @$rendered = \Drupal::service('renderer')->render($build);
-  print $rendered;
-  exit;
+  // @$rendered = \Drupal::service('renderer')->render($build);
+  // print $rendered;
+  $output = \Drupal::service('renderer')->renderRoot($build);
 
-  // return $build;
+$response = new Response();
+$response->setContent($output);
+
+return $response;
+ 
+
+   //return $rendered;
 
 }
 public function searchnewTitle() {
