@@ -161,7 +161,7 @@ function get_blocks_by_region($region) {
   foreach ($blocks as $id => $block) {
     $access = $block->access('view');
    // $cache_metadata = $cache_metadata->addCacheableDependency($access);
-    if ($access->isAllowed()) {
+    if ($access) {
       $block_plugin = $block->getPlugin();
     
       $build[$id] = $view_builder->view($block);
