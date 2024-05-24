@@ -104,11 +104,11 @@ $current_path = \Drupal::service('path.current')->getPath();
 $path_args = explode('/', $current_path);
 if($path_args[1]!='admin' && $defaultThemeName!='psyplay'){
  if ($view->id() != "get_year" && $view->id() != "english_series" && $view->current_display != 'block_7' && $view->id() != "feature_movies_test" && $view->id() != "featured_movies" && $view->id() != "marvel_universe" && $view->id() != 'tag_count') {
-  $query->addField('node__field_quality', 'field_quality_value', 'field_quality_value');
+//  $query->addField('node__field_quality', 'field_quality_value', 'field_quality_value');
  // $query->addField('node__field_tags', 'field_tags_target_id', 'field_tags_target_id');
  // $query->setWhereGroup('AND', 1);
  // $query->addWhere(1, "node__field_tags.field_tags_target_id", '106', "!=");
-  $query->addWhere(1, "node__field_quality.field_quality_value", '18+', "!=");
+ // $query->addWhere(1, "node__field_quality.field_quality_value", '18+', "!=");
   
  }
 }
@@ -127,8 +127,8 @@ if($path_args[1]!='admin' && $defaultThemeName!='psyplay'){
      if ($view->id() == "latest") {
  $offset = 0;
  $limit = 27;
-    $view->setOffset($offset);
-    $view->getPager()->setItemsPerPage($limit);
+  //  $view->setOffset($offset);
+  //  $view->getPager()->setItemsPerPage($limit);
   } 
   }
  if ($view->id() == "front_latest"  && $view->current_display != 'block_1') {
