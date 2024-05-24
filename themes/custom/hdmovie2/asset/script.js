@@ -1,6 +1,28 @@
 $(function() {
     $('.lazy').Lazy();
+    
 });
+var appendNumber = 1;
+$(window).scroll(function() {
+   
+    if ($(window).scrollTop() >= ($(document).height() - $(window).height() - 200) && appendNumber==1) {
+       
+        $.ajax( {
+            type: "GET",
+            url: "/region/load_block",
+            success: function( data ) {
+           
+        var rawDoc= $(data).find('.content').html();
+           // console.log(rawDoc);
+           console.log('ad')
+            $('.load_blocks').html(rawDoc);
+            $('.lazy').Lazy(); 
+            ++appendNumber;         
+            }
+          });
+         
+    }
+  });
 
 var appendNumber =1;
 $('#loadmore').click(function(){
@@ -27,8 +49,12 @@ $('#loadmore').click(function(){
        ++appendNumber;
         }
       });
+
+    
    
   });
+
+ 
 
 $('form.searchact button').click(function(){
     //
