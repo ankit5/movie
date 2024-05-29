@@ -87,10 +87,12 @@
       {% endif %}
       {# Print last item if we are not on the last page. #}
       {% if items.last %}
+      {% set lastpage = items.last.href|split("page=")[1] %}
+
         <li class="pager__item pager__item--last">
           <a href="{{ items.last.href }}" title="{{ 'Go to last page'|t }}"{{ items.last.attributes|without('href', 'title') }}>
             <span class="visually-hidden">{{ 'Last page'|t }}</span>
-            {{ items.last.href|replace({ '?page=': '' }) }}
+            {{ lastpage }}
           </a>
         </li>
       {% endif %}
