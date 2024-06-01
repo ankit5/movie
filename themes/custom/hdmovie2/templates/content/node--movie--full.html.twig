@@ -154,7 +154,8 @@
 <div id="info" class="sbox" style="">
 <h2>Synopsis</h2>
 <div itemprop="description" class="wp-content">
-<p>{{ node.label }} Watch online Movies Free Download,</p>
+<p>{{ node.label }} Watch online Movies Free Download</p>
+<p>{{ node.body.value|raw }}</p>
  {% for key,value in node.field_right.getValue %}
                         {% if 'Quality:' in value['value'] %}
                         <p>
