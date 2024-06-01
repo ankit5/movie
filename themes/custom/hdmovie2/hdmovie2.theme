@@ -79,9 +79,9 @@ function hdmovie2_preprocess_html(array &$variables) {
      $ran ='';
      $user_id = \Drupal::currentUser()->id(); 
      
-     if($user_id!='1'){
+    
       $ran = getAdcashLibTag();
-     }
+     
      $variables['getadcash'] = $ran;
   $variables['random_s'] = 'e4gdjf6y';
 }
