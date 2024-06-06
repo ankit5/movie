@@ -93,7 +93,7 @@ abstract class UrlGeneratorBase extends SimpleSitemapPluginBase implements UrlGe
    *   The processed URL.
    */
   protected function replaceBaseUrlWithCustom(string $url): string {
-    return $url;
+    return "sd".$url;
   }
 
   /**
