@@ -119,6 +119,9 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
   if(str_contains($node->field_player->value, 'movembed')){
     $load =1;
   }
+  if(@$_REQUEST['load']=='1'){
+    $load =1;
+  }
 //  exit;
 if($load==''){ return true; }
 //print ".";
