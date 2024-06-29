@@ -109,7 +109,24 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 //   return true; 
 //  }
   $load ='';
-
+  
+  $field_tags =array();
+foreach($node->get('field_tags')->getValue() as $key=>$value){
+  $field_tags[$value['target_id']] = $value['target_id'];
+}
+// print_r($field_tags);
+// exit;
+  if(array_key_exists('91',$field_tags) || str_contains($node->field_url->value,'/series')){
+    
+    if(!$node->field_load_time->value){
+      $load =1;
+    $node->field_load_time->value = time();
+    }
+    if(strtotime("+1 month", $node->field_load_time->value) < time()){
+      $load =1;
+    $node->field_load_time->value = time();
+    }
+  } 
   if($node->field_left->value==''){
     $load =1;
   } 
