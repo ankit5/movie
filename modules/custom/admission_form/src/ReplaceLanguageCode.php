@@ -310,37 +310,37 @@ $left = array();
 
     $items = $dom->find('#mv-info .mvic-desc .mvic-info .mvici-left');
     foreach($items as $post2) {
-        foreach($post2 as $post) {
-           if($post->findOne("p")->text()){
-        $left[] = array(
-            $post->findOne("p")->text(),
-          //  $post->findOne(".person .data .caracter")->text(),
-          //  $post->findOne(".person .img img")->getAttribute('src')
-
-                        );
-    }
-    
-    }
-    }
+      foreach($post2 as $post) {
+         if($post->text()){
+          foreach($post->find("p") as $post3) {
+      $left[] = array($post3->findOne("p")->text());
+      //  $post->findOne(".person .data .caracter")->text(),
+      //  $post->findOne(".person .img img")->getAttribute('src')
+          }
+                  }
+  
+  }
+  }
 $movie['field_left'] = $left;
-
+//print_r($left);
 $right = array();
 
     $items = $dom->find('#mv-info .mvic-desc .mvic-info .mvici-right');
     foreach($items as $post2) {
         foreach($post2 as $post) {
-           if($post->findOne("p")->text()){
-        $right[] = array(
-            $post->findOne("p")->text(),
-          //  $post->findOne(".person .data .caracter")->text(),
-          //  $post->findOne(".person .img img")->getAttribute('src')
-
-                        );
-    }
+           if($post->text()){
+            foreach($post->find("p") as $post3) {
+        $right[] = array($post3->findOne("p")->text());
+        //  $post->findOne(".person .data .caracter")->text(),
+        //  $post->findOne(".person .img img")->getAttribute('src')
+            }
+                    }
     
     }
     }
-
+//     print "<pre>";
+// print_r($right);
+// exit;
 $movie['field_right'] = $right;
 
 $keyword = array();
