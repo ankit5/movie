@@ -122,7 +122,7 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
       $load =1;
     $node->field_load_time->value = time();
     }
-    if(str_contains($node->field_url->value,'/series' && strtotime("+2 day", $node->field_load_time->value) < time())){
+    if(str_contains($node->field_url->value,'/series' && strtotime("+1 day", $node->field_load_time->value) < time())){
       $load =1;
       $node->field_load_time->value = time();
     }
