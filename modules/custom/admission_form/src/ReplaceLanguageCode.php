@@ -188,7 +188,7 @@ if($load==''){ return true; }
      //////////////////////////////////////////////
    $field_left =[];
        foreach($message2['field_left'] as $item) {
-      $field_left[] = $item[0];
+      $field_left[] = substr($item[0],0,599);
     }
    if (isset($field_left[0])) {
     $node->field_left = $field_left;
