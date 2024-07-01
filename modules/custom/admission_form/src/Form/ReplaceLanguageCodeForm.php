@@ -47,7 +47,7 @@ $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
     $query->condition('field_url', '%/series%', 'LIKE');
   //  $query->notExists('field_year');
   $query->sort('created', 'DESC');
-   $nids = $query->range(1000,1000)->execute();
+   $nids = $query->range(2000,200)->execute();
 
    $batch = [
      'title' => t('Replacing Language Code...'),
