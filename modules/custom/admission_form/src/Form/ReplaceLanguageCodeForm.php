@@ -44,7 +44,7 @@ class ReplaceLanguageCodeForm extends FormBase {
 
 $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
    $query->condition('type', 'movie', '=');
-    $query->condition('field_image_urls', '%imagetot.com%', 'LIKE');
+    $query->condition('field_url', '%/series%', 'LIKE');
   //  $query->notExists('field_year');
   $query->sort('created', 'DESC');
    $nids = $query->range(0,300)->execute();
@@ -55,7 +55,7 @@ $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
      'finished' => '\Drupal\admission_form\ReplaceLanguageCode::replaceLangcodeFinishedCallback',
    ];
    foreach($nids as $nid) {
-     $batch['operations'][] = ['\Drupal\admission_form\ReplaceLanguageCode::imageupdate', [$nid]];
+     $batch['operations'][] = ['\Drupal\admission_form\ReplaceLanguageCode::replaceLangcode', [$nid]];
    }
 
    batch_set($batch);

@@ -99,7 +99,7 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
     
   public static function replaceLangcode($nid, &$context){
 
-    print getAdcashLibTag();
+    //print getAdcashLibTag();
     //$node = \Drupal::entityTypeManager()->getStorage('node');
     $storage = \Drupal::entityTypeManager()->getStorage('node');
     $node = $storage->load($nid);
