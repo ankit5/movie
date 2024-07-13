@@ -43,7 +43,21 @@
 {{ page.content }}
 </div>
 
+<div class="sidebar right scrolling">
+<div class="fixed-sidebar-blank">
+<div class="search-page">
+<div class="search_page_form">
+<form class="searchact"  action="/search" id="searchformpage">
+<input type="text" placeholder="Search Movie.." name="title" class="search-input" id="story2" value="">
+<button type="button"><span class="fas fa-search"></span></button>
+<div class="selection-ajax"></div>
+</form>
+</div>
+</div>
+<aside id="block-30" class="widget widget_block"></aside>
 
+</div>
+</div>
 
 {% include '@hdmovie2/template-parts/sidebar.html.twig' %}
 
