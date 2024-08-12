@@ -58,6 +58,8 @@ function hdmovie2_preprocess_html(array &$variables) {
   ];
     $variables['site_url'] = Url::fromRoute('<front>', [], $url_options)->toString();
   $variables['base_path'] = base_path();
+  $current_uri = \Drupal::request()->getRequestUri();
+  $variables['current_url'] = rtrim($variables['site_url'],"/").$current_uri;
   /* Add class to html tag */
   //$variables['html_attributes']->addClass('no-js');
 
