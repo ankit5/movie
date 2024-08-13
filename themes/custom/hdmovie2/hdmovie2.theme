@@ -60,7 +60,11 @@ function hdmovie2_preprocess_html(array &$variables) {
   $variables['base_path'] = base_path();
   $current_uri = \Drupal::request()->getRequestUri();
   $variables['current_url'] = rtrim($variables['site_url'],"/").$current_uri;
+  $variables['next_url'] = explode('?page=',$variables['current_url']);
+   $variables['next_url'] = explode('&page=',$variables['next_url'][0]);
+  $variables['next_url'] = (str_contains($variables['current_url'], 'year'))?$variables['next_url'][0].'&page='.@$_GET['page']+1:$variables['next_url'][0].'?page='.@$_GET['page']+1;
   /* Add class to html tag */
+  $variables['site_name2'] = ucfirst(rtrim(str_replace('https://','',$variables['site_url']),'/'));
   //$variables['html_attributes']->addClass('no-js');
 
   // Don't display the site name twice on the front page (and potentially others)
