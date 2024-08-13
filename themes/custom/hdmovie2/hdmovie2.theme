@@ -34,6 +34,23 @@ function hdmovie2_page_attachments_alter(array &$page) {
   if ($arg[1] == 'user') {
    // $page['#attached']['library'][] = 'claro/global-styling';
   }
+  foreach ($page["#attached"]["html_head"] as $key => $attachment) {
+     foreach ($page["#attached"]["html_head"] as $key => $attachment) {
+     // print $key;
+     if ('meta' === $attachment[0]["#tag"] &&
+         !empty($attachment[0]["#attributes"]["name"]) &&
+         'Generator' === $attachment[0]["#attributes"]["name"]) {
+
+            unset($page["#attached"]["html_head"]["$key"]);
+     }
+     if ('link' === $attachment[0]["#tag"] &&
+         !empty($attachment[0]["#attributes"]["rel"]) &&
+         'canonical' === $attachment[0]["#attributes"]["rel"]) {
+
+            unset($page["#attached"]["html_head"]["$key"]);
+     }
+   }
+  }
   
 }
 
@@ -93,11 +110,14 @@ function hdmovie2_preprocess_html(array &$variables) {
   $variables['site_name'] = $_SERVER['SERVER_NAME'];
 }
 
+
+
 /**
  * Implements hook_page_attachments_alter().
  */
 function hdmovie2_page_attachments_alter2(array &$page) {
   // Tell IE to use latest rendering engine (not to use compatibility mode).
+  
   
 }
 
