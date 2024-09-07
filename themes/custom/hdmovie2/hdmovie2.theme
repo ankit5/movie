@@ -207,6 +207,8 @@ function hdmovie2_theme_suggestions_fieldset_alter(array &$suggestions, array $v
  */
 function hdmovie2_preprocess_node(array &$variables) {
  $node = $variables['node'];
+ $variables['site_url'] = Url::fromRoute('<front>', [], $url_options)->toString();
+ $variables['site_url'] = rtrim($variables['site_url'], '/')
   if ($node->bundle() == 'movie') {
 
    $node->field_image_urls->value = str_replace("www.themoviedb.org","image.tmdb.org",$node->field_image_urls->value);
