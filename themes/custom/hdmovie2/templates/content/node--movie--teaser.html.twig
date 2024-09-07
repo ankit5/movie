@@ -18,12 +18,11 @@
                  <span class="quality">Eps<i>{{ node.field_eps.0.value }}</i></span>
                      {% endif %} 
 </div>
-<a href="{{ url }}">
+<a href="{{ site_url }}{{ url }}">
 <div class="see play4"></div>
 </a>
 </div>
 <div class="data">
-<h3><a href="{{ url }}">{{node.label}}</a></h3>
-<span>{{ node.field_year.0.value }}</span>
+<h3><a href="{{ site_url }}{{ url }}">{{node.label}}</a></h3>
 </div>
 </article>
