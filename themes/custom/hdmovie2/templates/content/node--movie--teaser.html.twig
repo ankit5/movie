@@ -8,15 +8,12 @@
 <article class="item movies swiper-slide" id="{{ node.id }}">
 <div class="poster">
 <img data-src="{{ image_url }}" src="" class="lazy thumb mli-thumb" alt="{{node.label}}">
-<div class="rating"> {% for key,value in node.field_right.getValue %}
+<div class="rating">{% for key,value in node.field_right.getValue %}
                         {% if 'IMDb:' in value['value'] %}
                          {{ value['value']|replace({ 'IMDb:': '' }) }}
                          {% endif %}
                         {% endfor %}</div>
 <div class="mepo"> 
-{% if node.field_quality.0.value %}
-                  <span class="quality">HD</span>
-                     {% endif %}
                      {% if node.field_eps.0.value %}
                  <span class="quality">Eps<i>{{ node.field_eps.0.value }}</i></span>
                      {% endif %} 
@@ -25,7 +22,8 @@
 <div class="see play4"></div>
 </a>
 </div>
-<div class="data dfeatur">
+<div class="data">
 <h3><a href="{{ url }}">{{node.label}}</a></h3>
+<span>May. 31, 2024</span>
 </div>
 </article>

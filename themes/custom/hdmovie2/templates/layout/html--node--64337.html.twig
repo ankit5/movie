@@ -145,6 +145,8 @@
 </div>
 </div>
 
+<div class="load_block_featured"></div>
+
 {{ page.content_home }}
 
 <div class="load_blocks"></div>
@@ -157,7 +159,21 @@
 {% include '@hdmovie2/template-parts/footer.html.twig' %}
 </footer>
 </div>
-
+<script>
+ $.ajax( {
+            type: "GET",
+            url: "/region/load_block_featured",
+            success: function( data ) {
+           
+       // var rawDoc= $(data).find('.content').html();
+           // console.log(rawDoc);
+          
+            $('.load_block_featured').html(data);
+            $('.lazy').Lazy(); 
+                     
+            }
+          });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script type="text/javascript" src="/themes/custom/hdmovie2/asset/script.js?{{random_s}}"></script>
 
