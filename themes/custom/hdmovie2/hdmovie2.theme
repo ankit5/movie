@@ -207,6 +207,10 @@ function hdmovie2_theme_suggestions_fieldset_alter(array &$suggestions, array $v
  */
 function hdmovie2_preprocess_node(array &$variables) {
  $node = $variables['node'];
+ $url_options = [
+    'absolute' => TRUE,
+    'language' => \Drupal::languageManager()->getCurrentLanguage(),
+  ];
  $variables['site_url'] = Url::fromRoute('<front>', [], $url_options)->toString();
  $variables['site_url'] = rtrim($variables['site_url'], '/');
   if ($node->bundle() == 'movie') {
