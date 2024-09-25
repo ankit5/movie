@@ -6,7 +6,7 @@ const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 var appendNumber2 = 1;
 $(window).scroll(function() {
     
-   var scroll_height = (isMobile)?2680:400;
+   var scroll_height = (isMobile)?2980:400;
   // console.log($(document).height())
     if ($(window).scrollTop() >= ($(document).height() - $(window).height() - scroll_height)) {
        
