@@ -122,11 +122,7 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
       $load =1;
     $node->field_load_time->value = time();
     }
-    if(str_contains($node->field_url->value,'/series') && strtotime("+1 day", $node->field_load_time->value) < time()){
-      $load =1;
-      $node->field_load_time->value = time();
-    }
-    elseif(strtotime("+1 month", $node->field_load_time->value) < time()){
+    if(strtotime("+1 month", $node->field_load_time->value) < time()){
       $load =1;
     $node->field_load_time->value = time();
     }
@@ -209,6 +205,14 @@ if($load==''){ return true; }
    if (isset($field_player[0])) {
     $node->field_player = $field_player;
     }
+     //////////////////////////////////////////////
+   $field_player_text =[];
+   foreach($message2['field_player_text'] as $item) {
+  $field_player_text[] = $item[0];
+}
+if (isset($field_player_text[0])) {
+$node->field_player_text = $field_player_text;
+}
      //////////////////////////////////////////////
    $field_episodes =[];
        foreach($message2['field_episodes'] as $item) {
@@ -371,6 +375,23 @@ $movie['field_keyword'] = $keyword;
     }
     }
 $movie['field_player'] = $player2;
+
+$field_player_text = array();
+
+$items = $dom->find('.idTabs li');
+foreach($items as $post2) {
+    foreach($post2 as $post) {
+        if ($post->findOne(".les-title")->text()) {
+    $episodes[] = array(
+        $post->findOne(".les-title")->text(),
+
+                    );
+}
+
+}
+}
+
+$movie['field_player_text'] = $field_player_text;
 
  $episodes = array();
 
