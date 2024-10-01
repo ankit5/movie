@@ -382,7 +382,7 @@ $items = $dom->find('.idTabs li');
 foreach($items as $post2) {
     foreach($post2 as $post) {
         if ($post->findOne(".les-title")->text()) {
-    $episodes[] = array(
+    $field_player_text[] = array(
         $post->findOne(".les-title")->text(),
 
                     );
