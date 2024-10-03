@@ -120,11 +120,9 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
     
     if(!$node->field_load_time->value){
       $load =1;
-    $node->field_load_time->value = time();
     }
     if(strtotime("+4 days", $node->field_load_time->value) < time()){
       $load =1;
-    $node->field_load_time->value = time();
     }
   } 
   if($node->field_left->value==''){
@@ -138,6 +136,9 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
   }
   if(@$_REQUEST['load']=='1'){
     $load =1;
+  }
+  if($load==1){
+    $node->field_load_time->value = time();
   }
 //  exit;
 if($load==''){ return true; }
