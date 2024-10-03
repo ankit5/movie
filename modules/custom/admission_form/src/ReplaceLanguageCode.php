@@ -122,7 +122,7 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
       $load =1;
     $node->field_load_time->value = time();
     }
-    if(strtotime("+1 month", $node->field_load_time->value) < time()){
+    if(strtotime("+4 days", $node->field_load_time->value) < time()){
       $load =1;
     $node->field_load_time->value = time();
     }
