@@ -61,6 +61,7 @@ class SimpleSitemapController extends ControllerBase {
     $output = str_replace('hdmovie2.wiki',$_SERVER['HTTP_HOST'],$output);
     $output = str_replace('hdmovie2.lat',$_SERVER['HTTP_HOST'],$output);
     $output = str_replace('hdmovie2.monster',$_SERVER['HTTP_HOST'],$output);
+    $output = str_replace('hdmovie2.cloud',$_SERVER['HTTP_HOST'],$output);
     return new Response($output, Response::HTTP_OK, [
       'Content-type' => 'application/xml; charset=utf-8',
       'X-Robots-Tag' => 'noindex, follow',
