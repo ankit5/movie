@@ -51,7 +51,7 @@
              {% if ('speedostream' in value['value']) or ('minoplres' in value['value']) %}
              {% set pl_text = (node.field_player_text.getValue[key]['value'])?node.field_player_text.getValue[key]['value']:"File " ~ i %}
              {% set selected = (i==1)?'selected':'' %}
-             <a href="javascript:void(0)" data-value="{{ node.id }}" data-key="{{ key }}" data-types="eps" class="selected"> {{ pl_text }} </a> 
+             <a href="javascript:void(0)" data-value="{{ node.id }}" data-key="{{ key }}" data-types="eps" class="{{ selected }}"> {{ pl_text }} </a> 
              {% set i=i+1 %} 
              {% endif %}
              {% set key = key+1 %}
