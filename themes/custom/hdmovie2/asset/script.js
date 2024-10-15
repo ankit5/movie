@@ -429,13 +429,10 @@ $(document).ready(function() {
      
       //$('#seasons .les-content a:first').addClass("selected");
      // $('.idTabs a:first').addClass("selected");
-       
-      $('#seasons .les-content a').click(function(){
-        const newLocal = "selected";
-        $("#seasons .les-content a").removeClass(newLocal);
-    $(this).addClass(newLocal);
-    
-    });
+     const newLocal = "selected";
+     $("#seasons .les-content a").removeClass(newLocal);
+     
+     
     $('.idTabs li').click(function(){
       $("#seasons .les-content a").removeClass("selected");
      $(".idTabs li").removeClass("selected");
@@ -446,6 +443,7 @@ $(document).ready(function() {
     return true;  
   }
   $(".center").css({'display': 'flex'});
+  $(this).addClass(newLocal);
     //window.location.href = 'https://play.hdmovies2.online/?id='+$(this).data('value')+'&tab='+$(this).data('key');
     var movie_url = 'https://play.123hdmovies2.xyz/?id='+$(this).data('value')+'&tab='+$(this).data('key')+'&iframe=1';
     var ifra = '<iframe src="'+movie_url+'" iframeborder="0" allow="autoplay" style="width:100%;z-index: 10;" scrolling="no" allowfullscreen></iframe>'
