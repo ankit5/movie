@@ -427,8 +427,8 @@ $(document).ready(function() {
      // alert($(this).data('value'));
     // $("a.splash-image").hide();
      
-      $('#seasons .les-content a:first').addClass("selected");
-      $('.idTabs a:first').addClass("selected");
+      //$('#seasons .les-content a:first').addClass("selected");
+     // $('.idTabs a:first').addClass("selected");
        
       $('#seasons .les-content a').click(function(){
         $("#seasons .les-content a").removeClass("selected");
