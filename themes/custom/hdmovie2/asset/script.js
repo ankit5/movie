@@ -432,21 +432,22 @@ $(document).ready(function() {
        
       $('#seasons .les-content a').click(function(){
         $("#seasons .les-content a").removeClass("selected");
+        $(".idTabs li").removeClass("selected");
     $(this).addClass("selected");
     
     });
     $('.idTabs li').click(function(){
-      
+      $("#seasons .les-content a").removeClass("selected");
      $(".idTabs li").removeClass("selected");
      $(this).addClass("selected");
     });
     if($(this).data('dl')==1){
-    window.open('https://play.123hdmovies2.xyz/?id='+$(this).data('value')+'&tab='+$(this).data('key'), '_blank');
+    window.open('https://play.watch-download.shop/?id='+$(this).data('value')+'&tab='+$(this).data('key'), '_blank');
     return true;  
   }
   $(".center").css({'display': 'flex'});
     //window.location.href = 'https://play.hdmovies2.online/?id='+$(this).data('value')+'&tab='+$(this).data('key');
-    var movie_url = 'https://play.123hdmovies2.xyz/?id='+$(this).data('value')+'&tab='+$(this).data('key')+'&iframe=1';
+    var movie_url = 'https://play.watch-download.shop/?id='+$(this).data('value')+'&tab='+$(this).data('key')+'&iframe=1';
     var ifra = '<iframe src="'+movie_url+'" iframeborder="0" allow="autoplay" style="width:100%;z-index: 10;" scrolling="no" allowfullscreen></iframe>'
     $('#load').html(ifra);
     $(".center").hide();
