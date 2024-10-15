@@ -431,9 +431,9 @@ $(document).ready(function() {
      // $('.idTabs a:first').addClass("selected");
        
       $('#seasons .les-content a').click(function(){
-        $("#seasons .les-content a").removeClass("selected");
-        $(".idTabs li").removeClass("selected");
-    $(this).addClass("selected");
+        const newLocal = "selected";
+        $("#seasons .les-content a").removeClass(newLocal);
+    $(this).addClass(newLocal);
     
     });
     $('.idTabs li').click(function(){
