@@ -152,10 +152,9 @@
     display: inline-block;
     position: absolute;
     bottom: 9px;
-    /* margin-top: 50%; */
-    /* margin-left: 50%; */
-    left: 45%;
-    top: 50%;
+    margin-top: -55px;
+    margin-left: -60px;
+    left: 62px;
     z-index: 2;
     border-radius: 26px;
     border: 4px solid rgba(255, 255, 255, 1);
