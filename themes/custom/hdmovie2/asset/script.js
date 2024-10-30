@@ -447,6 +447,8 @@ $(document).ready(function() {
     //window.location.href = 'https://play.hdmovies2.online/?id='+$(this).data('value')+'&tab='+$(this).data('key');
     var movie_url = 'https://play.watch-download.shop/?id='+$(this).data('value')+'&tab='+$(this).data('key')+'&iframe=1';
     var ifra = '<iframe src="'+movie_url+'" iframeborder="0" allow="autoplay" style="width:100%;z-index: 10;" scrolling="no" allowfullscreen></iframe>'
+    
+    $("#mv-info .mvi-cover").css({'padding-bottom': '95%'});
     $('#load').html(ifra);
     $(".center").hide();
     return true;
