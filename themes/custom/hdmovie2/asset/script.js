@@ -447,8 +447,12 @@ $(document).ready(function() {
     //window.location.href = 'https://play.hdmovies2.online/?id='+$(this).data('value')+'&tab='+$(this).data('key');
     var movie_url = 'https://play.watch-download.shop/?id='+$(this).data('value')+'&tab='+$(this).data('key')+'&iframe=1';
     var ifra = '<iframe src="'+movie_url+'" iframeborder="0" allow="autoplay" style="width:100%;z-index: 10;" scrolling="no" allowfullscreen></iframe>'
-    
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+   if(isMobile){
     $("#mv-info .mvi-cover").css({'padding-bottom': '95%'});
+   }else{
+    $("#mv-info .mvi-cover").css({'padding-bottom': '54%'});
+   }
     $('#load').html(ifra);
     $(".center").hide();
     return true;
