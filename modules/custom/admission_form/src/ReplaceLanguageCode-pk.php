@@ -130,16 +130,16 @@ $node->field_tags = $field_tags;
   // $node->changed = $node->created->value;
    // $node->set('changed', $node->created->value);
     $results[] = $node->save();
-    $connection = \Drupal::database();
-    $query = $connection->update('node_field_data');
-    $query->fields(array('changed' => $node->created->value)); 
-    $query->condition('nid', $node->id());
-    $query->execute();
+    // $connection = \Drupal::database();
+    // $query = $connection->update('node_field_data');
+    // $query->fields(array('changed' => $node->created->value)); 
+    // $query->condition('nid', $node->id());
+    // $query->execute();
 
-    $query = $connection->update('node_field_revision');
-    $query->fields(array('changed' => $node->created->value)); 
-    $query->condition('nid', $node->id());
-    $query->execute();
+    // $query = $connection->update('node_field_revision');
+    // $query->fields(array('changed' => $node->created->value)); 
+    // $query->condition('nid', $node->id());
+    // $query->execute();
    /* $context['message'] = $message;
     $context['results'][] = $nid;*/
   }

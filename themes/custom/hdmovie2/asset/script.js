@@ -2,63 +2,6 @@ $(function() {
     $('.lazy').Lazy();
     
 });
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-var appendNumber2 = 1;
-$(window).scroll(function() {
-    
-   var scroll_height = (isMobile)?2980:400;
-  // console.log($(document).height())
-    if ($(window).scrollTop() >= ($(document).height() - $(window).height() - scroll_height)) {
-       
-       if(appendNumber2==1){
-        
-        $.ajax( {
-            type: "GET",
-            url: "/region/load_block",
-            success: function( data ) {
-           
-       // var rawDoc= $(data).find('.content').html();
-           // console.log(rawDoc);
-          
-            $('.load_blocks').html(data);
-            $('.lazy').Lazy(); 
-                     
-            }
-          });
-        }
-        appendNumber2 = 2; 
-    }
-  });
-
-var appendNumber =1;
-$('#loadmore').click(function(){
-   
-    $('.loader2').show();
-
-    $.ajax( {
-        type: "GET",
-        url: "/views/ajax?view_name=latest&view_display_id=page_1&view_args=&pager_element=0&page="+appendNumber,
-        data: { get_param: 'value' }, 
-        dataType: 'json',
-        success: function( data ) {
-       // console.log(data[1].data);
-       //var rawDoc= $(data[1].data).find('.items').html();
-       var rawDoc = data[1].data;
-       let doc = document.createElement('html');
-       doc.innerHTML = rawDoc;
-       let div1 = doc.querySelectorAll('.item');
-       div1.forEach(p =>  $(".loadmore").append(p));
-       $('.lazy').Lazy(); 
-       $('.loader2').hide(); 
-     
-       // $('.loadmore').html(data[1].data);
-       ++appendNumber;
-        }
-      });
-
-    
-   
-  });
 
  
 

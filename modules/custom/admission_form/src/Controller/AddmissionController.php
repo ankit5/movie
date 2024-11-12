@@ -139,8 +139,16 @@ return array(
 
 }
 
-function get_blocks_by_region($region) {
+function get_blocks_by_region_old($region) {
+ header('Location:/');
+ exit;
+}
 
+function get_blocks_by_region(Request $request) {
+
+  $postData = json_decode($request->getContent());
+  $region = $postData->region;
+ // exit;
   $blocks = \Drupal::entityTypeManager()
 
     ->getStorage('block')->loadByProperties([
