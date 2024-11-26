@@ -78,6 +78,27 @@ admission_form.regionblock:
   requirements:
     _permission: 'access content'
 
+admission_form.embed:
+  path: '/embed/{region}'
+  defaults:
+    _controller: 'Drupal\admission_form\Controller\AddmissionController::get_blocks_by_region_old'
+  requirements:
+    _permission: 'access content'
+
+admission_form.anime:
+  path: '/anime/{region}'
+  defaults:
+    _controller: 'Drupal\admission_form\Controller\AddmissionController::get_blocks_by_region_old'
+  requirements:
+    _permission: 'access content'
+
+admission_form.cgi_sys:
+  path: '/cgi-sys/{region}'
+  defaults:
+    _controller: 'Drupal\admission_form\Controller\AddmissionController::get_blocks_by_region_old'
+  requirements:
+    _permission: 'access content'
+
 admission_form.regionblocknew:
   path: '/region'
   defaults:
