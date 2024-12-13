@@ -1,11 +1,11 @@
-name: Hdmovie2new
+name: Hdmovie2new2
 type: theme
-description: 'My Hdmovie2new theme'
+description: 'My Hdmovie2new2 theme'
 base theme: hdmovie2
 package: PackageName
 core_version_requirement: ^9.4 || ^10
 libraries:
-  - hdmovie2new/global-main
+  - hdmovie2new2/global-main
 
 regions:
   head_top: head_top
@@ -19,5 +19,5 @@ regions:
   footer: footer
 
 version: '1.2.0'
-project: 'hdmovie2new'
+project: 'hdmovie2new2'
 datestamp: 1861826904
