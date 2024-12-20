@@ -48,7 +48,7 @@
             <div class="les-content" style="display: block;padding: 0;">
             {% set i=1 %} 
             {% for key,value in node.field_player.getValue %}
-             {% if ('speedostream' in value['value']) or ('minoplres' in value['value']) %}
+             {% if ('.xyz' in value['value']) or ('minoplres' in value['value']) %}
              {% set pl_text = (node.field_player_text.getValue[key]['value'])?node.field_player_text.getValue[key]['value']:"File " ~ i %}
              {% set selected = (i==1)?'selected':'' %}
              <a href="javascript:void(0)" data-value="{{ node.id }}" data-key="{{ key }}" data-types="eps" class="{{ selected }}"> {{ pl_text }} </a> 
@@ -65,7 +65,7 @@
  <div class="player_nav">
     <ul id="playeroptionsul pmovie__stream-select" class="ajax_mode tabs-block__select idTabs">
     {% for key,value in node.field_player.getValue %}
-      {% if ('speedostream' in value['value']) or ('minoplres' in value['value']) %}
+      {% if ('.xyz' in value['value']) or ('minoplres' in value['value']) %}
          {% set class_tab = '' %}
           {% else %}
          {% set class_tab = 'tab_load' %}
