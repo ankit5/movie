@@ -1,0 +1,23 @@
+uuid: a04fa053-048a-4ae5-9722-35a85807f2cf
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - hmovie2
+_core:
+  default_config_hash: Q-4EcGAsu26ICu4ejEz0uE1zv4akpiaOsizxgZfAmEw
+id: hmovie2_search
+theme: hmovie2
+region: header
+weight: -6
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Search
+  label_display: visible
+  provider: search
+  page_id: node_search
+visibility: {  }

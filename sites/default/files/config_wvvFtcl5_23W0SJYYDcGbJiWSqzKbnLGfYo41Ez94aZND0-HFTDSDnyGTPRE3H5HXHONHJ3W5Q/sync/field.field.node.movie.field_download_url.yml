@@ -1,0 +1,19 @@
+uuid: 528e57bc-273e-4785-823a-f2dba05fbf47
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_download_url
+    - node.type.movie
+id: node.movie.field_download_url
+field_name: field_download_url
+entity_type: node
+bundle: movie
+label: 'Download url'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

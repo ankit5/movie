@@ -3,7 +3,10 @@
 namespace Drupal\simple_sitemap_engines\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Datetime\DateFormatter;
+use Drupal\Core\Config\TypedConfigManagerInterface;
+use Drupal\Core\Datetime\DateFormatterInterface;
+use Drupal\Core\DependencyInjection\AutowireTrait;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -11,14 +14,16 @@ use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Url;
 use Drupal\simple_sitemap\Entity\SimpleSitemap;
 use Drupal\simple_sitemap_engines\Entity\SimpleSitemapEngine;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form for managing search engine submission settings.
  */
 class SimplesitemapEnginesForm extends ConfigFormBase {
+
+  use AutowireTrait;
 
   /**
    * The entity type manager service.
@@ -28,9 +33,16 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
   protected $entityTypeManager;
 
   /**
+   * The entity field manager.
+   *
+   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
+   */
+  protected $entityFieldManager;
+
+  /**
    * The date formatter service.
    *
-   * @var \Drupal\Core\Datetime\DateFormatter
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
    */
   protected $dateFormatter;
 
@@ -46,33 +58,30 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory service.
+   * @param \Drupal\Core\Config\TypedConfigManagerInterface $typedConfigManager
+   *   The typed config manager.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager service.
-   * @param \Drupal\Core\Datetime\DateFormatter $date_formatter
+   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
+   *   The entity field manager.
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
    * @param \Drupal\Core\State\StateInterface $state
    *   The state service.
    */
-  public function __construct(ConfigFactoryInterface $config_factory,
-                              EntityTypeManagerInterface $entity_type_manager,
-                              DateFormatter $date_formatter,
-                              StateInterface $state) {
-    parent::__construct($config_factory);
+  public function __construct(
+    ConfigFactoryInterface $config_factory,
+    TypedConfigManagerInterface $typedConfigManager,
+    EntityTypeManagerInterface $entity_type_manager,
+    EntityFieldManagerInterface $entity_field_manager,
+    DateFormatterInterface $date_formatter,
+    StateInterface $state,
+  ) {
+    parent::__construct($config_factory, $typedConfigManager);
     $this->entityTypeManager = $entity_type_manager;
+    $this->entityFieldManager = $entity_field_manager;
     $this->dateFormatter = $date_formatter;
     $this->state = $state;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('config.factory'),
-      $container->get('entity_type.manager'),
-      $container->get('date.formatter'),
-      $container->get('state')
-    );
   }
 
   /**
@@ -97,55 +106,6 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
 
     $form['#tree'] = TRUE;
 
-    $form['settings'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Sitemap submission settings'),
-      '#prefix' => FormHelper::getDonationText(),
-    ];
-
-    $form['settings']['enabled'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Submit sitemaps to search engines'),
-      '#description' => $this->t("This enables/disables sitemap submission; don't forget to choose sitemaps below."),
-      '#default_value' => $config->get('enabled'),
-    ];
-
-    $form['settings']['submission_interval'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Submission interval'),
-      '#options' => FormHelper::getCronIntervalOptions(),
-      '#default_value' => $config->get('submission_interval'),
-      '#states' => [
-        'visible' => [':input[name="settings[enabled]"]' => ['checked' => TRUE]],
-      ],
-    ];
-
-    $form['settings']['engines'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Engines'),
-      '#markup' => '<div class="description">' . $this->t('Choose which sitemaps are to be submitted to which search engines.<br>Sitemaps can be configured <a href="@url">here</a>.', ['@url' => $GLOBALS['base_url'] . '/admin/config/search/simplesitemap']) . '</div>',
-      '#open' => TRUE,
-      '#states' => [
-        'visible' => [':input[name="settings[enabled]"]' => ['checked' => TRUE]],
-      ],
-    ];
-
-    $engines = SimpleSitemapEngine::loadSitemapSubmissionEngines();
-    foreach ($engines as $engine_id => $engine) {
-      $form['settings']['engines'][$engine_id] = [
-        '#type' => 'select',
-        '#title' => $engine->label(),
-        '#options' => array_map(
-          function ($sitemap) {
-            return $sitemap->label();
-          },
-          SimpleSitemap::loadMultiple()
-        ),
-        '#default_value' => $engine->sitemap_variants,
-        '#multiple' => TRUE,
-      ];
-    }
-
     $form['index_now'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('IndexNow settings'),
@@ -154,7 +114,9 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
     $form['index_now']['enabled'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Submit changes to IndexNow capable engines'),
-      '#description' => $this->t('Send change notice to IndexNow compatible search engines right after submitting entity forms. Changes include creating, deleting and updating of an entity.<br/>This behaviour can be overridden on entity forms. Don\'t forget to <a href="@inclusion_url">include entities</a>.', ['@inclusion_url' => $GLOBALS['base_url'] . '/admin/config/search/simplesitemap/entities']),
+      '#description' => $this->t('Send change notice to IndexNow compatible search engines right after submitting entity forms. Changes include creating, deleting and updating of an entity.<br/>This behavior can be overridden on entity forms. Don\'t forget to <a href="@inclusion_url">include entities</a>.',
+        ['@inclusion_url' => Url::fromRoute('simple_sitemap.entities')->toString()]
+      ),
       '#default_value' => $config->get('index_now_enabled'),
     ];
 
@@ -174,7 +136,9 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
     $form['index_now']['on_entity_save'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Index on every entity save operation'),
-      '#description' => $this->t('If checked, all entity save operations for <a href="@inclusion_url">included entities</a> will trigger notification of IndexNow search engines.<br/>If unchecked, this will only be possible by adding/altering/deleting an entity through a form.<br/>This should be unchecked if there are mass operations performed on entities that are irrelevant to indexing.', ['@inclusion_url' => $GLOBALS['base_url'] . '/admin/config/search/simplesitemap/entities']),
+      '#description' => $this->t('If checked, all entity save operations for <a href="@inclusion_url">included entities</a> will trigger notification of IndexNow search engines.<br/>If unchecked, this will only be possible by adding/altering/deleting an entity through a form.<br/>This should be unchecked if there are mass operations performed on entities that are irrelevant to indexing.',
+        ['@inclusion_url' => Url::fromRoute('simple_sitemap.entities')->toString()]
+      ),
       '#default_value' => $config->get('index_now_on_entity_save'),
       '#states' => [
         'visible' => [':input[name="index_now[enabled]"]' => ['checked' => TRUE]],
@@ -185,6 +149,11 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
     switch ($key_location) {
       case 'settings':
         $text = self::getKeyStatusMessage('settings_info');
+        break;
+
+      case 'settings_state':
+        $text = self::getKeyStatusMessage('settings_info');
+        $this->messenger()->addWarning(self::getKeyStatusMessage('settings_state_warning'));
         break;
 
       case 'state':
@@ -199,12 +168,68 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
 
     $form['index_now']['key'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Generate new verification key'),
-      '#submit' => [self::class . '::generateKey'],
+      '#value' => in_array($key_location, ['state', 'settings_state'])
+        ? $this->t('Remove verification key from state')
+        : $this->t('Generate verification key'),
+      '#submit' => in_array($key_location, ['state', 'settings_state'])
+        ? [self::class . '::removeKey']
+        : [self::class . '::generateKey'],
       '#disabled' => $key_location === 'settings',
       '#validate' => [],
       '#prefix' => '<p>' . $text . '</p>',
     ];
+
+    $form['settings'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Sitemap submission settings'),
+    ];
+
+    $form['settings']['enabled'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Submit sitemaps to search engines'),
+      '#description' => $this->t("This enables/disables sitemap submission; don't forget to choose sitemaps below.<br/>The ping protocol is <strong>being deprecated</strong>, use IndexNow if applicable."),
+      '#default_value' => $config->get('enabled'),
+    ];
+
+    $form['settings']['submission_interval'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Submission interval'),
+      '#options' => FormHelper::getCronIntervalOptions(),
+      '#default_value' => $config->get('submission_interval'),
+      '#states' => [
+        'visible' => [':input[name="settings[enabled]"]' => ['checked' => TRUE]],
+      ],
+    ];
+
+    $form['settings']['engines'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Engines'),
+      '#markup' => '<div class="description">'
+      . $this->t('Choose which sitemaps are to be submitted to which search engines.<br>Sitemaps can be configured <a href="@url">here</a>.',
+          ['@url' => Url::fromRoute('entity.simple_sitemap.collection')->toString()]
+      )
+      . '</div>',
+      '#open' => TRUE,
+      '#states' => [
+        'visible' => [':input[name="settings[enabled]"]' => ['checked' => TRUE]],
+      ],
+    ];
+
+    $sitemaps = SimpleSitemap::loadMultiple();
+    foreach (SimpleSitemapEngine::loadSitemapSubmissionEngines() as $engine_id => $engine) {
+      $form['settings']['engines'][$engine_id] = [
+        '#type' => 'select',
+        '#title' => $engine->label(),
+        '#options' => array_map(
+          function ($sitemap) {
+            return $sitemap->label();
+          },
+          $sitemaps
+        ),
+        '#default_value' => $engine->sitemap_variants,
+        '#multiple' => TRUE,
+      ];
+    }
 
     return parent::buildForm($form, $form_state);
   }
@@ -222,13 +247,16 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
     $key = \Drupal::service('simple_sitemap.engines.index_now_submitter')->getKey();
     switch ($type) {
       case 'settings_info':
-        return t('The verification key is saved in <em>settings.php</em>: @key', ['@key' => $key]);
+        return t('The IndexNow verification key is saved in <em>settings.php</em>: @key', ['@key' => $key]);
 
       case 'state_info':
-        return t('The verification key is defined in <em>Drupal state</em>: @key', ['@key' => $key]);
+        return t('The IndexNow verification key is defined in <em>Drupal state</em>: @key', ['@key' => $key]);
 
       case 'state_warning':
         return t('The IndexNow verification key is saved in <em>Drupal state</em>. Consider defining it in <em>settings.php</em> like so:<br/>@code', ['@code' => '$settings[\'simple_sitemap_engines.index_now.key\'] = ' . "'$key';"]);
+
+      case 'settings_state_warning':
+        return t('The IndexNow verification key is saved in <em>settings.php</em> and can be safely removed from <em>Drupal state</em>.');
 
       case 'missing_warning':
       default:
@@ -243,10 +271,16 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
    *   The location of the IndexNow key.
    */
   public static function getKeyLocation(): ?string {
-    if (Settings::get('simple_sitemap_engines.index_now.key')) {
+    $settings = (bool) Settings::get('simple_sitemap_engines.index_now.key');
+    $state = (bool) \Drupal::state()->get('simple_sitemap_engines.index_now.key');
+
+    if ($settings && $state) {
+      return 'settings_state';
+    }
+    if ($settings) {
       return 'settings';
     }
-    if (\Drupal::state()->get('simple_sitemap_engines.index_now.key')) {
+    if ($state) {
       return 'state';
     }
 
@@ -254,7 +288,7 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
   }
 
   /**
-   * Generates a new IndexNow key.
+   * Generates a new IndexNow key and saves it to state.
    */
   public static function generateKey(): void {
     \Drupal::messenger()->deleteByType(MessengerInterface::TYPE_WARNING);
@@ -262,6 +296,14 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
     /** @var \Drupal\Component\Uuid\UuidInterface $uuid */
     $uuid = \Drupal::service('uuid');
     \Drupal::state()->set('simple_sitemap_engines.index_now.key', $uuid->generate());
+  }
+
+  /**
+   * Removes the IndexNow key from state.
+   */
+  public static function removeKey(): void {
+    \Drupal::messenger()->deleteByType(MessengerInterface::TYPE_WARNING);
+    \Drupal::state()->delete('simple_sitemap_engines.index_now.key');
   }
 
   /**
@@ -276,18 +318,23 @@ class SimplesitemapEnginesForm extends ConfigFormBase {
       $engine->save();
     }
 
-    $enabled = (bool) $form_state->getValue(['settings', 'enabled']);
+    $config = $this->config('simple_sitemap_engines.settings');
 
-    $this->config('simple_sitemap_engines.settings')
-      ->set('enabled', $enabled)
+    $enabled = (bool) $form_state->getValue(['settings', 'enabled']);
+    $index_now_enabled = (bool) $form_state->getValue(['index_now', 'enabled']);
+
+    // Clear necessary caches to apply field definition updates.
+    // @see simple_sitemap_engines_entity_extra_field_info()
+    if ($config->get('index_now_enabled') !== $index_now_enabled) {
+      $this->entityFieldManager->clearCachedFieldDefinitions();
+    }
+
+    $config->set('enabled', $enabled)
       ->set('submission_interval', $form_state->getValue([
         'settings',
         'submission_interval',
       ]))
-      ->set('index_now_enabled', $form_state->getValue([
-        'index_now',
-        'enabled',
-      ]))
+      ->set('index_now_enabled', $index_now_enabled)
       ->set('index_now_preferred_engine', $form_state->getValue([
         'index_now',
         'preferred_engine',

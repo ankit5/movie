@@ -1,0 +1,19 @@
+uuid: 5ce08c73-6768-45ea-b1c0-5145f337bdca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_left
+    - node.type.movie
+id: node.movie.field_left
+field_name: field_left
+entity_type: node
+bundle: movie
+label: Left
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -2,8 +2,8 @@
 
 namespace Drupal\json_field\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -30,17 +30,19 @@ class JsonFormatter extends FormatterBase {
   public static function defaultSettings() {
     return [
       'attach_library' => TRUE,
-    ];
+    ] + parent::defaultSettings();
   }
 
   /**
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
+    $form = parent::settingsForm($form, $form_state);
+
     $form['attach_library'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Attach library'),
-      '#description' => $this->t('By default the JSONView JS library will be loaded to provide a resonable experience viewing the JSON data. Disabling this option will prevent the JSONView JS library from being loaded.'),
+      '#description' => $this->t('By default the JSONView JS library will be loaded to provide a reasonable experience viewing the JSON data. Disabling this option will prevent the JSONView JS library from being loaded.'),
       '#default_value' => $this->getSetting('attach_library'),
     ];
 
@@ -65,6 +67,8 @@ class JsonFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
+    $elements = [];
+
     if ($this->getSetting('attach_library') ?? TRUE) {
       $elements['#attached']['library'][] = 'json_field/json_field.formatter';
     }

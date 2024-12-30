@@ -14,7 +14,7 @@ class ExposedFilterViewsAjaxGetTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['views_ajax_get_cache_test'];
+  protected static $modules = ['views_ajax_get_cache_test'];
 
   /**
    * {@inheritdoc}

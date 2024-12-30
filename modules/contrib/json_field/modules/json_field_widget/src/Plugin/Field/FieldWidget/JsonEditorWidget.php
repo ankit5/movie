@@ -29,8 +29,7 @@ class JsonEditorWidget extends WidgetBase {
     return [
       'mode' => 'code',
       'modes' => [
-        'tree',
-        'code',
+        'text' => 'text',
       ],
       'schema' => '',
       'schema_validate' => FALSE,

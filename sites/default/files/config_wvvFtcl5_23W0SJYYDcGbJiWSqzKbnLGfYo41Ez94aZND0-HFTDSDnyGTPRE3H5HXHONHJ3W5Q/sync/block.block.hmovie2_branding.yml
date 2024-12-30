@@ -1,0 +1,25 @@
+uuid: 85824ca4-69e8-498b-ba42-bb279d273750
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - hmovie2
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: hmovie2_branding
+theme: hmovie2
+region: header
+weight: -2
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

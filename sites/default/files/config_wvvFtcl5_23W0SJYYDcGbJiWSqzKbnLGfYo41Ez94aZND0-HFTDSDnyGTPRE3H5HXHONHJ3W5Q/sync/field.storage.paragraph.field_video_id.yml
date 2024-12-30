@@ -1,0 +1,20 @@
+uuid: 2f9cc1f0-b309-4540-9426-554c1f2c8499
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_video_id
+field_name: field_video_id
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

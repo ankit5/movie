@@ -111,10 +111,13 @@ class LogEntry {
    */
   public function log($message, $variables = array(), $level = RfcLogLevel::NOTICE) {
 
-    if ($variables !== NULL && gettype($message) === 'string') {
-      $message = t($message, $variables);
+    if (!empty($variables) && gettype($message) === 'string') {
+      $message = new FormattableMarkup($message, $variables);
     }
 
+    if (!empty($this->message)) {
+      $message = '<br/>' . $message;
+    }
     $this->message .= $message;
     if ($this->severity < 0 || $this->severity > $level) {
       $this->severity = $level;
@@ -198,15 +201,7 @@ class LogEntry {
    * Format initial message.
    */
   public function formatInitMessage() {
-    if ($this->start_time) {
-      return $this->init_message ? $this->init_message . ' ' . t('by') . ' ' . $this->formatUser() : t('N/A');
-    }
-    else {
-      $registered = variable_get('ultimate_cron_hooks_registered', array());
-      return !empty($registered[$this->name]) ? t('Registered at @datetime', array(
-        '@datetime' => \Drupal::service('date.formatter')->format($registered[$this->name], 'custom', 'Y-m-d H:i:s'),
-      )) : t('N/A');
-    }
+    return $this->init_message ? $this->init_message . ' ' . t('by') . ' ' . $this->formatUser() : t('N/A');
   }
 
   /**

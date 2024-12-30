@@ -2,14 +2,14 @@
 
 namespace Drupal\config_filter\Tests;
 
+use Drupal\Core\Config\MemoryStorage;
+use Drupal\Core\Config\StorageInterface;
+use Drupal\KernelTests\Core\Config\Storage\MemoryStorageTest;
 use Drupal\config_filter\Config\FilteredStorage;
 use Drupal\config_filter\Config\FilteredStorageInterface;
 use Drupal\config_filter\Config\ReadOnlyStorage;
 use Drupal\config_filter\Config\StorageFilterInterface;
 use Drupal\config_filter\Exception\InvalidStorageFilterException;
-use Drupal\Core\Config\CachedStorage;
-use Drupal\Core\Config\StorageInterface;
-use Drupal\KernelTests\Core\Config\Storage\CachedStorageTest;
 use Prophecy\Argument;
 
 /**
@@ -17,7 +17,7 @@ use Prophecy\Argument;
  *
  * @group config_filter
  */
-class FilteredStorageTest extends CachedStorageTest {
+class FilteredStorageTest extends MemoryStorageTest {
 
   /**
    * {@inheritdoc}
@@ -44,7 +44,7 @@ class FilteredStorageTest extends CachedStorageTest {
       $storageProperty = $readonlyReflection->getProperty('storage');
       $storageProperty->setAccessible(TRUE);
       $source = $storageProperty->getValue($readonly);
-      $this->assertInstanceOf(CachedStorage::class, $source);
+      $this->assertInstanceOf(MemoryStorage::class, $source);
 
       // Assert that the filter gets the storage.
       $this->assertEquals($this->storage, $filter->getPrivateFilteredStorage());
@@ -151,31 +151,32 @@ class FilteredStorageTest extends CachedStorageTest {
   /**
    * Data provider for testReadFilter.
    */
-  public function readFilterProvider() {
+  public static function readFilterProvider() {
+    $instance = new self("test");
     // @codingStandardsIgnoreStart
     return [
-      [$this->randomString(), 'exists', 'filterExists', TRUE, TRUE],
-      [$this->randomString(), 'exists', 'filterExists', TRUE, FALSE],
-      [$this->randomString(), 'exists', 'filterExists', FALSE, TRUE],
-      [$this->randomString(), 'exists', 'filterExists', FALSE, FALSE],
+      [$instance->randomString(), 'exists', 'filterExists', TRUE, TRUE],
+      [$instance->randomString(), 'exists', 'filterExists', TRUE, FALSE],
+      [$instance->randomString(), 'exists', 'filterExists', FALSE, TRUE],
+      [$instance->randomString(), 'exists', 'filterExists', FALSE, FALSE],
 
-      [$this->randomString(), 'read', 'filterRead', $this->randomArray(), $this->randomArray()],
-      [$this->randomString(), 'read', 'filterRead', NULL, $this->randomArray()],
-      [$this->randomString(), 'read', 'filterRead', $this->randomArray(), NULL],
+      [$instance->randomString(), 'read', 'filterRead', $instance->randomArray(), $instance->randomArray()],
+      [$instance->randomString(), 'read', 'filterRead', NULL, $instance->randomArray()],
+      [$instance->randomString(), 'read', 'filterRead', $instance->randomArray(), NULL],
 
       [
-        [$this->randomString(), $this->randomString()],
+        [$instance->randomString(), $instance->randomString()],
         'readMultiple',
         'filterReadMultiple',
-        [$this->randomArray(), $this->randomArray()],
-        [$this->randomArray(), $this->randomArray()],
+        [$instance->randomArray(), $instance->randomArray()],
+        [$instance->randomArray(), $instance->randomArray()],
       ],
       [
-        [$this->randomString(), $this->randomString()],
+        [$instance->randomString(), $instance->randomString()],
         'readMultiple',
         'filterReadMultiple',
-        [$this->randomArray(), FALSE],
-        [$this->randomArray(), $this->randomArray()],
+        [$instance->randomArray(), FALSE],
+        [$instance->randomArray(), $instance->randomArray()],
       ],
     ];
     // @codingStandardsIgnoreEnd
@@ -218,7 +219,7 @@ class FilteredStorageTest extends CachedStorageTest {
     $interim = is_array($interim) ? $interim : [];
     $filterB->filterWrite($name, $interim)->willReturn($expected);
 
-    if ($expected) {
+    if (is_array($expected)) {
       $source->write($name, $expected)->willReturn(TRUE);
     }
     else {
@@ -237,15 +238,39 @@ class FilteredStorageTest extends CachedStorageTest {
   /**
    * Data provider for testWriteFilter.
    */
-  public function writeFilterProvider() {
+  public static function writeFilterProvider() {
+    $instance = new self("test");
     return [
-      [$this->randomArray(), $this->randomArray()],
-      [NULL, $this->randomArray()],
-      [[], $this->randomArray()],
-      [$this->randomArray(), NULL, FALSE],
-      [$this->randomArray(), [], FALSE],
-      [$this->randomArray(), NULL, TRUE],
+      [$instance->randomArray(), $instance->randomArray()],
+      [NULL, $instance->randomArray()],
+      [[], $instance->randomArray()],
+      [$instance->randomArray(), []],
+      [$instance->randomArray(), NULL, FALSE],
+      [$instance->randomArray(), FALSE, FALSE],
+      [$instance->randomArray(), NULL, TRUE],
     ];
+  }
+
+  /**
+   * Test the write method invokes the filterWrite in filters.
+   */
+  public function testWriteFilterDeleting() {
+    $name = $this->randomString();
+    $data = $this->randomArray();
+    $source = $this->prophesize(StorageInterface::class);
+    $filterA = $this->prophesizeFilter();
+    $filterB = new TransparentFilter();
+
+    $filterA->filterWrite($name, $data)->willReturn(FALSE);
+
+    $source->write(Argument::any())->shouldNotBeCalled();
+    $source->exists($name)->willReturn(TRUE);
+
+    $filterA->filterWriteEmptyIsDelete($name)->willReturn(TRUE);
+    $source->delete($name)->willReturn(TRUE);
+
+    $storage = new FilteredStorage($source->reveal(), [$filterA->reveal(), $filterB]);
+    $this->assertTrue($storage->write($name, $data));
   }
 
   /**
@@ -276,7 +301,7 @@ class FilteredStorageTest extends CachedStorageTest {
   /**
    * Data provider for testDeleteFilter.
    */
-  public function deleteFilterProvider() {
+  public static function deleteFilterProvider() {
     return [
       [TRUE, TRUE],
       [FALSE, TRUE],
@@ -314,7 +339,7 @@ class FilteredStorageTest extends CachedStorageTest {
   /**
    * Data provider for testRenameFilter.
    */
-  public function renameFilterProvider() {
+  public static function renameFilterProvider() {
     return [
       [TRUE, TRUE],
       [FALSE, TRUE],
@@ -358,7 +383,7 @@ class FilteredStorageTest extends CachedStorageTest {
   /**
    * Data provider for testDeleteAllFilter.
    */
-  public function deleteAllFilterProvider() {
+  public static function deleteAllFilterProvider() {
     return [
       [TRUE, TRUE],
       [FALSE, TRUE],

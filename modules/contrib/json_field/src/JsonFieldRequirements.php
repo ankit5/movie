@@ -43,7 +43,7 @@ class JsonFieldRequirements implements JsonFieldRequirementsInterface {
     $exists = file_exists($this->root . $library_paths[0]) && file_exists($this->root . $library_paths[1]) ? TRUE : FALSE;
     if (!$exists) {
       if ($warning) {
-        $this->messenger()->addWarning($this->getWarningMessage());
+        $this->messenger()->addWarning($this->getLibraryWarningMessage());
       }
 
       return FALSE;
@@ -71,6 +71,9 @@ class JsonFieldRequirements implements JsonFieldRequirementsInterface {
     if ($driver == 'pgsql') {
       $version_query = 'SHOW server_version';
     }
+    elseif ($driver === 'sqlite') {
+      $version_query = 'select sqlite_version()';
+    }
     $driver_version = $this->connection->query($version_query)->fetchCol();
     $is_compatible = version_compare($driver_version[0], $minimum_version_required);
     return !empty($is_compatible) && $is_compatible != -1 ? TRUE : FALSE;
@@ -80,7 +83,7 @@ class JsonFieldRequirements implements JsonFieldRequirementsInterface {
    * Get driver minimum requirement version.
    *
    * @param string $driver
-   *   The curent aplication database driver.
+   *   The current application database driver.
    *
    * @return string
    *   The database driver version or an empty string.

@@ -2,12 +2,12 @@
 
 namespace Drupal\simple_sitemap_views\EventSubscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\PostResponseEvent;
-use Drupal\simple_sitemap_views\SimpleSitemapViews;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\simple_sitemap_views\SimpleSitemapViews;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\TerminateEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Collect information about views arguments.
@@ -54,7 +54,7 @@ class ArgumentCollector implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     $events[KernelEvents::TERMINATE] = 'onTerminate';
     return $events;
   }
@@ -62,10 +62,10 @@ class ArgumentCollector implements EventSubscriberInterface {
   /**
    * Collect information about views arguments.
    *
-   * @param \Symfony\Component\HttpKernel\Event\PostResponseEvent $event
+   * @param \Symfony\Component\HttpKernel\Event\TerminateEvent $event
    *   Object of event after a response was sent.
    */
-  public function onTerminate(PostResponseEvent $event) {
+  public function onTerminate(TerminateEvent $event) {
     // Only successful requests are interesting.
     // Collect information about arguments only if views support is enabled.
     if (!$event->getResponse()->isSuccessful() || !$this->sitemapViews->isEnabled()) {
@@ -73,11 +73,11 @@ class ArgumentCollector implements EventSubscriberInterface {
     }
 
     $view_id = $this->routeMatch->getParameter('view_id');
-    /** @var \Drupal\views\ViewEntityInterface $view_entity */
     if ($view_id && $view_entity = $this->viewStorage->load($view_id)) {
       $display_id = $this->routeMatch->getParameter('display_id');
 
       // Get a set of view arguments and try to add them to the index.
+      /** @var \Drupal\views\ViewEntityInterface $view_entity */
       $view = $view_entity->getExecutable();
       $args = $this->getViewArgumentsFromRoute();
       $this->sitemapViews->addArgumentsToIndex($view, $args, $display_id);

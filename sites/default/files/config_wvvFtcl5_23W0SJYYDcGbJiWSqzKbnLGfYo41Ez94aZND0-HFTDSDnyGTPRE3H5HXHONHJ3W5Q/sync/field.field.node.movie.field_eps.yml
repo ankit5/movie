@@ -1,0 +1,19 @@
+uuid: b8c1c704-1e94-4619-9e60-fd082796e775
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_eps
+    - node.type.movie
+id: node.movie.field_eps
+field_name: field_eps
+entity_type: node
+bundle: movie
+label: Eps
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -141,9 +141,7 @@
 </div>
 </div>
 <div class="sgeneros">
-{% for key, item in content.field_tags if key|first != '#' %}
-      {{ item }}
-{% endfor %}
+
 </div>
 </div>
 </div>
@@ -238,17 +236,7 @@
 <div class="sbox srelacionados module">
 <h2>Similar titles</h2>
   {% set tag_s = '' %}
-          {% for key, value in content.field_tags if key|first != '#' %}
-          {% set value_new = value|render|render|striptags %}
-{% if 'Bollywood' in value_new %}
- {% set tag_s = 'Bollywood' %}
-{% elseif 'Hollywood' in value_new %}
- {% set tag_s = 'Hollywood' %}
-{% elseif 'South Special' in value_new %}
- {%  set tag_s = 'South Special' %}
-{% endif %}
-
-{% endfor %}
+        
 
 
  <div class="content" style="width:100%;">

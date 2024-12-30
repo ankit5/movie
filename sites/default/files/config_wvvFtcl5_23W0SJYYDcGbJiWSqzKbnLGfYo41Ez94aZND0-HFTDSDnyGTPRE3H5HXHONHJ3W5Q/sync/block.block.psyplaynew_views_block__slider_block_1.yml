@@ -1,0 +1,25 @@
+uuid: 473456d8-1737-4095-a5b7-db072e121223
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.slider
+  module:
+    - views
+  theme:
+    - psyplaynew
+id: psyplaynew_views_block__slider_block_1
+theme: psyplaynew
+region: content_home
+weight: -9
+provider: null
+plugin: 'views_block:slider-block_1'
+settings:
+  id: 'views_block:slider-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility: {  }

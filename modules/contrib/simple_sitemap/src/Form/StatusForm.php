@@ -3,13 +3,14 @@
 namespace Drupal\simple_sitemap\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Datetime\DateFormatter;
+use Drupal\Core\Config\TypedConfigManagerInterface;
+use Drupal\Core\Database\Connection;
+use Drupal\Core\Datetime\DateFormatterInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\simple_sitemap\Manager\Generator as SimplesitemapOld;
 use Drupal\simple_sitemap\Queue\QueueWorker;
 use Drupal\simple_sitemap\Settings;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\simple_sitemap\Manager\Generator as SimplesitemapOld;
-use Drupal\Core\Database\Connection;
 
 /**
  * Provides form to manage sitemap status.
@@ -26,7 +27,7 @@ class StatusForm extends SimpleSitemapFormBase {
   /**
    * The date formatter service.
    *
-   * @var \Drupal\Core\Datetime\DateFormatter
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
    */
   protected $dateFormatter;
 
@@ -38,34 +39,48 @@ class StatusForm extends SimpleSitemapFormBase {
   protected $queueWorker;
 
   /**
+   * The renderer service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
    * StatusForm constructor.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory service.
+   * @param \Drupal\Core\Config\TypedConfigManagerInterface $typedConfigManager
+   *   The typed config manager.
    * @param \Drupal\simple_sitemap\Manager\Generator $generator
    *   The sitemap generator service.
    * @param \Drupal\simple_sitemap\Settings $settings
    *   The simple_sitemap.settings service.
    * @param \Drupal\simple_sitemap\Form\FormHelper $form_helper
-   *   Simple XML Sitemap form helper.
+   *   Helper class for working with forms.
    * @param \Drupal\Core\Database\Connection $database
    *   The database connection.
-   * @param \Drupal\Core\Datetime\DateFormatter $date_formatter
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
    * @param \Drupal\simple_sitemap\Queue\QueueWorker $queue_worker
    *   The simple_sitemap.queue_worker service.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer service.
    */
   public function __construct(
     ConfigFactoryInterface $config_factory,
+    TypedConfigManagerInterface $typedConfigManager,
     SimplesitemapOld $generator,
     Settings $settings,
     FormHelper $form_helper,
     Connection $database,
-    DateFormatter $date_formatter,
-    QueueWorker $queue_worker
+    DateFormatterInterface $date_formatter,
+    QueueWorker $queue_worker,
+    RendererInterface $renderer,
   ) {
     parent::__construct(
       $config_factory,
+      $typedConfigManager,
       $generator,
       $settings,
       $form_helper
@@ -73,21 +88,7 @@ class StatusForm extends SimpleSitemapFormBase {
     $this->db = $database;
     $this->dateFormatter = $date_formatter;
     $this->queueWorker = $queue_worker;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('config.factory'),
-      $container->get('simple_sitemap.generator'),
-      $container->get('simple_sitemap.settings'),
-      $container->get('simple_sitemap.form_helper'),
-      $container->get('database'),
-      $container->get('date.formatter'),
-      $container->get('simple_sitemap.queue_worker')
-    );
+    $this->renderer = $renderer;
   }
 
   /**
@@ -125,8 +126,8 @@ class StatusForm extends SimpleSitemapFormBase {
     $form['status']['actions']['regenerate_submit'] = [
       '#type' => 'submit',
       '#value' => $this->queueWorker->generationInProgress()
-      ? $this->t('Resume generation')
-      : $this->t('Rebuild queue & generate'),
+        ? $this->t('Resume generation')
+        : $this->t('Rebuild queue & generate'),
       '#submit' => [self::class . '::generate'],
       '#validate' => [],
     ];
@@ -155,7 +156,7 @@ class StatusForm extends SimpleSitemapFormBase {
           '@total' => $total_count,
         ]),
       ];
-      $form['status']['progress']['bar']['#markup'] = render($index_progress);
+      $form['status']['progress']['bar']['#markup'] = $this->renderer->render($index_progress);
     }
     else {
       $form['status']['progress']['bar']['#markup'] = '<div class="description">' . $this->t('There are no items to be indexed.') . '</div>';

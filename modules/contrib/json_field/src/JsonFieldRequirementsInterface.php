@@ -8,7 +8,7 @@ namespace Drupal\json_field;
 interface JsonFieldRequirementsInterface {
 
   /**
-   * Check library avalilability.
+   * Check library availability.
    *
    * @param bool $warning
    *   Add a warning message if library is not available.

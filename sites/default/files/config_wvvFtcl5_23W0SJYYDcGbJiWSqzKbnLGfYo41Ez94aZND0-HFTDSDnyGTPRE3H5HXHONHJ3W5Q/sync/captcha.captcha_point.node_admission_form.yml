@@ -1,0 +1,7 @@
+uuid: d55f96ff-0a3f-47b6-89d7-3844ebfd5b34
+langcode: en
+status: false
+dependencies: {  }
+formId: node_admission_form
+captchaType: default
+label: node_admission_form

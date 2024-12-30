@@ -1,0 +1,25 @@
+uuid: 559a059b-9a15-423f-837f-73389025a00c
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:auto_add:72bb0850-d8c6-44e7-afab-bc812b291d57'
+  module:
+    - block_content
+  theme:
+    - hdmovie2
+id: bollywoodfeaturemovie
+theme: hdmovie2
+region: content_home
+weight: 0
+provider: null
+plugin: 'block_content:72bb0850-d8c6-44e7-afab-bc812b291d57'
+settings:
+  id: 'block_content:72bb0850-d8c6-44e7-afab-bc812b291d57'
+  label: 'Bollywood Feature Movie'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

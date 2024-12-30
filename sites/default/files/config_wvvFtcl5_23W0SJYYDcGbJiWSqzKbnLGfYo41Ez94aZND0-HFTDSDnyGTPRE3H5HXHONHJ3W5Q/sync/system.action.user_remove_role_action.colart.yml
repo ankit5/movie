@@ -1,0 +1,14 @@
+uuid: 99593f3f-8266-43d2-9d05-95982cabe300
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.colart
+  module:
+    - user
+id: user_remove_role_action.colart
+label: 'Remove the colart role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: colart

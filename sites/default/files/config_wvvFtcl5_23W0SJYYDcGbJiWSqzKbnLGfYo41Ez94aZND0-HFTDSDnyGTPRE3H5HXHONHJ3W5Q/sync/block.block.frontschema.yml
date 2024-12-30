@@ -1,0 +1,30 @@
+uuid: af7fb54b-aca4-4103-bad1-c11b6550a6bb
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:ed4f5b6e-c600-461c-b953-e480516ec684'
+  module:
+    - block_content
+    - system
+  theme:
+    - psyplay
+id: frontschema
+theme: psyplay
+region: head_top
+weight: 0
+provider: null
+plugin: 'block_content:ed4f5b6e-c600-461c-b953-e480516ec684'
+settings:
+  id: 'block_content:ed4f5b6e-c600-461c-b953-e480516ec684'
+  label: 'Front schema'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

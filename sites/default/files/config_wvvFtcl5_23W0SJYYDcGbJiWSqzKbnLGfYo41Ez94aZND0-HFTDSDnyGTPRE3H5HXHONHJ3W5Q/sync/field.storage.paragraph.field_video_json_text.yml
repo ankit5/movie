@@ -1,0 +1,20 @@
+uuid: 55fe5a9f-786e-4ab8-b571-39e88deb4d28
+langcode: en
+status: true
+dependencies:
+  module:
+    - json_field
+    - paragraphs
+id: paragraph.field_video_json_text
+field_name: field_video_json_text
+entity_type: paragraph
+type: json
+settings:
+  size: 16777216
+module: json_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

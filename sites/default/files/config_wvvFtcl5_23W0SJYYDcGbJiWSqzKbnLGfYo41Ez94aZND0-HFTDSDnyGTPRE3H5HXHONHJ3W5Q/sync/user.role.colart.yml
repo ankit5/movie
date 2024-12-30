@@ -1,0 +1,24 @@
+uuid: c589d587-8dcb-41db-a00f-7f6aeafd24bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.admission
+  module:
+    - node
+    - search
+    - system
+    - toolbar
+id: colart
+label: colart
+weight: 3
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content'
+  - 'access content overview'
+  - 'access site in maintenance mode'
+  - 'access toolbar'
+  - 'administer search'
+  - 'edit any admission content'
+  - 'view the administration theme'

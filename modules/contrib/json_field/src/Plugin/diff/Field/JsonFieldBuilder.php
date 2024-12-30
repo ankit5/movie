@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\json_field\Plugin\diff\Field;
 
-use Drupal\diff\FieldDiffBuilderBase;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\diff\FieldDiffBuilderBase;
 
 /**
  * Plugin to compare JSON fields.
@@ -25,7 +25,7 @@ class JsonFieldBuilder extends FieldDiffBuilderBase {
   /**
    * {@inheritdoc}
    */
-  public function build(FieldItemListInterface $field_items) {
+  public function build(FieldItemListInterface $field_items): mixed {
     $result = [];
 
     /** @var \Drupal\Core\Field\FieldItemInterface $field_item */

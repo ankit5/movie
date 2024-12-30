@@ -1,0 +1,19 @@
+uuid: 33d146a2-753f-4733-8179-4f2e8c71c5d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_college_last_attended
+    - node.type.admission
+id: node.admission.field_college_last_attended
+field_name: field_college_last_attended
+entity_type: node
+bundle: admission
+label: 'College last attended'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

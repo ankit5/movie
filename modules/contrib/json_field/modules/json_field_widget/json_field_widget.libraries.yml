@@ -21,5 +21,5 @@ json_editor.widget:
     - json_field_widget/jsoneditor
     - core/drupal
     - core/drupalSettings
-    - core/jquery.once
+    - core/once
     - core/jquery

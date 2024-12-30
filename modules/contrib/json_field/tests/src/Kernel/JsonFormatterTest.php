@@ -34,7 +34,7 @@ class JsonFormatterTest extends KernelTestBase {
     $build = $entity_view_display->build($entity);
 
     $content = $this->container->get('renderer')->renderRoot($build);
-    $this->assertEquals('<pre class="json-field"><code>[]</code></pre>', $content);
+    $this->assertEquals('<pre class="json-field"><code>[]</code></pre>', (string) $content);
   }
 
   /**
@@ -58,7 +58,7 @@ class JsonFormatterTest extends KernelTestBase {
 
     $build = $entity_view_display->build($entity);
     $content = $this->container->get('renderer')->renderRoot($build);
-    $this->assertEquals('<pre class="json-field"><code>{"Looking for a":"complication"}</code></pre>', $content);
+    $this->assertEquals('<pre class="json-field"><code>{"Looking for a":"complication"}</code></pre>', (string) $content);
   }
 
 }

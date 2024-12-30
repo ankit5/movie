@@ -1,0 +1,16 @@
+features:
+  node_user_picture: 1
+  comment_user_picture: 1
+  comment_user_verification: 1
+  favicon: 1
+logo:
+  use_default: 0
+  path: 'public://logohd.png'
+favicon:
+  use_default: 0
+  path: 'public://100595544-play-button-round-green-3d-icon-symbol-.jpg'
+  mimetype: image/jpeg
+old_domain_name: 'yomovies.hair,yomovies.date,prmovies.baby,prmovies.cheap,yomovies.baby,prmovies.monster,prmovies.expert,hindilinks4u.expert,yomovies.makeup,prmovies.fan,prmovies.monster,prmovies.best,prmovies.dog'
+new_domain_name: prmovies.dog
+iframe_old_domain_name: 'yomovies.hair,yomovies.date,prmovies.baby,prmovies.cheap,yomovies.baby,prmovies.monster,prmovies.expert,hindilinks4u.expert,yomovies.makeup,prmovies.fan,prmovies.monster,prmovies.best,prmovies.dog'
+iframe_new_domain_name: prmovies.dog

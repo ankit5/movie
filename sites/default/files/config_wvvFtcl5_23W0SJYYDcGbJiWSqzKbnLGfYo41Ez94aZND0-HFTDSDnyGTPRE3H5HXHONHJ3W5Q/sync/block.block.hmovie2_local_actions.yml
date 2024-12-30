@@ -1,0 +1,20 @@
+uuid: e5677f44-f21d-4e27-befd-e189994b2de6
+langcode: en
+status: true
+dependencies:
+  theme:
+    - hmovie2
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: hmovie2_local_actions
+theme: hmovie2
+region: content
+weight: -4
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

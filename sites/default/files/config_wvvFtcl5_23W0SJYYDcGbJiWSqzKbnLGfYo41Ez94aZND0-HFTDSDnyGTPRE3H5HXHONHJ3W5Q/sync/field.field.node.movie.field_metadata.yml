@@ -1,0 +1,19 @@
+uuid: 51712873-1b95-483f-8166-c802eb973b8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_metadata
+    - node.type.movie
+id: node.movie.field_metadata
+field_name: field_metadata
+entity_type: node
+bundle: movie
+label: metadata
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -1,0 +1,22 @@
+uuid: 18b62d2c-99e3-4f8e-a786-ffe4a679d190
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.auto_add
+    - field.field.block_content.auto_add.field_movie
+id: block_content.auto_add.default
+targetEntityType: block_content
+bundle: auto_add
+mode: default
+content:
+  field_movie:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

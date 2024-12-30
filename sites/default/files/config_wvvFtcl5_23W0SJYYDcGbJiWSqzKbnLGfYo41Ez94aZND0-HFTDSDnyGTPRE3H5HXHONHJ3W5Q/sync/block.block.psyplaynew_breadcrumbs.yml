@@ -1,0 +1,22 @@
+uuid: 2cc00ba6-d5a8-4191-a2e3-6bf7155c8bd1
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - psyplaynew
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: psyplaynew_breadcrumbs
+theme: psyplaynew
+region: content
+weight: -5
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

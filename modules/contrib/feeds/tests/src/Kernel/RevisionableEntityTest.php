@@ -117,7 +117,7 @@ class RevisionableEntityTest extends FeedsKernelTestBase {
   /**
    * Data provider for ::testRevisionToggle().
    */
-  public function provideToggleRevision() {
+  public static function provideToggleRevision() {
     return [
       'enable revision' => [TRUE],
       'disable revision' => [FALSE],
@@ -129,8 +129,11 @@ class RevisionableEntityTest extends FeedsKernelTestBase {
    */
   public function testWithMappingToRevisionFields() {
     // Create a user with ID 42.
-    $this->createUser([
+    $this->createUser([], NULL, FALSE, [
       'uid' => 42,
+    ]);
+    $this->createUser([], NULL, FALSE, [
+      'uid' => 32,
     ]);
 
     // Create a feed type, map to body field. Set it to update existing items

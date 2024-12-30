@@ -9,11 +9,11 @@ use Drupal\feeds\Exception\EmptyFeedException;
 use Drupal\feeds\FeedInterface;
 use Drupal\feeds\FeedTypeInterface;
 use Drupal\feeds\Feeds\Fetcher\HttpFetcher;
-use Drupal\feeds\State;
+use Drupal\feeds\File\FeedsFileSystemInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
@@ -58,22 +58,22 @@ class HttpFetcherTest extends FeedsUnitTestCase {
     $cache = $this->createMock(CacheBackendInterface::class);
 
     $file_system = $this->prophesize(FileSystemInterface::class);
-    $file_system->tempnam(Argument::type('string'), Argument::type('string'))->will(function ($args) {
+
+    $feeds_file_system = $this->prophesize(FeedsFileSystemInterface::class);
+    $feeds_file_system->tempnam(Argument::type(FeedInterface::class), Argument::type('string'))->will(function ($args) {
       // We suppress any notices as since PHP 7.1, this results into a warning
       // when the temporary directory is not configured in php.ini. We are not
       // interested in that artefact for this test.
-      return @tempnam($args[0], $args[1]);
-    });
-    $file_system->realpath(Argument::type('string'))->will(function ($args) {
-      return realpath($args[0]);
+      return @tempnam('public://', $args[1]);
     });
 
-    $this->fetcher = new HttpFetcher(['feed_type' => $feed_type], 'http', [], $client, $cache, $file_system->reveal());
+    $this->fetcher = new HttpFetcher(['feed_type' => $feed_type], 'http', [], $client, $cache, $file_system->reveal(), $feeds_file_system->reveal());
     $this->fetcher->setStringTranslation($this->getStringTranslationStub());
 
     $this->feed = $this->prophesize(FeedInterface::class);
     $this->feed->id()->willReturn(1);
     $this->feed->getSource()->willReturn('http://example.com');
+    $this->feed->getConfigurationFor(Argument::any())->willReturn([]);
   }
 
   /**
@@ -84,7 +84,7 @@ class HttpFetcherTest extends FeedsUnitTestCase {
   public function testFetch() {
     $this->mockHandler->append(new Response(200, [], 'test data'));
 
-    $result = $this->fetcher->fetch($this->feed->reveal(), new State());
+    $result = $this->fetcher->fetch($this->feed->reveal(), $this->createFeedsState());
     $this->assertSame('test data', $result->getRaw());
   }
 
@@ -97,7 +97,7 @@ class HttpFetcherTest extends FeedsUnitTestCase {
     $this->mockHandler->append(new Response(304));
 
     $this->expectException(EmptyFeedException::class);
-    $this->fetcher->fetch($this->feed->reveal(), new State());
+    $this->fetcher->fetch($this->feed->reveal(), $this->createFeedsState());
   }
 
   /**
@@ -109,7 +109,7 @@ class HttpFetcherTest extends FeedsUnitTestCase {
     $this->mockHandler->append(new Response(404));
 
     $this->expectException(\RuntimeException::class);
-    $this->fetcher->fetch($this->feed->reveal(), new State());
+    $this->fetcher->fetch($this->feed->reveal(), $this->createFeedsState());
   }
 
   /**
@@ -121,7 +121,7 @@ class HttpFetcherTest extends FeedsUnitTestCase {
     $this->mockHandler->append(new RequestException('', new Request('GET', 'http://google.com')));
 
     $this->expectException(\RuntimeException::class);
-    $this->fetcher->fetch($this->feed->reveal(), new State());
+    $this->fetcher->fetch($this->feed->reveal(), $this->createFeedsState());
   }
 
   /**
@@ -131,10 +131,10 @@ class HttpFetcherTest extends FeedsUnitTestCase {
     $feed = $this->createMock(FeedInterface::class);
     $feed->expects($this->exactly(3))
       ->method('getSource')
-      ->will($this->returnValue('http://example.com'));
+      ->willReturn('http://example.com');
     $feeds = [$feed, $feed, $feed];
 
-    $this->fetcher->onFeedDeleteMultiple($feeds, new State());
+    $this->fetcher->onFeedDeleteMultiple($feeds, $this->createFeedsState());
   }
 
 }

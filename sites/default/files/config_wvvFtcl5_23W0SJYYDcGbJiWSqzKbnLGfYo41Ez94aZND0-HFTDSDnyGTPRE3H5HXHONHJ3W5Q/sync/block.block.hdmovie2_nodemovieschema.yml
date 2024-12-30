@@ -1,0 +1,33 @@
+uuid: 67293a17-da34-465c-878c-4c8f264e08c5
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:9bbadbf0-1495-4ab3-aec8-adc3ace322d9'
+  module:
+    - block_content
+    - node
+  theme:
+    - hdmovie2
+id: hdmovie2_nodemovieschema
+theme: hdmovie2
+region: head_top
+weight: 0
+provider: null
+plugin: 'block_content:9bbadbf0-1495-4ab3-aec8-adc3ace322d9'
+settings:
+  id: 'block_content:9bbadbf0-1495-4ab3-aec8-adc3ace322d9'
+  label: 'Node Movie schema'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      movie: movie

@@ -1,0 +1,25 @@
+uuid: 8a38f212-d2ac-4c48-b161-d40b8556e252
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:auto_add_small:f5451e14-5d36-4d1c-895e-cbffa9eb5a1c'
+  module:
+    - block_content
+  theme:
+    - hdmovie2
+id: populartvseries
+theme: hdmovie2
+region: sidebar
+weight: 0
+provider: null
+plugin: 'block_content:f5451e14-5d36-4d1c-895e-cbffa9eb5a1c'
+settings:
+  id: 'block_content:f5451e14-5d36-4d1c-895e-cbffa9eb5a1c'
+  label: 'Popular TV series'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

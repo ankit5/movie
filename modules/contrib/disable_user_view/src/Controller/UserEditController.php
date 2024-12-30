@@ -11,7 +11,7 @@ use Drupal\user\UserInterface;
 class UserEditController extends UserController {
 
   /**
-   * Redirects users to their profile edit page or the user you are trying to access.
+   * Redirects users to their profile page or the user you are accessing.
    *
    * This controller assumes that it is only invoked for authenticated users.
    * This is enforced for the 'user.page' route with the '_user_is_logged_in'
@@ -25,4 +25,5 @@ class UserEditController extends UserController {
     $uid = !empty($user) ? $user->id() : $this->currentUser()->id();
     return $this->redirect('entity.user.edit_form', ['user' => $uid]);
   }
+
 }

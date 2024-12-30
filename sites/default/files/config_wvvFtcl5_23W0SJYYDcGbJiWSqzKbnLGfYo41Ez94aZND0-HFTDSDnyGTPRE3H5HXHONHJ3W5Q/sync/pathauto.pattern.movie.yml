@@ -1,0 +1,22 @@
+uuid: 8346118e-8c02-43a4-8f64-7304c74a19f5
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: movie
+label: movie
+type: 'canonical_entities:node'
+pattern: '[node:title]-Watch-online-full-movie-and-download'
+selection_criteria:
+  87fd0806-9edd-4daf-8649-ad603e48825d:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 87fd0806-9edd-4daf-8649-ad603e48825d
+    context_mapping:
+      node: node
+    bundles:
+      movie: movie
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,0 +1,22 @@
+uuid: bdcb4ef3-1b19-44dd-854b-d735033361ef
+langcode: en
+status: true
+dependencies:
+  theme:
+    - hdmovie2
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: hdmovie2_local_tasks
+theme: hdmovie2
+region: content
+weight: -7
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

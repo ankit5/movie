@@ -1,0 +1,105 @@
+uuid: ddc84442-1bb1-418e-936a-3c1f48328694
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.movie.body
+    - field.field.node.movie.feeds_item
+    - field.field.node.movie.field_download_url
+    - field.field.node.movie.field_episodes
+    - field.field.node.movie.field_eps
+    - field.field.node.movie.field_id
+    - field.field.node.movie.field_image_urls
+    - field.field.node.movie.field_keyword
+    - field.field.node.movie.field_left
+    - field.field.node.movie.field_m3_direct
+    - field.field.node.movie.field_metadata
+    - field.field.node.movie.field_movie_image
+    - field.field.node.movie.field_movie_type
+    - field.field.node.movie.field_player
+    - field.field.node.movie.field_post_id
+    - field.field.node.movie.field_poster
+    - field.field.node.movie.field_poster_url
+    - field.field.node.movie.field_quality
+    - field.field.node.movie.field_release_date
+    - field.field.node.movie.field_right
+    - field.field.node.movie.field_season_title
+    - field.field.node.movie.field_tags
+    - field.field.node.movie.field_textto
+    - field.field.node.movie.field_trailer
+    - field.field.node.movie.field_url
+    - field.field.node.movie.field_year
+    - node.type.movie
+  module:
+    - image
+    - text
+    - user
+id: node.movie.teaser
+targetEntityType: node
+bundle: movie
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_image_urls:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_movie_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  feeds_item: true
+  field_download_url: true
+  field_episodes: true
+  field_eps: true
+  field_id: true
+  field_keyword: true
+  field_left: true
+  field_m3_direct: true
+  field_metadata: true
+  field_movie_type: true
+  field_player: true
+  field_post_id: true
+  field_poster: true
+  field_poster_url: true
+  field_quality: true
+  field_release_date: true
+  field_right: true
+  field_season_title: true
+  field_textto: true
+  field_trailer: true
+  field_url: true
+  field_year: true

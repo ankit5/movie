@@ -1,0 +1,25 @@
+uuid: 74395ef9-0e0d-42a2-be53-f9344398683a
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:auto_add:7c120597-2223-4143-9121-7bb20bfc29db'
+  module:
+    - block_content
+  theme:
+    - hdmovie2
+id: featuredmovie
+theme: hdmovie2
+region: content_home
+weight: -12
+provider: null
+plugin: 'block_content:7c120597-2223-4143-9121-7bb20bfc29db'
+settings:
+  id: 'block_content:7c120597-2223-4143-9121-7bb20bfc29db'
+  label: 'Featured Movie'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

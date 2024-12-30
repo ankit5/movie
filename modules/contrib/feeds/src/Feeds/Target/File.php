@@ -2,9 +2,10 @@
 
 namespace Drupal\feeds\Feeds\Target;
 
+use Drupal\Core\Config\ImmutableConfig;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\File\Exception\FileException;
@@ -15,10 +16,9 @@ use Drupal\feeds\EntityFinderInterface;
 use Drupal\feeds\Exception\EmptyFeedException;
 use Drupal\feeds\Exception\TargetValidationException;
 use Drupal\feeds\FieldTargetDefinition;
+use Drupal\file\FileRepositoryInterface;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 
 /**
  * Defines a file field mapper.
@@ -59,6 +59,20 @@ class File extends EntityReference {
   protected $fileSystem;
 
   /**
+   * The file repository.
+   *
+   * @var Drupal\file\FileRepositoryInterface
+   */
+  protected $fileRepository;
+
+  /**
+   * The system.file configuration.
+   *
+   * @var \Drupal\Core\Config\ImmutableConfig
+   */
+  protected $fileConfig;
+
+  /**
    * Constructs a File object.
    *
    * @param array $configuration
@@ -79,13 +93,19 @@ class File extends EntityReference {
    *   The Feeds entity finder service.
    * @param \Drupal\Core\File\FileSystemInterface $file_system
    *   The file and stream wrapper helper.
+   * @param \Drupal\file\FileRepositoryInterface|null $file_repository
+   *   The file repository.
+   * @param \Drupal\Core\Config\ImmutableConfig $file_config
+   *   The system.file configuration.
    */
-  public function __construct(array $configuration, $plugin_id, array $plugin_definition, EntityTypeManagerInterface $entity_type_manager, ClientInterface $client, Token $token, EntityFieldManagerInterface $entity_field_manager, EntityFinderInterface $entity_finder, FileSystemInterface $file_system) {
+  public function __construct(array $configuration, $plugin_id, array $plugin_definition, EntityTypeManagerInterface $entity_type_manager, ClientInterface $client, Token $token, EntityFieldManagerInterface $entity_field_manager, EntityFinderInterface $entity_finder, FileSystemInterface $file_system, FileRepositoryInterface $file_repository, ImmutableConfig $file_config) {
     $this->client = $client;
     $this->token = $token;
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager, $entity_field_manager, $entity_finder);
     $this->fileExtensions = array_filter(explode(' ', $this->settings['file_extensions']));
     $this->fileSystem = $file_system;
+    $this->fileRepository = $file_repository;
+    $this->fileConfig = $file_config;
   }
 
   /**
@@ -101,7 +121,9 @@ class File extends EntityReference {
       $container->get('token'),
       $container->get('entity_field.manager'),
       $container->get('feeds.entity_finder'),
-      $container->get('file_system')
+      $container->get('file_system'),
+      $container->get('file.repository'),
+      $container->get('config.factory')->get('system.file'),
     );
   }
 
@@ -183,7 +205,7 @@ class File extends EntityReference {
       throw new EmptyFeedException('The given file url is empty.');
     }
 
-    // Perform a lookup agains the value using the configured reference method.
+    // Perform a lookup against the value using the configured reference method.
     if (FALSE !== ($fid = $this->findEntity($this->configuration['reference_by'], $value))) {
       return $fid;
     }
@@ -240,9 +262,9 @@ class File extends EntityReference {
    *   In case the file extension is not valid.
    */
   protected function getFileName($url) {
-    $filename = trim(\Drupal::service('file_system')->basename($url), " \t\n\r\0\x0B.");
+    $filename = trim($this->fileSystem->basename($url), " \t\n\r\0\x0B.");
     // Remove query string from file name, if it has one.
-    list($filename) = explode('?', $filename);
+    [$filename] = explode('?', $filename);
     $extension = substr($filename, strrpos($filename, '.') + 1);
 
     if (!preg_grep('/' . $extension . '/i', $this->fileExtensions)) {
@@ -268,7 +290,7 @@ class File extends EntityReference {
    *   In case the file could not be downloaded.
    */
   protected function getContent($url) {
-   /* $response = $this->client->request('GET', $url);
+    $response = $this->client->request('GET', $url);
 
     if ($response->getStatusCode() >= 400) {
       $args = [
@@ -276,29 +298,9 @@ class File extends EntityReference {
         '@code' => $response->getStatusCode(),
       ];
       throw new TargetValidationException($this->t('Download of %url failed with code @code.', $args));
-    }*/
-    try {
-    $response = $this->client->request('GET', $url);
-    }catch (RequestException $e) {
-      if ($e->hasResponse()) {
-        $args = [
-          '%url' => $url,
-          '@code' => $e->getResponse()->getStatusCode(),
-        ];
-        throw new TargetValidationException($this->t('Download of %url failed with code @code.', $args));
-      }
-    
-}
-    
-  //  return '';
-   //  if ($response->getStatusCode() >= 400) { return ''; }
-if (is_null($response)){
- return '';
-}else {
-  return (string) $response->getBody();
+    }
 
-}
-  
+    return (string) $response->getBody();
   }
 
   /**
@@ -310,8 +312,6 @@ if (is_null($response)){
 
   /**
    * {@inheritdoc}
-   *
-   * @todo Inject $user.
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildConfigurationForm($form, $form_state);
@@ -349,6 +349,9 @@ if (is_null($response)){
       case FileSystemInterface::EXISTS_ERROR:
         $message = 'Ignore';
         break;
+
+      default:
+        $message = 'Unknown';
     }
 
     $summary[] = $this->t('Existing files: %existing', ['%existing' => $message]);
@@ -402,12 +405,10 @@ if (is_null($response)){
    */
   protected function writeData($data, $destination = NULL, $replace = FileSystemInterface::EXISTS_RENAME) {
     if (empty($destination)) {
-      $destination = \Drupal::config('system.file')->get('default_scheme') . '://';
+      $destination = $this->fileConfig->get('default_scheme') . '://';
     }
-    /** @var \Drupal\file\FileRepositoryInterface $fileRepository */
-    $fileRepository = \Drupal::service('file.repository');
     try {
-      return $fileRepository->writeData($data, $destination, $replace);
+      return $this->fileRepository->writeData($data, $destination, $replace);
     }
     catch (EntityStorageException | FileException $e) {
       return FALSE;

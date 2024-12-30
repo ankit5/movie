@@ -1,0 +1,24 @@
+uuid: b2fc1e42-c722-4408-bc19-8e369f50edd5
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.front_latest
+  module:
+    - views
+  theme:
+    - hmovie2
+id: hmovie2_views_block__front_latest_block_5
+theme: hmovie2
+region: content_home
+weight: -9
+provider: null
+plugin: 'views_block:front_latest-block_5'
+settings:
+  id: 'views_block:front_latest-block_5'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility: {  }

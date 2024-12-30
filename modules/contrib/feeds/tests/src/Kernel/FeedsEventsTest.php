@@ -34,19 +34,7 @@ class FeedsEventsTest extends FeedsKernelTestBase {
    *   An array of plain-text messages in the order they should appear.
    */
   protected function assertEventSubscriberMessageOrder(array $messages) {
-    $positions = [];
-    foreach ($messages as $message) {
-      // Verify that each message is found and record its position.
-      $position = array_search($message, $GLOBALS['feeds_test_events']);
-      if ($this->assertTrue($position !== FALSE, $message)) {
-        $positions[] = $position;
-      }
-    }
-
-    // Sort the positions and ensure they remain in the same order.
-    $sorted = $positions;
-    sort($sorted);
-    $this->assertEquals($positions, $sorted, 'The event subscriber messages appear in the correct order.');
+    $this->assertEquals($GLOBALS['feeds_test_events'], $messages, 'The event subscriber messages appear in the correct order.');
   }
 
   /**
@@ -78,6 +66,7 @@ class FeedsEventsTest extends FeedsKernelTestBase {
 
     // Clear messages.
     \Drupal::messenger()->deleteAll();
+    $this->logger->clearMessages();
 
     // Now create a feed type with the same settings. This time, ensure that
     // \Drupal\feeds_test_events\EventSubscriber::prevalidate() sets a title on

@@ -11,7 +11,7 @@
       return JSON.parse(string);
     }
     catch (e) {
-      return null;
+      return NULL;
     }
   }
 
@@ -22,9 +22,7 @@
    */
   Drupal.behaviors.json_widget = {
     attach(context) {
-      $(context)
-        .find('[data-json-editor]')
-        .once('json-editor')
+      $(once('json-editor', '[data-json-editor]', context))
         .each(function (index, element) {
           var $textarea = $(element);
           var hash = $textarea.attr('data-json-editor');

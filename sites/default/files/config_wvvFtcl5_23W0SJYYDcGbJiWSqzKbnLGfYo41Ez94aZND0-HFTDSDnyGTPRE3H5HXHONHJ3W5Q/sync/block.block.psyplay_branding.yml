@@ -1,0 +1,25 @@
+uuid: fa975c91-187b-4491-870a-8e0ce6c19712
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - psyplay
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: psyplay_branding
+theme: psyplay
+region: header
+weight: -2
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

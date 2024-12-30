@@ -1,0 +1,22 @@
+uuid: 2d2681d3-5e50-4dd8-95cd-5e83f3e7bb74
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - hdmovie2
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: hdmovie2_help
+theme: hdmovie2
+region: content
+weight: -6
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

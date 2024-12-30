@@ -1,0 +1,22 @@
+uuid: 79e44e12-ff54-4896-a3e9-926ba5e7496a
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - psyplay
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: psyplay_messages
+theme: psyplay
+region: header
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

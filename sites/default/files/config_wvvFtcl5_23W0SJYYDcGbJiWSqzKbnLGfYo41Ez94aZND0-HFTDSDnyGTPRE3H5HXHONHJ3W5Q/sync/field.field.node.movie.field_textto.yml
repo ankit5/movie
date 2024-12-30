@@ -1,0 +1,19 @@
+uuid: 303ce2ab-a1db-4aa6-a274-b4c5343e6a9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_textto
+    - node.type.movie
+id: node.movie.field_textto
+field_name: field_textto
+entity_type: node
+bundle: movie
+label: textto
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

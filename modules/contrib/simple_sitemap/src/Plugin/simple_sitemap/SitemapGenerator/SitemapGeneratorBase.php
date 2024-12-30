@@ -2,11 +2,13 @@
 
 namespace Drupal\simple_sitemap\Plugin\simple_sitemap\SitemapGenerator;
 
-use Drupal\simple_sitemap\Plugin\simple_sitemap\SimpleSitemapPluginBase;
+use Drupal\Core\Extension\ModuleExtensionList;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\simple_sitemap\Entity\SimpleSitemapInterface;
+use Drupal\simple_sitemap\Plugin\simple_sitemap\SimpleSitemapPluginBase;
 use Drupal\simple_sitemap\Settings;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Extension\ModuleHandlerInterface;
 
 /**
  * Provides a base class for SitemapGenerator plugins.
@@ -44,6 +46,20 @@ abstract class SitemapGeneratorBase extends SimpleSitemapPluginBase implements S
   protected $sitemap;
 
   /**
+   * The extension.list.module service.
+   *
+   * @var \Drupal\Core\Extension\ModuleExtensionList
+   */
+  protected $moduleList;
+
+  /**
+   * The language manager.
+   *
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  protected $languageManager;
+
+  /**
    * An array of index attributes.
    *
    * @var array
@@ -67,6 +83,10 @@ abstract class SitemapGeneratorBase extends SimpleSitemapPluginBase implements S
    *   Sitemap XML writer.
    * @param \Drupal\simple_sitemap\Settings $settings
    *   The simple_sitemap.settings service.
+   * @param \Drupal\Core\Extension\ModuleExtensionList $module_list
+   *   The extension.list.module service.
+   * @param \Drupal\Core\Language\LanguageManagerInterface|null $language_manager
+   *   The language manager.
    */
   public function __construct(
     array $configuration,
@@ -74,12 +94,21 @@ abstract class SitemapGeneratorBase extends SimpleSitemapPluginBase implements S
     $plugin_definition,
     ModuleHandlerInterface $module_handler,
     SitemapWriter $sitemap_writer,
-    Settings $settings
+    Settings $settings,
+    ModuleExtensionList $module_list,
+    ?LanguageManagerInterface $language_manager = NULL,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->moduleHandler = $module_handler;
     $this->writer = $sitemap_writer;
     $this->settings = $settings;
+    $this->moduleList = $module_list;
+    if ($language_manager === NULL) {
+      @trigger_error('Calling ' . __METHOD__ . ' without the $language_manager argument is deprecated in simple_sitemap:4.2.2 and will be required in simple_sitemap:5.0.0. See https://www.drupal.org/project/simple_sitemap/issues/3340003', E_USER_DEPRECATED);
+      // @phpstan-ignore-next-line
+      $language_manager = \Drupal::languageManager();
+    }
+    $this->languageManager = $language_manager;
   }
 
   /**
@@ -92,7 +121,9 @@ abstract class SitemapGeneratorBase extends SimpleSitemapPluginBase implements S
       $plugin_definition,
       $container->get('module_handler'),
       $container->get('simple_sitemap.sitemap_writer'),
-      $container->get('simple_sitemap.settings')
+      $container->get('simple_sitemap.settings'),
+      $container->get('extension.list.module'),
+      $container->get('language_manager')
     );
   }
 
@@ -120,11 +151,7 @@ abstract class SitemapGeneratorBase extends SimpleSitemapPluginBase implements S
     $this->writer->setIndent(TRUE);
     $this->writer->startSitemapDocument();
 
-    // Add the XML stylesheet to document if enabled.
-    if ($this->settings->get('xsl')) {
-      $this->writer->writeXsl();
-    }
-
+    $this->addXslUrl();
     $this->writer->writeGeneratedBy();
     $this->writer->startElement('sitemapindex');
 
@@ -148,6 +175,22 @@ abstract class SitemapGeneratorBase extends SimpleSitemapPluginBase implements S
     $this->writer->endDocument();
 
     return $this->writer->outputMemory();
+  }
+
+  /**
+   * Adds the XML stylesheet.
+   */
+  protected function addXslUrl(): void {
+    if ($this->settings->get('xsl')) {
+      $this->writer->writeXsl($this->getPluginId());
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getXslContent(): ?string {
+    return NULL;
   }
 
 }

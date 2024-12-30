@@ -1,0 +1,188 @@
+uuid: 72393cd0-3835-4dda-9b5e-b739387bbbe6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.movie.field_eps
+    - field.field.node.movie.field_id
+    - field.field.node.movie.field_image_urls
+    - field.field.node.movie.field_metadata
+    - field.field.node.movie.field_quality
+    - field.field.node.movie.field_tags
+    - field.field.node.movie.field_url
+    - field.field.node.movie.field_year
+    - node.type.movie
+  module:
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      d4b58b03-1e56-451b-8009-3cb6f0404bdc:
+        separator: '|'
+        limit: null
+        uuid: d4b58b03-1e56-451b-8009-3cb6f0404bdc
+        plugin: explode
+        source: genres
+        weight: 0
+        label: Explode
+      94333809-a525-482e-91bc-fd277bbcc221:
+        uuid: 94333809-a525-482e-91bc-fd277bbcc221
+        plugin: transliteration
+        source: title
+        weight: 0
+        label: 'Transliterates text from Unicode to US-ASCII.'
+label: Movie
+id: movie
+description: ''
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: 'txt csv tsv xml opml'
+  directory: 'public://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: movie
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: true
+  authorize: true
+  revision: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 1
+custom_sources:
+  id:
+    value: post_id
+    label: post_id
+    machine_name: id
+    type: csv
+  title:
+    value: title
+    label: title
+    machine_name: title
+    type: csv
+  metadata:
+    value: metadata
+    label: metadata
+    machine_name: metadata
+    type: csv
+  textto:
+    value: textto
+    label: textto
+    machine_name: textto
+    type: csv
+  genres:
+    value: genres
+    label: genres
+    machine_name: genres
+    type: csv
+  release_date:
+    value: 'release date'
+    label: 'release date'
+    machine_name: release_date
+    type: csv
+  year:
+    value: year
+    label: year
+    machine_name: year
+    type: csv
+  image:
+    value: image
+    label: image
+    machine_name: image
+    type: csv
+  quality:
+    value: quality
+    label: quality
+    machine_name: quality
+    type: csv
+  url:
+    value: url
+    label: url
+    machine_name: url
+    type: csv
+  movie_type:
+    value: movie_type
+    label: movie_type
+    machine_name: movie_type
+    type: csv
+  eps:
+    value: eps
+    label: eps
+    machine_name: eps
+    type: csv
+mappings:
+  -
+    target: field_id
+    map:
+      value: id
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: title
+    map:
+      value: title
+    settings:
+      language: null
+    unique:
+      value: '1'
+  -
+    target: field_metadata
+    map:
+      value: metadata
+    settings:
+      language: null
+  -
+    target: field_tags
+    map:
+      target_id: genres
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: '1'
+  -
+    target: field_year
+    map:
+      value: year
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_quality
+    map:
+      value: quality
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_url
+    map:
+      value: url
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_image_urls
+    map:
+      value: image
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_eps
+    map:
+      value: eps
+    settings:
+      language: null
+    unique: {  }

@@ -1,12 +1,12 @@
 name: Views Ajax Get
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 description: Overrides Views Ajax to work with GET instead of POST
 dependencies:
   - drupal:views
 package: Views
 type: module
 
-# Information added by Drupal.org packaging script on 2021-05-21
-version: '2.0.0'
+# Information added by Drupal.org packaging script on 2023-06-21
+version: '2.0.1'
 project: 'views_ajax_get'
-datestamp: 1621608017
+datestamp: 1687339528

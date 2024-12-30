@@ -1,0 +1,25 @@
+uuid: 5168669b-9445-4892-b50c-e529b1b99047
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - hdmovie2
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: hdmovie2_branding
+theme: hdmovie2
+region: header
+weight: -2
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

@@ -3,13 +3,16 @@
 namespace Drupal\admission_form;
 use Drupal\views\Views;
 use Drupal\Component\Utility\Html;
-
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 
 /**
- * Extend Drupal's Twig_Extension class.
+ * Class AbstractExtension.
+ *
  */
-class CustomTwigExtension extends \Twig_Extension {
+class CustomTwigExtension extends AbstractExtension {
 
   /**
    * Let Drupal know the name of your extension,Must be unique name, string.
@@ -44,25 +47,25 @@ class CustomTwigExtension extends \Twig_Extension {
    */
   public function getFunctions() {
     return [
-      new \Twig_SimpleFunction('related', [$this, 'related']),
-      new \Twig_SimpleFunction('custom_block', [$this, 'custom_block']),
-      new \Twig_SimpleFunction('token_replace', [$this, 'token_replace']),
-      new \Twig_SimpleFunction('twig_json_decode', [$this, 'twigJsonDecode']),
-      new \Twig_SimpleFunction(
+      new TwigFunction('related', [$this, 'related']),
+      new TwigFunction('custom_block', [$this, 'custom_block']),
+      new TwigFunction('token_replace', [$this, 'token_replace']),
+      new TwigFunction('twig_json_decode', [$this, 'twigJsonDecode']),
+      new TwigFunction(
         'twig_json_decode_table',
          [$this, 'twigJsonDecodeTable'],
         ['is_safe' => ['html']]),
-      new \Twig_SimpleFunction(
+      new TwigFunction(
         'twig_json_decode_accessories',
          [$this, 'twigJsonDecodeAccessories'],
         ['is_safe' => ['html']]),
-      new \Twig_SimpleFunction('file_uri', [$this, 'fileUri']),
-      new \Twig_SimpleFunction('order_detail', [$this, 'orderDetail']),
-      new \Twig_SimpleFunction('entity_load_uuid', [$this, 'entityLoadUuid']),
-      new \Twig_SimpleFunction('city_value', [$this, 'cityValue']),
-      new \Twig_SimpleFunction('node_load', [$this, 'node_load']),
-      new \Twig_SimpleFunction('parse_url_remove', [$this, 'parse_url_remove']),
-      new \Twig_SimpleFunction('slug', [$this, 'slug']),
+      new TwigFunction('file_uri', [$this, 'fileUri']),
+      new TwigFunction('order_detail', [$this, 'orderDetail']),
+      new TwigFunction('entity_load_uuid', [$this, 'entityLoadUuid']),
+      new TwigFunction('city_value', [$this, 'cityValue']),
+      new TwigFunction('node_load', [$this, 'node_load']),
+      new TwigFunction('parse_url_remove', [$this, 'parse_url_remove']),
+      new TwigFunction('slug', [$this, 'slug']),
     ];
   }
   public function slug($string){
@@ -157,7 +160,7 @@ LIMIT 1 OFFSET 0")->fetchObject();
    */
   public function getFilters() {
     return [
-      new \Twig_SimpleFilter(
+      new TwigFilter(
         'twig_json_decodenew',
          [$this, 'twigJsonDecodenew']),
     ];

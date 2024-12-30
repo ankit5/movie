@@ -1,0 +1,19 @@
+uuid: 431aa918-2099-4d85-b3a1-c3c57b00e53b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_university_enrolment_no
+    - node.type.admission
+id: node.admission.field_a_university_enrolment_no
+field_name: field_a_university_enrolment_no
+entity_type: node
+bundle: admission
+label: 'University Enrolment No'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

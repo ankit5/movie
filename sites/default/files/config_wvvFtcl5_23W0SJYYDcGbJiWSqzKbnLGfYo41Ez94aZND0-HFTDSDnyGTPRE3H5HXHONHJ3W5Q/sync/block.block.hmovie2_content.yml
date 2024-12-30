@@ -1,0 +1,22 @@
+uuid: 0f927db6-6e1d-4baf-a3c7-881ddd06f8b9
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hmovie2
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: hmovie2_content
+theme: hmovie2
+region: content
+weight: -3
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

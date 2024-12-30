@@ -38,7 +38,10 @@ class StripTags extends TamperBase {
       '#type' => 'textarea',
       '#title' => $this->t('Allowed tags'),
       '#default_value' => $this->getSetting(self::SETTING_ALLOWED_TAGS),
-      '#description' => $this->t('A list of allowed tags such as %a%b', ['%a' => '<a>', '%b' => '<em>']),
+      '#description' => $this->t('A list of allowed tags such as %a%b', [
+        '%a' => '<a>',
+        '%b' => '<em>',
+      ]),
     ];
 
     return $form;
@@ -57,6 +60,11 @@ class StripTags extends TamperBase {
    * {@inheritdoc}
    */
   public function tamper($data, TamperableItemInterface $item = NULL) {
+    // Don't process empty or null values.
+    if (is_null($data) || $data === '') {
+      return $data;
+    }
+
     if (!is_string($data)) {
       throw new TamperException('Input should be a string.');
     }

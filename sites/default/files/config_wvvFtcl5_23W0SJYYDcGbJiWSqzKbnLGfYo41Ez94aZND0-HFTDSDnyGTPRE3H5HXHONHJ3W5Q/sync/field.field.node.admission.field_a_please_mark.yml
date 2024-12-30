@@ -1,0 +1,21 @@
+uuid: 60a1868c-a7f9-4fb0-aae4-e8d40d2c4221
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_please_mark
+    - node.type.admission
+  module:
+    - options
+id: node.admission.field_a_please_mark
+field_name: field_a_please_mark
+entity_type: node
+bundle: admission
+label: 'Please Mark'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

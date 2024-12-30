@@ -1,0 +1,26 @@
+uuid: 0993db94-f3eb-4301-8241-732f89822498
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hmovie2
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: hmovie2_page_title
+theme: hmovie2
+region: content
+weight: -8
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '/node/*'

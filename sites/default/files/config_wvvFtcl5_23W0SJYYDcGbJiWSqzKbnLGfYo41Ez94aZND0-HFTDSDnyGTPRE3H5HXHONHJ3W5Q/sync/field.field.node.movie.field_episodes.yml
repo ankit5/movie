@@ -1,0 +1,19 @@
+uuid: 43d71e3d-d6d5-4e78-bf0e-9fe304701cb2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_episodes
+    - node.type.movie
+id: node.movie.field_episodes
+field_name: field_episodes
+entity_type: node
+bundle: movie
+label: Episodes
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

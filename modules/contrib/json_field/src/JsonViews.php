@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\json_field;
 
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\field\FieldStorageConfigInterface;
 
@@ -15,11 +18,28 @@ class JsonViews implements JsonViewsInterface {
   use StringTranslationTrait;
 
   /**
+   * The module handler service.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
+   * Constructs a new MetatagDefaultsForm.
+   *
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   The module handler service.
+   */
+  public function __construct(ModuleHandlerInterface $module_handler) {
+    $this->moduleHandler = $module_handler;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function getViewsFieldData(FieldStorageConfigInterface $field_storage) {
     // Make sure views.views.inc is loaded.
-    module_load_include('inc', 'views', 'views.views');
+    $this->moduleHandler->loadInclude('views', 'inc', 'views.views');
 
     // Get the default data from the views module.
     $data = views_field_default_views_data($field_storage);

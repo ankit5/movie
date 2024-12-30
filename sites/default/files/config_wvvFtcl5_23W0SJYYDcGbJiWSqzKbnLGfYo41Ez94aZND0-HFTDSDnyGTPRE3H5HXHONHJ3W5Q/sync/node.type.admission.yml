@@ -1,0 +1,17 @@
+uuid: ed9d2a87-78d5-4827-abc9-e9f18f778793
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Admission
+type: admission
+description: ''
+help: ''
+new_revision: false
+preview_mode: 2
+display_submitted: true

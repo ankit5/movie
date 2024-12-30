@@ -1,0 +1,19 @@
+uuid: 66e88229-ffe2-494f-be1e-b2076a23cf68
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_movie_type
+    - node.type.movie
+id: node.movie.field_movie_type
+field_name: field_movie_type
+entity_type: node
+bundle: movie
+label: 'Movie Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

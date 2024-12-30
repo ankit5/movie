@@ -1,0 +1,8 @@
+uuid: f6c9f204-7a53-4cd9-bbc6-00fc6519442e
+langcode: en
+status: true
+dependencies: {  }
+id: auto_add_small
+label: 'Auto add Small'
+revision: 0
+description: ''

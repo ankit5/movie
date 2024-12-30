@@ -1,7 +1,7 @@
 name: Hmovie2
 type: theme
 description: 'My Hmovie2 theme'
-base theme: classy
+base theme: claro
 package: PackageName
 core_version_requirement: ^9.4 || ^10
 

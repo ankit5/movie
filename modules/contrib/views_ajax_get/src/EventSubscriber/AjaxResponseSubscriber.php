@@ -2,10 +2,10 @@
 
 namespace Drupal\views_ajax_get\EventSubscriber;
 
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Drupal\Core\Routing\RouteMatch;
 use Drupal\views\Ajax\ViewAjaxResponse;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class AjaxResponseSubscriber implements EventSubscriberInterface {
 
-  public function onResponse(FilterResponseEvent $event) {
+  public function onResponse(ResponseEvent $event) {
     $response = $event->getResponse();
     if (!$response instanceof ViewAjaxResponse) {
       return;

@@ -1,0 +1,22 @@
+uuid: 2a2196fb-dac6-4373-89f6-e3ce2bd8a56e
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - hmovie2
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: hmovie2_breadcrumbs
+theme: hmovie2
+region: content
+weight: -5
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

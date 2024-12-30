@@ -1,0 +1,22 @@
+uuid: 2cf023c5-f0bd-4c63-b63a-731ade6f550f
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - psyplay
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: psyplay_help
+theme: psyplay
+region: content
+weight: -6
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

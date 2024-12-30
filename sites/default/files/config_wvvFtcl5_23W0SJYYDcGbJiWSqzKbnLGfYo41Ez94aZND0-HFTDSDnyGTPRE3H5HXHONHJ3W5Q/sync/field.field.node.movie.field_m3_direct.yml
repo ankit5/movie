@@ -1,0 +1,19 @@
+uuid: 9b973250-f6e9-48c4-9001-61b3ae4f9284
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_m3_direct
+    - node.type.movie
+id: node.movie.field_m3_direct
+field_name: field_m3_direct
+entity_type: node
+bundle: movie
+label: 'M3 Direct'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

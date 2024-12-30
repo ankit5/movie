@@ -19,9 +19,11 @@
   },
   "require": {
     "ext-json": "*",
-    "drupal/core": "^9.2 || ^10"
+    "drupal/core": "^10 || ^11"
   },
   "require-dev": {
+    "drupal/diff": "^1",
+    "drupal/feeds": "dev-3.x@dev",
     "swaggest/json-schema": "^0"
   },
   "suggest": {

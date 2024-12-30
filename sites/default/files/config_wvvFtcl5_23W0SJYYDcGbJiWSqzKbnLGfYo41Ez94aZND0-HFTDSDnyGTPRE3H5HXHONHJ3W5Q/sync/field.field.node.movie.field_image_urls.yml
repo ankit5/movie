@@ -1,0 +1,19 @@
+uuid: 13bed797-2d15-47e8-896e-dca3943ceeb0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image_urls
+    - node.type.movie
+id: node.movie.field_image_urls
+field_name: field_image_urls
+entity_type: node
+bundle: movie
+label: 'Image Urls'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

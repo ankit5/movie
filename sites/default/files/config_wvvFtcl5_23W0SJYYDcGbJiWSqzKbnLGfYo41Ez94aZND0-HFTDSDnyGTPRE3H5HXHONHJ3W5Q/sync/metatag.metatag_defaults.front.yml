@@ -1,0 +1,22 @@
+uuid: 359f2ee4-1dc4-4cda-b062-49c5a5aebd5f
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 1noCXlegCr5HFehQRF1ViXy1jhU1jZ_sNN99a8Sj5jo
+id: front
+label: 'Front page'
+tags:
+  canonical_url: '[site:url]'
+  description: '[site:name] Watch Latest Movies,TV Series Online for free and Download in HD on [site:name] website,[site:name] Bollywood,[site:name] app,[site:name] online.'
+  og_description: '[site:name] Watch Latest Movies,TV Series Online for free and Download in HD on [site:name] website,[site:name] Bollywood,[site:name] app,[site:name] online.'
+  og_image: 'https://hdmovie2.baby/sites/default/files/logohd.png'
+  og_image_type: image/png
+  og_image_url: 'https://hdmovie2.baby/sites/default/files/logohd.png'
+  og_site_name: '[site:name] - Watch Free Movies and TV Shows Online « [site:name]'
+  og_title: '[site:name] - Watch Free Movies and TV Shows Online « [site:name]'
+  og_type: movies
+  og_url: '[site:url]'
+  robots: 'index, follow, max-image-preview:standard'
+  shortlink: '[site:url]'
+  title: '[site:name] - Watch Free Movies and TV Shows Online « [site:name]'

@@ -2,14 +2,14 @@
 
 namespace Drupal\simple_sitemap_views\Plugin\views\display_extender;
 
-use Drupal\views\Plugin\views\display_extender\DisplayExtenderPluginBase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\views\Plugin\views\display\DisplayRouterInterface;
-use Drupal\views\Plugin\views\display\DisplayPluginBase;
-use Drupal\simple_sitemap_views\SimpleSitemapViews;
-use Drupal\simple_sitemap\Form\FormHelper;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\simple_sitemap\Form\FormHelper;
+use Drupal\simple_sitemap_views\SimpleSitemapViews;
+use Drupal\views\Plugin\views\display\DisplayPluginBase;
+use Drupal\views\Plugin\views\display\DisplayRouterInterface;
+use Drupal\views\Plugin\views\display_extender\DisplayExtenderPluginBase;
 use Drupal\views\ViewExecutable;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Simple XML Sitemap display extender plugin.
@@ -26,7 +26,7 @@ use Drupal\views\ViewExecutable;
 class SimpleSitemapDisplayExtender extends DisplayExtenderPluginBase {
 
   /**
-   * Simple XML Sitemap form helper.
+   * Helper class for working with forms.
    *
    * @var \Drupal\simple_sitemap\Form\FormHelper
    */
@@ -49,7 +49,7 @@ class SimpleSitemapDisplayExtender extends DisplayExtenderPluginBase {
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\simple_sitemap\Form\FormHelper $form_helper
-   *   Simple XML Sitemap form helper.
+   *   Helper class for working with forms.
    * @param \Drupal\simple_sitemap_views\SimpleSitemapViews $sitemap_views
    *   Views sitemap data.
    */
@@ -114,39 +114,15 @@ class SimpleSitemapDisplayExtender extends DisplayExtenderPluginBase {
           '#open' => (bool) $settings['index'],
         ];
 
-        $variant_form['index'] = [
-          '#type' => 'checkbox',
-          '#title' => $this->t('Index this display in sitemap <em>@variant_label</em>', [
-            '@variant_label' => $sitemap->label(),
-          ]),
-          '#default_value' => $settings['index'],
-        ];
+        $variant_form = $this->formHelper
+          ->settingsForm($variant_form, $settings);
 
-        $states = [
-          'visible' => [
-            ':input[name="variants[' . $variant . '][index]"]' => ['checked' => TRUE],
-          ],
-        ];
+        $variant_form['index']['#title'] = $this->t('Index this display in sitemap <em>@variant_label</em>', ['@variant_label' => $sitemap->label()]);
+        $variant_form['priority']['#description'] = $this->t('The priority this display will have in the eyes of search engine bots.');
+        $variant_form['changefreq']['#description'] = $this->t('The frequency with which this display changes. Search engine bots may take this as an indication of how often to index it.');
 
-        // The sitemap priority.
-        $variant_form['priority'] = [
-          '#type' => 'select',
-          '#title' => $this->t('Priority'),
-          '#description' => $this->t('The priority this display will have in the eyes of search engine bots.'),
-          '#default_value' => $settings['priority'],
-          '#options' => $this->formHelper->getPrioritySelectValues(),
-          '#states' => $states,
-        ];
-
-        // The sitemap change frequency.
-        $variant_form['changefreq'] = [
-          '#type' => 'select',
-          '#title' => $this->t('Change frequency'),
-          '#description' => $this->t('The frequency with which this display changes. Search engine bots may take this as an indication of how often to index it.'),
-          '#default_value' => $settings['changefreq'],
-          '#options' => $this->formHelper->getChangefreqSelectValues(),
-          '#states' => $states,
-        ];
+        // Images are not supported.
+        unset($variant_form['include_images']);
 
         // Arguments to index.
         $variant_form['arguments'] = [
@@ -156,7 +132,6 @@ class SimpleSitemapDisplayExtender extends DisplayExtenderPluginBase {
           '#default_value' => $settings['arguments'],
           '#attributes' => ['class' => ['indexed-arguments']],
           '#access' => !empty($arguments_options),
-          '#states' => $states,
         ];
 
         // Required arguments are always indexed.
@@ -172,7 +147,6 @@ class SimpleSitemapDisplayExtender extends DisplayExtenderPluginBase {
           '#default_value' => $settings['max_links'],
           '#min' => 1,
           '#access' => !empty($arguments_options) || $has_required_arguments,
-          '#states' => $states,
         ];
       }
 
@@ -325,7 +299,7 @@ class SimpleSitemapDisplayExtender extends DisplayExtenderPluginBase {
       $arg_counter = 0;
 
       foreach ($bits as $bit) {
-        if ($bit === '%' || strpos($bit, '%') === 0) {
+        if ($bit === '%' || str_starts_with($bit, '%')) {
           $arg_counter++;
         }
       }
@@ -349,7 +323,7 @@ class SimpleSitemapDisplayExtender extends DisplayExtenderPluginBase {
     $bits = explode('/', $this->displayHandler->getPath());
 
     foreach ($bits as $bit) {
-      if ($bit === '%' || strpos($bit, '%') === 0) {
+      if ($bit === '%' || str_starts_with($bit, '%')) {
         return TRUE;
       }
     }

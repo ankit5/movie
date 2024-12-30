@@ -1,0 +1,23 @@
+uuid: e49d0f40-cbda-473b-a3ff-d60722573f47
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: rpwvgyEURXLz_JjgMCrkS1rUv-0k3L79BpO-ReN7fDI
+id: node
+label: Content
+tags:
+  canonical_url: '[node:url]'
+  description: '[site:name] [node:title],Watch [node:title] Full Movie Online,Download [node:title] Full Movie in HD For Free'
+  keywords: '[node:title] Full Movie Download &amp; Watch Online Free, [node:title] Full Movie Download Filmyzilla, [node:title] Full Movie Watch Online Free, [node:title] Full Movie Watch online Free on [site:name], Download [node:title] full movie free on yomovies, Watch [node:title] Full Movie Online For Free In HD Quality, Watch [node:title] Movie Online Free on MovieRulz'
+  og_description: '[site:name] [node:title],Watch [node:title] Full Movie Online,Download [node:title] Full Movie in HD For Free'
+  og_image: '[node:field_image_urls:0]'
+  og_image_height: '425'
+  og_image_type: image/jpeg
+  og_image_width: '300'
+  og_site_name: '[site:name] - Watch Free Movies and TV Shows Online « [site:name]'
+  og_title: '[node:title] Download full Movie & Watch Online on [site:name]'
+  og_type: website
+  og_url: '[node:url]'
+  robots: 'index, follow'
+  title: '[node:title] Download full Movie & Watch Online on [site:name]'

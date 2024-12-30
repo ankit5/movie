@@ -16,7 +16,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   id = "json",
  *   label = @Translation("JSON (text)"),
  *   description = @Translation("Allows JSON data to be stored in the database. In the database the content is stored in a text column."),
- *   category = @Translation("Data"),
+ *   category = "data",
  *   default_widget = "json_textarea",
  *   default_formatter = "json",
  *   constraints = {"valid_json" = {}}

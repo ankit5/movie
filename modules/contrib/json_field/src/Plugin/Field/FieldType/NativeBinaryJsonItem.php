@@ -12,7 +12,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   id = "json_native_binary",
  *   label = @Translation("JSONB/JSON (raw)"),
  *   description = @Translation("Allows JSON data to be stored in the database. On PostgreSQL the data is stored in a JSONB column, on MySQL it uses a regular JSON column."),
- *   category = @Translation("Data"),
+ *   category = "data",
  *   default_widget = "json_textarea",
  *   default_formatter = "json",
  *   constraints = {"valid_json" = {}}*

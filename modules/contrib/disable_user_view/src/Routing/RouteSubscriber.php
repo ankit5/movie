@@ -14,15 +14,12 @@ class RouteSubscriber extends RouteSubscriberBase {
    * {@inheritdoc}
    */
   protected function alterRoutes(RouteCollection $collection) {
-   // print $collection->get('user.page');
-   // exit;
-   
     if ($route = $collection->get('user.page')) {
       $route->setDefault('_controller', '\Drupal\disable_user_view\Controller\UserEditController::userPage');
     }
     if ($route = $collection->get('entity.user.canonical')) {
       $route->setDefault('_controller', '\Drupal\disable_user_view\Controller\UserEditController::userPage');
-    //  $route->setRequirement('_access', 'FALSE');
+      $route->setRequirement('_access', 'FALSE');
     }
   }
 

@@ -1,9 +1,6 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\Core\Extension\ThemeHandlerTest.
- */
+declare(strict_types=1);
 
 namespace Drupal\Tests\Core\Extension;
 
@@ -11,6 +8,12 @@ use Composer\Autoload\ClassLoader;
 use Drupal\Core\Extension\Extension;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Extension\ThemeHandler;
+use Drupal\Core\Logger\LoggerChannel;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Logger\RfcLoggerTrait;
+use Drupal\Core\Logger\RfcLogLevel;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -40,6 +43,12 @@ class ThemeHandlerTest extends UnitTestCase {
    */
   protected $themeHandler;
 
+    /**
+   * @var \Symfony\Component\DependencyInjection\ContainerInterface
+   */
+  protected $container;
+
+
   /**
    * {@inheritdoc}
    */
@@ -49,7 +58,8 @@ class ThemeHandlerTest extends UnitTestCase {
     $this->configFactory = $this->getConfigFactoryStub([
       'core.extension' => [
         'module' => [],
-        'theme' => [],
+       // 'theme' => [],
+       'theme' => ['claro' => 'claro'],
         'disabled' => [
           'theme' => [],
         ],
@@ -64,16 +74,20 @@ class ThemeHandlerTest extends UnitTestCase {
     $container->expects($this->any())
       ->method('get')
       ->with('class_loader')
-      ->willReturn($this->createMock(ClassLoader::class));
-    \Drupal::setContainer($container);
+      $this->container = $this->prophesize(ContainerInterface::class);
+         $this->container->get('class_loader')
+             ->willReturn($this->createMock(ClassLoader::class));
+         \Drupal::setContainer($this->container->reveal());
   }
 
   /**
    * Tests rebuilding the theme data.
    *
    * @see \Drupal\Core\Extension\ThemeHandler::rebuildThemeData()
+   * @group legacy
    */
-  public function testRebuildThemeData() {
+  public function testRebuildThemeData(): void {
+    $this->expectDeprecation("\Drupal\Core\Extension\ThemeHandlerInterface::rebuildThemeData() is deprecated in drupal:10.3.0 and is removed from drupal:12.0.0. Use \Drupal::service('extension.list.theme')->reset()->getList() instead. See https://www.drupal.org/node/3413196");
     $this->themeList->expects($this->once())
       ->method('reset')
       ->willReturnSelf();
@@ -98,7 +112,7 @@ class ThemeHandlerTest extends UnitTestCase {
   /**
    * Tests empty libraries in theme.info.yml file.
    */
-  public function testThemeLibrariesEmpty() {
+  public function testThemeLibrariesEmpty(): void {
     $theme = new Extension($this->root, 'theme', 'core/modules/system/tests/themes/test_theme_libraries_empty', 'test_theme_libraries_empty.info.yml');
     try {
       $this->themeHandler->addTheme($theme);
@@ -108,6 +122,42 @@ class ThemeHandlerTest extends UnitTestCase {
       $this->fail('Empty libraries key in theme.info.yml causes PHP warning.');
     }
   }
+
+  /**
+   * Test that a missing theme doesn't break systems.
+   */
+ public function testMissingTheme(): void {
+      $real_logger = new class () implements LoggerInterface {
+        use RfcLoggerTrait;
+  
+        public $logs = [];
+  
+        public function log(
+          $level,
+          \Stringable|string $message,
+          array $context = [],
+        ): void {
+          $this->logs[$level][] = [
+            'message' => $message,
+            'context' => $context,
+          ];
+        }
+  
+      };
+  
+      $logger = new LoggerChannel('theme');
+      $logger->addLogger($real_logger);
+      $logger_factory = $this->prophesize(LoggerChannelFactoryInterface::class);
+      $logger_factory->get('theme')
+        ->shouldBeCalledOnce()
+        ->willReturn($logger);
+      $this->container->get('logger.factory')
+        ->willReturn($logger_factory->reveal());
+      $this->themeHandler->listInfo();
+      $this->assertEquals('Theme %theme not found.', $real_logger->logs[RfcLogLevel::WARNING][0]['message']);
+      $this->assertEquals('claro', $real_logger->logs[RfcLogLevel::WARNING][0]['context']['%theme']);
+    }
+  
 
 }
 

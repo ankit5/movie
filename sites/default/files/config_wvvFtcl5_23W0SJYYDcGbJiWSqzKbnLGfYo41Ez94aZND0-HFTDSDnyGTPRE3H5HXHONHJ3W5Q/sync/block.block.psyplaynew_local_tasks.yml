@@ -1,0 +1,22 @@
+uuid: 692fe4aa-65a6-4060-b634-b08c1a85ce15
+langcode: en
+status: true
+dependencies:
+  theme:
+    - psyplaynew
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: psyplaynew_local_tasks
+theme: psyplaynew
+region: content
+weight: -7
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

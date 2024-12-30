@@ -1,0 +1,15 @@
+{
+  "name": "drupal/views_ajax_get",
+  "description": "Overrides Views Ajax to work with GET instead of POST",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "homepage": "https://www.drupal.org/project/views_ajax_get",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/views_ajax_get",
+    "source": "https://cgit.drupalcode.org/views_ajax_get"
+  },
+  "require": {
+    "drupal/core": "^8.0 || ^9.0 || ^10.0"
+  }
+}

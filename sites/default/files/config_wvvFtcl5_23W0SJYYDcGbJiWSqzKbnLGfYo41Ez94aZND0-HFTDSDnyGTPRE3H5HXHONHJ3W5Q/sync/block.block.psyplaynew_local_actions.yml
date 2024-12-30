@@ -1,0 +1,20 @@
+uuid: 63d6e115-06a2-48ab-9588-78566b910994
+langcode: en
+status: true
+dependencies:
+  theme:
+    - psyplaynew
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: psyplaynew_local_actions
+theme: psyplaynew
+region: content
+weight: -4
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

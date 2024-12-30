@@ -1,0 +1,21 @@
+uuid: 7713c1b7-2717-41af-9c1e-f374a6d6efec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_date_of_leaving
+    - node.type.admission
+  module:
+    - datetime
+id: node.admission.field_a_date_of_leaving
+field_name: field_a_date_of_leaving
+entity_type: node
+bundle: admission
+label: 'Date of leaving'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

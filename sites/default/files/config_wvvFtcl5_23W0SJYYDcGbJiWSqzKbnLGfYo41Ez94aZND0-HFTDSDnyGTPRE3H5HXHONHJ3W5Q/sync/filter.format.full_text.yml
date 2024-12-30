@@ -1,0 +1,8 @@
+uuid: ff68a19d-63a1-4f6a-90c9-bc3dcb3103b8
+langcode: en
+status: true
+dependencies: {  }
+name: 'Full text'
+format: full_text
+weight: 0
+filters: {  }

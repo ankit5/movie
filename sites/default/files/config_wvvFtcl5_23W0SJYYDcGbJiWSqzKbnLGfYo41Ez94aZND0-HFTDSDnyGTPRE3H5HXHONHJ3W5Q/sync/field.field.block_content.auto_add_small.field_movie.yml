@@ -1,0 +1,29 @@
+uuid: d5267dc0-1eb8-4b0d-8086-8f2d462bbf03
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.auto_add_small
+    - field.storage.block_content.field_movie
+    - node.type.movie
+id: block_content.auto_add_small.field_movie
+field_name: field_movie
+entity_type: block_content
+bundle: auto_add_small
+label: Movie
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      movie: movie
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,12 @@
+uuid: 5d3fdc11-abaa-4bc3-8668-fff4e4b7a0cb
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 92bXZdyYJ5xqukdfmGRr_CYcwm1vfuS8b8aJ7X_G7E0
+id: taxonomy_term
+label: 'Taxonomy term'
+tags:
+  canonical_url: '[term:url]'
+  description: '[term:name] movies and web series watch free olnine and download, dual audio, english usa, india'
+  title: '[term:name] movies and web series watch free olnine and download| [site:name]'

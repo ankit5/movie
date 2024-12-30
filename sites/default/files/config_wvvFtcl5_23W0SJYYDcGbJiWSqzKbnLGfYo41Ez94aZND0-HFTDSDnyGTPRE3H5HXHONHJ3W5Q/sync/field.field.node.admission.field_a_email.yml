@@ -1,0 +1,19 @@
+uuid: a35c313f-b351-419e-9ddc-6c5b58adfc66
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a_email
+    - node.type.admission
+id: node.admission.field_a_email
+field_name: field_a_email
+entity_type: node
+bundle: admission
+label: Email
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

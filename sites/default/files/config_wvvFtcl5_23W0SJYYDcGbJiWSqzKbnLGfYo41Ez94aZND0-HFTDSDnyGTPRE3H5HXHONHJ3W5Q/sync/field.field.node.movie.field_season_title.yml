@@ -1,0 +1,19 @@
+uuid: e939b919-3889-4104-85e2-8e48b7a7385c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_season_title
+    - node.type.movie
+id: node.movie.field_season_title
+field_name: field_season_title
+entity_type: node
+bundle: movie
+label: 'Season Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

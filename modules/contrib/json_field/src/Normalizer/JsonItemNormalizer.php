@@ -16,13 +16,16 @@ class JsonItemNormalizer extends NormalizerBase {
   /**
    * {@inheritdoc}
    */
-  protected $supportedInterfaceOrClass = NativeJSONItem::class;
+  protected $supportedInterfaceOrClass = NativeJsonItem::class;
 
   /**
    * {@inheritdoc}
    */
-  public function normalize($object, $format = NULL, array $context = []) {
-    return $object->getValue();
+  public function normalize(mixed $object, ?string $format = NULL, array $context = []): \ArrayObject|array|string|int|float|bool|NULL {
+    $field = $object->getParent();
+    return [
+      $field->getName() => [$object->getValue()],
+    ];
   }
 
 }

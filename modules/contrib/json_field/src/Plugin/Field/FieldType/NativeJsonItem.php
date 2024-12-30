@@ -13,7 +13,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   id = "json_native",
  *   label = @Translation("JSON (raw)"),
  *   description = @Translation("Allows JSON data to be stored in the database. Stores the data in a JSON column in the database."),
- *   category = @Translation("Data"),
+ *   category = "data",
  *   default_widget = "json_textarea",
  *   default_formatter = "json",
  *   constraints = {"valid_json" = {}}

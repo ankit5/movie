@@ -2,14 +2,14 @@
 
 namespace Drupal\simple_sitemap\Form;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Config\TypedConfigManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\simple_sitemap\Entity\EntityHelper;
+use Drupal\simple_sitemap\Entity\SimpleSitemap;
 use Drupal\simple_sitemap\Manager\EntityManager;
 use Drupal\simple_sitemap\Manager\Generator;
-use Drupal\simple_sitemap\Entity\SimpleSitemap;
-use Drupal\simple_sitemap\Entity\EntityHelper;
 use Drupal\simple_sitemap\Settings;
 
 /**
@@ -36,12 +36,14 @@ class EntitiesForm extends SimpleSitemapFormBase {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory service.
+   * @param \Drupal\Core\Config\TypedConfigManagerInterface $typedConfigManager
+   *   The typed config manager.
    * @param \Drupal\simple_sitemap\Manager\Generator $generator
    *   The sitemap generator service.
    * @param \Drupal\simple_sitemap\Settings $settings
    *   The simple_sitemap.settings service.
    * @param \Drupal\simple_sitemap\Form\FormHelper $form_helper
-   *   Simple XML Sitemap form helper.
+   *   Helper class for working with forms.
    * @param \Drupal\simple_sitemap\Entity\EntityHelper $entity_helper
    *   Helper class for working with entities.
    * @param \Drupal\simple_sitemap\Manager\EntityManager $entity_manager
@@ -49,34 +51,22 @@ class EntitiesForm extends SimpleSitemapFormBase {
    */
   public function __construct(
     ConfigFactoryInterface $config_factory,
+    TypedConfigManagerInterface $typedConfigManager,
     Generator $generator,
     Settings $settings,
     FormHelper $form_helper,
     EntityHelper $entity_helper,
-    EntityManager $entity_manager
+    EntityManager $entity_manager,
   ) {
     parent::__construct(
       $config_factory,
+      $typedConfigManager,
       $generator,
       $settings,
       $form_helper
     );
     $this->entityHelper = $entity_helper;
     $this->entityManager = $entity_manager;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('config.factory'),
-      $container->get('simple_sitemap.generator'),
-      $container->get('simple_sitemap.settings'),
-      $container->get('simple_sitemap.form_helper'),
-      $container->get('simple_sitemap.entity_helper'),
-      $container->get('simple_sitemap.entity_manager')
-    );
   }
 
   /**
@@ -90,6 +80,8 @@ class EntitiesForm extends SimpleSitemapFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
+    $table = &$form['entity_types'];
+
     $table = [
       '#type' => 'table',
       '#header' => [
@@ -108,6 +100,7 @@ class EntitiesForm extends SimpleSitemapFormBase {
     }
     natcasesort($entity_types);
 
+    /** @var string|\Drupal\Core\StringTranslation\TranslatableMarkup $label */
     foreach ($entity_types as $entity_type_id => $label) {
       $is_enabled = $this->entityManager->entityTypeIsEnabled($entity_type_id);
 
@@ -149,15 +142,7 @@ class EntitiesForm extends SimpleSitemapFormBase {
       }
     }
 
-    $form['sitemap_entities'] = [
-      '#prefix' => FormHelper::getDonationText(),
-      '#title' => $this->t('Sitemap entities'),
-      '#type' => 'fieldset',
-      '#markup' => '<div class="description">' . $this->t("Simple XML Sitemap settings will be added only to entity forms of entity types enabled here. Settings for specific entity bundles (e.g. <em>page</em>) can be adjusted here or on the bundle pages.") . '</div>',
-      'entity_types' => $table,
-    ];
-
-    $this->formHelper->displayRegenerateNow($form);
+    $form = $this->formHelper->regenerateNowForm($form);
 
     return parent::buildForm($form, $form_state);
   }
@@ -178,14 +163,6 @@ class EntitiesForm extends SimpleSitemapFormBase {
     }
 
     parent::submitForm($form, $form_state);
-
-    // Regenerate sitemaps according to user setting.
-    if ($form_state->getValue('simple_sitemap_regenerate_now')) {
-      $this->generator
-        ->setVariants()
-        ->rebuildQueue()
-        ->generate();
-    }
   }
 
   /**
@@ -200,7 +177,7 @@ class EntitiesForm extends SimpleSitemapFormBase {
     if ($indexed_bundles === NULL) {
       $indexed_bundles = [];
 
-      foreach ($this->entityManager->setVariants()->getAllBundleSettings() as $variant => $entity_types) {
+      foreach ($this->entityManager->setSitemaps()->getAllBundleSettings() as $variant => $entity_types) {
         $sitemap_label = SimpleSitemap::load($variant)->label();
 
         foreach ($entity_types as $entity_type_id => $bundles) {

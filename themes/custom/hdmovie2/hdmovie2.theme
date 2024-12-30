@@ -134,7 +134,9 @@ function hdmovie2_preprocess_page(array &$variables) {
     $variables['base_path'] = base_path();
     $variables['site_name'] = $site_config->get('name');
     $variables['site_slogan'] = $site_config->get('slogan');
-    $variables['logopath'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
+  //  $variables['logopath'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
+  
+     $variables['logopath'] = theme_get_setting('logo.url');
     $variables['new_domain_name'] = theme_get_setting('new_domain_name');
     $variables['iframe_new_domain_name'] = theme_get_setting('facebook_url');
    
@@ -215,9 +217,9 @@ function hdmovie2_preprocess_node(array &$variables) {
  $variables['site_url'] = rtrim($variables['site_url'], '/');
   if ($node->bundle() == 'movie') {
 
-   $node->field_image_urls->value = str_replace("www.themoviedb.org","image.tmdb.org",$node->field_image_urls->value);
-    $download = substr($node->field_download_url->value, strrpos($node->field_download_url->value, '/') + 1);
-      $download = str_replace(".html","",$download);
+   $node->field_image_urls->value = str_replace("www.themoviedb.org","image.tmdb.org",$node->field_image_urls->value?? '');
+    $download = substr($node->field_download_url->value, strrpos($node->field_download_url->value, '/'?? '') + 1?? '');
+      $download = str_replace(".html","",$download ?? '');
     $variables['download'] = $download;
 
   }

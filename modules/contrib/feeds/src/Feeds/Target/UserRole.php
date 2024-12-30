@@ -116,13 +116,17 @@ class UserRole extends ConfigEntityReference {
       return $entity_id;
     }
 
-    // Automatically create a new role.
+    // Automatically create a new role if the 'autocreate' option was enabled,
+    // but only if roles are referenced by ID or label.
     if ($this->configuration['autocreate'] && in_array($this->configuration['reference_by'], [
       'id',
       'label',
     ])) {
       return $this->createRole($search);
     }
+
+    // In all other cases, return false.
+    return FALSE;
   }
 
   /**
@@ -217,7 +221,7 @@ class UserRole extends ConfigEntityReference {
     $form['revoke_roles'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Revoke roles'),
-      '#description' => t('If enabled, roles that are not provided by the feed will be revoked for the user. This affects only the "Allowed roles" as configured above.'),
+      '#description' => $this->t('If enabled, roles that are not provided by the feed will be revoked for the user. This affects only the "Allowed roles" as configured above.'),
       '#default_value' => $this->configuration['revoke_roles'],
     ];
 

@@ -1,0 +1,19 @@
+uuid: 766cd35a-0d7b-441a-8683-7d61d39d4b5a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_keyword
+    - node.type.movie
+id: node.movie.field_keyword
+field_name: field_keyword
+entity_type: node
+bundle: movie
+label: Keyword
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

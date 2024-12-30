@@ -4,13 +4,31 @@ namespace Drupal\domain\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class DomainSettingsForm.
+ * Settings form for the Domain module.
  *
  * @package Drupal\domain\Form
  */
 class DomainSettingsForm extends ConfigFormBase {
+
+  /**
+   * The domain token handler.
+   *
+   * @var \Drupal\domain\DomainToken
+   */
+  protected $domainTokens;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    $instance = parent::create($container);
+    $instance->domainTokens = $container->get('domain.token');
+
+    return $instance;
+  }
 
   /**
    * {@inheritdoc}
@@ -45,7 +63,7 @@ class DomainSettingsForm extends ConfigFormBase {
     ];
     // Get the usable tokens for this field.
     $patterns = [];
-    foreach (\Drupal::service('domain.token')->getCallbacks() as $key => $callback) {
+    foreach ($this->domainTokens->getCallbacks() as $key => $callback) {
       $patterns[] = "[domain:$key]";
     }
     $form['css_classes'] = [

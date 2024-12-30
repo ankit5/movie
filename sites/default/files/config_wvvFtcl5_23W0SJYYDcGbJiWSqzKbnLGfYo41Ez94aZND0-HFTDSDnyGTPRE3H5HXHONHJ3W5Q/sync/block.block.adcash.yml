@@ -1,0 +1,25 @@
+uuid: a29860c5-d2eb-42ae-ba50-adf29ee5eb71
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:c137b720-7c11-4a3f-acd8-0d588c1a7da5'
+  module:
+    - block_content
+  theme:
+    - psyplay
+id: adcash
+theme: psyplay
+region: head_top
+weight: 0
+provider: null
+plugin: 'block_content:c137b720-7c11-4a3f-acd8-0d588c1a7da5'
+settings:
+  id: 'block_content:c137b720-7c11-4a3f-acd8-0d588c1a7da5'
+  label: adcash
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

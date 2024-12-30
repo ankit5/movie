@@ -1,7 +1,7 @@
 name: Hdmovie2new
 type: theme
 description: 'My Hdmovie2new theme'
-base theme: hdmovie2
+base theme: claro
 package: PackageName
 core_version_requirement: ^9.4 || ^10
 libraries:

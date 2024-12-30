@@ -2,8 +2,10 @@
 
 namespace Drupal\feeds\Plugin\Type\Target;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
+use Drupal\feeds\FeedInterface;
 use Drupal\feeds\Plugin\Type\ConfigurablePluginTrait;
 use Drupal\feeds\Plugin\Type\PluginBase;
 
@@ -60,6 +62,13 @@ abstract class TargetBase extends PluginBase implements TargetInterface, PluginF
   /**
    * {@inheritdoc}
    */
+  public function clearTarget(FeedInterface $feed, EntityInterface $entity, string $target) {
+    unset($entity->{$target});
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getTargetDefinition() {
     return $this->targetDefinition;
   }
@@ -92,6 +101,31 @@ abstract class TargetBase extends PluginBase implements TargetInterface, PluginF
    */
   public function onDependencyRemoval(array $dependencies) {
     return FALSE;
+  }
+
+  /**
+   * Returns the messenger to use.
+   *
+   * @return \Drupal\Core\Messenger\MessengerInterface
+   *   The messenger service.
+   */
+  protected function getMessenger() {
+    return $this->messenger();
+  }
+
+  /**
+   * Adds a message.
+   *
+   * @param string|\Drupal\Component\Render\MarkupInterface $message
+   *   The translated message to be displayed to the user.
+   * @param string $type
+   *   (optional) The message's type.
+   * @param bool $repeat
+   *   (optional) If this is FALSE and the message is already set, then the
+   *   message won't be repeated. Defaults to FALSE.
+   */
+  protected function addMessage($message, $type = 'status', $repeat = FALSE) {
+    $this->getMessenger()->addMessage($message, $type, $repeat);
   }
 
 }

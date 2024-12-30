@@ -1,5 +1,5 @@
 <?php
-$config['system.logging']['error_level'] = 'verbose';
+//$config['system.logging']['error_level'] = 'verbose';
 // @codingStandardsIgnoreFile
 /*$settings['locale_custom_strings_en'][''] = array(
   'Back to content editing' => 'Close Preview',

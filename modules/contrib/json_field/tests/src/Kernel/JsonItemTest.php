@@ -3,10 +3,9 @@
 namespace Drupal\Tests\json_field\Kernel;
 
 use Drupal\Core\Database\Connection;
-use Drupal\entity_test\Entity\EntityTest;
 use Drupal\Core\Validation\Plugin\Validation\Constraint\LengthConstraint;
+use Drupal\entity_test\Entity\EntityTest;
 use Drupal\json_field\Plugin\Field\FieldType\JsonItem;
-use PHPUnit\Framework\SkippedTestError;
 
 /**
  * @coversDefaultClass \Drupal\json_field\Plugin\Field\FieldType\JsonItem
@@ -36,7 +35,7 @@ class JsonItemTest extends KernelTestBase {
    *
    * @see testFieldCreate()
    */
-  public function providerTestFieldCreate() {
+  public static function providerTestFieldCreate(): array {
     return [['json'], ['json_native']];
   }
 
@@ -105,7 +104,7 @@ class JsonItemTest extends KernelTestBase {
    *
    * @see testCharacterLimit()
    */
-  public function providerTestCharacterLimit() {
+  public static function providerTestCharacterLimit(): array {
     return [
       [JsonItem::SIZE_SMALL, JsonItem::SIZE_SMALL],
       [JsonItem::SIZE_NORMAL, JsonItem::SIZE_NORMAL / 4],
@@ -130,7 +129,7 @@ class JsonItemTest extends KernelTestBase {
     if ($connection->databaseType() !== 'mysql') {
       // @todo Is there a better way of doing this? This is an internal class
       // from PHPUnit and may change in future releases.
-      throw new SkippedTestError('This script can only be used with MySQL database backends.');
+      $this->markTestSkipped('This script can only be used with MySQL database backends.');
     }
 
     $storage = [
@@ -149,7 +148,7 @@ class JsonItemTest extends KernelTestBase {
    *
    * @see testSchemaSize()
    */
-  public function providerTestSchemaSize() {
+  public static function providerTestSchemaSize(): array {
     $data = [];
     $data[] = [
       JsonItem::SIZE_SMALL, [
@@ -367,8 +366,8 @@ class JsonItemTest extends KernelTestBase {
    * @param string $type
    *   The MySQL field type.
    *
-   * @return string
-   *   The Drupal schema field size.
+   * @return null|string
+   *   The Drupal schema field size, or NULL.
    */
   protected function fieldSizeMap(Connection $connection, $type) {
     // Convert everything to lowercase.

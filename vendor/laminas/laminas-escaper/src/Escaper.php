@@ -6,10 +6,8 @@ namespace Laminas\Escaper;
 
 use function bin2hex;
 use function ctype_digit;
-use function function_exists;
 use function hexdec;
 use function htmlspecialchars;
-use function iconv;
 use function in_array;
 use function mb_convert_encoding;
 use function ord;
@@ -27,6 +25,8 @@ use const ENT_SUBSTITUTE;
 
 /**
  * Context specific methods for use in secure output escaping
+ *
+ * @final
  */
 class Escaper
 {
@@ -38,7 +38,7 @@ class Escaper
      * entities that XML supports. Using HTML entities would result in this error:
      *     XML Parsing Error: undefined entity
      *
-     * @var array
+     * @var array<int, string>
      */
     protected static $htmlNamedEntityMap = [
         34 => 'quot', // quotation mark
@@ -51,7 +51,7 @@ class Escaper
      * Current encoding for escaping. If not UTF-8, we convert strings from this encoding
      * pre-escaping and back to this encoding post-escaping.
      *
-     * @var string
+     * @var non-empty-string
      */
     protected $encoding = 'utf-8';
 
@@ -67,6 +67,7 @@ class Escaper
      * Static Matcher which escapes characters for HTML Attribute contexts
      *
      * @var callable
+     * @psalm-var callable(array<array-key, string>):string
      */
     protected $htmlAttrMatcher;
 
@@ -74,6 +75,7 @@ class Escaper
      * Static Matcher which escapes characters for Javascript contexts
      *
      * @var callable
+     * @psalm-var callable(array<array-key, string>):string
      */
     protected $jsMatcher;
 
@@ -81,13 +83,14 @@ class Escaper
      * Static Matcher which escapes characters for CSS Attribute contexts
      *
      * @var callable
+     * @psalm-var callable(array<array-key, string>):string
      */
     protected $cssMatcher;
 
     /**
      * List of all encoding supported by this class
      *
-     * @var array
+     * @var list<non-empty-string>
      */
     protected $supportedEncodings = [
         'iso-8859-1',
@@ -130,6 +133,7 @@ class Escaper
      * Constructor: Single parameter allows setting of global encoding for use by
      * the current object.
      *
+     * @param non-empty-string|null $encoding
      * @throws Exception\InvalidArgumentException
      */
     public function __construct(?string $encoding = null)
@@ -156,15 +160,21 @@ class Escaper
         $this->htmlSpecialCharsFlags = ENT_QUOTES | ENT_SUBSTITUTE;
 
         // set matcher callbacks
-        $this->htmlAttrMatcher = [$this, 'htmlAttrMatcher'];
-        $this->jsMatcher       = [$this, 'jsMatcher'];
-        $this->cssMatcher      = [$this, 'cssMatcher'];
+        $this->htmlAttrMatcher =
+            /** @param array<array-key, string> $matches */
+            fn(array $matches): string => $this->htmlAttrMatcher($matches);
+        $this->jsMatcher       =
+            /** @param array<array-key, string> $matches */
+            fn(array $matches): string => $this->jsMatcher($matches);
+        $this->cssMatcher      =
+            /** @param array<array-key, string> $matches */
+            fn(array $matches): string => $this->cssMatcher($matches);
     }
 
     /**
      * Return the encoding that all output/input is expected to be encoded in.
      *
-     * @return string
+     * @return non-empty-string
      */
     public function getEncoding()
     {
@@ -175,7 +185,7 @@ class Escaper
      * Escape a string for the HTML Body context where there are very few characters
      * of special meaning. Internally this will use htmlspecialchars().
      *
-     * @return string
+     * @return ($string is non-empty-string ? non-empty-string : string)
      */
     public function escapeHtml(string $string)
     {
@@ -187,7 +197,7 @@ class Escaper
      * to escape that are not covered by htmlspecialchars() to cover cases where an attribute
      * might be unquoted or quoted illegally (e.g. backticks are valid quotes for IE).
      *
-     * @return string
+     * @return ($string is non-empty-string ? non-empty-string : string)
      */
     public function escapeHtmlAttr(string $string)
     {
@@ -209,7 +219,7 @@ class Escaper
      * Backslash escaping is not used as it still leaves the escaped character as-is and so
      * is not useful in a HTML context.
      *
-     * @return string
+     * @return ($string is non-empty-string ? non-empty-string : string)
      */
     public function escapeJs(string $string)
     {
@@ -227,7 +237,7 @@ class Escaper
      * an entire URI - only a subcomponent being inserted. The function is a simple proxy
      * to rawurlencode() which now implements RFC 3986 since PHP 5.3 completely.
      *
-     * @return string
+     * @return ($string is non-empty-string ? non-empty-string : string)
      */
     public function escapeUrl(string $string)
     {
@@ -238,7 +248,7 @@ class Escaper
      * Escape a string for the CSS context. CSS escaping can be applied to any string being
      * inserted into CSS and escapes everything except alphanumerics.
      *
-     * @return string
+     * @return ($string is non-empty-string ? non-empty-string : string)
      */
     public function escapeCss(string $string)
     {
@@ -255,7 +265,7 @@ class Escaper
      * Callback function for preg_replace_callback that applies HTML Attribute
      * escaping to all matches.
      *
-     * @param array $matches
+     * @param array<array-key, string> $matches
      * @return string
      */
     protected function htmlAttrMatcher($matches)
@@ -302,7 +312,7 @@ class Escaper
      * Callback function for preg_replace_callback that applies Javascript
      * escaping to all matches.
      *
-     * @param array $matches
+     * @param array<array-key, string> $matches
      * @return string
      */
     protected function jsMatcher($matches)
@@ -325,7 +335,7 @@ class Escaper
      * Callback function for preg_replace_callback that applies CSS
      * escaping to all matches.
      *
-     * @param array $matches
+     * @param array<array-key, string> $matches
      * @return string
      */
     protected function cssMatcher($matches)
@@ -391,32 +401,21 @@ class Escaper
     }
 
     /**
-     * Encoding conversion helper which wraps iconv and mbstring where they exist or throws
-     * and exception where neither is available.
+     * Encoding conversion helper which wraps mb_convert_encoding
      *
      * @param string $string
      * @param string $to
      * @param array|string $from
-     * @throws Exception\RuntimeException
      * @return string
      */
     protected function convertEncoding($string, $to, $from)
     {
-        if (function_exists('iconv')) {
-            $result = iconv($from, $to, $string);
-        } elseif (function_exists('mb_convert_encoding')) {
-            $result = mb_convert_encoding($string, $to, $from);
-        } else {
-            throw new Exception\RuntimeException(
-                static::class
-                . ' requires either the iconv or mbstring extension to be installed'
-                . ' when escaping for non UTF-8 strings.'
-            );
-        }
+        $result = mb_convert_encoding($string, $to, $from);
 
         if ($result === false) {
             return ''; // return non-fatal blank string on encoding errors from users
         }
+
         return $result;
     }
 }

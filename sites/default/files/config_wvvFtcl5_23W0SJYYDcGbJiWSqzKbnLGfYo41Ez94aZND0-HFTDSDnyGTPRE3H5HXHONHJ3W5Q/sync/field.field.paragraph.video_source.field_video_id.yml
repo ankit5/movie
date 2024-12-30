@@ -1,0 +1,23 @@
+uuid: af73942b-277e-4964-aa1a-5b62456b39dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_video_id
+    - paragraphs.paragraphs_type.video_source
+id: paragraph.video_source.field_video_id
+field_name: field_video_id
+entity_type: paragraph
+bundle: video_source
+label: 'Video Id'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

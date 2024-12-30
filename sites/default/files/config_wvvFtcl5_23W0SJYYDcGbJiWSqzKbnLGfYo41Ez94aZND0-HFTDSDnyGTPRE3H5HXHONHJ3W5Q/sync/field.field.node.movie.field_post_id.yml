@@ -1,0 +1,19 @@
+uuid: 8dbb1060-3d9c-48fc-b267-b3858db8a436
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_post_id
+    - node.type.movie
+id: node.movie.field_post_id
+field_name: field_post_id
+entity_type: node
+bundle: movie
+label: post_id
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

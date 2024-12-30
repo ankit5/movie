@@ -2,8 +2,8 @@
 
 namespace Drupal\config_filter\Config;
 
-use Drupal\config_filter\Exception\InvalidStorageFilterException;
 use Drupal\Core\Config\StorageInterface;
+use Drupal\config_filter\Exception\InvalidStorageFilterException;
 
 /**
  * Class FilteredStorage.
@@ -93,16 +93,20 @@ class FilteredStorage implements FilteredStorageInterface {
    */
   public function write($name, array $data) {
     foreach ($this->filters as $filter) {
-      if ($data) {
+      if (is_array($data)) {
         $data = $filter->filterWrite($name, $data);
       }
       else {
         // The filterWrite has an array type hint in the interface.
         $data = $filter->filterWrite($name, []);
+        if ($data === []) {
+          // If the filter didn't fill it with data then set it to FALSE.
+          $data = FALSE;
+        }
       }
     }
 
-    if ($data) {
+    if (is_array($data)) {
       return $this->storage->write($name, $data);
     }
 

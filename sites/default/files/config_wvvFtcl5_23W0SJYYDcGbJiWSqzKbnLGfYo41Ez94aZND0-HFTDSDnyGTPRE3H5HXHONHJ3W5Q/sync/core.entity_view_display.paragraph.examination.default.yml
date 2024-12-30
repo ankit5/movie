@@ -1,0 +1,77 @@
+uuid: 5d46a4ac-8e2b-4005-a064-f3b381187806
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.examination.field_certificate
+    - field.field.paragraph.examination.field_division_percentage_of_mar
+    - field.field.paragraph.examination.field_examination_passed
+    - field.field.paragraph.examination.field_marks_obtained
+    - field.field.paragraph.examination.field_subjects_offered
+    - field.field.paragraph.examination.field_university_or_board
+    - field.field.paragraph.examination.field_year
+    - paragraphs.paragraphs_type.examination
+  module:
+    - file
+    - options
+id: paragraph.examination.default
+targetEntityType: paragraph
+bundle: examination
+mode: default
+content:
+  field_certificate:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_division_percentage_of_mar:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_examination_passed:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_marks_obtained:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_subjects_offered:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_university_or_board:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_year:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+hidden: {  }

@@ -1,0 +1,22 @@
+uuid: 5a322f63-4f44-464e-a0aa-5154d2ad3f70
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.auto_add_small
+    - field.field.block_content.auto_add_small.field_movie
+id: block_content.auto_add_small.default
+targetEntityType: block_content
+bundle: auto_add_small
+mode: default
+content:
+  field_movie:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: teaser_small
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

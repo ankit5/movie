@@ -2,9 +2,9 @@
 
 namespace Drupal\Tests\feeds\Functional\Feeds\Target;
 
+use Drupal\Tests\feeds\Functional\FeedsBrowserTestBase;
 use Drupal\feeds\Feeds\Target\Password;
 use Drupal\feeds\Plugin\Type\Processor\ProcessorInterface;
-use Drupal\Tests\feeds\Functional\FeedsBrowserTestBase;
 
 /**
  * @coversDefaultClass \Drupal\feeds\Feeds\Target\Password
@@ -39,6 +39,12 @@ class PasswordTest extends FeedsBrowserTestBase {
    */
   public function setUp(): void {
     parent::setUp();
+
+    // Install Password Compatibility module if it exists.
+    $module_data = $this->container->get('extension.list.module')->reset()->getList();
+    if (isset($module_data['phpass'])) {
+      $this->container->get('module_installer')->install(['phpass']);
+    }
 
     // Create a feed type for importing users with passwords.
     $this->feedType = $this->createFeedTypeForCsv([
@@ -122,7 +128,7 @@ class PasswordTest extends FeedsBrowserTestBase {
   /**
    * Data provider for ::test().
    */
-  public function providerPasswordTypes() {
+  public static function providerPasswordTypes() {
     return [
       'plain' => [
         'source' => 'password',

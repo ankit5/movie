@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\simple_sitemap_views\Functional;
 
-use Drupal\simple_sitemap\Entity\SimpleSitemapType;
 use Drupal\Tests\simple_sitemap\Functional\SimplesitemapTestBase;
+use Drupal\simple_sitemap\Entity\SimpleSitemapType;
 use Drupal\simple_sitemap_views\SimpleSitemapViews;
 use Drupal\views\Views;
 
@@ -58,7 +58,7 @@ abstract class SimpleSitemapViewsTestBase extends SimplesitemapTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->sitemapViews = $this->container->get('simple_sitemap.views');

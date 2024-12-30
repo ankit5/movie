@@ -1,0 +1,24 @@
+uuid: eb7f034b-ab66-413f-b5c8-dae95cb51c07
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.front_latest
+  module:
+    - views
+  theme:
+    - psyplaynew
+id: psyplaynew_views_block__front_latest_block_3
+theme: psyplaynew
+region: content_home
+weight: -6
+provider: null
+plugin: 'views_block:front_latest-block_3'
+settings:
+  id: 'views_block:front_latest-block_3'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility: {  }

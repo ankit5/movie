@@ -1,0 +1,21 @@
+uuid: 34b143fc-d5d2-4e78-9394-8e1d617f0e4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_year
+    - paragraphs.paragraphs_type.examination
+  module:
+    - options
+id: paragraph.examination.field_year
+field_name: field_year
+entity_type: paragraph
+bundle: examination
+label: Year
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

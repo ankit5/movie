@@ -23,3 +23,8 @@ json_field.formatter:
     - core/drupal
     - core/drupalSettings
     - core/once
+
+json_field.pretty:
+  css:
+    component:
+      assets/css/json-pretty.css: {}

@@ -2,9 +2,9 @@
 
 namespace Drupal\Tests\feeds\Kernel\Feeds\Target;
 
+use Drupal\Tests\feeds\Kernel\FeedsKernelTestBase;
 use Drupal\feeds\Plugin\Type\Processor\ProcessorInterface;
 use Drupal\node\Entity\Node;
-use Drupal\Tests\feeds\Kernel\FeedsKernelTestBase;
 
 /**
  * Tests for the book target.
@@ -463,6 +463,9 @@ class BookTest extends FeedsKernelTestBase {
     $node = $this->reloadEntity($node);
     $this->assertEquals(4, $node->book['bid']);
     $this->assertEquals(4, $node->book['pid']);
+
+    // Clear the logged messages so no failure is reported on tear down.
+    $this->logger->clearMessages();
   }
 
   /**
@@ -517,6 +520,9 @@ class BookTest extends FeedsKernelTestBase {
     $node = $this->reloadEntity($node);
     $this->assertEquals(42, $node->book['bid']);
     $this->assertEquals(8, $node->book['pid']);
+
+    // Clear the logged messages so no failure is reported on tear down.
+    $this->logger->clearMessages();
   }
 
 }

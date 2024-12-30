@@ -1,0 +1,19 @@
+uuid: 2fb5c1dc-9a02-4944-a373-af5762a139ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_quality
+    - node.type.movie
+id: node.movie.field_quality
+field_name: field_quality
+entity_type: node
+bundle: movie
+label: Quality
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
