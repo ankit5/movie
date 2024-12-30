@@ -131,7 +131,7 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
   if($node->field_image_urls->value==''){
     $load =1;
   }
-  if(str_contains(@$node->field_player->value, 'movembed')){
+  if(@str_contains($node->field_player->value, 'movembed')){
     $load =1;
   }
   if(@$_REQUEST['load']=='1'){
