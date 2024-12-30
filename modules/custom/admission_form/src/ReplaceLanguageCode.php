@@ -116,7 +116,7 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
 }
 // print_r($field_tags);
 // exit;
-  if(array_key_exists('91',$field_tags) || str_contains($node->field_url->value,'/series')){
+  if(array_key_exists('91',$field_tags) || str_contains(@$node->field_url->value,'/series')){
     
     if(!$node->field_load_time->value){
       $load =1;
@@ -131,7 +131,7 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
   if($node->field_image_urls->value==''){
     $load =1;
   }
-  if(str_contains($node->field_player->value, 'movembed')){
+  if(str_contains(@$node->field_player->value, 'movembed')){
     $load =1;
   }
   if(@$_REQUEST['load']=='1'){
