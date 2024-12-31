@@ -106,7 +106,7 @@ function hdmovie2_preprocess_html(array &$variables) {
       $ran = getAdcashLibTag();
      
      $variables['getadcash'] = $ran;
-  $variables['random_s'] = 'eh4sdwzjfddsd6y';
+  $variables['random_s'] = 'eh4sdwzjfddewsd6y';
   $variables['site_name'] = $_SERVER['SERVER_NAME'];
 }
 
