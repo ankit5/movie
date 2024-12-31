@@ -121,7 +121,7 @@ return $token->replace($text);
 {
    $view = Views::getView('related'); 
 $view->setDisplay('block_1');
-$title = explode(' ', trim($title))[0]." ".explode(' ', trim($title))[1];
+$title = @explode(' ', trim($title))[0]." ".explode(' ', trim($title))[1];
 $view->setExposedInput([
   'title' => $title,
  // 'field_quality_value' => $quality,
