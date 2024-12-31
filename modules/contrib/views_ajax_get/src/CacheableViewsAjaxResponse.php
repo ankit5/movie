@@ -15,21 +15,21 @@ class CacheableViewsAjaxResponse extends ViewAjaxResponse implements CacheableRe
   /**
    * {@inheritdoc}
    */
-  public function serialize() {
+public function __serialize(): array {
     $vars = get_object_vars($this);
     unset($vars['view']);
     $vars['view_id'] = $this->view->id();
     $vars['display_id'] = $this->view->current_display;
 
-    return serialize($vars);
+
+    return $vars;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function unserialize($serialized) {
-    $unserialized = unserialize($serialized);
-    foreach ($unserialized as $key => $value) {
+ public function __unserialize(array $data): void {
+    foreach ($data as $key => $value) {
       $this->{$key} = $value;
     }
     // Ensure that there is a request on the request stack.
@@ -38,11 +38,25 @@ class CacheableViewsAjaxResponse extends ViewAjaxResponse implements CacheableRe
       $fake_request = TRUE;
       \Drupal::requestStack()->push(Request::create('/uri'));
     }
-    $this->view = Views::getView($unserialized['view_id']);
-    $this->view->setDisplay($unserialized['display_id']);
+    $this->view = Views::getView($data['view_id']);
+    $this->view->setDisplay($data['display_id']);
     if ($fake_request) {
       \Drupal::requestStack()->pop();
     }
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function serialize() {
+    return serialize($this->__serialize());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function unserialize($data) {
+    $this->__unserialize(unserialize($data));
+    return $this;
+  }
 }
