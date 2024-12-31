@@ -111,7 +111,7 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
   $load ='';
   
   $field_tags =array();
-foreach($node->get('field_tags')->getValue() as $key=>$value){
+foreach(@$node->get('field_tags')->getValue() as $key=>$value){
   $field_tags[$value['target_id']] = $value['target_id'];
 }
 // print_r($field_tags);

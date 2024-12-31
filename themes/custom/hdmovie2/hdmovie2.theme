@@ -217,7 +217,9 @@ function hdmovie2_preprocess_node(array &$variables) {
  $variables['site_url'] = rtrim($variables['site_url'], '/');
   if ($node->bundle() == 'movie') {
 
+if(is_string($node->field_image_urls->value)){
    $node->field_image_urls->value = str_replace("www.themoviedb.org","image.tmdb.org",$node->field_image_urls->value?? '');
+}
    $download = '';
    if(is_string($node->field_download_url->value)){
     $download = substr($node->field_download_url->value, strrpos($node->field_download_url->value, '/'?? '') + 1?? '');
