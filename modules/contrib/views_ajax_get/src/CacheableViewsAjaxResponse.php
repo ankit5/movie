@@ -38,8 +38,8 @@ public function __serialize(): array {
       $fake_request = TRUE;
       \Drupal::requestStack()->push(Request::create('/uri'));
     }
-    @$this->view = Views::getView($data['view_id']);
-    @$this->view->setDisplay($data['display_id']);
+    @$this->view = Views::getView(@$data['view_id']);
+    @$this->view->setDisplay(@$data['display_id']);
     if ($fake_request) {
       \Drupal::requestStack()->pop();
     }
