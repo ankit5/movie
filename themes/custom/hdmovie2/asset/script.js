@@ -400,7 +400,7 @@ $(document).ready(function() {
     var ifra = '<iframe src="'+movie_url+'" id="idIframe" onload="" iframeborder="0" allow="autoplay" style="width:100%;z-index: 10;" scrolling="no" allowfullscreen></iframe>'
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
    if(isMobile){
-    $("#mv-info .mvi-cover").css({'padding-bottom': '95%'});
+    $("#mv-info .mvi-cover").css({'padding-bottom': '147%'});
    }else{
     $("#mv-info .mvi-cover").css({'padding-bottom': '75%'});
    }
