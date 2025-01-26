@@ -402,7 +402,7 @@ $(document).ready(function() {
    if(isMobile){
     $("#mv-info .mvi-cover").css({'padding-bottom': '147%'});
    }else{
-    $("#mv-info .mvi-cover").css({'padding-bottom': '75%'});
+    $("#mv-info .mvi-cover").css({'padding-bottom': '85%'});
    }
     $('#load').html(ifra);
     $(".center").hide();
