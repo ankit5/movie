@@ -219,6 +219,11 @@ function hdmovie2_preprocess_node(array &$variables) {
 
 if(is_string($node->field_image_urls->value)){
    $node->field_image_urls->value = str_replace("www.themoviedb.org","image.tmdb.org",$node->field_image_urls->value?? '');
+$str = $node->field_image_urls->value;
+$str = preg_replace('/' . preg_quote('UY') . 
+                          '.*?' .
+                          preg_quote('_') . '/', 'UY250', $str);
+$node->field_image_urls->value = $str;
 }
    $download = '';
    if(is_string($node->field_download_url->value)){
