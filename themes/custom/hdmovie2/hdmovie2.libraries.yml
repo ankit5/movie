@@ -10,7 +10,3 @@ global-main:
       asset/front.mobile.min.css: {}
   js:
     asset/script.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupal.ajax
-    - core/jquery.once

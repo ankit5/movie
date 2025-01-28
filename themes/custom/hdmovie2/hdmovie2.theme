@@ -140,7 +140,6 @@ function hdmovie2_preprocess_page(array &$variables) {
     $variables['new_domain_name'] = theme_get_setting('new_domain_name');
     $variables['iframe_new_domain_name'] = theme_get_setting('facebook_url');
    
-  
     
 }
 

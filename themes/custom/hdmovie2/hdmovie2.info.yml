@@ -1,7 +1,7 @@
 name: Hdmovie2
 type: theme
 description: 'My Hdmovie2 theme'
-base theme: claro
+base theme: false
 package: PackageName
 core_version_requirement: ^9.4 || ^10
 libraries:
@@ -17,6 +17,18 @@ regions:
   load_block: load_block
   sidebar: sidebar
   footer: footer
+
+libraries-override:
+  system/base: false
+  views/views.module: false
+  core/internal.underscore: false
+  core/once: false
+  core/internal.backbone: false
+  core/drupalSettings: false
+  core/drupal: false
+  contextual/drupal.contextual-links: false
+  core/drupal.progress: false
+  core/drupal.active-link: false
 
 version: '1.0.0'
 project: 'hdmovie2'
