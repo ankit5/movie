@@ -3,7 +3,23 @@ $(function() {
     
 });
 
- 
+$(function () {
+  $('#BookmarkMe').click(function (e) {
+      var sTitle = 'Hdmovie2 - Watch Online Bollywood, Hollywood, Netflix, Hindi Dubbed, Hotstar Movies', sURL = 'https://hdmovie20.lat';
+      if (document.all && window.external) {
+        window.external.AddFavorite (sURL,sTitle);
+       }
+       else if (window.sidebar) { 
+         window.sidebar.addPanel(sTitle,sURL,'');
+       } 
+       else {
+        alert (''
+         +'Hdmovie2\n'
+         +'Please press Ctrl+D to bookmark this page.'
+        );
+       }
+  });
+});
 
 $('form.searchact button').click(function(){
     //
