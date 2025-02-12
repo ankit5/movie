@@ -88,8 +88,8 @@
 {% for key,value in node.field_right.getValue %}
                         {% if 'Release:' in value['value'] %}
                         
-                         {{ value['value']|replace({ 'Release:': '' }) }}
-                        
+                         {% set year = value['value']|replace({ 'Release:': '' }) %}
+                         <a href="/release-year/{{ year|spaceless }}">{{ year }}</a>
                          {% endif %}
                    {% endfor %}
 </span>
@@ -97,8 +97,8 @@
 {% for key,value in node.field_left.getValue %}
                         {% if 'Country:' in value['value'] %}
                         
-                         {{ value['value']|replace({ 'Country:': '' }) }}
-                        
+                         {% set country = value['value']|replace({ 'Country:': '' }) %}
+                         <a href="/country/{{ slug(country|lower|spaceless) }}">{{ country }}</a>
                          {% endif %}
                         {% endfor %}
 </span>
@@ -140,9 +140,12 @@
 </div>
 </div>
 </div>
-<div class="sgeneros">
 
 </div>
+<div class="sgeneros">
+
+      {{ content.field_tags }}
+    
 </div>
 </div>
 <div class="single_tabs">
@@ -205,7 +208,11 @@
 <div class="person" itemprop="director" itemscope="" itemtype="https://schema.org/Person">
 <meta itemprop="name" content="{{ value['value']|replace({ 'Director:': '' }) }}">
 <div class="data">
-<div class="name">{{ value['value']|replace({ 'Director:': '' }) }}</div>
+<div class="name">
+{% set director = value['value']|replace({ 'Director:': '' }) %}
+<a href="/director/{{ slug(director|lower|spaceless) }}">{{ director }}</a>
+                        
+</div>
 <div class="caracter">Director</div>
 </div>
 </div></div>
@@ -220,7 +227,12 @@
 <div class="person" itemprop="actor" itemscope="" itemtype="https://schema.org/Person">
 <meta itemprop="name" content="{{ value['value']|replace({ 'Actors:': '' }) }}">
 <div class="data">
-<div class="name">{{ value['value']|replace({ 'Actors:': '' }) }}</div>
+<div class="name">
+{% set cast = value['value']|replace({ 'Actors:': '' }) %}
+{% for cast in cast|split(',') %}
+<a href="/cast/{{ slug(cast|lower|spaceless) }}">{{ cast }}</a>,
+{% endfor %}
+</div>
 </div>
 </div></div>
                        
