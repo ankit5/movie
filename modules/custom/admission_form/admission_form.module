@@ -78,6 +78,12 @@ function admission_form_views_pre_render(ViewExecutable $view) {
                $view->setTitle('Search for '.ucfirst($title)); 
  
              }
+             if ($view->id()=='actor'){
+              $title = $view->args[0];
+      $title = str_replace('-',' ',$title);
+               $view->setTitle(ucfirst($title).' Movies'); 
+ 
+             }
        
 }
 function admission_form_views_pre_view(ViewExecutable $view) {
@@ -92,6 +98,12 @@ function admission_form_views_pre_view(ViewExecutable $view) {
      $title = explode("-", $view->args[0]);
      $title = $title[0];
      $exposed_filters = ['title' => $title];
+     $view->setExposedInput($exposed_filters);
+     }
+      if ($view->id()=='actor'){
+     $title = $view->args[0];
+      $title = str_replace('-',' ',$title);
+     $exposed_filters = ['actor' => $title];
      $view->setExposedInput($exposed_filters);
      }
 }
