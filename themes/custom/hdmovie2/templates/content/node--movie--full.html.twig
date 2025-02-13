@@ -210,8 +210,9 @@
 <div class="data">
 <div class="name">
 {% set director = value['value']|replace({ 'Director:': '' }) %}
-<a href="/director/{{ slug(director|lower|spaceless) }}">{{ director }}</a>
-                        
+{% for director in director|split(',') %}
+<a href="/director/{{ slug(director|lower|spaceless) }}">{{ director }}</a>,
+{% endfor %}                       
 </div>
 <div class="caracter">Director</div>
 </div>
