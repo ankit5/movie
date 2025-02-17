@@ -56,7 +56,7 @@ admission_form.searchnew:
     _permission: 'access content'
 
 admission_form.tag:
-  path: '/tag/{tag}'
+  path: '/tag-old/{tag}'
   defaults:
     _title_callback: 'Drupal\admission_form\Controller\AddmissionController::tagTitle'
     _controller: 'Drupal\admission_form\Controller\AddmissionController::tag'
