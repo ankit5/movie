@@ -6,7 +6,7 @@
               {% set image_url = node.field_image_urls.0.value %}
 <article class="w_item_b">
 <a href="{{url}}" rel="nofollow">
-<div class="image"><img src="{{image_url}}g" alt="{{node.label}}"></div>
+<div class="image"><img src="{{image_url}}" alt="{{node.label}}"></div>
 <div class="data">
 <h3>{{node.label}}</h3>
 <div class="wextra"><b>{% for key,value in node.field_right.getValue %}
