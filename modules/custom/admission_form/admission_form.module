@@ -104,7 +104,8 @@ function admission_form_views_pre_view(ViewExecutable $view) {
        $title2 = str_replace('-',' ',$view->args[0]);
      $title = explode("-", $view->args[0]);
      $title = $title[0];
-     $exposed_filters = ['title' => $title,'field_left_value' => $title2];
+    // $exposed_filters = ['title' => $title,'field_left_value' => $title2];
+      $exposed_filters = ['field_left_value' => $title2];
      $view->setExposedInput($exposed_filters);
      }
      if ($view->id()=='director_movie'){
