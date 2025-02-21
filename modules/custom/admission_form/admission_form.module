@@ -75,7 +75,7 @@ function admission_form_views_pre_render(ViewExecutable $view) {
              if ($view->id()=='director'){
                $title = explode("-", $view->args[0]);
                 $title = $title[0]." ".@$title[1];
-               $view->setTitle('Search for '.ucfirst($title)); 
+               $view->setTitle(ucfirst($title).' Movies'); 
  
              }
              if ($view->id()=='actor'){
@@ -101,9 +101,10 @@ function admission_form_views_pre_view(ViewExecutable $view) {
      }
 
      if ($view->id()=='director'){
+       $title2 = str_replace('-',' ',$view->args[0]);
      $title = explode("-", $view->args[0]);
      $title = $title[0];
-     $exposed_filters = ['title' => $title];
+     $exposed_filters = ['title' => $title,'field_left_value' => $title2];
      $view->setExposedInput($exposed_filters);
      }
      if ($view->id()=='director_movie'){
