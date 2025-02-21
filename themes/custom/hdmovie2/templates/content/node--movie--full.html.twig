@@ -98,7 +98,10 @@
                         {% if 'Country:' in value['value'] %}
                         
                          {% set country = value['value']|replace({ 'Country:': '' }) %}
+                          {% for country in country|split(',') %}
                          <a href="/country/{{ slug(country|lower|spaceless) }}">{{ country }}</a>
+                          {% endfor %}
+                          
                          {% endif %}
                         {% endfor %}
 </span>
