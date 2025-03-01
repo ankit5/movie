@@ -119,12 +119,6 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
 if(array_key_exists('94',$field_tags)){
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
 }
-
-if(array_key_exists('91',$field_tags) || str_contains(@$node->field_url->value,'/series')){
-    
-    if(!$node->field_load_time->value){
-      $load =1;
-    }
   if(array_key_exists('91',$field_tags) || str_contains(@$node->field_url->value,'/series')){
     
     if(!$node->field_load_time->value){
