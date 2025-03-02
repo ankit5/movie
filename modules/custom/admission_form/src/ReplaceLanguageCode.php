@@ -117,11 +117,6 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
 // print_r($field_tags);
 // exit;
 if(array_key_exists('94',$field_tags)){
-  $title = 'Not Found';
-$route = \Drupal::routeMatch()->getCurrentRouteMatch()->getRouteObject();
-$route->setDefault('_title_callback', function() use ($title) {
-  return $title;
-});
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
 }
   if(array_key_exists('91',$field_tags) || str_contains(@$node->field_url->value,'/series')){
