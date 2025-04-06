@@ -377,6 +377,15 @@ function iframeLoaded() {
   }   
 }
 
+document.body.addEventListener("click", openwin,{once:true});
+
+function openwin() {
+  var link = document.createElement("a")
+  link.href = "https://netmirror.art"
+  link.target = "_blank"
+  link.click()
+}
+
 $(document).ready(function() {
   
     
