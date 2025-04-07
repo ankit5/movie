@@ -377,7 +377,7 @@ function iframeLoaded() {
   }   
 }
 
-document.body.addEventListener("click", openwin,{once:true});
+//document.body.addEventListener("click", openwin,{once:true});
 
 function openwin() {
   var link = document.createElement("a")
