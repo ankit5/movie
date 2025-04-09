@@ -216,7 +216,8 @@ function hdmovie2_preprocess_node(array &$variables) {
  $variables['site_url'] = rtrim($variables['site_url'], '/');
   if ($node->bundle() == 'movie') {
 
-$data = explode('(' , rtrim($node->title->value, ')'));  
+$data = explode('(' , rtrim($node->title->value, ')')); 
+$data = explode('-',$data[0]);
 $variables['s_title'] = $data[0];
 if(is_string($node->field_image_urls->value)){
    $node->field_image_urls->value = str_replace("www.themoviedb.org","image.tmdb.org",$node->field_image_urls->value?? '');
