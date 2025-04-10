@@ -83,6 +83,10 @@
 <div class="sheader">
 <div class="data">
 <h1>{{ node.label }}</h1>
+<a href="/contact/feedback"
+  class="use-ajax"
+  data-dialog-type="modal"
+  data-dialog-options="{&quot;dialogClass&quot;:&quot;foobar&quot;}">Report</a>
 <div class="extra">
 <span class="date" itemprop="dateCreated">
 {% for key,value in node.field_right.getValue %}
