@@ -121,12 +121,12 @@ return $token->replace($text);
 {
    $view = Views::getView('related'); 
 $view->setDisplay('block_1');
-$title = @explode(' ', trim($title))[0]." ".explode(' ', trim($title))[1];
+//$title = @explode(' ', trim($title))[0]." ".explode(' ', trim($title))[1];
 $view->setExposedInput([
   'title' => $title,
  // 'field_quality_value' => $quality,
   'nid' => $id,
-  'field_tags_target_id' => $tag
+  //'field_tags_target_id' => $tag
 ]);
 $view->execute();
 @$rendered = \Drupal::service('renderer')->render($view->render());
