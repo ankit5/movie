@@ -121,7 +121,7 @@ if(array_key_exists('94',$field_tags)){
 }
 if(strpos($node->title->value, 'AltBalaji') !== false){
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
-  exit;
+  //exit;
 }
   if(array_key_exists('91',$field_tags) || str_contains(@$node->field_url->value,'/series')){
     
