@@ -120,6 +120,7 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
 if(array_key_exists('94',$field_tags)){ //punjabi
   if($_SERVER['SERVER_NAME']!='hdmovie20.lat'){
   //return new TrustedRedirectResponse('https://hdmovie20.lat/'.$node->toUrl()->toString());
+  print $node->toUrl()->toString();
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
   }
 }
