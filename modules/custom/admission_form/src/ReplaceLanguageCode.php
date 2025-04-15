@@ -125,8 +125,11 @@ if(strpos($node->title->value, 'Altbalaji')){
   if($_SERVER['SERVER_NAME']!='hdmovie20.lat'){
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
   }
-
-  //exit;
+}
+if($node->status->value==0){
+  if($_SERVER['SERVER_NAME']!='hdmovie20.lat'){
+  throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+  }
 }
 //print $_SERVER['SERVER_NAME']; //hdmovie2.golf
 //print $node->status->value; 
