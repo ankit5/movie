@@ -115,7 +115,7 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 foreach($node->get('field_tags')->getValue() as $key=>$value){
   $field_tags[$value['target_id']] = $value['target_id'];
 }
-// print_r($field_tags);
+ print $_SERVER['SERVER_NAME'];
 // exit;
 if(array_key_exists('94',$field_tags)){ //punjabi
   if($_SERVER['SERVER_NAME']!='hdmovie20.lat'){
