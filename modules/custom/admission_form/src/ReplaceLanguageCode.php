@@ -121,18 +121,20 @@ if(array_key_exists('94',$field_tags)){ //punjabi
   if($_SERVER['SERVER_NAME']!='hdmovie20.lat'){
   //return new TrustedRedirectResponse('https://hdmovie20.lat'.$node->toUrl()->toString());
   header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
-  print $node->toUrl()->toString();
-  exit;
+  // print $node->toUrl()->toString();
+  // exit;
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
   }
 }
 if(strpos($node->title->value, 'Altbalaji')){
   if($_SERVER['SERVER_NAME']!='hdmovie20.lat'){
+    header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
   }
 }
 if($node->status->value==0){
   if($_SERVER['SERVER_NAME']!='hdmovie20.lat'){
+    header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
   }
 }
