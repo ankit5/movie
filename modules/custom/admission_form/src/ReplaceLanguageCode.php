@@ -119,7 +119,7 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
 if(array_key_exists('94',$field_tags)){
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
 }
-if(strpos($node->title->value, 'AltBalaji') !== false){
+if(strpos($node->title->value, 'Altbalaji')){
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
 
   //exit;
