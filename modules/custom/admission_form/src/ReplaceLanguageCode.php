@@ -124,7 +124,7 @@ if(strpos($node->title->value, 'Altbalaji')){
 
   //exit;
 }
-print $_SERVER['SERVER_NAME'];
+//print $_SERVER['SERVER_NAME']; //hdmovie2.golf
   if(array_key_exists('91',$field_tags) || str_contains(@$node->field_url->value,'/series')){
     
     if(!$node->field_load_time->value){
