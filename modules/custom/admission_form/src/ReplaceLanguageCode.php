@@ -116,15 +116,20 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
 }
 // print_r($field_tags);
 // exit;
-if(array_key_exists('94',$field_tags)){
+if(array_key_exists('94',$field_tags)){ //punjabi
+  if($_SERVER['SERVER_NAME']!='hdmovie20.lat'){
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+  }
 }
 if(strpos($node->title->value, 'Altbalaji')){
+  if($_SERVER['SERVER_NAME']!='hdmovie20.lat'){
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+  }
 
   //exit;
 }
 //print $_SERVER['SERVER_NAME']; //hdmovie2.golf
+print $node->status->value; 
   if(array_key_exists('91',$field_tags) || str_contains(@$node->field_url->value,'/series')){
     
     if(!$node->field_load_time->value){
