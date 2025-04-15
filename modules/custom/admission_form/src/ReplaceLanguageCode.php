@@ -4,6 +4,7 @@ namespace Drupal\admission_form;
 use Drupal\paragraphs\Entity\Paragraph;
 use voku\helper\HtmlDomParser;
 use Drupal\Component\Serialization\Json;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 
 class ReplaceLanguageCode {
 public static function replaceLangcode3($nid, &$context){
@@ -118,6 +119,7 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
 // exit;
 if(array_key_exists('94',$field_tags)){ //punjabi
   if($_SERVER['SERVER_NAME']!='hdmovie20.lat'){
+  return new TrustedRedirectResponse('https://hdmovie20.lat/'.$node->toUrl()->toString());
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
   }
 }
