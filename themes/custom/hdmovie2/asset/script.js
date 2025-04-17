@@ -426,7 +426,7 @@ $(document).ready(function() {
     movie_url = ($(this).data('embed'))?embed_url:movie_url;
     var ifra = '<iframe src="'+movie_url+'" id="idIframe" onload="" iframeborder="0" allow="autoplay" style="width:100%;z-index: 10;" scrolling="yes" allowfullscreen></iframe>'
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    $(".center").hide();
+    
     $('#load').html(ifra);
     if(isMobile){
     $("#mv-info .mvi-cover").css({'padding-bottom': '147%'});
@@ -435,7 +435,7 @@ $(document).ready(function() {
     $("#mv-info .mvi-cover").css({'padding-bottom': '85%'});
     $("#mv-info iframe").css({'height': '680px'});
    }
-   
+   $(".center").hide();
     $("#mv-info .mvi-cover").hide();
    // $("#mv-info .mvi-cover").hide();
     return true;
