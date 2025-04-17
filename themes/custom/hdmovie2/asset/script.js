@@ -428,11 +428,14 @@ $(document).ready(function() {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
    if(isMobile){
     $("#mv-info .mvi-cover").css({'padding-bottom': '147%'});
+    $("#mv-info iframe").css({'height': '260px'});
    }else{
     $("#mv-info .mvi-cover").css({'padding-bottom': '85%'});
+    $("#mv-info iframe").css({'height': '680px'});
    }
+   $(".center").hide();
     $('#load').html(ifra);
-    $(".center").hide();
+    $("#mv-info .mvi-cover").hide();
    // $("#mv-info .mvi-cover").hide();
     return true;
      $(".center").css({'display': 'flex'});
