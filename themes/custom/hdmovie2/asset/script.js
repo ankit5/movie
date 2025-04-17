@@ -431,6 +431,7 @@ $(document).ready(function() {
    }else{
     $("#mv-info .mvi-cover").css({'padding-bottom': '85%'});
    }
+   $('#mv-info .mvi-cover:before').hide();
     $('#load').html(ifra);
     $(".center").hide();
    // $("#mv-info .mvi-cover").hide();
