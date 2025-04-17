@@ -430,10 +430,10 @@ $(document).ready(function() {
     $('#load').html(ifra);
     if(isMobile){
     $("#mv-info .mvi-cover").css({'padding-bottom': '147%'});
-    $("#mv-info iframe").css({'height': '260px'});
+    $("#mv-info iframe").css({'height': '260px','position': 'relative'});
    }else{
     $("#mv-info .mvi-cover").css({'padding-bottom': '85%'});
-    $("#mv-info iframe").css({'height': '680px'});
+    $("#mv-info iframe").css({'height': '680px','position': 'relative'});
    }
    $(".center").hide();
     $("#mv-info .mvi-cover").hide();
