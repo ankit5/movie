@@ -12,7 +12,7 @@
               {% else %}
                {% set poster_url = content.field_image_urls.0 %}
               {% endif %}
-  <a title="{{ node.label }}" id="mvi-cover" data-value="{{ node.id }}" data-key="0" class="thumb mvi-cover splash-image"></a>
+  <a title="{{ node.label }}" id="mvi-cover" data-value="{{ node.id }}" data-embed="{{ node.field_embed.0.value }}" data-key="0" class="thumb mvi-cover splash-image"></a>
                      <div class="center">
   <div class="wave"></div>
   <div class="wave"></div>
