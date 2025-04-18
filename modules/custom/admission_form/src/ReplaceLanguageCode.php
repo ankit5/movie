@@ -303,9 +303,13 @@ function getmovie($url='',$post_id='')
       $oldStr = theme_get_setting('old_domain_name');
       $oldStr = explode(",", $oldStr);
    
-  $url = str_replace($oldStr, $new_var, $url );
+ // $url = str_replace($oldStr, $new_var, $url );
+ $newurl = explode("//", $url);
+ $newurl = explode("/", $newurl[1]);
+ $url ='https://'.$new_var.'/'.$newurl[1];
   $movie = [];
-  
+  // print $url;
+  // exit;
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 curl_setopt($curl, CURLOPT_HEADER, false);
