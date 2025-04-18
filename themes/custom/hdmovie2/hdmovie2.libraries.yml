@@ -4,7 +4,7 @@ global-main:
   css:
     theme:
       asset/all.min.css: {}
-      asset/style.css: {}
+      asset/style.css?sdf43: {}
       asset/front.style.min.css: {}
       asset/colors.dark.min.css: {}
       asset/front.mobile.min.css: {}

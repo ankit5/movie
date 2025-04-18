@@ -125,7 +125,106 @@
     }
 #mv-info {
     margin-bottom: 0;
-    position: relative
+    position: relative;
+    width: 100%;
+    height: 674px;
+}
+
+@media only screen and (min-width: 768px) {
+    #mv-info {
+        width: 100%;
+        height: 540px;
+    }
+}
+
+.playbtn {
+    color: #fff;
+    left: 44%;
+    height: 91%;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    position: absolute;
+}
+.playbtn svg {
+    width: 60px;
+}
+@media only screen and (min-width: 768px) {
+    .playbtn svg {
+        width: 80px;
+    }
+}
+.playbtn .text {
+    transition: all .7s ease-in-out;
+    width: 200px;
+    position: absolute;
+    text-align: start;
+    left: -32px;
+}
+.playbtn .triangle {
+    stroke-dasharray: 240;
+    stroke-dashoffset: 480;
+    stroke: #fff;
+    transform: translateY(0);
+    transition: all .7s ease-in-out;
+}
+.playbtn .circle {
+    stroke: #fff;
+    stroke-dasharray: 650;
+    stroke-dashoffset: 1300;
+    transition: all .5s ease-in-out;
+}
+.playbtn:hover .triangle {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    stroke: #fec000;
+    animation: trailorPlay .7s ease-in-out;
+}
+.playbtn:hover .circle {
+    stroke-dashoffset: 0;
+    stroke: #fec000;
+}
+.loadingSpinner {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loadingSpinner .spinner {
+    animation: rotate 2s linear infinite;
+    z-index: 1;
+}
+.playbtn .loadingSpinner {
+    position: absolute;
+    width: 100%;
+    background: #17191c;
+    display: none;
+}
+.loadingSpinner .spinner .path {
+    stroke: #93bfec;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
 }
 
 
@@ -191,6 +290,8 @@
     background-position: 50% 25%;
     background-size: cover;
     display: inline-block;
+    width: 100%;
+    height: 100%;
 }
 .linktabs ul li a.selected, ul.smenu li a.selected, a.liked, .module .content header span a.see-all, .page_user nav.user ul li a.selected, .dt_mainmeta nav.releases ul li a:hover {
     background: #408BEA;
@@ -278,8 +379,7 @@ a.dl {
     margin: -5px;
 }
 .selected {
-    border-bottom: 3px solid red !important;
-    background: red !important;  
+    
 }
 .tvseason .les-content a {
     border-bottom: 3px solid #0674fe;

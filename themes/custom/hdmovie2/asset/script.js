@@ -400,6 +400,7 @@ $(document).ready(function() {
    
     
     $('a.splash-image,#seasons .les-content a,.idTabs li,#dl').click(function(){
+      $(".loadingSpinner").show();
      // alert($(this).data('value'));
     // $("a.splash-image").hide();
      
@@ -418,7 +419,8 @@ $(document).ready(function() {
     window.open('https://play.watch-download.shop/?id='+$(this).data('value')+'&tab='+$(this).data('key'), '_blank');
     return true;  
   }
-  $(".center").css({'display': 'flex'});
+ // $(".center").css({'display': 'flex'});
+ 
   $(this).addClass(newLocal);
     //window.location.href = 'https://play.hdmovies2.online/?id='+$(this).data('value')+'&tab='+$(this).data('key');
     var movie_url = 'https://play.watch-download.shop/?id='+$(this).data('value')+'&tab='+$(this).data('key')+'&iframe=1';
@@ -432,8 +434,9 @@ $(document).ready(function() {
     $("#mv-info .mvi-cover").css({'padding-bottom': '85%'});
    }
    $('#mv-info .mvi-cover:before').hide();
-    $('#load').html(ifra);
-    $(".center").hide();
+   $('#load').html(ifra);
+   
+   // $(".center").hide();
    // $("#mv-info .mvi-cover").hide();
     return true;
      $(".center").css({'display': 'flex'});

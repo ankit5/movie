@@ -12,19 +12,18 @@
               {% else %}
                {% set poster_url = content.field_image_urls.0 %}
               {% endif %}
-  <a title="{{ node.label }}" id="mvi-cover" data-value="{{ node.id }}" data-embed="{{ node.field_embed.0.value }}" data-key="0" class="thumb mvi-cover splash-image"></a>
-                     <div class="center">
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-</div>
+  <a title="{{ node.label }}" id="mvi-cover" data-value="{{ node.id }}" data-embed="{{ node.field_embed.0.value }}" data-key="0" class="thumb mvi-cover2 splash-image">
+  <div class="playbtn">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7" xml:space="preserve"><polygon class="triangle" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1 "></polygon><circle class="circle" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle></svg>
+  <span class="text">Watch &amp; Download</span>
+  <div class="loadingSpinner ">
+  <svg class="spinner" viewBox="0 0 50 50">
+  <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+  </svg>
+  </div>
+  </div>
+  </a>
+  
 <div class="" id="load">
 </div>
 </div>
