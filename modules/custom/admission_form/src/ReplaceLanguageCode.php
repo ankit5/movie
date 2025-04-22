@@ -119,25 +119,25 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
 // exit;
 if(array_key_exists('94',$field_tags)){ //punjabi
   if($_SERVER['SERVER_NAME']!='test.hdmovie20.lat'){
-  //return new TrustedRedirectResponse('https://hdmovie20.lat'.$node->toUrl()->toString());
-  // header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
-  // // print $node->toUrl()->toString();
-  //  exit;
-  // throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+ // return new TrustedRedirectResponse('https://hdmovie20.lat'.$node->toUrl()->toString());
+  header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
+  // print $node->toUrl()->toString();
+   exit;
+  throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
   }
 }
 if(strpos($node->title->value, 'Altbalaji')){
   if($_SERVER['SERVER_NAME']!='test.hdmovie20.lat'){
-  //   header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
-  //   exit;
-  // throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+    header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
+    exit;
+  throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
   }
 }
 if($node->status->value==0){
   if($_SERVER['SERVER_NAME']!='test.hdmovie20.lat'){
-  //   header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
-  //   exit;
-  // throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+    header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
+    exit;
+  throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
   }
 }
 //print $_SERVER['SERVER_NAME']; //hdmovie2.golf
