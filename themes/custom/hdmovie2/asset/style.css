@@ -501,6 +501,9 @@ a.dl {
     float: left;
     text-align: center;
 }
+.selection-ajax .js-form-item,.selection-ajax input{
+display: none;
+}
 .menuresp .menu ul li:nth-child(3) ul.sub-menu li {
     width: 100% !important;
 }
