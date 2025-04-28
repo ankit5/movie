@@ -60,4 +60,4 @@
  */
 
  //URL: http://localhost:8080/example
- $sites['hdmovie2.cloud'] = 'hdmovie2.cloud';
+ $sites['multimovies.club '] = 'multimovies.club ';
