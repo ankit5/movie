@@ -118,7 +118,7 @@ foreach($node->get('field_tags')->getValue() as $key=>$value){
 // print $_SERVER['HTTP_REFERER'];
 // exit;
 if(array_key_exists('94',$field_tags)){ //punjabi
-  if($_SERVER['SERVER_NAME']!='test.hdmovie20.lat' || $_SERVER['SERVER_NAME']!='multimovies.club'){
+  if($_SERVER['SERVER_NAME']!='test.hdmovie20.lat' && $_SERVER['SERVER_NAME']!='multimovies.club'){
  // return new TrustedRedirectResponse('https://hdmovie20.lat'.$node->toUrl()->toString());
   header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
   // print $node->toUrl()->toString();
@@ -127,14 +127,14 @@ if(array_key_exists('94',$field_tags)){ //punjabi
   }
 }
 if(strpos($node->title->value, 'Altbalaji')){
-  if($_SERVER['SERVER_NAME']!='test.hdmovie20.lat' || $_SERVER['SERVER_NAME']!='multimovies.club'){
+  if($_SERVER['SERVER_NAME']!='test.hdmovie20.lat' && $_SERVER['SERVER_NAME']!='multimovies.club'){
     header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
     exit;
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
   }
 }
 if($node->status->value==0){
-  if($_SERVER['SERVER_NAME']!='test.hdmovie20.lat' || $_SERVER['SERVER_NAME']!='multimovies.club'){
+  if($_SERVER['SERVER_NAME']!='test.hdmovie20.lat' && $_SERVER['SERVER_NAME']!='multimovies.club'){
     header('Location: https://hdmovie2.gay'.$node->toUrl()->toString());
     exit;
   throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
