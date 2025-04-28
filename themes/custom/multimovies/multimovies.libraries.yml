@@ -1,0 +1,12 @@
+# These will be loaded on every pages.
+global-main:
+  version: VERSION
+  css:
+    theme:
+      asset/all.min.css: {}
+      asset/style.css?ssff43: {}
+      asset/front.style.min.css?34sd: {}
+      asset/colors.dark.min.css: {}
+      asset/front.mobile.min.css?45ew3: {}
+  js:
+    asset/script.js: {}

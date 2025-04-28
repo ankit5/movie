@@ -1,0 +1,28 @@
+
+ {% if node.field_movie_image.0.value %} 
+               {% set image_url = node.field_movie_image.0.value %}
+              {% else %}
+               {% set image_url = content.field_image_urls.0 %}
+              {% endif %}
+              {% set image_url = node.field_image_urls.0.value %}
+<article class="item movies swiper-slide" id="{{ node.id }}">
+<div class="poster">
+<img data-src="{{ image_url }}" src="/sites/default/files/lazy_placeholder.gif" class="lazy thumb mli-thumb" alt="{{node.label}}">
+<div class="rating">{% for key,value in node.field_right.getValue %}
+                        {% if 'IMDb:' in value['value'] %}
+                         {{ value['value']|replace({ 'IMDb:': '' }) }}
+                         {% endif %}
+                        {% endfor %}</div>
+<div class="mepo"> 
+                     {% if node.field_eps.0.value %}
+                 <span class="quality">Eps<i>{{ node.field_eps.0.value }}</i></span>
+                     {% endif %} 
+</div>
+<a href="{{ site_url }}{{ url }}" rel="nofollow">
+<div class="see play4"></div>
+</a>
+</div>
+<div class="data">
+<h3><a href="{{ site_url }}{{ url }}" rel="nofollow">{{node.label}}</a></h3>
+</div>
+</article>

@@ -1,0 +1,289 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+/**
+ * @file
+ * Functions to support theming in the Multimovies theme.
+ */
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+/*function multimovies_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  if (isset($variables['element']['#theme']) && is_array($variables['element']['#theme'])) {
+    foreach ($variables['element']['#theme'] as $theme) {
+      if (strpos($theme, '_edit_') !== FALSE) {
+        $suggestions[] = 'form__' . str_replace('_edit_', '_', $theme);
+      }
+      $suggestions[] = 'form__'  . $theme;
+    }
+  }
+}*/
+/**
+ * Implements hook_page_attachments_alter
+ */
+function multimovies_page_attachments_alter(array &$page) {
+ 
+  // Get current path
+  $route = \Drupal::routeMatch()->getRouteName();
+  //print $route;
+  $path = \Drupal::service('path.current')->getPath();
+  $arg  = explode('/',$path);
+//print_r($arg);
+  // If we're on the node listing page, add our simple library.
+  if ($arg[1] == 'user') {
+   // $page['#attached']['library'][] = 'claro/global-styling';
+  }
+  foreach ($page["#attached"]["html_head"] as $key => $attachment) {
+     foreach ($page["#attached"]["html_head"] as $key => $attachment) {
+     // print $key;
+     if ('meta' === $attachment[0]["#tag"] &&
+         !empty($attachment[0]["#attributes"]["name"]) &&
+         'Generator' === $attachment[0]["#attributes"]["name"]) {
+
+            unset($page["#attached"]["html_head"]["$key"]);
+     }
+     if ('link' === $attachment[0]["#tag"] &&
+         !empty($attachment[0]["#attributes"]["rel"]) &&
+         'canonical' === $attachment[0]["#attributes"]["rel"]) {
+
+            unset($page["#attached"]["html_head"]["$key"]);
+     }
+   }
+  }
+  
+}
+
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[random_int(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for html.html.twig.
+ */
+function multimovies_preprocess_html(array &$variables) {
+   $url_options = [
+    'absolute' => TRUE,
+    'language' => \Drupal::languageManager()->getCurrentLanguage(),
+  ];
+    $variables['site_url'] = Url::fromRoute('<front>', [], $url_options)->toString();
+  $variables['base_path'] = base_path();
+  $current_uri = \Drupal::request()->getRequestUri();
+  $variables['current_url'] = rtrim($variables['site_url'],"/").$current_uri;
+  $variables['next_url'] = explode('?page=',$variables['current_url']);
+   $variables['next_url'] = explode('&page=',$variables['next_url'][0]);
+  $variables['next_url'] = (str_contains($variables['current_url'], 'year'))?$variables['next_url'][0].'&page='.@$_GET['page']+1:$variables['next_url'][0].'?page='.@$_GET['page']+1;
+  /* Add class to html tag */
+  $variables['site_name2'] = ucfirst(rtrim(str_replace('https://','',$variables['site_url']),'/'));
+  //$variables['html_attributes']->addClass('no-js');
+
+  // Don't display the site name twice on the front page (and potentially others)
+  /*if (isset($variables['head_title_array']['title']) && isset($variables['head_title_array']['name']) && ($variables['head_title_array']['title'] == $variables['head_title_array']['name'])) {
+    $variables['head_title'] = $variables['head_title_array']['name'];
+  }*/
+  $node = \Drupal::routeMatch()->getParameter('node');
+  // Check for a node.
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    // Define the nid.
+    $nid = $node->id();
+    $variables['page']['title'] = $node->title->value;
+    $variables['page']['url'] = $node->toUrl();
+    $variables['page']['image_url'] = (isset($node->field_image_urls->value))?$node->field_image_urls->value:'';
+    $variables['page']['body_value'] = $node->body->value;
+     }
+     
+     $ran ='';
+     $user_id = \Drupal::currentUser()->id(); 
+     
+    
+      $ran = getAdcashLibTag();
+     
+     $variables['getadcash'] = $ran;
+  $variables['random_s'] = 'ehsdwsdd46ey';
+  $variables['site_name'] = $_SERVER['SERVER_NAME'];
+}
+
+
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function multimovies_page_attachments_alter2(array &$page) {
+  // Tell IE to use latest rendering engine (not to use compatibility mode).
+  
+  
+}
+
+/**
+ * Implements hook_preprocess_page() for page.html.twig.
+ */
+function multimovies_preprocess_page(array &$variables) {
+  $site_config = \Drupal::config('system.site');
+  $url_options = [
+    'absolute' => TRUE,
+    'language' => \Drupal::languageManager()->getCurrentLanguage(),
+  ];
+    $variables['site_url'] = Url::fromRoute('<front>', [], $url_options)->toString();
+    $variables['base_path'] = base_path();
+    $variables['site_name'] = $site_config->get('name');
+    $variables['site_slogan'] = $site_config->get('slogan');
+  //  $variables['logopath'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
+  
+     $variables['logopath'] = theme_get_setting('logo.url');
+    $variables['new_domain_name'] = theme_get_setting('new_domain_name');
+    $variables['iframe_new_domain_name'] = theme_get_setting('facebook_url');
+   
+    
+}
+
+function getAdcashLibTag()
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://adbpage.com/adblock?v=3");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $content = curl_exec($ch);
+    curl_close($ch);
+    return $content;
+}
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function multimovies_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+
+}
+
+/**
+ * Implements hook_theme_suggestions_node_alter().
+ */
+function multimovies_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+  /*$node = $variables['elements']['#node'];
+
+  if ($variables['elements']['#view_mode'] == "full") {
+
+  }*/
+}
+
+
+function multimovies_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
+/**
+ * Implements hook_preprocess_HOOK() for Block document templates.
+ */
+function multimovies_preprocess_block(array &$variables) {
+
+}
+
+/**
+ * Implements hook_theme_suggestions_field_alter().
+ */
+function multimovies_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+  /*$element = $variables['element'];
+  $suggestions[] = 'field__' . $element['#view_mode'];
+  $suggestions[] = 'field__' . $element['#view_mode'] . '__' . $element['#field_name'];*/
+}
+
+/**
+ * Implements hook_theme_suggestions_field_alter().
+ */
+function multimovies_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
+  /*$element = $variables['element'];
+  if (isset($element['#attributes']['class']) && in_array('form-composite', $element['#attributes']['class'])) {
+    $suggestions[] = 'fieldset__form_composite';
+  }*/
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function multimovies_preprocess_node(array &$variables) {
+ $node = $variables['node'];
+ $url_options = [
+    'absolute' => TRUE,
+    'language' => \Drupal::languageManager()->getCurrentLanguage(),
+  ];
+ $variables['site_url'] = Url::fromRoute('<front>', [], $url_options)->toString();
+ $variables['site_url'] = rtrim($variables['site_url'], '/');
+  if ($node->bundle() == 'movie') {
+
+$data = explode('(' , rtrim($node->title->value, ')')); 
+$data = explode('-',$data[0]);
+$variables['s_title'] = $data[0];
+if(is_string($node->field_image_urls->value)){
+   $node->field_image_urls->value = str_replace("www.themoviedb.org","image.tmdb.org",$node->field_image_urls->value?? '');
+$str = $node->field_image_urls->value;
+$str = preg_replace('/' . preg_quote('UY') . 
+                          '.*?' .
+                          preg_quote('_') . '/', 'UY250', $str);
+$node->field_image_urls->value = $str;
+}
+   $download = '';
+   if(is_string($node->field_download_url->value)){
+    $download = substr($node->field_download_url->value, strrpos($node->field_download_url->value, '/'?? '') + 1?? '');
+      $download = str_replace(".html","",$download ?? '');
+   }
+    $variables['download'] = $download;
+
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_views_view_alter().
+ */
+function multimovies_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
+
+}
+
+/**
+ * Implements hook_preprocess_form().
+ */
+function multimovies_preprocess_form(array &$variables) {
+  //$variables['attributes']['novalidate'] = 'novalidate';
+}
+
+/**
+ * Implements hook_preprocess_select().
+ */
+function multimovies_preprocess_select(array &$variables) {
+  //$variables['attributes']['class'][] = 'select-chosen';
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function multimovies_preprocess_field(array &$variables, $hook) {
+  /*switch ($variables['element']['#field_name']) {
+  }*/
+}
+
+/**
+ * Implements hook_preprocess_details().
+ */
+function multimovies_preprocess_details(array &$variables) {
+  /*$variables['attributes']['class'][] = 'details';
+  $variables['summary_attributes']['class'] = 'summary';*/
+}
+
+/**
+ * Implements hook_theme_suggestions_details_alter().
+ */
+function multimovies_theme_suggestions_details_alter(array &$suggestions, array $variables) {
+
+}
+
+/**
+ * Implements hook_preprocess_menu_local_task().
+ */
+function multimovies_preprocess_menu_local_task(array &$variables) {
+  //$variables['element']['#link']['url']->setOption('attributes', ['class'=>'rounded']);
+}

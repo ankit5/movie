@@ -1,0 +1,261 @@
+{{ title_prefix }}
+  {% if not page %}
+    <h2 class="visually-hidden">
+      
+    </h2>
+  {% endif %}
+{{ title_suffix }}
+<div class="tabs__content tabs__content_4" id="mv-info">
+              {% if node.field_poster_url.0.value %} 
+               {% set poster_url = node.field_poster_url.0.value %}
+              {% else %}
+               {% set poster_url = content.field_image_urls.0 %}
+              {% endif %}
+  <a title="{{ node.label }}" id="mvi-cover" data-value="{{ node.id }}" data-key="0" class="thumb mvi-cover splash-image" style="background-image: url({{ poster_url }});"></a>
+                     <div class="center">
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
+<div class="" id="load">
+</div>
+</div>
+{% if node.field_episodes.0.value %} 
+            <div id="seasons">
+            <div class="tvseason">
+            <div class="les-title"> <i class="fa fa-server mr5"></i>
+            <strong>{{ node.field_season_title.0.value }}</strong>
+            </div>
+            <div class="les-content" style="display: block">
+            {% for key,value in node.field_episodes.getValue %}
+             <a href="javascript:void(0)" data-value="{{ node.id }}" data-key="{{ key }}" data-types="eps"> Episode {{ key+1 }} </a> 
+             {% set key = key+1 %}
+             {% endfor %}
+             </div>
+             </div>
+             </div>
+{% endif %}
+{% if node.field_download_url.1.value %} 
+            <div id="seasons">
+            <div class="tvseason">
+            <div class="les-content" style="display: block;padding: 0;">
+            {% set i=1 %} 
+            {% for key,value in node.field_player.getValue %}
+             {% if ('.xyz' in value['value']) or ('minoplres' in value['value']) %}
+             {% set pl_text = (node.field_player_text.getValue[key]['value'])?node.field_player_text.getValue[key]['value']:"File " ~ i %}
+             {% set selected = (i==1)?'selected':'' %}
+             <a href="javascript:void(0)" data-value="{{ node.id }}" data-key="{{ key }}" data-types="eps" class="{{ selected }}"> {{ pl_text }} </a> 
+             {% set i=i+1 %} 
+             {% endif %}
+             {% set key = key+1 %}
+             {% endfor %}
+             </div>
+             </div>
+             </div>
+{% endif %}
+<div class="dooplay_player" style="display:none">
+<div id="playeroptions" class="options pmovie__big-btns d-flex jc-center">
+ <div class="player_nav">
+    <ul id="playeroptionsul pmovie__stream-select" class="ajax_mode tabs-block__select idTabs">
+    {% for key,value in node.field_player.getValue %}
+      {% if ('.xyz' in value['value']) or ('minoplres' in value['value']) %}
+         {% set class_tab = '' %}
+          {% else %}
+         {% set class_tab = 'tab_load' %}
+          {% endif %}
+    <li id="player-option-{{ key }}" class="dooplay_player_option nopl" data-value="{{ node.id }}" data-key="{{ key }}" class="{{ class_tab }}" style="display: block;"><i class="fas fa-play-circle"></i><span class="title">Server {{ key }}</span><span class="loader"></span></li>
+   
+    {% endfor %}
+    </ul>
+    
+    </div>
+
+</div>
+</div>
+<div class="sheader">
+<div class="poster"> <img itemprop="image" src="{{ node.field_image_urls.0.value }}"> </div>
+<div class="data">
+<h1>{{ node.label }}</h1>
+<div class="extra">
+<span class="date" itemprop="dateCreated">
+{% for key,value in node.field_right.getValue %}
+                        {% if 'Release:' in value['value'] %}
+                        
+                         {% set year = value['value']|replace({ 'Release:': '' }) %}
+                         <a href="/release-year/{{ year|spaceless }}">{{ year }}</a>
+                         {% endif %}
+                   {% endfor %}
+</span>
+<span class="country">
+{% for key,value in node.field_left.getValue %}
+                        {% if 'Country:' in value['value'] %}
+                        
+                         {% set country = value['value']|replace({ 'Country:': '' }) %}
+                          {% for country in country|split(',') %}
+                         <a href="/country/{{ slug(country|lower|spaceless) }}">{{ country }}</a>,
+                          {% endfor %}
+
+                         {% endif %}
+                        {% endfor %}
+</span>
+<span itemprop="duration" class="runtime"> 
+{% if node.field_episodes.0.value is null %}
+                   {% for key,value in node.field_right.getValue %}
+                        {% if 'Duration:' in value['value'] %}
+                        
+                         {{ value['value']|replace({ 'Duration:': '' }) }}
+                        
+                         {% endif %}
+                   {% endfor %}
+                  {% endif %}
+</span>
+</div>
+<div class="starstruck-ptype" style="">
+<div>
+<meta itemprop="name" content="{{ node.label }}">
+<div itemscope="" class="starstruck-wrap" >
+<div class="dt_rating_data">
+<div class="starstruck-rating">
+  {% for key,value in node.field_right.getValue %}
+                        {% if 'IMDb:' in value['value'] %}
+                        <span class="dt_rating_vgs">{{ value['value']|replace({ 'IMDb:': '' }) }}</span><i class="fas fa-user-circle"></i>
+<span class="rating-text">IMDb</span>
+                         {% endif %}
+                   {% endfor %}
+
+                    {% for key,value in node.field_right.getValue %}
+                         {% if 'TMDb:' in value['value'] %}
+                        <span class="dt_rating_vgs" >{{ value['value']|replace({ 'TMDb:': '' }) }}</span><i class="fas fa-user-circle"></i>
+<span class="rating-text">TMDb</span>
+                         {% endif %}
+                   {% endfor %}
+                   
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="sgeneros">
+
+      {{ content.field_tags }}
+    
+</div>
+</div>
+<div class="single_tabs">
+<ul id="section" class="smenu idTabs">
+<li><a id="main_ali" href="{{ url }}#info" class="selected">Info</a></li>
+<li><a href="{{ url }}#cast" class="">Cast</a></li>
+</ul>
+</div>
+<div id="info" class="sbox" style="">
+<h2>Synopsis</h2>
+<div itemprop="description" class="wp-content">
+<p>{{ node.label }} Watch online Movies Free Download</p>
+<p>{{ node.body.value|raw }}</p>
+ {% for key,value in node.field_right.getValue %}
+                        {% if 'Quality:' in value['value'] %}
+                        <p>
+                        <strong>Quality: </strong>
+                        <span>
+                         {{ value['value']|replace({ 'Quality:': '' }) }}
+                        </span>
+                        </p>
+                         {% endif %}
+                   {% endfor %}
+ {% for key,value in node.field_left.getValue %}
+                        {% if 'Studio:' in value['value'] %}
+                        <p>
+                        <strong>Studio: </strong>
+                        <span>
+                         {{ value['value']|replace({ 'Studio:': '' }) }}
+                        </span>
+                        </p>
+                         {% endif %}
+                        {% endfor %}
+ {% for key,value in node.field_right.getValue %}
+                        {% if 'TV Status:' in value['value'] %}
+                        <p>
+                        <strong>TV Status: </strong>
+                        <span>
+                         {{ value['value']|replace({ 'TV Status:': '' }) }}
+                        </span>
+                        </p>
+                         {% endif %}
+                   {% endfor %}
+
+<h3 style="text-align: center;front-size:18px;">WE DO NOT HOST ANY OF THE VIDEOS ON OUR SERVERS, WE JUST Link THEM.</h3>
+{% if node.field_download_url.0.value %} 
+<p style="display:none;"><a href="javascript:void(0)"  id="dl" data-value="{{ node.id }}" data-key="0" data-dl="1"><button class="dipesh" style="width: 100%;"><i class="fa fa-download"></i> Download Links</button></a></p>
+{% endif %}
+<hr>
+
+<div class="ftext"><p>{{ node.field_download_detail.value|raw }}</p></div>
+<div class="wp-tags"></div>
+</div>
+</div>
+<div id="cast" class="sbox fixidtab" style="display: none;">
+{% for key,value in node.field_left.getValue %}
+                        {% if 'Director:' in value['value'] %}
+                        <h2>Director</h2>
+                        <div class="persons">
+<div class="person" itemprop="director" itemscope="" itemtype="https://schema.org/Person">
+<meta itemprop="name" content="{{ value['value']|replace({ 'Director:': '' }) }}">
+<div class="data">
+<div class="name">
+{% set director = value['value']|replace({ 'Director:': '' }) %}
+{% for director in director|split(',') %}
+<a href="/director/{{ slug(director|lower|spaceless) }}">{{ director }}</a>,
+{% endfor %}
+</div>
+<div class="caracter">Director</div>
+</div>
+</div></div>
+                      
+                         {% endif %}
+                        {% endfor %}
+
+{% for key,value in node.field_left.getValue %}
+                        {% if 'Actors:' in value['value'] %}
+                        <h2>Cast</h2>
+<div class="persons">
+<div class="person" itemprop="actor" itemscope="" itemtype="https://schema.org/Person">
+<meta itemprop="name" content="{{ value['value']|replace({ 'Actors:': '' }) }}">
+<div class="data">
+<div class="name">
+{% set cast = value['value']|replace({ 'Actors:': '' }) %}
+{% for cast in cast|split(',') %}
+<a href="/cast/{{ slug(cast|lower|spaceless) }}">{{ cast }}</a>,
+{% endfor %}
+</div>
+</div>
+</div></div>
+                       
+                         {% endif %}
+                        {% endfor %}
+
+
+</div>
+ {% if node.field_keyword.0.value %}
+               {% endif %}
+<div class="box_links"> </div>
+
+<div class="sbox srelacionados module">
+<h2>Similar titles</h2>
+  {% set tag_s = '' %}
+        
+
+
+ <div class="content" style="width:100%;">
+{{ related(node.label,node.field_quality.0.value,node.id,tag_s) }}
+ </div>
+</div>

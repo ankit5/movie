@@ -1,0 +1,22 @@
+<div class="top-content" style="margin-bottom:20px;">
+ <div id="slider" class="swiper-container-horizontal">
+            <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-5080px, 0px, 0px);">
+
+{% for row in rows %}
+
+{{ row.content }}
+ 
+{% endfor %}
+
+
+ </div>
+            <div class="swiper-pagination swiper-pagination-clickable">
+              <span class="swiper-pagination-bullet"></span>
+              <span class="swiper-pagination-bullet"></span>
+              <span class="swiper-pagination-bullet"></span>
+              <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
+        </div>

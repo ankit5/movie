@@ -1,0 +1,12 @@
+
+	
+ <li>
+<a style="background-image: url({{ fields.field_image_urls.content }})" class="thumb" href="{{ fields.view_node.content }}"></a>
+<div class="ss-info">
+<a href="{{ fields.view_node.content }}" class="ss-title">{{ fields.title.content }}</a>
+ {% set metadata = fields.field_metadata.content|split('|', 3) %}
+<p>{{ metadata[2] }}</p>
+{{ fields.field_tags.content }} </div>
+<div class="clearfix"></div>
+</li>
+

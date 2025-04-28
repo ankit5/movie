@@ -1,0 +1,35 @@
+name: Multimovies
+type: theme
+description: 'My multimovies theme'
+base theme: false
+package: PackageName
+core_version_requirement: ^9.4 || ^10
+libraries:
+  - multimovies/global-main
+
+regions:
+  head_top: head_top
+  header: header
+  primary_menu: Primary menu
+  content: content
+  content_home: content_home
+  load_block_featured: load_block_featured
+  load_block: load_block
+  sidebar: sidebar
+  footer: footer
+
+libraries-override:
+  system/base: false
+  views/views.module: false
+  core/internal.underscore: false
+  core/once: false
+  core/internal.backbone: false
+  core/drupalSettings: false
+  core/drupal: false
+  contextual/drupal.contextual-links: false
+  core/drupal.progress: false
+  core/drupal.active-link: false
+
+version: '1.0.0'
+project: 'hdmovie2'
+datestamp: 1661826904

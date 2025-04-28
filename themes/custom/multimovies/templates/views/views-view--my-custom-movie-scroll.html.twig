@@ -1,0 +1,20 @@
+{% if header %}
+{{ header }}
+{% endif %} 
+
+<div class="swiper horizontal_scroll_swiper {{ css_class }}">
+         <div class="items normal swiper-wrapper">      
+            {% if rows %}
+   
+              {{ rows }}
+   
+            {% endif %}
+         </div>
+  <!-- scrollbar -->
+    <div class="swiper-scrollbar"></div>
+
+    <!-- buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+  
