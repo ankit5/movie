@@ -306,7 +306,7 @@ function getmovie($url='',$post_id='')
  // $url = str_replace($oldStr, $new_var, $url );
  $newurl = explode("//", $url);
  $newurl = explode("/", $newurl[1]);
- $url ='https://'.$new_var.'/'.$newurl[1];
+ $url ='https://'.$new_var.'/'.$newurl[1].'/'.$newurl[2];
   $movie = [];
   print $url;
   exit;
