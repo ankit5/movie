@@ -308,8 +308,8 @@ function getmovie($url='',$post_id='')
  $newurl = explode("/", $newurl[1]);
  $url ='https://'.$new_var.'/'.$newurl[1].'/'.$newurl[2];
   $movie = [];
-  print $url;
-  exit;
+  // print $url;
+  // exit;
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 curl_setopt($curl, CURLOPT_HEADER, false);
@@ -320,8 +320,8 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0");
 $str = curl_exec($curl);
 curl_close($curl);
-print_r($str);
-exit;
+// print_r($str);
+// exit;
 $dom = HtmlDomParser::str_get_html($str);
 
 $cover = array();
