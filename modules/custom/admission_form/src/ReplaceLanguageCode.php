@@ -308,8 +308,8 @@ function getmovie($url='',$post_id='')
  $newurl = explode("/", $newurl[1]);
  $url ='https://'.$new_var.'/'.$newurl[1];
   $movie = [];
-  // print $url;
-  // exit;
+  print $url;
+  exit;
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 curl_setopt($curl, CURLOPT_HEADER, false);
