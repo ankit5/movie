@@ -12,6 +12,9 @@ class CacheableViewsAjaxResponse extends ViewAjaxResponse implements CacheableRe
 
   use CacheableResponseTrait;
 
+  protected string $view_id;
+  protected string $display_id;
+
   /**
    * {@inheritdoc}
    */
