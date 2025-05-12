@@ -335,9 +335,8 @@ $context ='';
 
 
 if($node2!=1){
- //$variables['#cache']['max-age'] = 0;
+ $variables['#cache']['max-age'] = 0;
 }
-
  
 }
 }
