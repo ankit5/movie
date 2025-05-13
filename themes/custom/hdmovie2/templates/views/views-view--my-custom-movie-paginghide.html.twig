@@ -1,12 +1,13 @@
+{% if rows %}
 {% if header %}
 {{ header }}
 {% endif %} 
 <div class="items normal {{ css_class }}">      
-            {% if rows %}
+            
    
               {{ rows }}
    
-            {% endif %}
+            
          </div>
 {% if footer %}
 {{ footer }}
@@ -14,4 +15,5 @@
 {% if pager %}
     {{ pager }}
   {% endif %}
+{% endif %}
 
