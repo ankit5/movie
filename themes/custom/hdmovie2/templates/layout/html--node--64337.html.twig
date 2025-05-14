@@ -155,7 +155,12 @@
 </footer>
 </div>
 <script>
-{% if get.page %}
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const parameterValue = urlParams.get('page');
+ console.log(parameterValue);
+if (!parameterValue) {
+
 var sendInfo = {
         region: 'load_block_featured',
     };
@@ -173,8 +178,7 @@ var sendInfo = {
             },
             data: JSON.stringify(sendInfo),
           });
-{% endif %}
-
+}
 var sendInfo = {
         region: 'load_block',
     };
