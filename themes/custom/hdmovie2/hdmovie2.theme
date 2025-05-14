@@ -108,6 +108,7 @@ function hdmovie2_preprocess_html(array &$variables) {
      $variables['getadcash'] = $ran;
   $variables['random_s'] = 'ehsdwsdd46ey';
   $variables['site_name'] = $_SERVER['SERVER_NAME'];
+  $variables['get']['page'] = ($_GET['page'])?$_GET['page']:'';
 }
 
 

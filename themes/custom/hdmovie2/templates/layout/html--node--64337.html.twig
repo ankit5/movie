@@ -155,6 +155,7 @@
 </footer>
 </div>
 <script>
+{% if get.page %}
 var sendInfo = {
         region: 'load_block_featured',
     };
@@ -172,7 +173,7 @@ var sendInfo = {
             },
             data: JSON.stringify(sendInfo),
           });
-
+{% endif %}
 
 var sendInfo = {
         region: 'load_block',
