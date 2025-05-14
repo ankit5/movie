@@ -157,16 +157,17 @@
 <script>
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const parameterValue = urlParams.get('page');
+const parameterValue = urlParams.get('page')?urlParams.get('page'):0;
  console.log(parameterValue);
-if (!parameterValue) {
+
 
 var sendInfo = {
         region: 'load_block_featured',
+        page:parameterValue,
     };
  $.ajax( {
-            type: 'post',
-            url: "/region",
+            type: 'get',
+            url: "/region?page="+parameterValue,
             success: function( datanew ) {
            
        // var rawDoc= $(data).find('.content').html();
@@ -178,7 +179,7 @@ var sendInfo = {
             },
             data: JSON.stringify(sendInfo),
           });
-}
+
 var sendInfo = {
         region: 'load_block',
     };
