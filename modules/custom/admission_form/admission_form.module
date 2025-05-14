@@ -158,11 +158,11 @@ if($path_args[1]!='admin' && $defaultThemeName!='psyplay'){
   //  $view->getPager()->setItemsPerPage($limit);
   } 
   }
- if ($view->id() == "front_latest"  && $view->current_display != 'block_1') {
- // $offset = 0;
- // $limit = 8;
-   //  $view->setOffset($offset);
-    // $view->getPager()->setItemsPerPage($limit);
+ if ($view->id() == "duplicate_of_featured_movies"  && $view->current_display != 'block_3') {
+  $offset = 0;
+  $limit = 15;
+     $view->setOffset($offset);
+     $view->getPager()->setItemsPerPage($limit);
    }  
 }
 function isMobile() {
