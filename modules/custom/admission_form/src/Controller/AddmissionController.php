@@ -147,7 +147,7 @@ function get_blocks_by_region_old($region) {
 function get_blocks_by_region(Request $request) {
 
   $postData = json_decode($request->getContent());
-  $region = $postData->region;
+  $region = ($postData->region)?$postData->region:$_GET['region'];
  // exit;
   $blocks = \Drupal::entityTypeManager()
 
