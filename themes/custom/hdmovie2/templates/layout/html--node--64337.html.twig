@@ -167,7 +167,7 @@ var sendInfo = {
     };
  $.ajax( {
             type: 'get',
-            url: "/region?page="+parameterValue,
+            url: "/region?region=load_block_featured&page="+parameterValue,
             success: function( datanew ) {
            
        // var rawDoc= $(data).find('.content').html();
@@ -176,8 +176,7 @@ var sendInfo = {
             $('.load_block_featured').html(datanew);
             $('.lazy').Lazy(); 
                      
-            },
-            data: JSON.stringify(sendInfo),
+            }
           });
 
 var sendInfo = {
