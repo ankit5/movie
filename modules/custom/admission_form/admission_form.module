@@ -161,8 +161,8 @@ if($path_args[1]!='admin' && $defaultThemeName!='psyplay'){
  if ($view->id() == "duplicate_of_featured_movies"  && $view->current_display != 'block_3') {
   $offset = 0;
   $limit = 15;
-     $view->setOffset($offset);
-     $view->getPager()->setItemsPerPage($limit);
+   //  $view->setOffset($offset);
+   //  $view->getPager()->setItemsPerPage($limit);
    }  
 }
 function isMobile() {
