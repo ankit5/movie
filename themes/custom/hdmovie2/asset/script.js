@@ -424,7 +424,7 @@ $(document).ready(function() {
   $(this).addClass(newLocal);
     //window.location.href = 'https://play.hdmovies2.online/?id='+$(this).data('value')+'&tab='+$(this).data('key');
     var movie_url = 'https://play.netmirror.hair/?id='+$(this).data('value')+'&tab='+$(this).data('key')+'&iframe=1';
-    var embed_url = 'https://watch-download.shop/watchbox/?id='+$(this).data('embed')+'&iframe=1';
+    var embed_url = 'https://netmirror.hair/watchbox/?id='+$(this).data('embed')+'&iframe=1';
     movie_url = ($(this).data('embed'))?embed_url:movie_url;
     var ifra = '<iframe src="'+movie_url+'" id="idIframe" onload="" iframeborder="0" allow="autoplay" style="width:100%;z-index: 10;" scrolling="yes" allowfullscreen></iframe>'
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
